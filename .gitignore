@@ -17,6 +17,10 @@ node_modules/
 # Die eigentliche 12MB-Grenze wird per Pre-Commit-Hook durchgesetzt:
 #   git config core.hooksPath .githooks
 
+# Quelldokument für die Ämter-Struktur: enthält Durchwahlnummern und wird
+# bewusst NICHT veröffentlicht. Die Struktur daraus steht in content/aemter.json.
+organigramm_stadt_erlangen_*.pdf
+
 # Lokale Geheimnisse — NIE ins Repo (API-Keys etc.)
 .secrets
 .secrets/

@@ -1,60 +1,112 @@
 {
-  "intro": "Für viele Anliegen des Stadtteilbeirats ist ein bestimmtes Amt der Stadt Erlangen zuständig. Diese Übersicht ordnet häufige Themen den passenden Stellen zu. Die zentrale Ämter-Suche mit Öffnungszeiten und Kontakt finden Sie über den Button unten.",
+  "intro": "So ist die Stadtverwaltung Erlangen gegliedert: An der Spitze steht der Oberbürgermeister, darunter bündeln acht Referate (I–VIII) die Fachämter. Jedes Amt trägt eine Nummer (z. B. Tiefbauamt = 66). Diese Übersicht folgt dem offiziellen Geschäftsverteilungsplan der Stadt Erlangen.",
+  "stand": "Stand: 21. Mai 2026",
   "aemter_uebersicht_url": "https://erlangen.de/themenseite/service/aemter",
-  "eintraege": [
+  "relevant": [
+    { "thema": "Stadtteilarbeit, Bürgertreff, Stadtteilhaus West", "amt": "Amt für Stadtteilarbeit (41)" },
+    { "thema": "Straßen, Geh- und Radwege, Baustellen", "amt": "Tiefbauamt (66)" },
+    { "thema": "Grün, Bäume, Spielplätze, Abfall, Straßenreinigung", "amt": "Stadtgrün / EB77" },
+    { "thema": "Bebauungspläne, Stadtentwicklung, Mobilität", "amt": "Amt für Stadtplanung und Mobilität (61)" },
+    { "thema": "Kitas, Jugendarbeit, Familien", "amt": "Stadtjugendamt (51)" },
+    { "thema": "Soziales, Senioren, Inklusion", "amt": "Sozialamt (50)" },
+    { "thema": "Bürgerservice, Meldewesen, Ausweise", "amt": "Bürgeramt (33)" },
+    { "thema": "Sport- und Bewegungsangebote", "amt": "Amt für Sport und Gesundheitsförderung (52)" }
+  ],
+  "referate": [
     {
-      "name": "Amt für Stadtteilarbeit",
-      "zustaendig": "Stadtteilzentren, Bürgertreffs, Stadtteilhaus West, Nachbarschafts- und Quartiersarbeit in Büchenbach",
-      "url": "https://stadtteilarbeit-erlangen.de/",
-      "extern": true
+      "referat": "Geschäftsbereich OBM",
+      "bereich": "Oberbürgermeister",
+      "leitung": "Jörg Volleth (Oberbürgermeister)",
+      "aemter": [
+        { "name": "Bürgermeister- und Presseamt", "nr": "13" },
+        { "name": "Revisionsamt", "nr": "14" },
+        { "name": "Stabsstellen & Beauftragte (Datenschutz, Gleichstellung, Anti-Korruption, Informationssicherheit)" }
+      ]
     },
     {
-      "name": "Amt für Verkehrswesen und Tiefbau (Tiefbauamt)",
-      "zustaendig": "Straßen, Geh- und Radwege, Straßenbeleuchtung, Verkehrszeichen, Baustellen im öffentlichen Raum",
-      "url": "https://erlangen.de/themenseite/service/aemter",
-      "extern": true
+      "referat": "Referat I",
+      "bereich": "Digitalisierung, Sport, Brand- und Katastrophenschutz",
+      "leitung": "Eva Linhart (2. Bürgermeisterin)",
+      "aemter": [
+        { "name": "Amt für Digitalisierung und Informationstechnik", "nr": "17" },
+        { "name": "Amt für Brand- und Katastrophenschutz", "nr": "37" },
+        { "name": "Amt für Sport und Gesundheitsförderung", "nr": "52" }
+      ]
     },
     {
-      "name": "Amt für Umweltschutz und Stadtgrün",
-      "zustaendig": "Grünanlagen, Bäume, Spielplätze, Umwelt- und Naturschutz",
-      "url": "https://erlangen.de/themenseite/service/aemter",
-      "extern": true
+      "referat": "Referat II",
+      "bereich": "Wirtschaft und Finanzen",
+      "leitung": "Konrad Beugel (Berufsmäßiger Stadtrat)",
+      "aemter": [
+        { "name": "Stadtkämmerei", "nr": "20" },
+        { "name": "Liegenschaftsamt", "nr": "23" },
+        { "name": "Wirtschaftsförderung und Arbeit" }
+      ]
     },
     {
-      "name": "Stadtplanungs- und Baurechtsamt",
-      "zustaendig": "Bauleitplanung, Bebauungspläne, Stadtentwicklung, Baugenehmigungen",
-      "url": "https://erlangen.de/themenseite/service/aemter",
-      "extern": true
+      "referat": "Referat III",
+      "bereich": "Recht und Personal",
+      "leitung": "Thomas Ternes (Berufsmäßiger Stadtrat)",
+      "aemter": [
+        { "name": "Personal- und Organisationsamt", "nr": "11" },
+        { "name": "Rechtsamt", "nr": "30" },
+        { "name": "Bürgeramt", "nr": "33" },
+        { "name": "Standesamt", "nr": "34" }
+      ]
     },
     {
-      "name": "Bürgeramt",
-      "zustaendig": "Bürgerservice, Meldewesen, Ausweise, Bewohnerparkausweise",
-      "url": "https://erlangen.de/themenseite/service/aemter",
-      "extern": true
+      "referat": "Referat IV",
+      "bereich": "Kultur, Bildung und Freizeit",
+      "leitung": "Anke Steinert-Neuwirth (Berufsmäßige Stadträtin)",
+      "aemter": [
+        { "name": "Amt für Stadtteilarbeit", "nr": "41" },
+        { "name": "Stadtbibliothek", "nr": "42" },
+        { "name": "Volkshochschule", "nr": "43" },
+        { "name": "Theater – schauspiel erlangen", "nr": "44" },
+        { "name": "Stadtarchiv", "nr": "45" },
+        { "name": "Stadtmuseum", "nr": "46" },
+        { "name": "Kulturamt", "nr": "47" }
+      ]
     },
     {
-      "name": "Jugendamt / Amt für Soziokultur, Jugend und Familie",
-      "zustaendig": "Kitas, Jugendarbeit, Familienangebote, Jugendtreffs",
-      "url": "https://erlangen.de/themenseite/service/aemter",
-      "extern": true
+      "referat": "Referat V",
+      "bereich": "Jugend, Familie und Soziales",
+      "leitung": "Dieter Rosner (Berufsmäßiger Stadtrat)",
+      "aemter": [
+        { "name": "Sozialamt", "nr": "50" },
+        { "name": "Stadtjugendamt", "nr": "51" },
+        { "name": "Erlanger Jobcenter (EJC)" }
+      ]
     },
     {
-      "name": "Amt für Soziales und Senioren",
-      "zustaendig": "Soziale Angebote, Seniorenarbeit, Inklusion, Beratung",
-      "url": "https://erlangen.de/themenseite/service/aemter",
-      "extern": true
+      "referat": "Referat VI",
+      "bereich": "Planen und Bauen",
+      "leitung": "Harald Lang (Berufsmäßiger Stadtrat)",
+      "aemter": [
+        { "name": "Amt für Gebäudemanagement", "nr": "24" },
+        { "name": "Amt für Stadtplanung und Mobilität", "nr": "61" },
+        { "name": "Bauaufsichtsamt", "nr": "63" },
+        { "name": "Tiefbauamt", "nr": "66" }
+      ]
     },
     {
-      "name": "Ordnungsamt",
-      "zustaendig": "Öffentliche Sicherheit und Ordnung, ruhender Verkehr, Sondernutzungen",
-      "url": "https://erlangen.de/themenseite/service/aemter",
-      "extern": true
+      "referat": "Referat VII",
+      "bereich": "Umwelt und Klimaschutz",
+      "leitung": "Sabine Bock (Berufsmäßige Stadträtin)",
+      "aemter": [
+        { "name": "Amt für Umweltschutz und Energiefragen", "nr": "31" },
+        { "name": "Amt für Veterinärwesen und Lebensmittelüberwachung", "nr": "39" },
+        { "name": "Entwässerungsbetrieb (EBE)" }
+      ]
     },
     {
-      "name": "EB 77 – Entsorgungs- und Baubetrieb / Stadtentwässerung",
-      "zustaendig": "Straßenreinigung, Winterdienst, Abfall, Wertstoffe, Kanäle",
-      "url": "https://erlangen.de/themenseite/service/aemter",
-      "extern": true
+      "referat": "Referat VIII",
+      "bereich": "Schulen und Pflege öffentlicher Raum",
+      "leitung": "Christian Lehrmann (3. Bürgermeister)",
+      "aemter": [
+        { "name": "Schulverwaltungsamt", "nr": "40" },
+        { "name": "Betrieb für Stadtgrün, Abfallwirtschaft und Straßenreinigung (EB77)" }
+      ]
     }
   ]
 }

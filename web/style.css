@@ -130,6 +130,29 @@ a.card:hover { border-color: var(--accent-2); }
 }
 .card .c-zust { color: var(--muted); font-size: .78rem; margin-top: .3rem; }
 
+/* Ämter: Zuständigkeiten + Referatsstruktur */
+h3.sub-head {
+  font-size: .8rem; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--muted); margin: 1.6rem 0 .6rem;
+}
+.zust-list { list-style: none; margin: 0 0 .4rem; padding: 0; }
+.zust-list li {
+  display: flex; gap: .8rem; flex-wrap: wrap; justify-content: space-between;
+  padding: .45rem .8rem; border: 1px solid var(--hairline); border-radius: 7px;
+  background: var(--surface-1); margin-bottom: .35rem; font-size: .85rem;
+}
+.z-thema { color: var(--ink); }
+.z-amt { color: var(--accent); font-weight: 600; text-align: right; }
+.ref-card .c-title { font-size: 1rem; }
+.amt-list { list-style: none; margin: .6rem 0 0; padding: .55rem 0 0; border-top: 1px solid var(--hairline); }
+.amt-list li { font-size: .83rem; line-height: 1.5; padding: .12rem 0; color: var(--ink-2); }
+.amt-nr {
+  display: inline-block; font-size: .7rem; font-weight: 700; color: var(--muted);
+  background: var(--page); border: 1px solid var(--hairline); border-radius: 4px;
+  padding: 0 .3rem; margin-left: .25rem;
+}
+.quelle { color: var(--muted); font-size: .74rem; margin-top: 1.4rem; }
+
 /* Register-Listen (Recht/Statistik) */
 .reg-list { list-style: none; margin: 0; padding: 0; }
 .reg-list > li {
@@ -228,6 +251,28 @@ ul.plan-files { list-style: none; margin: .3rem 0 0; padding: 0; }
 ul.plan-files li { padding: .45rem 0; border-bottom: 1px solid var(--hairline); font-size: .88rem; }
 ul.plan-files li:last-child { border-bottom: none; }
 .hint { font-size: .85rem; color: var(--ink-2); line-height: 1.5; }
+
+/* ── Erwähnte Straßen im Dokument (Chips + Mini-Karte) ───────────── */
+.streets {
+  background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 9px;
+  padding: .75rem .95rem; margin-bottom: 1rem;
+}
+.streets-head {
+  margin: 0 0 .5rem; font-size: .74rem; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--muted);
+}
+.street-chips { display: flex; flex-wrap: wrap; gap: .35rem; }
+.chip-street {
+  font-size: .8rem; padding: .25rem .7rem; cursor: pointer;
+  background: var(--page); color: var(--ink-2);
+  border: 1px solid var(--hairline); border-radius: 20px;
+}
+.chip-street:hover { border-color: var(--accent); color: var(--accent); }
+.chip-street.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.street-map {
+  height: 20rem; margin-top: .75rem;
+  border: 1px solid var(--hairline); border-radius: 8px; background: var(--page);
+}
 
 /* ── Karte ───────────────────────────────────────────────────────── */
 #map { height: 62vh; min-height: 22rem; border: 1px solid var(--hairline); border-radius: 10px; background: var(--surface-1); }

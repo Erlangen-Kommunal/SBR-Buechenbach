@@ -7,7 +7,7 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v3 · 2026-07-21";
+const APP_VERSION = "v4 · 2026-07-21";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -349,9 +349,11 @@ async function renderDoc(id) {
       </div>
     </div>
     <div id="doc-notice" class="notice" hidden></div>
+    <div id="doc-streets"></div>
     <div id="doc-body"></div>
   </div>`;
   renderDocText(d);
+  renderStreets(d.text);
   $("btn-pdf").addEventListener("click", () => showPdf(d, d.url));
   $("btn-text").addEventListener("click", () => {
     renderDocText(d); $("btn-text").classList.add("active"); $("btn-pdf").classList.remove("active");
@@ -500,6 +502,145 @@ async function showPdf(d, sourceUrl) {
   status(`PDF angezeigt (${(bytes.length / 1048576).toFixed(1)} MB).`);
 }
 
+// ── Straßen im Dokument → Karte mit der Straße in der Mitte ─────────────────
+// Erkennt Straßennamen im Volltext. Die Namenssuche (Name → Koordinaten +
+// Ausdehnung) liefert Nominatim/OpenStreetMap — der BayernAtlas bietet keine
+// frei einbindbare Geokodierung und lässt sich auch nicht einbetten. Angezeigt
+// wird die Straße auf den amtlichen Kacheln aus content/karte.json; zusätzlich
+// verlinken wir punktgenau in den BayernAtlas (amtliche Fach-/Flurstückdaten).
+
+const STREET_RE = /(?<![A-Za-zäöüßÄÖÜ])([A-ZÄÖÜ][A-Za-zäöüß.\-]{2,}(?:straße|strasse|weg|platz|allee|ring|gasse|graben)|[A-ZÄÖÜ][A-Za-zäöüß]{2,}er\s(?:Straße|Strasse|Weg|Platz|Allee|Ring|Gasse))(?![A-Za-zäöüß])/g;
+
+// Gattungsbegriffe, die auf -weg/-platz/-straße enden, aber keine Straßennamen
+// sind. Es wird auch auf Endung geprüft, damit z. B. "Lehrerparkplatz" fällt.
+const GENERIC_PLACES = [
+  "parkplatz", "spielplatz", "stellplatz", "sportplatz", "bolzplatz", "abstellplatz",
+  "lagerplatz", "standplatz", "arbeitsplatz", "radweg", "gehweg", "fußweg", "fussweg",
+  "schulweg", "feldweg", "rundweg", "umweg", "hinweg", "wanderweg", "wirtschaftsweg",
+  "verbindungsweg", "verkehrsweg", "lösungsweg", "rechtsweg", "einbahnstraße",
+  "nebenstraße", "ortsstraße", "bundesstraße", "staatsstraße", "kreisstraße",
+  "wohnstraße", "sackgasse", "straßengraben",
+];
+// "Dorfstraße-Holzweg" o. Ä. bezeichnet eine Kreuzung, keine Straße — die beiden
+// Straßen werden ohnehin einzeln erkannt.
+const JUNCTION_RE = /(?:straße|strasse|weg|platz|allee|ring|gasse|graben)[-–]/i;
+
+/** Vergleichsform: Groß/Klein und die Schreibweise straße/strasse vereinheitlicht. */
+const normStreet = (s) => s.toLowerCase().replaceAll("strasse", "straße");
+
+function detectStreets(text, max = 12) {
+  const found = new Map();
+  if (!text) return [];
+  for (const m of text.matchAll(STREET_RE)) {
+    const name = m[1].replace(/\s+/g, " ").replace(/[.\-–]+$/, "").trim();
+    const key = normStreet(name);
+    if (found.has(key) || JUNCTION_RE.test(name)) continue;
+    if (GENERIC_PLACES.some((g) => key === g || key.endsWith(g))) continue;
+    found.set(key, name);
+    if (found.size >= max) break;
+  }
+  return [...found.values()];
+}
+
+/** WGS84 → UTM Zone 32N (EPSG:25832) — Koordinatensystem des BayernAtlas. */
+function wgs84ToUtm32(lat, lon) {
+  const a = 6378137.0, f = 1 / 298.257223563, k0 = 0.9996, lon0 = 9 * Math.PI / 180;
+  const e2 = f * (2 - f), ep2 = e2 / (1 - e2);
+  const p = lat * Math.PI / 180, l = lon * Math.PI / 180;
+  const N = a / Math.sqrt(1 - e2 * Math.sin(p) ** 2);
+  const T = Math.tan(p) ** 2, C = ep2 * Math.cos(p) ** 2, A = (l - lon0) * Math.cos(p);
+  const M = a * ((1 - e2 / 4 - 3 * e2 * e2 / 64 - 5 * e2 ** 3 / 256) * p
+    - (3 * e2 / 8 + 3 * e2 * e2 / 32 + 45 * e2 ** 3 / 1024) * Math.sin(2 * p)
+    + (15 * e2 * e2 / 256 + 45 * e2 ** 3 / 1024) * Math.sin(4 * p)
+    - (35 * e2 ** 3 / 3072) * Math.sin(6 * p));
+  const E = k0 * N * (A + (1 - T + C) * A ** 3 / 6
+    + (5 - 18 * T + T * T + 72 * C - 58 * ep2) * A ** 5 / 120) + 500000;
+  const Nn = k0 * (M + N * Math.tan(p) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A ** 4 / 24
+    + (61 - 58 * T + T * T + 600 * C - 330 * ep2) * A ** 6 / 720));
+  return [Math.round(E), Math.round(Nn)];
+}
+
+// Namenssuche auf Erlangen eingegrenzt (viewbox + bounded), Ergebnisse gecacht,
+// damit Nominatim nur bei echtem Klick und nie doppelt angefragt wird.
+const geoCache = new Map();
+async function geocodeStreet(name) {
+  if (geoCache.has(name)) return geoCache.get(name);
+  const url = "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1"
+    + "&addressdetails=0&countrycodes=de&bounded=1&viewbox=10.88,49.67,11.12,49.51"
+    + `&q=${encodeURIComponent(name + ", Erlangen")}`;
+  let hit = null;
+  try {
+    const r = await fetch(url, { headers: { "Accept-Language": "de" } });
+    if (r.ok) {
+      const arr = await r.json();
+      hit = arr.length ? arr[0] : null;
+    }
+  } catch { /* offline oder Dienst nicht erreichbar */ }
+  geoCache.set(name, hit);
+  return hit;
+}
+
+async function showStreetMap(name, box) {
+  box.innerHTML = `<p class="hint">Suche „${escHtml(name)}“ auf der Karte …</p>`;
+  let cfg;
+  try {
+    cfg = await loadContent("karte");
+    await loadLeaflet();
+  } catch (e) {
+    box.innerHTML = `<p class="hint">Karte nicht verfügbar: ${escHtml(e.message)}</p>`;
+    return;
+  }
+  const g = await geocodeStreet(name);
+  if (!g) {
+    box.innerHTML = `<p class="hint">„${escHtml(name)}“ ließ sich in Erlangen nicht
+      eindeutig zuordnen — evtl. kein Straßenname oder außerhalb des Stadtgebiets.</p>`;
+    return;
+  }
+  const lat = Number(g.lat), lon = Number(g.lon);
+  const [e32, n32] = wgs84ToUtm32(lat, lon);
+  box.innerHTML = `<div class="street-map"></div>
+    <div class="map-actions">
+      <a class="btn-primary" href="https://atlas.bayern.de/?c=${e32},${n32}&z=16&r=0&l=atkis&t=ba"
+         target="_blank" rel="noopener">„${escHtml(name)}“ im BayernAtlas ↗</a>
+      <a href="https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=17/${lat}/${lon}"
+         target="_blank" rel="noopener">In OpenStreetMap öffnen ↗</a>
+    </div>`;
+  const L = window.L;
+  const map = L.map(box.querySelector(".street-map"), { scrollWheelZoom: false });
+  const base = cfg.layers.find((l) => l.default) ?? cfg.layers[0];
+  L.tileLayer(base.url, { attribution: base.attribution, maxZoom: base.maxZoom || 19 }).addTo(map);
+  // Nominatim liefert die Ausdehnung der Straße — daran ausrichten, damit die
+  // ganze Straße mittig im Bild liegt (statt nur eines beliebigen Punktes).
+  const bb = (g.boundingbox || []).map(Number);
+  if (bb.length === 4 && bb.every(Number.isFinite))
+    map.fitBounds([[bb[0], bb[2]], [bb[1], bb[3]]], { padding: [24, 24], maxZoom: 17 });
+  else
+    map.setView([lat, lon], 17);
+  L.marker([lat, lon]).addTo(map).bindPopup(`<strong>${escHtml(name)}</strong>`);
+  setTimeout(() => map.invalidateSize(), 80);
+}
+
+/** Chips für die im Dokument erwähnten Straßen; Karte erst auf Klick (schont Nominatim). */
+function renderStreets(text) {
+  const box = $("doc-streets");
+  if (!box) return;
+  const streets = detectStreets(text);
+  if (!streets.length) { box.innerHTML = ""; return; }
+  box.innerHTML = `<div class="streets">
+    <p class="streets-head">Erwähnte Straßen — zum Anzeigen auf der Karte anklicken</p>
+    <div class="street-chips">${streets.map((s) =>
+      `<button type="button" class="chip-street" data-street="${escHtml(s)}">${escHtml(s)}</button>`).join("")}</div>
+    <div id="street-map-box"></div>
+  </div>`;
+  for (const btn of box.querySelectorAll(".chip-street")) {
+    btn.addEventListener("click", () => {
+      box.querySelector(".chip-street.active")?.classList.remove("active");
+      btn.classList.add("active");
+      showStreetMap(btn.dataset.street, $("street-map-box"));
+    });
+  }
+}
+
 // ── Karten-Sektionen: Fachbeiräte / Ämter / Links ────────────────────────────
 
 async function renderCards(key, title, icon) {
@@ -517,20 +658,40 @@ async function renderCards(key, title, icon) {
   status(`${data.eintraege.length} Einträge.`);
 }
 
+/**
+ * Ämter-Sektion: erklärt den Aufbau der Stadtverwaltung (Oberbürgermeister →
+ * acht Referate → Fachämter mit Amtsnummer) nach dem Geschäftsverteilungsplan.
+ * Bewusst ohne Telefonnummern — für Kontakt/Öffnungszeiten dient die Ämter-Suche.
+ */
 async function renderAemter() {
   const data = await loadContent("aemter");
+  const amtLabel = (a) =>
+    escHtml(a.name) + (a.nr ? ` <span class="amt-nr">${escHtml(a.nr)}</span>` : "");
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">🏢 Ämter & Zuständigkeiten</h2>
     ${data.intro ? `<p class="section-intro">${escHtml(data.intro)}</p>` : ""}
-    ${data.aemter_uebersicht_url ? `<div class="map-actions">
-      <a class="btn-primary" href="${escHtml(data.aemter_uebersicht_url)}" target="_blank" rel="noopener">Ämter-Suche & Öffnungszeiten ↗</a></div>` : ""}
+    <div class="map-actions">
+      <a class="btn-primary" href="${escHtml(data.aemter_uebersicht_url)}"
+         target="_blank" rel="noopener">Ämter-Suche, Kontakt &amp; Öffnungszeiten ↗</a>
+    </div>
+    ${data.relevant?.length ? `
+      <h3 class="sub-head">Wer ist wofür zuständig?</h3>
+      <ul class="zust-list">${data.relevant.map((r) => `<li>
+        <span class="z-thema">${escHtml(r.thema)}</span>
+        <span class="z-amt">${escHtml(r.amt)}</span></li>`).join("")}</ul>` : ""}
+    <h3 class="sub-head">Aufbau der Stadtverwaltung</h3>
     <div class="cards">
-      ${data.eintraege.map((e) => `<a class="card" href="${escHtml(e.url)}" target="_blank" rel="noopener">
-        <div class="c-title">${escHtml(e.name)} <span class="ext">↗</span></div>
-        <div class="c-zust">${escHtml(e.zustaendig || "")}</div>
-      </a>`).join("")}
-    </div></div>`;
-  status(`${data.eintraege.length} Ämter.`);
+      ${data.referate.map((r) => `<div class="card ref-card">
+        <span class="c-tag">${escHtml(r.referat)}</span>
+        <div class="c-title">${escHtml(r.bereich)}</div>
+        <div class="c-zust">${escHtml(r.leitung)}</div>
+        <ul class="amt-list">${r.aemter.map((a) => `<li>${amtLabel(a)}</li>`).join("")}</ul>
+      </div>`).join("")}
+    </div>
+    ${data.stand ? `<p class="quelle">Quelle: Geschäftsverteilungsplan der Stadt Erlangen · ${escHtml(data.stand)}</p>` : ""}
+  </div>`;
+  const n = data.referate.reduce((s, r) => s + r.aemter.length, 0);
+  status(`${data.referate.length} Referate mit ${n} Ämtern und Einrichtungen.`);
 }
 
 // ── Karte (Leaflet + amtliche Kacheln, BayernAtlas-Deeplink) ─────────────────
