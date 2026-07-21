@@ -1,19 +1,19 @@
 {
   "intro": "Interaktive Karte von Büchenbach mit amtlichen Kartengrundlagen (basemap.de des Bundes). Für Fachdaten wie Flurstücke, Luftbilder oder Bebauungspläne öffnet der Button den amtlichen BayernAtlas — dieser lässt sich aus technischen Gründen (Einbettungssperre des Landesportals) nicht direkt einbetten.",
-  "center": [49.5928, 10.9685],
-  "zoom": 14,
+  "center": [49.5922, 10.9597],
+  "zoom": 15,
   "marker": [
     {
-      "lat": 49.5906,
-      "lon": 10.9646,
-      "titel": "Rudeltplatz / Ortsmitte Büchenbach",
-      "beschreibung": "Zentraler Platz in Büchenbach; gegenüber entsteht das Stadtteilhaus West."
+      "lat": 49.5946439,
+      "lon": 10.9500752,
+      "titel": "Rudeltplatz (Büchenbach-West)",
+      "beschreibung": "Zentraler Platz mit Nahversorgung; an der Lindnerstraße gegenüber entsteht das Stadtteilhaus West."
     },
     {
-      "lat": 49.5931,
-      "lon": 10.9758,
-      "titel": "Büchenbach (Stadtteil)",
-      "beschreibung": "Westlicher Stadtteil Erlangens, vertreten durch den Stadtteilbeirat Büchenbach (Gremium 51)."
+      "lat": 49.5897394,
+      "lon": 10.9692487,
+      "titel": "Büchenbach-Dorf (Dorfstraße)",
+      "beschreibung": "Historischer Ortskern. Hier tagte der Stadtteilbeirat u. a. im Gasthaus Güthlein und in der Grundschule Büchenbach."
     }
   ],
   "layers": [
