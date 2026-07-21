@@ -106,8 +106,8 @@ p.section-intro { color: var(--ink-2); font-size: .9rem; line-height: 1.55; marg
 }
 .tile:hover { border-color: var(--accent); box-shadow: 0 2px 14px rgba(11,11,11,.06); }
 .tile .icon { font-size: 1.7rem; line-height: 1; flex: none; }
-.tile .t-title { font-weight: 700; font-size: 1rem; margin-bottom: .15rem; }
-.tile .t-desc { color: var(--muted); font-size: .8rem; line-height: 1.4; }
+.tile .t-title { display: block; font-weight: 700; font-size: 1rem; margin-bottom: .15rem; }
+.tile .t-desc { display: block; color: var(--muted); font-size: .8rem; line-height: 1.4; }
 
 /* ── Karten-/Listen-Elemente (Register, Fachbeiräte, Ämter, Links) ── */
 .cards { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); }
