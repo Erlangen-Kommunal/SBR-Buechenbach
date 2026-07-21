@@ -53,6 +53,11 @@ a { color: var(--accent-2); }
   background: var(--accent); color: #fff; font-size: 1rem; cursor: pointer;
 }
 .error { color: #d03b3b; font-weight: 600; }
+.disclaimer {
+  margin: 1rem 0 0; padding-top: .8rem;
+  border-top: 1px solid var(--hairline);
+  font-size: .72rem; line-height: 1.5; color: var(--muted);
+}
 
 /* ── Kopfzeile ───────────────────────────────────────────────────── */
 header {

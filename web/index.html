@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>Stadtteilbeirat Büchenbach — Infoportal</title>
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
@@ -19,18 +19,26 @@
              placeholder="Passwort" autofocus required>
       <button type="submit">Anmelden</button>
       <p id="gate-error" class="error" hidden>Das Passwort ist leider falsch.</p>
+      <p class="disclaimer">Ehrenamtlich erstellte Anwendung. Es werden ausschließlich
+        öffentlich zugängliche Daten verwendet. Diese Anwendung steht in keiner
+        Verbindung zur Stadt Erlangen.</p>
     </form>
   </div>
 
   <!-- Lade-Status -->
   <div id="boot" class="overlay">
-    <div class="gate-card"><p id="boot-msg">Lade Portal …</p></div>
+    <div class="gate-card">
+      <p id="boot-msg">Lade Portal …</p>
+      <p class="disclaimer">Ehrenamtlich erstellte Anwendung. Es werden ausschließlich
+        öffentlich zugängliche Daten verwendet. Diese Anwendung steht in keiner
+        Verbindung zur Stadt Erlangen.</p>
+    </div>
   </div>
 
   <header>
     <a id="home-link" href="#/" title="Zur Startseite">
       <span class="logo">🏛️</span>
-      <span class="brand">Stadtteilbeirat&nbsp;Büchenbach<span class="sub">Infoportal · Stadt Erlangen</span></span>
+      <span class="brand">Stadtteilbeirat&nbsp;Büchenbach<span class="sub">Ehrenamtliches Infoportal</span></span>
     </a>
     <form id="search-form" role="search">
       <input id="search-input" type="search"
@@ -47,6 +55,6 @@
     <span id="version"></span>
   </footer>
 
-  <script type="module" src="app.js?v=2"></script>
+  <script type="module" src="app.js?v=3"></script>
 </body>
 </html>
