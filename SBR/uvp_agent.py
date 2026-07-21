@@ -1,19 +1,26 @@
 #!/usr/bin/env python3
 """
-UVP Document Agent — Claude AI agent for the Umwelt-, Verkehrs- und Planungsausschuss
-(Werkausschuss EB77) of the City of Erlangen.
+SBR Document Agent — Claude AI agent for the Stadtteilbeirat Büchenbach
+of the City of Erlangen.
 
 Scrapes, indexes, and analyzes official committee documents from the
 Erlangen Ratsinformationssystem (ratsinfo.erlangen.de).
 
 Usage:
-    python uvp_agent.py [--refresh]
+    python uvp_agent.py --sync       # non-interactive: refresh index, download new
+                                     #   documents, compress oversized PDFs. NO LLM,
+                                     #   NO API key. This is what the CI workflow runs.
+    python uvp_agent.py --compress   # shrink already-downloaded PDFs >=8MB in place
+    python uvp_agent.py [--refresh]  # interactive chat agent (needs ANTHROPIC_API_KEY)
 
 Environment:
-    ANTHROPIC_API_KEY  required
+    ANTHROPIC_API_KEY  required ONLY for the interactive chat agent (no --sync/--compress).
 
 Optional dependencies:
-    pip install pypdf   enables PDF text extraction
+    pip install pypdf     enables PDF text extraction
+    pip install pymupdf   enables automatic compression of PDFs >=8MB (see COMPRESS_MAX_BYTES);
+                           newly downloaded oversized files are compressed automatically, since
+                           the pre-commit hook (.githooks/pre-commit) rejects anything >=12MB
 """
 
 import argparse
@@ -24,19 +31,29 @@ import sys
 from html.parser import HTMLParser
 from pathlib import Path
 
-import anthropic
 import requests
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
 BASE_URL = "https://ratsinfo.erlangen.de"
-COMMITTEE_NUM = 15  # Umwelt-, Verkehrs- und Planungsausschuss / Werkausschuss EB77
-COMMITTEE_NAME = "Umwelt-, Verkehrs- und Planungsausschuss"
-DOWNLOAD_DIR = Path("uvp_docs")
+COMMITTEE_NUM = 51  # Stadtteilbeirat Büchenbach
+COMMITTEE_NAME = "Stadtteilbeirat Büchenbach"
+DOWNLOAD_DIR = Path(__file__).parent
 INDEX_FILE = DOWNLOAD_DIR / "index.json"
 SCRAPE_YEARS = range(2020, 2027)
 MODEL = "claude-opus-4-8"
 MAX_TOKENS = 4096
+
+# Kept under the pre-commit hook's 12 MiB cutoff (.githooks/pre-commit) with headroom.
+COMPRESS_MAX_BYTES = 8 * 1024 * 1024
+COMPRESS_ATTEMPTS = [  # (max image dimension px, JPEG quality) — escalating aggressiveness
+    (1600, 65),
+    (1200, 55),
+    (900, 40),
+    (700, 30),
+    (500, 25),
+    (350, 15),
+]
 
 HTTP_HEADERS = {
     "User-Agent": (
@@ -46,9 +63,8 @@ HTTP_HEADERS = {
 }
 
 SYSTEM_PROMPT = """\
-You are a helpful assistant for the Umwelt-, Verkehrs- und Planungsausschuss
-(Environment, Traffic and Planning Committee / Werkausschuss EB77) of the City of
-Erlangen, Germany.
+You are a helpful assistant for the Stadtteilbeirat Büchenbach
+(district advisory council) of the City of Erlangen, Germany.
 
 You can access official committee documents from the city's Ratsinformationssystem:
 - Einladung: Invitations / agendas sent ahead of each meeting
@@ -212,6 +228,98 @@ def load_index(http: requests.Session, force: bool = False) -> list[dict]:
     return docs
 
 
+# ── Download Helpers ──────────────────────────────────────────────────────────
+
+def _compress_pdf(path: Path) -> bool:
+    """Recompress embedded raster images in place (downsample + re-encode as JPEG)
+    until the PDF is under COMPRESS_MAX_BYTES. Returns True only if that goal was
+    reached — the file is still rewritten in place to the smallest attempt found
+    even when every attempt falls short, so callers must re-check the file size
+    to detect a "shrank but still oversized" outcome.
+
+    Vector/text content is untouched; only oversized raster images (maps, scans) lose
+    resolution. No-op (returns False) if pymupdf isn't installed or nothing helps.
+    """
+    try:
+        import fitz
+    except ImportError:
+        return False
+
+    original_size = path.stat().st_size
+    if original_size < COMPRESS_MAX_BYTES:
+        return False
+
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    best_size = original_size
+    for max_dim, quality in COMPRESS_ATTEMPTS:
+        try:
+            doc = fitz.open(path)
+            seen: set = set()
+            for page in doc:
+                for img in page.get_images(full=True):
+                    xref = img[0]
+                    if xref in seen:
+                        continue
+                    seen.add(xref)
+                    try:
+                        pix = fitz.Pixmap(doc, xref)
+                        if pix.colorspace is None:
+                            continue  # stencil/mask, leave alone
+                        if pix.colorspace.n >= 4:
+                            pix = fitz.Pixmap(fitz.csRGB, pix)
+                        if pix.alpha:
+                            pix = fitz.Pixmap(pix, 0)
+                        w, h = pix.width, pix.height
+                        if max(w, h) > max_dim:
+                            scale = max_dim / max(w, h)
+                            pix = fitz.Pixmap(pix, int(w * scale), int(h * scale), None)
+                        jpg = pix.tobytes("jpeg", jpg_quality=quality)
+                        page.replace_image(xref, stream=jpg)
+                    except Exception:
+                        continue
+            doc.save(tmp, garbage=4, deflate=True, clean=True)
+            doc.close()
+        except Exception:
+            tmp.unlink(missing_ok=True)
+            return False
+
+        tmp_size = tmp.stat().st_size
+        if tmp_size < best_size:
+            tmp.replace(path)
+            best_size = tmp_size
+        else:
+            tmp.unlink(missing_ok=True)
+        if best_size < COMPRESS_MAX_BYTES:
+            return True
+
+    return False  # shrank (maybe) but never got under the cap even at the most aggressive setting
+
+
+def _download_one(doc: dict, http: requests.Session) -> str:
+    path = DOWNLOAD_DIR / doc["filename"]
+    if path.exists():
+        doc["downloaded"] = True
+        return f"Already: {path.name}"
+    url = f"{BASE_URL}/{doc['href']}"
+    try:
+        r = http.get(url, headers=HTTP_HEADERS, stream=True, timeout=60)
+        if r.status_code == 200:
+            with open(path, "wb") as f:
+                for chunk in r.iter_content(8192):
+                    f.write(chunk)
+            doc["downloaded"] = True
+            note = ""
+            if path.suffix.lower() == ".pdf" and path.stat().st_size >= COMPRESS_MAX_BYTES:
+                if _compress_pdf(path):
+                    note = f", komprimiert -> {path.stat().st_size:,} B"
+                else:
+                    note = " [WARNUNG: weiterhin >=8MB, wird vom Pre-Commit-Hook geblockt]"
+            return f"OK: {path.name} ({path.stat().st_size:,} B{note})"
+        return f"HTTP {r.status_code}: {path.name}"
+    except Exception as exc:
+        return f"Error: {exc}: {path.name}"
+
+
 # ── Tool Implementations ──────────────────────────────────────────────────────
 
 def _tl_list_sessions(year: int, index: list[dict]) -> str:
@@ -266,23 +374,7 @@ def _tl_download(doc_id: str, index: list[dict], http: requests.Session) -> str:
     doc = next((d for d in index if d["doc_id"] == doc_id), None)
     if not doc:
         return f"No document with ID '{doc_id}' found."
-
-    path = DOWNLOAD_DIR / doc["filename"]
-    if path.exists():
-        return f"Already downloaded: {path.name}"
-
-    url = f"{BASE_URL}/{doc['href']}"
-    try:
-        r = http.get(url, headers=HTTP_HEADERS, stream=True, timeout=60)
-        if r.status_code == 200:
-            with open(path, "wb") as f:
-                for chunk in r.iter_content(8192):
-                    f.write(chunk)
-            doc["downloaded"] = True
-            return f"Downloaded: {path.name} ({path.stat().st_size:,} bytes)"
-        return f"Download failed: HTTP {r.status_code}"
-    except Exception as exc:
-        return f"Download error: {exc}"
+    return _download_one(doc, http)
 
 
 def _tl_read(doc_id: str, index: list[dict]) -> str:
@@ -445,6 +537,8 @@ def _call_tool(
 # ── Agent Loop ────────────────────────────────────────────────────────────────
 
 def run(force_refresh: bool = False) -> None:
+    import anthropic
+
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
         sys.exit("Error: ANTHROPIC_API_KEY environment variable is not set.")
@@ -452,7 +546,7 @@ def run(force_refresh: bool = False) -> None:
     client = anthropic.Anthropic(api_key=api_key)
     http = requests.Session()
 
-    print(f"UVP Document Agent — {COMMITTEE_NAME}, Erlangen")
+    print(f"SBR Document Agent — {COMMITTEE_NAME}, Erlangen")
     print("=" * 60)
     index = load_index(http, force=force_refresh)
     downloaded = sum(1 for d in index if d.get("downloaded"))
@@ -520,16 +614,127 @@ def run(force_refresh: bool = False) -> None:
         print()  # Blank line between turns
 
 
+COMPRESS_TIMEOUT_SECS = 180  # a malformed source PDF can make MuPDF spin near-forever
+
+
+def compress_existing() -> None:
+    """Scan DOWNLOAD_DIR for already-downloaded PDFs >=COMPRESS_MAX_BYTES and shrink them
+    in place. Each file is compressed in its own subprocess with a hard timeout, so one
+    malformed PDF (MuPDF can hang indefinitely trying to repair a broken xref) can't stall
+    the whole batch.
+    """
+    try:
+        import fitz  # noqa: F401
+    except ImportError:
+        sys.exit("Error: pymupdf ist nicht installiert. 'pip install pymupdf' ausführen.")
+    import subprocess
+
+    candidates = sorted(
+        p for p in DOWNLOAD_DIR.glob("*.pdf")
+        if p.stat().st_size >= COMPRESS_MAX_BYTES
+    )
+    if not candidates:
+        print("Keine Dateien >=8MB gefunden.")
+        return
+
+    print(f"{len(candidates)} Datei(en) >=8MB gefunden.\n")
+    n_ok, n_fail, n_timeout = 0, 0, 0
+    for i, path in enumerate(candidates, 1):
+        before = path.stat().st_size
+        rel = path.relative_to(DOWNLOAD_DIR)
+        try:
+            r = subprocess.run(
+                [sys.executable, __file__, "--compress-one", str(path)],
+                capture_output=True, text=True, timeout=COMPRESS_TIMEOUT_SECS,
+            )
+            ok = r.returncode == 0
+        except subprocess.TimeoutExpired:
+            ok = False
+            print(f"[{i}/{len(candidates)}] TIMEOUT {rel}: >={COMPRESS_TIMEOUT_SECS}s, vermutlich beschädigte PDF — übersprungen")
+            n_timeout += 1
+            continue
+
+        after = path.stat().st_size
+        if ok:
+            print(f"[{i}/{len(candidates)}] OK  {rel}: {before:,} -> {after:,} B")
+            n_ok += 1
+        else:
+            status = "unverändert" if after == before else f"{before:,} -> {after:,} B (weiterhin >=8MB)"
+            print(f"[{i}/{len(candidates)}] FAIL {rel}: {status}")
+            n_fail += 1
+    print(f"\nFertig: {n_ok} komprimiert, {n_fail} weiterhin >=8MB, {n_timeout} übersprungen (Timeout).")
+
+
+def sync_all() -> int:
+    """Nicht-interaktiver Sync für CI/Automation — OHNE LLM, ohne API-Key.
+
+    1. Index von ratsinfo.erlangen.de neu einlesen (index.json aktualisieren).
+    2. Alle im Index gelisteten, noch nicht heruntergeladenen Dokumente laden.
+    3. Übergroße PDFs in place komprimieren (Pre-Commit-Hook erzwingt <12MB).
+
+    Rückgabe: Anzahl neu geladener Dokumente.
+    """
+    http = requests.Session()
+    print(f"Sync {COMMITTEE_NAME}, Erlangen — Index wird neu eingelesen …")
+    index = load_index(http, force=True)
+    print(f"Index: {len(index)} Dokumente.")
+
+    new_docs, failed = 0, 0
+    for doc in index:
+        if (DOWNLOAD_DIR / doc["filename"]).exists():
+            continue
+        result = _download_one(doc, http)
+        if result.startswith("OK:"):
+            new_docs += 1
+            print(f"  + {result}")
+        elif not result.startswith("Already:"):
+            failed += 1
+            print(f"  ! {result}")
+
+    print(f"\nDownload: {new_docs} neue Dokumente, {failed} Fehler.")
+
+    # Sicherheitsnetz: alles, was der Kompressions-Trigger in _download_one nicht
+    # klein genug bekam, hier erneut angehen (nutzt Subprozess-Timeout-Schutz).
+    print("Prüfe auf übergroße PDFs …")
+    compress_existing()
+    return new_docs
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description=f"Claude AI agent for {COMMITTEE_NAME} document retrieval"
+        description=f"SBR-Dokument-Agent — {COMMITTEE_NAME}, Erlangen"
     )
     parser.add_argument(
         "--refresh",
         action="store_true",
         help="Force re-scrape the document index from ratsinfo.erlangen.de",
     )
+    parser.add_argument(
+        "--sync",
+        action="store_true",
+        help="Non-interactive: refresh index, download all new documents, compress "
+             "oversized PDFs, then exit. No LLM, no API key (for CI/automation).",
+    )
+    parser.add_argument(
+        "--compress",
+        action="store_true",
+        help="Shrink already-downloaded PDFs >=8MB in place, then exit (no chat session).",
+    )
+    parser.add_argument(
+        "--compress-one",
+        metavar="PATH",
+        help=argparse.SUPPRESS,  # internal: single-file worker used by --compress via subprocess
+    )
     args = parser.parse_args()
+    if args.compress_one:
+        ok = _compress_pdf(Path(args.compress_one))
+        sys.exit(0 if ok else 1)
+    if args.compress:
+        compress_existing()
+        return
+    if args.sync:
+        sync_all()
+        return
     run(force_refresh=args.refresh)
 
 

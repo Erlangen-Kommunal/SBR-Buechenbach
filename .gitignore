@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+
+# .gitignore kann keine Dateigroesse pruefen (nur Pfade/Namen).
+# Die eigentliche 12MB-Grenze wird per Pre-Commit-Hook durchgesetzt:
+#   git config core.hooksPath .githooks
+
+# Lokale Geheimnisse — NIE ins Repo (API-Keys etc.)
+.secrets
+.secrets/
+*.local.env
+.env
+.env.*

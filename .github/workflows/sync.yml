@@ -1,0 +1,58 @@
+# Deterministischer Wochen-Sync (KEIN LLM): liest den Dokumentindex von
+# ratsinfo.erlangen.de neu ein, lädt neue Sitzungsdokumente, komprimiert
+# übergroße PDFs und committet die Neuzugänge nach main.
+name: Weekly Sync (Ratsinfo)
+
+on:
+  schedule:
+    # Donnerstag 04:00 Europe/Berlin. Cron in Actions ist UTC ohne
+    # Sommerzeit-Umstellung, daher beide Varianten (eine feuert je nach
+    # DST tatsächlich um 04:00 Ortszeit, die andere um 03:00/05:00 — die
+    # Idempotenz des Sync macht den doppelten Lauf unschädlich).
+    - cron: "0 2 * * 4"   # 04:00 MESZ (Sommerzeit)
+    - cron: "0 3 * * 4"   # 04:00 MEZ  (Winterzeit)
+  workflow_dispatch:
+
+# Nur ein Sync gleichzeitig; laufende nicht abbrechen (Downloads).
+concurrency:
+  group: ratsinfo-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests pypdf pymupdf
+
+      - name: Enable pre-commit size hook
+        run: git config core.hooksPath .githooks
+
+      - name: Sync documents from Ratsinfo (no LLM)
+        working-directory: SBR
+        run: python uvp_agent.py --sync
+
+      - name: Commit new documents
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "Keine neuen Dokumente — nichts zu committen."
+            exit 0
+          fi
+          git add -A
+          # Pre-Commit-Hook (>=12MB-Sperre) läuft mit; scheitert er, bricht der Job ab.
+          git commit -m "Weekly Ratsinfo sync: new committee documents
+
+          Automated deterministic sync (uvp_agent.py --sync): refreshed index,
+          downloaded new documents, compressed oversized PDFs. No LLM."
+          git push origin HEAD:main
