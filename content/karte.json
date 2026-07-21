@@ -1,0 +1,37 @@
+{
+  "intro": "Interaktive Karte von Büchenbach mit amtlichen Kartengrundlagen (basemap.de des Bundes). Für Fachdaten wie Flurstücke, Luftbilder oder Bebauungspläne öffnet der Button den amtlichen BayernAtlas — dieser lässt sich aus technischen Gründen (Einbettungssperre des Landesportals) nicht direkt einbetten.",
+  "center": [49.5928, 10.9685],
+  "zoom": 14,
+  "marker": [
+    {
+      "lat": 49.5906,
+      "lon": 10.9646,
+      "titel": "Rudeltplatz / Ortsmitte Büchenbach",
+      "beschreibung": "Zentraler Platz in Büchenbach; gegenüber entsteht das Stadtteilhaus West."
+    },
+    {
+      "lat": 49.5931,
+      "lon": 10.9758,
+      "titel": "Büchenbach (Stadtteil)",
+      "beschreibung": "Westlicher Stadtteil Erlangens, vertreten durch den Stadtteilbeirat Büchenbach (Gremium 51)."
+    }
+  ],
+  "layers": [
+    {
+      "name": "basemap.de (amtlich)",
+      "url": "https://sgx.geodatenzentrum.de/wmts_basemapde/tile/1.0.0/de_basemapde_web_raster_farbe/default/GLOBAL_WEBMERCATOR/{z}/{y}/{x}.png",
+      "attribution": "© GeoBasis-DE / BKG · basemap.de",
+      "maxZoom": 19,
+      "default": true
+    },
+    {
+      "name": "OpenStreetMap",
+      "url": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+      "attribution": "© OpenStreetMap-Mitwirkende",
+      "maxZoom": 19,
+      "default": false
+    }
+  ],
+  "bayernatlas_url": "https://atlas.bayern.de/?c=641889,5495396&z=16&r=0&l=atkis&t=ba&crh=true",
+  "bayernatlas_label": "Büchenbach im BayernAtlas öffnen (Luftbild, Flurstücke, Fachkarten)"
+}

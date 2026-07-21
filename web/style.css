@@ -1,0 +1,259 @@
+/* Stadtteilbeirat Büchenbach — Infoportal. Farbrollen aus der validierten Referenz-Palette. */
+:root {
+  color-scheme: light;
+  --surface-1: #fcfcfb;
+  --page: #f9f9f7;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #898781;
+  --hairline: #e1e0d9;
+  --border: rgba(11, 11, 11, 0.10);
+  --accent: #008300;     /* Grün — Leitfarbe Stadtteilbeirat */
+  --accent-2: #2a78d6;   /* Blau — Sekundär/Links */
+  --plan: #4a3aa7;       /* Violett — Register (Recht/Statistik) */
+  --warn: #eda100;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--page);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+}
+a { color: var(--accent-2); }
+
+/* ── Overlays (Boot + Passwort-Gate) ─────────────────────────────── */
+.overlay {
+  position: fixed; inset: 0; z-index: 50;
+  background: var(--page);
+  display: flex; align-items: center; justify-content: center;
+}
+.gate-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2rem 2.5rem;
+  max-width: 24rem;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(11, 11, 11, 0.06);
+}
+.gate-card h1 { margin: 0 0 .5rem; font-size: 1.3rem; }
+.gate-card p { color: var(--ink-2); font-size: .9rem; line-height: 1.45; }
+.gate-card input {
+  width: 100%; padding: .55rem .7rem; margin: .8rem 0;
+  border: 1px solid var(--hairline); border-radius: 6px; font-size: 1rem;
+}
+.gate-card button {
+  width: 100%; padding: .55rem; border: 0; border-radius: 6px;
+  background: var(--accent); color: #fff; font-size: 1rem; cursor: pointer;
+}
+.error { color: #d03b3b; font-weight: 600; }
+
+/* ── Kopfzeile ───────────────────────────────────────────────────── */
+header {
+  display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+  padding: .55rem 1.1rem;
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--hairline);
+}
+#home-link {
+  display: flex; align-items: center; gap: .6rem;
+  text-decoration: none; color: var(--ink); white-space: nowrap;
+}
+#home-link .logo { font-size: 1.5rem; }
+#home-link .brand { font-weight: 700; font-size: 1.02rem; line-height: 1.1; display: flex; flex-direction: column; }
+#home-link .sub { font-weight: 400; font-size: .72rem; color: var(--muted); }
+#search-form { display: flex; gap: .4rem; flex: 1; min-width: 16rem; max-width: 40rem; margin-left: auto; }
+#search-input {
+  flex: 1; padding: .45rem .7rem;
+  border: 1px solid var(--hairline); border-radius: 6px; font-size: .95rem;
+}
+#search-form button {
+  padding: .45rem 1.1rem; border: 1px solid var(--accent); border-radius: 6px;
+  background: var(--accent); color: #fff; cursor: pointer;
+}
+
+/* ── Hauptbereich ────────────────────────────────────────────────── */
+main#view { flex: 1; overflow-y: auto; padding: 1.2rem 1.1rem 3rem; }
+.wrap { max-width: 60rem; margin: 0 auto; }
+.crumb {
+  display: inline-block; margin-bottom: .9rem; font-size: .85rem;
+  color: var(--accent-2); text-decoration: none;
+}
+.crumb:hover { text-decoration: underline; }
+h2.section-title { font-size: 1.35rem; margin: .2rem 0 .3rem; }
+p.section-intro { color: var(--ink-2); font-size: .9rem; line-height: 1.55; margin: 0 0 1.2rem; max-width: 46rem; }
+
+/* ── Portal-Startseite ───────────────────────────────────────────── */
+.hero { max-width: 60rem; margin: 0 auto 1.4rem; }
+.hero h1 { font-size: 1.6rem; margin: .4rem 0 .3rem; }
+.hero p { color: var(--ink-2); font-size: .95rem; line-height: 1.55; margin: 0; max-width: 44rem; }
+.tiles {
+  max-width: 60rem; margin: 0 auto;
+  display: grid; gap: .9rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+.tile {
+  display: flex; gap: .8rem; align-items: flex-start;
+  padding: 1rem 1.1rem; text-decoration: none;
+  background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 10px;
+  color: var(--ink); transition: border-color .12s, box-shadow .12s;
+}
+.tile:hover { border-color: var(--accent); box-shadow: 0 2px 14px rgba(11,11,11,.06); }
+.tile .icon { font-size: 1.7rem; line-height: 1; flex: none; }
+.tile .t-title { font-weight: 700; font-size: 1rem; margin-bottom: .15rem; }
+.tile .t-desc { color: var(--muted); font-size: .8rem; line-height: 1.4; }
+
+/* ── Karten-/Listen-Elemente (Register, Fachbeiräte, Ämter, Links) ── */
+.cards { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); }
+.card {
+  display: block; padding: .9rem 1rem; text-decoration: none; color: var(--ink);
+  background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 9px;
+}
+a.card:hover { border-color: var(--accent-2); }
+.card .c-title { font-weight: 700; font-size: .98rem; margin-bottom: .2rem; }
+.card .c-title .ext { font-size: .7rem; color: var(--muted); font-weight: 400; }
+.card .c-desc { color: var(--ink-2); font-size: .82rem; line-height: 1.45; }
+.card .c-tag {
+  display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .03em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: .35rem;
+}
+.card .c-zust { color: var(--muted); font-size: .78rem; margin-top: .3rem; }
+
+/* Register-Listen (Recht/Statistik) */
+.reg-list { list-style: none; margin: 0; padding: 0; }
+.reg-list > li {
+  padding: .9rem 1rem; margin-bottom: .7rem;
+  background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 9px;
+  cursor: pointer;
+}
+.reg-list > li:hover { border-color: var(--plan); }
+.reg-list .r-title { font-weight: 700; font-size: 1rem; }
+.reg-list .r-desc { color: var(--ink-2); font-size: .82rem; line-height: 1.45; margin-top: .25rem; }
+.badge {
+  display: inline-block; min-width: 1.9rem; text-align: center;
+  font-size: .66rem; font-weight: 700; color: var(--ink-2);
+  background: var(--page); border: 1px solid var(--hairline); border-radius: 4px;
+  margin-right: .4rem; padding: 0 .3rem; vertical-align: middle;
+}
+.badge-plan { background: var(--plan); border-color: var(--plan); color: #fff; }
+.badge-ei { background: var(--accent-2); border-color: var(--accent-2); color: #fff; }
+.badge-ni { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* ── Protokolle: Sitzungsliste ───────────────────────────────────── */
+.year-head { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 1.2rem 0 .5rem; }
+.session {
+  background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 10px;
+  padding: .9rem 1.1rem; margin-bottom: .8rem;
+}
+.session .s-date { font-weight: 700; font-size: 1.02rem; }
+.session .s-meta { color: var(--muted); font-size: .78rem; margin-top: .1rem; }
+.session .s-summary {
+  margin: .55rem 0 .5rem; padding: .5rem .8rem;
+  background: var(--page); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0;
+  font-size: .85rem; line-height: 1.5; color: var(--ink);
+}
+.session .s-themen { margin-top: .3rem; }
+.chip-thema {
+  display: inline-block; font-size: .7rem; color: var(--ink-2);
+  background: var(--page); border: 1px solid var(--hairline); border-radius: 20px;
+  padding: .1rem .55rem; margin: .15rem .25rem .15rem 0;
+}
+.s-docs { list-style: none; margin: .55rem 0 0; padding: 0; }
+.s-docs li {
+  display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;
+  padding: .4rem 0; border-top: 1px solid var(--hairline); font-size: .86rem;
+}
+.s-docs a.doc-open { color: var(--ink); text-decoration: none; font-weight: 600; cursor: pointer; }
+.s-docs a.doc-open:hover { color: var(--accent-2); text-decoration: underline; }
+.s-docs .d-pages { color: var(--muted); font-size: .76rem; }
+
+/* ── Suchergebnisse ──────────────────────────────────────────────── */
+.results { list-style: none; margin: 0; padding: 0; }
+.results li {
+  padding: .7rem .9rem; margin-bottom: .55rem;
+  background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px;
+  cursor: pointer; font-size: .88rem;
+}
+.results li:hover { border-color: var(--accent-2); }
+.results .r-title { font-weight: 700; }
+.results .r-meta { color: var(--muted); font-size: .76rem; margin-top: .12rem; }
+.results .r-meta strong { color: var(--ink-2); }
+.results .r-snippet { color: var(--ink-2); font-size: .8rem; margin-top: .3rem; line-height: 1.45; }
+mark { background: #ffe9a8; padding: 0 .1em; border-radius: 2px; }
+
+/* ── Reader (Dokument / Registerdatei) ───────────────────────────── */
+.doc-head {
+  background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 9px;
+  padding: .9rem 1.1rem; margin-bottom: 1rem;
+}
+.doc-head h2 { margin: 0 0 .3rem; font-size: 1.15rem; }
+.doc-head .meta { color: var(--ink-2); font-size: .82rem; margin: .12rem 0; }
+.doc-summary {
+  margin: .55rem 0 .2rem; padding: .55rem .85rem;
+  background: var(--page); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0;
+  font-size: .86rem; line-height: 1.5;
+}
+.doc-actions { margin-top: .7rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+.doc-actions a, .doc-actions button {
+  font-size: .82rem; padding: .38rem .8rem; cursor: pointer;
+  border: 1px solid var(--hairline); border-radius: 6px;
+  background: var(--surface-1); color: var(--ink); text-decoration: none;
+}
+.doc-actions a:hover, .doc-actions button:hover { border-color: var(--accent-2); color: var(--accent-2); }
+.doc-actions button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.notice {
+  background: #fff7e0; border: 1px solid var(--warn); border-radius: 8px;
+  padding: .6rem .9rem; margin-bottom: .8rem; font-size: .82rem; color: var(--ink-2); line-height: 1.5;
+}
+.notice a { font-weight: 600; }
+.pdf-frame { width: 100%; height: 80vh; border: 1px solid var(--hairline); border-radius: 8px; background: var(--surface-1); }
+.doc-page {
+  background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px;
+  padding: 1rem 1.2rem; margin-bottom: .8rem;
+  font-size: .86rem; line-height: 1.55; white-space: pre-wrap; word-break: break-word;
+}
+.doc-page-nr { font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin: 0 0 .5rem; }
+ul.plan-files { list-style: none; margin: .3rem 0 0; padding: 0; }
+ul.plan-files li { padding: .45rem 0; border-bottom: 1px solid var(--hairline); font-size: .88rem; }
+ul.plan-files li:last-child { border-bottom: none; }
+.hint { font-size: .85rem; color: var(--ink-2); line-height: 1.5; }
+
+/* ── Karte ───────────────────────────────────────────────────────── */
+#map { height: 62vh; min-height: 22rem; border: 1px solid var(--hairline); border-radius: 10px; background: var(--surface-1); }
+.map-actions { margin: .9rem 0; display: flex; gap: .6rem; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-block; padding: .5rem .95rem; border-radius: 7px; text-decoration: none;
+  background: var(--accent); color: #fff; font-size: .88rem; font-weight: 600; border: 1px solid var(--accent);
+}
+.btn-primary:hover { background: #006e00; }
+.leaflet-container { font: inherit; }
+
+/* ── Fußzeile ────────────────────────────────────────────────────── */
+footer {
+  padding: .35rem 1.1rem; font-size: .75rem; color: var(--muted);
+  background: var(--surface-1); border-top: 1px solid var(--hairline);
+  display: flex; align-items: baseline; gap: 1rem;
+}
+#statusbar { flex: 1; min-width: 0; }
+#version { flex: none; white-space: nowrap; opacity: .8; }
+
+/* ── Mobil ───────────────────────────────────────────────────────── */
+@media (max-width: 680px) {
+  header { flex-direction: column; align-items: stretch; gap: .5rem; }
+  #home-link { justify-content: center; }
+  #search-form { min-width: 0; max-width: none; margin-left: 0; }
+  main#view { padding: 1rem .8rem 3rem; }
+  .hero h1 { font-size: 1.35rem; }
+  .tiles { grid-template-columns: 1fr 1fr; }
+  .cards { grid-template-columns: 1fr; }
+  .pdf-frame { height: 72vh; }
+}
+@media (max-width: 420px) {
+  .tiles { grid-template-columns: 1fr; }
+}

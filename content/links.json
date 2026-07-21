@@ -1,0 +1,40 @@
+{
+  "intro": "Ausgewählte Seiten der Stadt Erlangen und weiterer Stellen mit Bezug zu Büchenbach. Bewusst ohne Veranstaltungshinweise — nur dauerhaft nützliche Informationsquellen.",
+  "eintraege": [
+    {
+      "name": "Stadtteil Büchenbach",
+      "beschreibung": "Offizielle Themenseite der Stadt Erlangen zum Stadtteil Büchenbach.",
+      "url": "https://erlangen.de/themenseite/mitgestalten/erlangen-mitgestalten/stadtteil-buechenbach"
+    },
+    {
+      "name": "Vorhaben in Büchenbach",
+      "beschreibung": "Laufende Projekte und Planungen der Stadt im Stadtteil Büchenbach.",
+      "url": "https://erlangen.de/themenseite/mitgestalten/erlangen-mitgestalten/vorhabenbuechenbach"
+    },
+    {
+      "name": "Stadtteilhaus West",
+      "beschreibung": "Neues Stadtteilzentrum in Büchenbach-West (Bibliothek, Bürgertreff, VHS, Jugendkunstschule) — Projektseite des Amts für Stadtteilarbeit.",
+      "url": "https://stadtteilarbeit-erlangen.de/projekte/stadtteilhaus-west/"
+    },
+    {
+      "name": "Amt für Stadtteilarbeit Erlangen",
+      "beschreibung": "Stadtteilzentren, Bürgertreffs und Nachbarschaftsarbeit in ganz Erlangen.",
+      "url": "https://stadtteilarbeit-erlangen.de/"
+    },
+    {
+      "name": "Stadt-Umland-Bahn (StUB)",
+      "beschreibung": "Geplante Straßenbahn Nürnberg–Erlangen–Herzogenaurach mit Bezug zu Büchenbach — häufiges Thema im Beirat.",
+      "url": "https://www.stadtumlandbahn.de/"
+    },
+    {
+      "name": "Erlangen-Suche: „Büchenbach“",
+      "beschreibung": "Volltextsuche der Stadt Erlangen nach allen Inhalten mit Bezug zu Büchenbach.",
+      "url": "https://erlangen.de/suche?term=b%C3%BCchenbach"
+    },
+    {
+      "name": "Ratsinformationssystem Erlangen",
+      "beschreibung": "Sitzungen und Dokumente des Stadtteilbeirats Büchenbach (Gremium 51).",
+      "url": "https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=51"
+    }
+  ]
+}

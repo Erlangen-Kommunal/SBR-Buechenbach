@@ -1,0 +1,60 @@
+{
+  "intro": "Für viele Anliegen des Stadtteilbeirats ist ein bestimmtes Amt der Stadt Erlangen zuständig. Diese Übersicht ordnet häufige Themen den passenden Stellen zu. Die zentrale Ämter-Suche mit Öffnungszeiten und Kontakt finden Sie über den Button unten.",
+  "aemter_uebersicht_url": "https://erlangen.de/themenseite/service/aemter",
+  "eintraege": [
+    {
+      "name": "Amt für Stadtteilarbeit",
+      "zustaendig": "Stadtteilzentren, Bürgertreffs, Stadtteilhaus West, Nachbarschafts- und Quartiersarbeit in Büchenbach",
+      "url": "https://stadtteilarbeit-erlangen.de/",
+      "extern": true
+    },
+    {
+      "name": "Amt für Verkehrswesen und Tiefbau (Tiefbauamt)",
+      "zustaendig": "Straßen, Geh- und Radwege, Straßenbeleuchtung, Verkehrszeichen, Baustellen im öffentlichen Raum",
+      "url": "https://erlangen.de/themenseite/service/aemter",
+      "extern": true
+    },
+    {
+      "name": "Amt für Umweltschutz und Stadtgrün",
+      "zustaendig": "Grünanlagen, Bäume, Spielplätze, Umwelt- und Naturschutz",
+      "url": "https://erlangen.de/themenseite/service/aemter",
+      "extern": true
+    },
+    {
+      "name": "Stadtplanungs- und Baurechtsamt",
+      "zustaendig": "Bauleitplanung, Bebauungspläne, Stadtentwicklung, Baugenehmigungen",
+      "url": "https://erlangen.de/themenseite/service/aemter",
+      "extern": true
+    },
+    {
+      "name": "Bürgeramt",
+      "zustaendig": "Bürgerservice, Meldewesen, Ausweise, Bewohnerparkausweise",
+      "url": "https://erlangen.de/themenseite/service/aemter",
+      "extern": true
+    },
+    {
+      "name": "Jugendamt / Amt für Soziokultur, Jugend und Familie",
+      "zustaendig": "Kitas, Jugendarbeit, Familienangebote, Jugendtreffs",
+      "url": "https://erlangen.de/themenseite/service/aemter",
+      "extern": true
+    },
+    {
+      "name": "Amt für Soziales und Senioren",
+      "zustaendig": "Soziale Angebote, Seniorenarbeit, Inklusion, Beratung",
+      "url": "https://erlangen.de/themenseite/service/aemter",
+      "extern": true
+    },
+    {
+      "name": "Ordnungsamt",
+      "zustaendig": "Öffentliche Sicherheit und Ordnung, ruhender Verkehr, Sondernutzungen",
+      "url": "https://erlangen.de/themenseite/service/aemter",
+      "extern": true
+    },
+    {
+      "name": "EB 77 – Entsorgungs- und Baubetrieb / Stadtentwässerung",
+      "zustaendig": "Straßenreinigung, Winterdienst, Abfall, Wertstoffe, Kanäle",
+      "url": "https://erlangen.de/themenseite/service/aemter",
+      "extern": true
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Stadtteilbeirat Büchenbach — Infoportal</title>
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+
+  <!-- Zugangs-Gate (erscheint nur, wenn auth.json deployt ist) -->
+  <div id="gate" class="overlay" hidden>
+    <form id="gate-form" class="gate-card">
+      <h1>Stadtteilbeirat Büchenbach</h1>
+      <p>Infoportal für die Arbeit des Stadtteilbeirats.<br>
+         Bitte das Zugangspasswort eingeben.</p>
+      <input id="gate-pw" type="password" autocomplete="current-password"
+             placeholder="Passwort" autofocus required>
+      <button type="submit">Anmelden</button>
+      <p id="gate-error" class="error" hidden>Das Passwort ist leider falsch.</p>
+    </form>
+  </div>
+
+  <!-- Lade-Status -->
+  <div id="boot" class="overlay">
+    <div class="gate-card"><p id="boot-msg">Lade Portal …</p></div>
+  </div>
+
+  <header>
+    <a id="home-link" href="#/" title="Zur Startseite">
+      <span class="logo">🏛️</span>
+      <span class="brand">Stadtteilbeirat&nbsp;Büchenbach<span class="sub">Infoportal · Stadt Erlangen</span></span>
+    </a>
+    <form id="search-form" role="search">
+      <input id="search-input" type="search"
+             placeholder="Protokolle durchsuchen, z. B. Spielplatz, StUB, Stromnetz …"
+             aria-label="Protokolle durchsuchen">
+      <button type="submit">Suchen</button>
+    </form>
+  </header>
+
+  <main id="view"><!-- von app.js gefüllt --></main>
+
+  <footer>
+    <span id="statusbar">Lade …</span>
+    <span id="version"></span>
+  </footer>
+
+  <script type="module" src="app.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+# Baut graph.db aus den im Repo liegenden Dokumenten + Registern + Anreicherungen
+# (GraphBuilder, C#/.NET) und deployt das statische Infoportal nach GitHub Pages.
+# Läuft bei jedem Push auf main — auch nach dem Wochen-Sync (sync.yml) und nach
+# manuellen Commits neuer enrichment/docs/*.md-Zusammenfassungen. Das Secret
+# SITE_PASSWORD speist nur das Frontend-Gate (Hash in auth.json) — die
+# Original-PDFs holt das Frontend direkt aus dem öffentlichen Repo (jsDelivr).
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Build graph.db
+        run: dotnet run --project GraphBuilder -c Release -- "$GITHUB_WORKSPACE" --db graph.db
+
+      - name: Assemble site
+        env:
+          SITE_PASSWORD: ${{ secrets.SITE_PASSWORD }}
+        run: |
+          if [ -z "$SITE_PASSWORD" ]; then
+            echo "::error::Secret SITE_PASSWORD ist nicht gesetzt."
+            exit 1
+          fi
+          mkdir -p _site
+          cp web/index.html web/style.css web/app.js _site/
+          cp graph.db _site/graph.db
+          cp -r content _site/content
+          node tools/make-auth.mjs _site/auth.json
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

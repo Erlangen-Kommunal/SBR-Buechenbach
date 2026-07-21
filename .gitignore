@@ -1,6 +1,18 @@
 __pycache__/
 *.pyc
 
+# Build-Artefakte GraphBuilder (C#/.NET) — werden in der CI erzeugt
+GraphBuilder/bin/
+GraphBuilder/obj/
+
+# Generierte Datenbank + Site-Ausgabe (in der CI gebaut, nicht committen)
+graph.db
+_site/
+web/graph.db
+web/auth.json
+web/content/
+node_modules/
+
 # .gitignore kann keine Dateigroesse pruefen (nur Pfade/Namen).
 # Die eigentliche 12MB-Grenze wird per Pre-Commit-Hook durchgesetzt:
 #   git config core.hooksPath .githooks

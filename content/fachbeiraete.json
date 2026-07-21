@@ -1,0 +1,61 @@
+{
+  "intro": "Der Stadtteilbeirat Büchenbach ist eines von vielen Gremien, mit denen Bürgerinnen und Bürger die Stadt Erlangen mitgestalten. Hier finden Sie verwandte Beiräte und Fachausschüsse — hilfreich für Verweise, gemeinsame Themen und Ansprechpartner.",
+  "eintraege": [
+    {
+      "name": "UVPA – Umwelt-, Verkehrs- und Planungsausschuss",
+      "kategorie": "Partnerprojekt",
+      "beschreibung": "Fachausschuss des Stadtrats für Umwelt, Verkehr und Planung. Eigene Infosite mit Volltextsuche über alle Ausschussprotokolle seit 2020 — Schwesterprojekt dieser Seite.",
+      "url": "https://erlangen-kommunal.github.io/UVPA/",
+      "extern": true
+    },
+    {
+      "name": "Orts- und Stadtteilbeiräte (Übersicht)",
+      "kategorie": "Beiräte",
+      "beschreibung": "Alle Orts- und Stadtteilbeiräte Erlangens: Aufgaben, Zusammensetzung und Ansprechpartner. Büchenbach ist einer davon.",
+      "url": "https://erlangen.de/themenseite/mitgestalten/politik-mitgestalten/orts-und-stadtteilbeiraete",
+      "extern": true
+    },
+    {
+      "name": "Seniorenbeirat",
+      "kategorie": "Beiräte",
+      "beschreibung": "Vertritt die Interessen der älteren Bürgerinnen und Bürger (60+) gegenüber Stadtrat und Verwaltung.",
+      "url": "https://erlangen.de/themenseite/mitgestalten/politik-mitgestalten/seniorenbeirat",
+      "extern": true
+    },
+    {
+      "name": "Ausländer- und Integrationsbeirat (AIB)",
+      "kategorie": "Beiräte",
+      "beschreibung": "Vertritt die Belange von Menschen mit Migrationsgeschichte und fördert das Zusammenleben in den Stadtteilen.",
+      "url": "https://erlangen.de/themenseite/mitgestalten/politik-mitgestalten/aib",
+      "extern": true
+    },
+    {
+      "name": "Jugendparlament",
+      "kategorie": "Beiräte",
+      "beschreibung": "Beteiligung von Kindern und Jugendlichen an der Kommunalpolitik.",
+      "url": "https://erlangen.de/themenseite/mitgestalten/politik-mitgestalten/jugendparlament",
+      "extern": true
+    },
+    {
+      "name": "Nachhaltigkeitsbeirat",
+      "kategorie": "Beiräte",
+      "beschreibung": "Berät Stadtrat und Verwaltung zu Umwelt, Klima und nachhaltiger Stadtentwicklung.",
+      "url": "https://erlangen.de/themenseite/mitgestalten/politik-mitgestalten/nachhaltigkeitsbeirat",
+      "extern": true
+    },
+    {
+      "name": "Bildungsrat",
+      "kategorie": "Beiräte",
+      "beschreibung": "Beteiligungsgremium für Bildungsthemen in Erlangen.",
+      "url": "https://erlangen.de/themenseite/mitgestalten/politik-mitgestalten/bildungsrat",
+      "extern": true
+    },
+    {
+      "name": "Ratsinformationssystem – Gremium Büchenbach",
+      "kategorie": "Übersicht",
+      "beschreibung": "Sitzungen, Tagesordnungen und Dokumente des Stadtteilbeirats Büchenbach im offiziellen Ratsinformationssystem der Stadt Erlangen.",
+      "url": "https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=51",
+      "extern": true
+    }
+  ]
+}

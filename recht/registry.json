@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ortsbeiraete",
+    "title": "Satzung über Orts- und Stadtteilbeiräte",
+    "beschreibung": "Rechtsgrundlage der Stadtteilbeiräte der Stadt Erlangen (Stadtrecht 140.00): Bildung, Zusammensetzung, Aufgaben, Rechte, Anhörung und Sitzungen der Orts- und Stadtteilbeiräte. Maßgeblich für die Arbeit des Stadtteilbeirats Büchenbach.",
+    "erstellt": "2026-02-26",
+    "themen": ["Bürgerbeteiligung & Gremien"],
+    "quelle_url": "https://erlangen.de/aktuelles/orts-und-stadtteilbeiraete",
+    "dateien": [
+      { "titel": "Satzung – aktuelle Fassung (gültig ab 01.05.2026)", "pfad": "recht/ortsbeiraete_140_00_satzung_2026.pdf", "quelle_url": "https://erlangen.de/uwao-api/faila/files/bypath/Dokumente/Stadtrecht/140_00_orts_stadtteilbeiraete_2026.pdf?tn=1&q=normal&s=list" },
+      { "titel": "Anlage/Plan zur Satzung (ab 01.05.2026)", "pfad": "recht/ortsbeiraete_140_00_satzung_plan_2026.pdf", "quelle_url": "https://erlangen.de/uwao-api/faila/files/bypath/Dokumente/Stadtrecht/140_00_orts_stadtteilbeiraete_plan_2026.pdf?tn=1&q=normal&s=list" },
+      { "titel": "Satzung – Fassung vom 20.02.2020 (gültig bis 30.04.2026)", "pfad": "recht/ortsbeiraete_140_00_satzung_2020.pdf", "quelle_url": "https://erlangen.de/uwao-api/faila/files/bypath/Dokumente/Stadtrecht/140_00_orts_stadtteilbeiraete.pdf?tn=1&q=normal&s=list" }
+    ]
+  },
+  {
+    "id": "stadtrecht-uebersicht",
+    "title": "Erlanger Stadtrecht (A–Z)",
+    "beschreibung": "Sammlung aller Satzungen und Verordnungen der Stadt Erlangen (Ortsrecht). Einstieg für alle weiteren Rechtsvorschriften mit Bezug zur Stadtteilarbeit (z. B. Grünanlagen-, Straßenreinigungs-, Sondernutzungssatzung).",
+    "themen": ["Bürgerbeteiligung & Gremien"],
+    "quelle_url": "https://erlangen.de/themenseite/recht/stadtrecht-a-z",
+    "dateien": []
+  }
+]

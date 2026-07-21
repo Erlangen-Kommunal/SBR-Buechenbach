@@ -1,0 +1,35 @@
+[
+  {
+    "id": "sozialmonitoring-2026",
+    "title": "Kleinräumiges Sozialmonitoring 2026",
+    "beschreibung": "Sozialindikatoren auf Ebene der statistischen Bezirke Erlangens (u. a. Büchenbach) zu Bevölkerung, sozialer Lage und Entwicklung. Reihe „Statistik aktuell“ 2026.05.",
+    "erstellt": "2026",
+    "themen": ["Soziales & Nachbarschaft"],
+    "quelle_url": "https://erlangen.de/themenseite/informationsservice/statistikerlangen",
+    "dateien": [
+      { "titel": "Kleinräumiges Sozialmonitoring 2026 (Statistik aktuell 2026.05)", "pfad": "statistik/sozialmonitoring_2026.pdf", "quelle_url": "https://erlangen.de/uwao-api/faila/files/bypath/Dokumente/Statistik/Statistik%20Aktuell/13-4_b_2026_5.pdf?tn=1&q=normal&s=list" }
+    ]
+  },
+  {
+    "id": "bevoelkerungsprognose-2026-2041",
+    "title": "Bevölkerungsprognose 2026–2041",
+    "beschreibung": "Vorausberechnung der Einwohnerentwicklung Erlangens bis 2041 nach Altersgruppen und Stadtteilen. Grundlage für Infrastruktur-, Schul- und Sozialplanung. Reihe „Statistik aktuell“ 2026.03.",
+    "erstellt": "2026",
+    "themen": ["Wohnen & Stadtentwicklung", "Soziales & Nachbarschaft"],
+    "quelle_url": "https://erlangen.de/themenseite/informationsservice/statistikerlangen",
+    "dateien": [
+      { "titel": "Bevölkerungsprognose 2026–2041 (Statistik aktuell 2026.03)", "pfad": "statistik/bevoelkerungsprognose_2026_2041.pdf", "quelle_url": "https://erlangen.de/uwao-api/faila/files/bypath/Dokumente/Statistik/Statistik%20Aktuell/13-4_b_2026_3.pdf?tn=1&q=normal&s=list" }
+    ]
+  },
+  {
+    "id": "sozialstruktur-2026",
+    "title": "Kleinräumige Sozialstruktur 2026",
+    "beschreibung": "Ausführliche Sozialstruktur nach statistischen Bezirken (Alter, Haushalte, Herkunft, soziale Lage). Wegen Dateigröße (~14 MB) nur als externer Download bei der Stadt Erlangen. Reihe „Statistik aktuell“ 2026.04.",
+    "erstellt": "2026",
+    "themen": ["Soziales & Nachbarschaft", "Wohnen & Stadtentwicklung"],
+    "quelle_url": "https://erlangen.de/themenseite/informationsservice/statistikerlangen",
+    "dateien": [
+      { "titel": "Kleinräumige Sozialstruktur 2026 (Statistik aktuell 2026.04, ~14 MB)", "pfad": null, "quelle_url": "https://erlangen.de/uwao-api/faila/files/bypath/Dokumente/Statistik/Statistik%20Aktuell/13-4_b_2026_4.pdf?tn=1&q=normal&s=list" }
+    ]
+  }
+]
