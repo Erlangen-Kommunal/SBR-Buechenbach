@@ -1,5 +1,5 @@
 {
-  "intro": "So ist die Stadtverwaltung Erlangen gegliedert: An der Spitze steht der Oberbürgermeister, darunter bündeln acht Referate (I–VIII) die Fachämter. Jedes Amt trägt eine Nummer (z. B. Tiefbauamt = 66). Diese Übersicht folgt dem offiziellen Geschäftsverteilungsplan der Stadt Erlangen.",
+  "intro": "So ist die Stadtverwaltung Erlangen gegliedert: An der Spitze steht der Oberbürgermeister, darunter bündeln acht Referate (I–VIII) die Fachämter. Jedes Amt trägt eine Nummer (z. B. Tiefbauamt = 66); genannt ist jeweils die Amtsleitung. Diese Übersicht folgt dem offiziellen Geschäftsverteilungsplan der Stadt Erlangen.",
   "stand": "Stand: 21. Mai 2026",
   "aemter_uebersicht_url": "https://erlangen.de/themenseite/service/aemter",
   "relevant": [
@@ -18,9 +18,13 @@
       "bereich": "Oberbürgermeister",
       "leitung": "Jörg Volleth (Oberbürgermeister)",
       "aemter": [
-        { "name": "Bürgermeister- und Presseamt", "nr": "13" },
-        { "name": "Revisionsamt", "nr": "14" },
-        { "name": "Stabsstellen & Beauftragte (Datenschutz, Gleichstellung, Anti-Korruption, Informationssicherheit)" }
+        { "name": "Bürgermeister- und Presseamt", "nr": "13", "leitung": "Sabine Lotter" },
+        { "name": "Revisionsamt", "nr": "14", "leitung": "Thorsten Liebetruth" },
+        { "name": "Anti-Korruptionsbeauftragter", "leitung": "Thorsten Liebetruth" },
+        { "name": "Beauftragter nach Hinweisgeberschutzgesetz", "leitung": "Thorsten Liebetruth" },
+        { "name": "Datenschutzbeauftragte", "leitung": "Juliane Kreller" },
+        { "name": "Gleichstellungsbeauftragte", "leitung": "Dr. Nora Hahn-Hobeck, Réka Lörincz" },
+        { "name": "Informationssicherheitsbeauftragter", "leitung": "Jan Berghold" }
       ]
     },
     {
@@ -28,9 +32,9 @@
       "bereich": "Digitalisierung, Sport, Brand- und Katastrophenschutz",
       "leitung": "Eva Linhart (2. Bürgermeisterin)",
       "aemter": [
-        { "name": "Amt für Digitalisierung und Informationstechnik", "nr": "17" },
-        { "name": "Amt für Brand- und Katastrophenschutz", "nr": "37" },
-        { "name": "Amt für Sport und Gesundheitsförderung", "nr": "52" }
+        { "name": "Amt für Digitalisierung und Informationstechnik", "nr": "17", "leitung": "Jan Berghold" },
+        { "name": "Amt für Brand- und Katastrophenschutz", "nr": "37", "leitung": "Friedhelm Weidinger" },
+        { "name": "Amt für Sport und Gesundheitsförderung", "nr": "52", "leitung": "Ulrich Klement" }
       ]
     },
     {
@@ -38,8 +42,8 @@
       "bereich": "Wirtschaft und Finanzen",
       "leitung": "Konrad Beugel (Berufsmäßiger Stadtrat)",
       "aemter": [
-        { "name": "Stadtkämmerei", "nr": "20" },
-        { "name": "Liegenschaftsamt", "nr": "23" },
+        { "name": "Stadtkämmerei", "nr": "20", "leitung": "Heike Bräuer" },
+        { "name": "Liegenschaftsamt", "nr": "23", "leitung": "Marco von Dobschütz-Dietl" },
         { "name": "Wirtschaftsförderung und Arbeit" }
       ]
     },
@@ -48,10 +52,10 @@
       "bereich": "Recht und Personal",
       "leitung": "Thomas Ternes (Berufsmäßiger Stadtrat)",
       "aemter": [
-        { "name": "Personal- und Organisationsamt", "nr": "11" },
-        { "name": "Rechtsamt", "nr": "30" },
-        { "name": "Bürgeramt", "nr": "33" },
-        { "name": "Standesamt", "nr": "34" }
+        { "name": "Personal- und Organisationsamt", "nr": "11", "leitung": "Marcus Redel" },
+        { "name": "Rechtsamt", "nr": "30", "leitung": "Juliane Kreller" },
+        { "name": "Bürgeramt", "nr": "33", "leitung": "Dr. Martin Holzinger" },
+        { "name": "Standesamt", "nr": "34", "leitung": "Yassin Velasco" }
       ]
     },
     {
@@ -59,13 +63,13 @@
       "bereich": "Kultur, Bildung und Freizeit",
       "leitung": "Anke Steinert-Neuwirth (Berufsmäßige Stadträtin)",
       "aemter": [
-        { "name": "Amt für Stadtteilarbeit", "nr": "41" },
-        { "name": "Stadtbibliothek", "nr": "42" },
-        { "name": "Volkshochschule", "nr": "43" },
-        { "name": "Theater – schauspiel erlangen", "nr": "44" },
-        { "name": "Stadtarchiv", "nr": "45" },
-        { "name": "Stadtmuseum", "nr": "46" },
-        { "name": "Kulturamt", "nr": "47" }
+        { "name": "Amt für Stadtteilarbeit", "nr": "41", "leitung": "Stephan Beck" },
+        { "name": "Stadtbibliothek", "nr": "42", "leitung": "Dr. Adrian La Salvia" },
+        { "name": "Volkshochschule", "nr": "43", "leitung": "Markus Bassenhorst" },
+        { "name": "Theater – schauspiel erlangen", "nr": "44", "leitung": "Jonas Knecht" },
+        { "name": "Stadtarchiv", "nr": "45", "leitung": "Dr. Andreas Jobst" },
+        { "name": "Stadtmuseum", "nr": "46", "leitung": "Brigitte Korn" },
+        { "name": "Kulturamt", "nr": "47", "leitung": "Anne Reimann" }
       ]
     },
     {
@@ -73,9 +77,9 @@
       "bereich": "Jugend, Familie und Soziales",
       "leitung": "Dieter Rosner (Berufsmäßiger Stadtrat)",
       "aemter": [
-        { "name": "Sozialamt", "nr": "50" },
-        { "name": "Stadtjugendamt", "nr": "51" },
-        { "name": "Erlanger Jobcenter (EJC)" }
+        { "name": "Sozialamt", "nr": "50", "leitung": "Annett Sobek" },
+        { "name": "Stadtjugendamt", "nr": "51", "leitung": "Kerstin Knörl" },
+        { "name": "Erlanger Jobcenter (EJC)", "leitung": "Manuela Ramming (Werkleitung)" }
       ]
     },
     {
@@ -83,10 +87,10 @@
       "bereich": "Planen und Bauen",
       "leitung": "Harald Lang (Berufsmäßiger Stadtrat)",
       "aemter": [
-        { "name": "Amt für Gebäudemanagement", "nr": "24" },
-        { "name": "Amt für Stadtplanung und Mobilität", "nr": "61" },
-        { "name": "Bauaufsichtsamt", "nr": "63" },
-        { "name": "Tiefbauamt", "nr": "66" }
+        { "name": "Amt für Gebäudemanagement", "nr": "24", "leitung": "Florian Engel" },
+        { "name": "Amt für Stadtplanung und Mobilität", "nr": "61", "leitung": "Tilmann Lohse" },
+        { "name": "Bauaufsichtsamt", "nr": "63", "leitung": "Mathias Schenkl" },
+        { "name": "Tiefbauamt", "nr": "66", "leitung": "Andreas Pfeil" }
       ]
     },
     {
@@ -94,9 +98,9 @@
       "bereich": "Umwelt und Klimaschutz",
       "leitung": "Sabine Bock (Berufsmäßige Stadträtin)",
       "aemter": [
-        { "name": "Amt für Umweltschutz und Energiefragen", "nr": "31" },
-        { "name": "Amt für Veterinärwesen und Lebensmittelüberwachung", "nr": "39" },
-        { "name": "Entwässerungsbetrieb (EBE)" }
+        { "name": "Amt für Umweltschutz und Energiefragen", "nr": "31", "leitung": "Reiner Lennemann" },
+        { "name": "Amt für Veterinärwesen und Lebensmittelüberwachung", "nr": "39", "leitung": "Dr. Nikola-Simone Franz-Haas" },
+        { "name": "Entwässerungsbetrieb (EBE)", "leitung": "Wolfgang Fuchs (Werkleitung)" }
       ]
     },
     {
@@ -104,8 +108,11 @@
       "bereich": "Schulen und Pflege öffentlicher Raum",
       "leitung": "Christian Lehrmann (3. Bürgermeister)",
       "aemter": [
-        { "name": "Schulverwaltungsamt", "nr": "40" },
-        { "name": "Betrieb für Stadtgrün, Abfallwirtschaft und Straßenreinigung (EB77)" }
+        { "name": "Schulverwaltungsamt", "nr": "40", "leitung": "Brigitte Bayer" },
+        { "name": "Marie-Therese-Gymnasium", "nr": "40M" },
+        { "name": "Fachschule für Techniker", "nr": "40T" },
+        { "name": "Wirtschaftsschule im Röthelheimpark", "nr": "40W" },
+        { "name": "Betrieb für Stadtgrün, Abfallwirtschaft und Straßenreinigung (EB77)", "leitung": "Tino Bachmeier (weitere Werkleitung)" }
       ]
     }
   ]

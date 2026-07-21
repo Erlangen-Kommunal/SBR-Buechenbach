@@ -7,7 +7,7 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v4 · 2026-07-21";
+const APP_VERSION = "v5 · 2026-07-21";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -665,8 +665,12 @@ async function renderCards(key, title, icon) {
  */
 async function renderAemter() {
   const data = await loadContent("aemter");
+  // Amtsname + Amtsnummer, darunter die Amtsleitung (soweit im
+  // Geschäftsverteilungsplan genannt). Bewusst ohne Durchwahlen.
   const amtLabel = (a) =>
-    escHtml(a.name) + (a.nr ? ` <span class="amt-nr">${escHtml(a.nr)}</span>` : "");
+    `<span class="amt-name">${escHtml(a.name)}</span>`
+    + (a.nr ? `<span class="amt-nr">${escHtml(a.nr)}</span>` : "")
+    + (a.leitung ? `<span class="amt-leitung">${escHtml(a.leitung)}</span>` : "");
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">🏢 Ämter & Zuständigkeiten</h2>
     ${data.intro ? `<p class="section-intro">${escHtml(data.intro)}</p>` : ""}
