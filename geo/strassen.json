@@ -1,0 +1,2100 @@
+{
+  "beirat": "Stadtteilbeirat Büchenbach",
+  "stand_verzeichnis": "2025-10-20",
+  "stand_geometrie": "2015 (Beiratsgebiete), OpenStreetMap tagesaktuell",
+  "quellen": {
+    "strassenverzeichnis": "https://erlangen.de/uwao-api/faila/files/bypath/Dokumente/Statistik/Statistik%20Open%20Data/bezirke_strassenabschnitte_2025.10.xlsx",
+    "beiratsgebiete": "https://erlangen.de/uwao-api/faila/files/bypath/Dokumente/Statistik/Statistik%20Open%20Data/Elangen_2015_Vektorgeometrie_Stadtteilbeiratsgebiete.zip",
+    "lizenz_stadt": "Datenlizenz Deutschland Namensnennung 2.0 (dl-de/by-2.0)",
+    "lizenz_osm": "ODbL, © OpenStreetMap-Mitwirkende"
+  },
+  "anzahl": 128,
+  "strassen": [
+    {
+      "name": "Adenauerring",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 0.96,
+      "auch_in": [],
+      "amtlich": true,
+      "amtliche_schreibweise": "Adenauer-Ring"
+    },
+    {
+      "name": "Adlersteinweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Alte Mönaustraße",
+      "bezirke": [],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": false
+    },
+    {
+      "name": "Alter Markt",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Am Dinkelfeld",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Am Dummetsweiher",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Am Europakanal",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "77 Büchenbach Nord",
+        "71 In der Reuth"
+      ],
+      "anteil": 0.82,
+      "auch_in": [
+        "Ortsbeirat Dechsendorf"
+      ],
+      "amtlich": true
+    },
+    {
+      "name": "Am Hafen",
+      "bezirke": [
+        "75 Industriehafen"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Am Kornfeld",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Am Leitenbrünnlein",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Am Neuweiher",
+      "bezirke": [
+        "71 In der Reuth"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "An den Häuslinger Wegäckern",
+      "bezirke": [],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": false
+    },
+    {
+      "name": "An der Weißen Marter",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Aschaffenburger Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Bachgraben",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Bamberger Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Beim Drudenbaum",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Blumenweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Büchenbacher Anlage",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Büchenbacher Damm",
+      "bezirke": [],
+      "anteil": 0.34,
+      "auch_in": [
+        "Stadtteilbeirat Alterlangen",
+        "Stadtteilbeirat Anger / Bruck"
+      ],
+      "amtlich": false
+    },
+    {
+      "name": "Büchenbacher Steg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 0.565,
+      "auch_in": [
+        "Stadtteilbeirat Alterlangen"
+      ],
+      "amtlich": true
+    },
+    {
+      "name": "Coburger Straße",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "David-Morgenstern-Weg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Demlingweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Dompropststraße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Donato-Polli-Straße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Dorfmeisterweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Dorfstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Dreibergstraße",
+      "bezirke": [
+        "71 In der Reuth"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Dresselweg",
+      "bezirke": [],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": false
+    },
+    {
+      "name": "Dünischweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Ebracher Weg",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Egerichtsweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Eifelweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Einkornweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Emmerweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Flachsweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Fleischmannstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Flinzweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Forchheimer Straße",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Frankenalbstraße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Frankenwaldallee",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Franz-Steinmetz-Weg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Frauenauracher Straße",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "75 Industriehafen"
+      ],
+      "anteil": 0.94,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Georg-Frank-Straße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Goeschelstraße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Goldwitzerstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Gundstraße",
+      "bezirke": [
+        "75 Industriehafen"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Hausäckerweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Haßfurter Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Heckenweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Hegemannweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Heidackerstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Heinrich-Kirchner-Straße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Heubaumweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Hintere Gasse",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Hofer Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Holunderweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 0.6,
+      "auch_in": [
+        "Ortsbeirat Dechsendorf"
+      ],
+      "amtlich": true
+    },
+    {
+      "name": "Holzweg",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Hummerbergweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Häuslinger Straße",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Högelsteinweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Höllwiesenweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "In den Straßäckern",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "In der Reuth",
+      "bezirke": [
+        "71 In der Reuth"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Jakob-Nein-Straße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Joseph-Will-Straße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kapellensteg",
+      "bezirke": [
+        "12 Steinforst"
+      ],
+      "anteil": 0.162,
+      "auch_in": [
+        "Stadtteilbeirat Alterlangen"
+      ],
+      "amtlich": true
+    },
+    {
+      "name": "Kapellenstraße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Karmelitenstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kernbergstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Keuperstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kirchenweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kitzinger Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kolpingweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kornblumenweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kosbacher Damm",
+      "bezirke": [],
+      "anteil": 0.311,
+      "auch_in": [
+        "Stadtteilbeirat Alterlangen"
+      ],
+      "amtlich": false
+    },
+    {
+      "name": "Kraepelinstraße",
+      "bezirke": [
+        "71 In der Reuth"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kronacher Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kulmbacher Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kunigundenstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kößweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Lehmgrubenweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Lettenweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Lichtenfelser Weg",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Ligusterweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Lindnerstraße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Malvenweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Marienstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Meistergasse",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Mittlere Heide",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Mohnweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Mönaustraße",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Niederndorfer Straße",
+      "bezirke": [
+        "60 Neuses"
+      ],
+      "anteil": 0.183,
+      "auch_in": [
+        "Ortsbeirat Frauenaurach"
+      ],
+      "amtlich": true
+    },
+    {
+      "name": "Obere Gasse",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Obere Heide",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Odenwaldallee",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Pohlsgäßchen",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Pätzoldweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Rapunzelweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Reinschartenweg",
+      "bezirke": [
+        "71 In der Reuth"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Reuthlehenstraße",
+      "bezirke": [
+        "71 In der Reuth"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Rhönstraße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Ritterspornweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Rodensteinweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Rudeltplatz",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Sackgasse",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Schaldachweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Schwarzdornweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Schweinfurter Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Sehmerweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Sixtusstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Spessartweg",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Steigerwaldallee",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Steudacher Straße",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "75 Industriehafen"
+      ],
+      "anteil": 0.849,
+      "auch_in": [
+        "Ortsbeirat Kosbach/Häusling/Steudach"
+      ],
+      "amtlich": true
+    },
+    {
+      "name": "Stiftungsstraße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Straßberg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Streitbergweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Taunusstraße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Untere Heide",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Volkacher Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Walberlaweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Walburgastraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Westerwaldweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Windsheimer Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Würzburger Ring",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Zambellistraße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Zum Hutacker",
+      "bezirke": [
+        "75 Industriehafen"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    }
+  ],
+  "alle_namen": [
+    "Adalbert-Stifter-Straße",
+    "Adam-Kraft-Straße",
+    "Adenauer-Ring",
+    "Adlersteinweg",
+    "Adlerstraße",
+    "Agnes-Bluhm-Straße",
+    "Agnes-Miegel-Straße",
+    "Agnes-Sapper-Straße",
+    "Ahornweg",
+    "Akazienweg",
+    "Albert-Rupp-Straße",
+    "Albertusstraße",
+    "Albrecht-Dürer-Straße",
+    "Alfred-Mehl-Straße",
+    "Alfred-Wegener-Straße",
+    "Allee am Röthelheimpark",
+    "Alter Markt",
+    "Alterlanger Straße",
+    "Altkirchenweg",
+    "Altstädter Friedhof",
+    "Altstädter Kirchenplatz",
+    "Am Anger",
+    "Am Bach",
+    "Am Brucker Bahnhof",
+    "Am Deckersweiher",
+    "Am Dinkelfeld",
+    "Am Dorfweiher",
+    "Am Dummetsweiher",
+    "Am Eichenwald",
+    "Am Erlanger Weg",
+    "Am Europakanal",
+    "Am Färberhof",
+    "Am Großauweiher",
+    "Am Hafen",
+    "Am Heiligenholz",
+    "Am Klosterholz",
+    "Am Kornfeld",
+    "Am Leitenbrünnlein",
+    "Am Meilwald",
+    "Am Neuweiher",
+    "Am Pestalozziring",
+    "Am Reiterhof",
+    "Am Röthelheim",
+    "Am Schwabachgrund",
+    "Am See",
+    "Am Wagnersberg",
+    "Am Weichselgarten",
+    "Am Winkelfeld",
+    "Am Wolfsmantel",
+    "Amselfeld",
+    "An den Häuslinger Gärten",
+    "An den Kellern",
+    "An der Autobahn",
+    "An der Lauseiche",
+    "An der Weißen Marter",
+    "An der Wied",
+    "Anderlohrstraße",
+    "Angerleite",
+    "Anlagenstraße",
+    "Anna-Goes-Straße",
+    "Anna-Pirson-Weg",
+    "Anna-Rosenthal-Weg",
+    "Anna-Wüstling-Weg",
+    "Anne-Frank-Weg",
+    "Annette-Kolb-Straße",
+    "Anschützstraße",
+    "Anton-Bruckner-Straße",
+    "Anzengruberweg",
+    "Apfelstraße",
+    "Apothekergasse",
+    "Artilleriestraße",
+    "Aschaffenburger Straße",
+    "Atzelsberger Steige",
+    "Aufseßstraße",
+    "Aurachweg",
+    "Auwiesenstraße",
+    "Bachfeldstraße",
+    "Bachgraben",
+    "Badergasse",
+    "Badstraße",
+    "Bahnhofplatz",
+    "Bahnstraße",
+    "Bamberger Straße",
+    "Barschenweg",
+    "Barth-Blendinger-Straße",
+    "Barthelmeßstraße",
+    "Bauhofstraße",
+    "Baumschulenweg",
+    "Bauvereinsstraße",
+    "Bayernstraße",
+    "Bayreuther Straße",
+    "Bechmann-Rahn-Weg",
+    "Beethovenstraße",
+    "Beim Drudenbaum",
+    "Benzstraße",
+    "Berghang",
+    "Bergstraße",
+    "Berliner Platz",
+    "Bernauerstraße",
+    "Berner Straße",
+    "Bernhard-Plettner-Ring",
+    "Bertha-von-Suttner-Straße",
+    "Bienenweg",
+    "Bierlachweg",
+    "Bimbachstraße",
+    "Birkenweg",
+    "Bischofsweiherstraße",
+    "Bismarckstraße",
+    "Bissingerstraße",
+    "Blumenweg",
+    "Bogenweg",
+    "Bohlenplatz",
+    "Bonhoefferweg",
+    "Borsigstraße",
+    "Boschstraße",
+    "Brahmsstraße",
+    "Branderweg",
+    "Brauhofgasse",
+    "Breitenäckerweg",
+    "Breiter Sand",
+    "Breslauer Straße",
+    "Bruckweiherstraße",
+    "Brunnenstraße",
+    "Brückenstraße",
+    "Brückleinsgasse",
+    "Brühl",
+    "Brüxer Straße",
+    "Bubenreuther Weg",
+    "Buchenweg",
+    "Buchfinkstraße",
+    "Buckenhofer Weg",
+    "Budapester Straße",
+    "Budweiser Weg",
+    "Bundesautobahn",
+    "Bunsenstraße",
+    "Burgbergstraße",
+    "Burgstallweg",
+    "Böhmlach",
+    "Böttigersteig",
+    "Büchenbacher Anlage",
+    "Büchenbacher Steg",
+    "Calvinstraße",
+    "Campingstraße",
+    "Carl-Thiersch-Straße",
+    "Cauerstraße",
+    "Cedernstraße",
+    "Christian-Ernst-Straße",
+    "Clara-Schumann-Straße",
+    "Coburger Straße",
+    "Cosimastraße",
+    "Cumianastraße",
+    "Daimlerstraße",
+    "Damaschkestraße",
+    "Danziger Straße",
+    "Danziger Weg",
+    "David-Morgenstern-Weg",
+    "Dechsendorfer Platz",
+    "Dechsendorfer Straße",
+    "Delpweg",
+    "Demlingweg",
+    "Dieselstraße",
+    "Dinkelweg",
+    "Distelweg",
+    "Dompfaffstraße",
+    "Dompropststraße",
+    "Domstiftstraße",
+    "Donato-Polli-Straße",
+    "Donaustraße",
+    "Dorfmeisterweg",
+    "Dorfstraße",
+    "Doris-Ruppenstein-Straße",
+    "Dornbergstraße",
+    "Drausnickstraße",
+    "Dreibergstraße",
+    "Dreikönigstraße",
+    "Dresdener Straße",
+    "Drosselweg",
+    "Döderleinstraße",
+    "Dünischweg",
+    "Ebereschenweg",
+    "Ebnerstraße",
+    "Ebracher Weg",
+    "Ebrardstraße",
+    "Edith-Haupt-Straße",
+    "Egelanger",
+    "Egerichtsweg",
+    "Egerlandstraße",
+    "Egerstraße",
+    "Eggenreuther Weg",
+    "Egidienplatz",
+    "Egidienstraße",
+    "Eginoplatz",
+    "Eichendorffstraße",
+    "Eichenlohe",
+    "Eichenweg",
+    "Eichholzstraße",
+    "Eifelweg",
+    "Einhornstraße",
+    "Einkornweg",
+    "Einsteinstraße",
+    "Eisvogelstraße",
+    "Elbestraße",
+    "Elisabeth-Auer-Straße",
+    "Elisabethstraße",
+    "Elise-Spaeth-Straße",
+    "Ellenbogen",
+    "Elly-Heuss-Straße",
+    "Elritzenweg",
+    "Elsa-Brändström-Straße",
+    "Elsterweg",
+    "Eltersdorfer Straße",
+    "Emil-Kränzlein-Straße",
+    "Emma-Brendel-Weg",
+    "Emmerweg",
+    "Engelstraße",
+    "Enggleis",
+    "Erlanger Straße",
+    "Erlenfeld",
+    "Erwin-Rommel-Straße",
+    "Eschenweg",
+    "Eskilstunastraße",
+    "Espenweg",
+    "Essenbacher Straße",
+    "Eulerstraße",
+    "Eythstraße",
+    "Fahrstraße",
+    "Falkenauer Straße",
+    "Falkenstraße",
+    "Falknersweg",
+    "Fanny-Hensel-Straße",
+    "Faust-von-Stromberg-Straße",
+    "Feldstraße",
+    "Felix-Klein-Straße",
+    "Ferdinand-Braun-Straße",
+    "Fichtestraße",
+    "Finkenweg",
+    "Flachsweg",
+    "Fleischmannstraße",
+    "Fliederstraße",
+    "Fließbachstraße",
+    "Flinzweg",
+    "Florian-Geyer-Straße",
+    "Flurstraße",
+    "Fontanestraße",
+    "Forchheimer Straße",
+    "Forellenweg",
+    "Forsthut",
+    "Forststraße",
+    "Fortunastraße",
+    "Franckestraße",
+    "Frankenalbstraße",
+    "Frankenwaldallee",
+    "Franz-Steinmetz-Weg",
+    "Franzensbader Straße",
+    "Franzosenweg",
+    "Frauenauracher Straße",
+    "Frauenweiherstraße",
+    "Fraunhoferstraße",
+    "Friedhofstraße",
+    "Friedrich-Bauer-Straße",
+    "Friedrich-List-Straße",
+    "Friedrichstraße",
+    "Friesenweg",
+    "Fröbelstraße",
+    "Fuchsengarten",
+    "Fuchsenwiese",
+    "Fuchsfeldstraße",
+    "Föhrenweg",
+    "Fünfkirchener Straße",
+    "Fürstenweg",
+    "Fürther Straße",
+    "Gabelsbergerstraße",
+    "Gablonzer Straße",
+    "Gaisbühlstraße",
+    "Ganghoferweg",
+    "Gartenstraße",
+    "Gaußstraße",
+    "Gebbertstraße",
+    "Gedelerstraße",
+    "Geisbergstraße",
+    "Geißlerstraße",
+    "Genglerstraße",
+    "Georg-Frank-Straße",
+    "Georg-Krauß-Straße",
+    "Gerberei",
+    "Gerhart-Hauptmann-Straße",
+    "Gerstenbergstraße",
+    "Gertrud-Bäumer-Straße",
+    "Geschwister-Scholl-Straße",
+    "Geschwister-Vömel-Weg",
+    "Geuderweg",
+    "Giesbethweg",
+    "Ginsterweg",
+    "Gleiwitzer Straße",
+    "Glockenstraße",
+    "Glückstraße",
+    "Goerdelerstraße",
+    "Goeschelstraße",
+    "Goethestraße",
+    "Goldberglein",
+    "Goldwitzerstraße",
+    "Gostenhofer Straße",
+    "Graf-Zeppelin-Straße",
+    "Graslitzer Straße",
+    "Grazer Straße",
+    "Groß-von-Trockau-Platz",
+    "Grundherrstraße",
+    "Grünauweg",
+    "Gründlacher Straße",
+    "Guhmannstraße",
+    "Gundstraße",
+    "Gustav-Adolf-Straße",
+    "Gustav-Hauser-Straße",
+    "Gustav-Specht-Straße",
+    "Gutenbergstraße",
+    "Görkauer Straße",
+    "Görlitzer Straße",
+    "Günther-Scharowsky-Straße",
+    "Güterbahnhofstraße",
+    "Güterhallenstraße",
+    "Haagstraße",
+    "Haberstraße",
+    "Habichtstraße",
+    "Haferweg",
+    "Hahnemannstraße",
+    "Halbmondstraße",
+    "Hallerstraße",
+    "Halskestraße",
+    "Hammerbacherstraße",
+    "Hans-Geiger-Straße",
+    "Hans-Sachs-Straße",
+    "Harfenstraße",
+    "Hartmannstraße",
+    "Haselhofstraße",
+    "Hasenweg",
+    "Haundorfer Straße",
+    "Hauptstraße",
+    "Hausäckerweg",
+    "Haydnstraße",
+    "Haßfurter Straße",
+    "Hechtweg",
+    "Heckenweg",
+    "Hedenusstraße",
+    "Heerfleckenstraße",
+    "Hegemannweg",
+    "Hegenigstraße",
+    "Heidackerstraße",
+    "Heideweg",
+    "Heiligenlohstraße",
+    "Heindelstraße",
+    "Heinrich-Franke-Weg",
+    "Heinrich-Hertz-Straße",
+    "Heinrich-Kirchner-Straße",
+    "Heinrichsdörferweg",
+    "Helene-Lange-Straße",
+    "Helene-Richter-Straße",
+    "Helmholtzstraße",
+    "Helmstraße",
+    "Helmut-Anzeneder-Straße",
+    "Helmut-Lederer-Straße",
+    "Hemhofener Straße",
+    "Henkestraße",
+    "Henri-Dunant-Straße",
+    "Herbstwiesenweg",
+    "Herbstäckerweg",
+    "Herdegenplatz",
+    "Herringstraße",
+    "Hertha-Sponer-Weg",
+    "Hertleinstraße",
+    "Herzogenauracher Damm",
+    "Herzogenauracher Straße",
+    "Hessenstraße",
+    "Heubaumweg",
+    "Heusteg",
+    "Heuwaagstraße",
+    "Heuweg",
+    "Heßdorfer Weg",
+    "Hilpertstraße",
+    "Hindenburgstraße",
+    "Hintere Gasse",
+    "Hirschensprung",
+    "Hirtenacker",
+    "Hirtengang",
+    "Hofer Straße",
+    "Hofmannstraße",
+    "Hohlgasse",
+    "Hollerweg",
+    "Holsteinerweg",
+    "Holunderweg",
+    "Holzgartenstraße",
+    "Holzschuherring",
+    "Holzweg",
+    "Huberweg",
+    "Hugenottenplatz",
+    "Humboldtstraße",
+    "Hummelweg",
+    "Hummerbergweg",
+    "Hutgraben",
+    "Huthausplatz",
+    "Huthausweg",
+    "Hutstraße",
+    "Hänflingweg",
+    "Häuslinger Straße",
+    "Högelsteinweg",
+    "Höllwiesenweg",
+    "Hüttendorfer Straße",
+    "Im Gäßla",
+    "Im Heuschlag",
+    "Im Karpfengrund",
+    "Im Wolfsgarten",
+    "Immenweg",
+    "Immerwahrstraße",
+    "In den Straßäckern",
+    "In der Reuth",
+    "In der Zeil",
+    "Ina-Seidel-Straße",
+    "Innere Brucker Straße",
+    "Isarstraße",
+    "Jahnstraße",
+    "Jakob-Herz-Weg",
+    "Jakob-Nein-Straße",
+    "Jaminstraße",
+    "Jean-Paul-Straße",
+    "Jenaer Straße",
+    "Johann-Jürgen-Straße",
+    "Johann-Kalb-Straße",
+    "John-Rabe-Weg",
+    "Jordanweg",
+    "Josef-Felder-Straße",
+    "Joseph-Will-Straße",
+    "Judengasse",
+    "Jungstraße",
+    "Junkersstraße",
+    "Juragasse",
+    "Jäckelstraße",
+    "Jägerstraße",
+    "Kammererstraße",
+    "Kanalstraße",
+    "Kannhäuserweg",
+    "Kantstraße",
+    "Kapellensteg",
+    "Kapellenstraße",
+    "Karauschenweg",
+    "Karl-Bröger-Straße",
+    "Karl-May-Straße",
+    "Karl-Schall-Straße",
+    "Karl-Zucker-Straße",
+    "Karlheinz-Kaske-Straße",
+    "Karlsbader Straße",
+    "Karmelitenstraße",
+    "Kastanienweg",
+    "Katholischer Kirchenplatz",
+    "Keltschstraße",
+    "Keplerstraße",
+    "Kernbergstraße",
+    "Keuperstraße",
+    "Kiefernweg",
+    "Kieselbergstraße",
+    "Killingerstraße",
+    "Kirchenstraße",
+    "Kirchenweg",
+    "Kitzinger Straße",
+    "Kleefeld",
+    "Kleiberstraße",
+    "Kleiststraße",
+    "Klostermühlgasse",
+    "Klosterwald",
+    "Kneippstraße",
+    "Kochstraße",
+    "Koldestraße",
+    "Kolpingweg",
+    "Komotauer Straße",
+    "Konrad-Haußner-Straße",
+    "Konrad-Wegner-Straße",
+    "Konrad-Zuse-Straße",
+    "Kornblumenweg",
+    "Kosbacher Weg",
+    "Kraepelinstraße",
+    "Kraftwerkstraße",
+    "Krankenhausstraße",
+    "Kreuzsteinstraße",
+    "Kreuzstraße",
+    "Kriegenbrunner Straße",
+    "Kronacher Straße",
+    "Krähenhorst",
+    "Kulmbacher Straße",
+    "Kunigundenstraße",
+    "Kurt-Schumacher-Straße",
+    "Kurze Zeile",
+    "Kuttlerstraße",
+    "Käthe-Kollwitz-Straße",
+    "Königsberger Straße",
+    "Königsmühle",
+    "Kößweg",
+    "Lachnerstraße",
+    "Lammersstraße",
+    "Lampertsbühl",
+    "Lange Zeile",
+    "Langemarckplatz",
+    "Langenaustraße",
+    "Langfeldstraße",
+    "Lannersberg",
+    "Laubaner Straße",
+    "Laubweg",
+    "Lazarettstraße",
+    "Lehmgrubenweg",
+    "Leimbergerstraße",
+    "Leipziger Straße",
+    "Leitensteig",
+    "Leo-Hauck-Straße",
+    "Lerchenbühl",
+    "Lerchenstraße",
+    "Lerchentalweg",
+    "Lessingstraße",
+    "Lettenweg",
+    "Leuschnerweg",
+    "Libellenweg",
+    "Lichtenfelser Weg",
+    "Liebigstraße",
+    "Liegnitzer Straße",
+    "Ligusterweg",
+    "Lilienthalstraße",
+    "Lindenweg",
+    "Lindnerstraße",
+    "Lipsweg",
+    "Loewenichstraße",
+    "Loheweg",
+    "Londoner Straße",
+    "Lorlebergplatz",
+    "Loschgestraße",
+    "Ludwig-Erhard-Straße",
+    "Ludwig-Sand-Straße",
+    "Ludwig-Thoma-Straße",
+    "Luise-Kiesselbach-Straße",
+    "Luitpoldstraße",
+    "Lupinenweg",
+    "Lärchenweg",
+    "Löhestraße",
+    "Lönsweg",
+    "Löschweiherweg",
+    "Mainstraße",
+    "Malvenweg",
+    "Mansfeldstraße",
+    "Maria-Lass-Weg",
+    "Marie-Curie-Straße",
+    "Marienbader Straße",
+    "Marienstraße",
+    "Marktplatz",
+    "Markweg",
+    "Maronenweg",
+    "Marquardsenstraße",
+    "Martensstraße",
+    "Marterstraße",
+    "Martin-Luther-Platz",
+    "Martinsbühler Straße",
+    "Masurenweg",
+    "Max-Busch-Straße",
+    "Max-Planck-Straße",
+    "Maximiliansplatz",
+    "Mayr-Nusser-Weg",
+    "Meisenweg",
+    "Meistergasse",
+    "Membacher Weg",
+    "Memelstraße",
+    "Mendelstraße",
+    "Michael-Kreß-Straße",
+    "Michael-Vogel-Straße",
+    "Michelbacher Straße",
+    "Mistelweg",
+    "Mittlere Heide",
+    "Mittlere Schulstraße",
+    "Mohnweg",
+    "Moltkestraße",
+    "Moorbachweg",
+    "Moosweg",
+    "Morauweg",
+    "Mozartstraße",
+    "Märterleinsweg",
+    "Möhrendorfer Straße",
+    "Möhrendorfer Weg",
+    "Mönaustraße",
+    "Möwenweg",
+    "Mühlgarten",
+    "Münchener Straße",
+    "Nachtigallenweg",
+    "Narzissenweg",
+    "Naturbadstraße",
+    "Neckarstraße",
+    "Neißeweg",
+    "Nelly-Sachs-Straße",
+    "Neue Straße",
+    "Neuenweiherstraße",
+    "Neumühle",
+    "Neuseser Straße",
+    "Neustädter Kirchenplatz",
+    "Niederndorfer Straße",
+    "Niendorfstraße",
+    "Nikolaus-Fiebiger-Straße",
+    "Noetherstraße",
+    "Nutzweiher",
+    "Nägelsbachstraße",
+    "Nördliche Stadtmauerstraße",
+    "Nürnberger Straße",
+    "Obere Gasse",
+    "Obere Heide",
+    "Obere Karlstraße",
+    "Obleiweg",
+    "Odenwaldallee",
+    "Oderweg",
+    "Ohmplatz",
+    "Ohmstraße",
+    "Oppelner Straße",
+    "Ortliebweg",
+    "Osloer Straße",
+    "Otto-Goetze-Straße",
+    "Palmsanlage",
+    "Palmstraße",
+    "Pappelgasse",
+    "Parasolweg",
+    "Parkplatzstraße",
+    "Paul-Gordan-Straße",
+    "Paul-Gossen-Straße",
+    "Paulistraße",
+    "Pechmannstraße",
+    "Pechweg",
+    "Pechweiherstraße",
+    "Penzoldtstraße",
+    "Pestalozzistraße",
+    "Peter-Henlein-Weg",
+    "Peter-Vischer-Straße",
+    "Peter-Zink-Weg",
+    "Petra-Kelly-Weg",
+    "Pfaffweg",
+    "Pfarrstraße",
+    "Pfinzingweg",
+    "Pfälzer Straße",
+    "Philipp-Reis-Straße",
+    "Pirckheimerweg",
+    "Pirolweg",
+    "Platanenweg",
+    "Platenstraße",
+    "Pohlsgäßchen",
+    "Pommernstraße",
+    "Pranckhstraße",
+    "Prießnitzstraße",
+    "Privatweg",
+    "Puchtastraße",
+    "Pätzoldweg",
+    "Pömerstraße",
+    "Quendelweg",
+    "Rabenweg",
+    "Rangauweg",
+    "Rapunzelweg",
+    "Rathausplatz",
+    "Rathenaustraße",
+    "Rathsberger Straße",
+    "Ratiborer Straße",
+    "Raumerstraße",
+    "Regnitzweg",
+    "Rehweiherstraße",
+    "Reichswaldstraße",
+    "Reinhardstraße",
+    "Reinigerstraße",
+    "Reinschartenweg",
+    "Reitersbergstraße",
+    "Remarweg",
+    "Rennesstraße",
+    "Resenscheckstraße",
+    "Reuthlehenstraße",
+    "Reutleser Weg",
+    "Rheinstraße",
+    "Rhönstraße",
+    "Ricarda-Huch-Straße",
+    "Richard-Strauss-Straße",
+    "Richard-Wagner-Straße",
+    "Richterstraße",
+    "Riemenschneiderstraße",
+    "Rieterweg",
+    "Rita-Schüßler-Weg",
+    "Ritterspornweg",
+    "Ritzerstraße",
+    "Riversideplatz",
+    "Robert-Gradmann-Straße",
+    "Robert-Mayer-Straße",
+    "Rodensteinweg",
+    "Romesstraße",
+    "Rosenau",
+    "Rosenweg",
+    "Rotkappenweg",
+    "Rottmannsgäßchen",
+    "Rudelsweiherstraße",
+    "Rudeltplatz",
+    "Rudeläckerweg",
+    "Rudolf-Steiner-Straße",
+    "Ränzstraße",
+    "Römerreuthstraße",
+    "Röntgenstraße",
+    "Röttenbacher Straße",
+    "Rückertstraße",
+    "Rühlstraße",
+    "Saalestraße",
+    "Saarstraße",
+    "Sachsenstraße",
+    "Sackgasse",
+    "Saidelsteig",
+    "San-Carlos-Straße",
+    "Sandackerstraße",
+    "Sandbergstraße",
+    "Sandleite",
+    "Sankt Johann",
+    "Sankt Michael",
+    "Saranstraße",
+    "Schaldachweg",
+    "Schallershofer Straße",
+    "Schellingstraße",
+    "Schenkstraße",
+    "Schiestlstraße",
+    "Schießhausstraße",
+    "Schiffstraße",
+    "Schillerstraße",
+    "Schinnererstraße",
+    "Schlehenstraße",
+    "Schleienweg",
+    "Schleifmühle",
+    "Schleifmühlstraße",
+    "Schleifweg",
+    "Schleusenstraße",
+    "Schloßgarten",
+    "Schloßgasse",
+    "Schloßplatz",
+    "Schobertweg",
+    "Schorlachstraße",
+    "Schornbaumstraße",
+    "Schottkystraße",
+    "Schronfeld",
+    "Schubertstraße",
+    "Schuckertstraße",
+    "Schuhstraße",
+    "Schulstraße",
+    "Schwabachanlage",
+    "Schwabenstraße",
+    "Schwalbenweg",
+    "Schwanenstraße",
+    "Schwarzdornweg",
+    "Schwedlerstraße",
+    "Schweidnitzer Weg",
+    "Schweinfurter Straße",
+    "Schwemmseeweg",
+    "Schönbacher Straße",
+    "Schönfeldstraße",
+    "Schützenweg",
+    "Sebaldusstraße",
+    "Sebastianstraße",
+    "Sedanstraße",
+    "Seebachweg",
+    "Seerosenweg",
+    "Sehmerweg",
+    "Sieboldstraße",
+    "Siedlerstraße",
+    "Sieglitzhofer Straße",
+    "Siemenspromenade",
+    "Sixtusstraße",
+    "Sonnenblick",
+    "Sonnenstraße",
+    "Sonnentauweg",
+    "Sophienstraße",
+    "Spardorfer Straße",
+    "Sperbersklinge",
+    "Sperberweg",
+    "Sperlingstraße",
+    "Spessartweg",
+    "Spinnereistraße",
+    "Spitzwegstraße",
+    "Stadtweg",
+    "Staffelweg",
+    "Starenweg",
+    "Staudenweg",
+    "Staudtstraße",
+    "Stauffenbergstraße",
+    "Steigerwaldallee",
+    "Steinforststraße",
+    "Steinheilstraße",
+    "Steinhilberweg",
+    "Steinknöck",
+    "Steinpilzweg",
+    "Steinweg",
+    "Stephanstraße",
+    "Stettiner Straße",
+    "Steudacher Straße",
+    "Stiftungsstraße",
+    "Stintzingstraße",
+    "Stoke-on-Trent-Straße",
+    "Straßberg",
+    "Streitbergweg",
+    "Stromerweg",
+    "Strümpellstraße",
+    "Stubenlohstraße",
+    "Sudetenlandstraße",
+    "Sudetenstraße",
+    "Sylvaniastraße",
+    "Sägersäcker",
+    "Südliche Stadtmauerstraße",
+    "Talblick",
+    "Tannenweg",
+    "Taunusstraße",
+    "Tennenloher Straße",
+    "Teplitzer Straße",
+    "Tetzelweg",
+    "Thalermühle",
+    "Theaterplatz",
+    "Theaterstraße",
+    "Theodor-Klippel-Straße",
+    "Theodor-von-Zahn-Straße",
+    "Thomas-Dehler-Straße",
+    "Thomas-Mann-Straße",
+    "Thymianweg",
+    "Thüringerstraße",
+    "Tillystraße",
+    "Toblerweg",
+    "Tolnaer Straße",
+    "Tucherstraße",
+    "Tulpenweg",
+    "Turmhügelweg",
+    "Turnstraße",
+    "Täublingstraße",
+    "Ulmenweg",
+    "Ulrich-Schalk-Straße",
+    "Umhausener Weg",
+    "Ungarnstraße",
+    "Universitätsstraße",
+    "Untere Heide",
+    "Untere Karlstraße",
+    "Vacher Straße",
+    "Veilchenweg",
+    "Veit-Stoß-Straße",
+    "Vierzigmannstraße",
+    "Vogelherd",
+    "Volckamerstraße",
+    "Volkacher Straße",
+    "Voltastraße",
+    "Von-Bezzel-Straße",
+    "Von-Buol-Straße",
+    "Von-der-Tann-Straße",
+    "Von-Lentersheim-Straße",
+    "Von-Meranien-Straße",
+    "Von-Wendt-Weg",
+    "Wacholderweg",
+    "Wackenroderstraße",
+    "Walberlaweg",
+    "Walburgastraße",
+    "Waldhufe",
+    "Waldmüllerstraße",
+    "Waldseestraße",
+    "Waldstraße",
+    "Wallenrodstraße",
+    "Wallensteinstraße",
+    "Walter-Flex-Straße",
+    "Wasserturmstraße",
+    "Wasserwerkstraße",
+    "Webergasse",
+    "Weberäckerweg",
+    "Webichgasse",
+    "Wehneltstraße",
+    "Weichselweg",
+    "Weidenweg",
+    "Weihergärten",
+    "Weiherstraße",
+    "Weinstraße",
+    "Weisendorfer Straße",
+    "Weiße Herzstraße",
+    "Wellhoeferstraße",
+    "Welsweg",
+    "Wenzelstraße",
+    "Werker",
+    "Werner-von-Siemens-Straße",
+    "Westerwaldweg",
+    "Westliche Stadtmauerstraße",
+    "Wetterkreuz",
+    "Wichernstraße",
+    "Widerlichstraße",
+    "Wiener Straße",
+    "Wiesengrundweg",
+    "Wiesenweg",
+    "Wildentenweg",
+    "Wilhelm-Tell-Straße",
+    "Wilhelminenstraße",
+    "Wilhelmstraße",
+    "Willi-Grasser-Straße",
+    "Willy-Brandt-Straße",
+    "Windmühle",
+    "Windsheimer Straße",
+    "Winkelweg",
+    "Witikoweg",
+    "Wladimirstraße",
+    "Wolfsstaudenring",
+    "Wolfsäckerweg",
+    "Wöhrmühle",
+    "Wöhrstraße",
+    "Würzburger Ring",
+    "Ytterbium",
+    "Zambellistraße",
+    "Zanderstraße",
+    "Zeisigweg",
+    "Zeißstraße",
+    "Zenkerstraße",
+    "Zeppelinstraße",
+    "Ziegelgasse",
+    "Zimmermannsgasse",
+    "Zum Eichelberg",
+    "Zum Hutacker",
+    "Äußere Brucker Straße",
+    "Äußere Tennenloher Straße",
+    "Österreicher Straße",
+    "Östliche Stadtmauerstraße"
+  ]
+}

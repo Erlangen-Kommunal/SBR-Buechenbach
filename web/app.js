@@ -7,7 +7,7 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v5 · 2026-07-21";
+const APP_VERSION = "v6 · 2026-07-22";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -129,6 +129,7 @@ const ROUTES = {
   "aemter": () => renderAemter(),
   "links": () => renderCards("links", "Nützliche Links", "🔗"),
   "karte": renderKarte,
+  "strassen": renderStrassen,
 };
 
 async function route() {
@@ -164,7 +165,8 @@ async function renderStart() {
     ["#/fachbeiraete", "👥", "Fachbeiräte", "Andere Beiräte und Ausschüsse — inkl. UVPA-Infoseite."],
     ["#/aemter", "🏢", "Ämter", "Welches Amt der Stadt Erlangen ist wofür zuständig?"],
     ["#/links", "🔗", "Links", "Ausgewählte Seiten rund um Büchenbach — ohne Veranstaltungen."],
-    ["#/karte", "🗺️", "Karte", "Büchenbach auf amtlicher Karte und im BayernAtlas."],
+    ["#/karte", "🗺️", "Karte", "Büchenbach mit den Grenzen des Beiratsgebiets, amtlich und im BayernAtlas."],
+    ["#/strassen", "🛣️", "Straßen", "Alle Straßen im Beiratsgebiet — welche gehören dazu, welche liegen auf der Grenze?"],
   ];
   view().innerHTML = `
     <section class="hero">
@@ -353,7 +355,7 @@ async function renderDoc(id) {
     <div id="doc-body"></div>
   </div>`;
   renderDocText(d);
-  renderStreets(d.text);
+  await renderStreets(d.text);
   $("btn-pdf").addEventListener("click", () => showPdf(d, d.url));
   $("btn-text").addEventListener("click", () => {
     renderDocText(d); $("btn-text").classList.add("active"); $("btn-pdf").classList.remove("active");
@@ -525,12 +527,55 @@ const GENERIC_PLACES = [
 // Straßen werden ohnehin einzeln erkannt.
 const JUNCTION_RE = /(?:straße|strasse|weg|platz|allee|ring|gasse|graben)[-–]/i;
 
-/** Vergleichsform: Groß/Klein und die Schreibweise straße/strasse vereinheitlicht. */
-const normStreet = (s) => s.toLowerCase().replaceAll("strasse", "straße");
+/**
+ * Vergleichsform: Groß/Klein, straße/strasse sowie Bindestriche und Leerzeichen
+ * vereinheitlicht — OpenStreetMap und das amtliche Verzeichnis setzen sie
+ * unterschiedlich („Adenauerring" gegen „Adenauer-Ring").
+ */
+const normStreet = (s) => s.toLowerCase().replaceAll("strasse", "straße").replace(/[\s\-]+/g, "");
 
-function detectStreets(text, max = 12) {
+/** Alle amtlichen Straßennamen der Stadt: Vergleichsform → amtliche Schreibweise. */
+let strassenNamen = null;
+async function loadStrassenNamen() {
+  if (strassenNamen) return strassenNamen;
+  const d = await loadGeo("strassen.json");
+  strassenNamen = new Map((d?.alle_namen ?? []).map((n) => [normStreet(n), n]));
+  return strassenNamen;
+}
+
+const TOKEN_RE = /[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß0-9.\-]*/g;
+// Briefkopf: hinter dem Namen folgen Hausnummer und Postleitzahl. Das ist die
+// Absenderadresse, kein Sachbezug.
+const ADDR_TAIL_RE = /^[\s,]*\d{1,3}\s*[a-zA-Z]?[\s,]*9\d{4}\b/;
+const MAX_WORTE = 4;   // längster amtlicher Name: „An der Weißen Marter"
+
+/**
+ * Straßen im Text finden — Abgleich gegen das amtliche Verzeichnis über
+ * Wort-n-Gramme. Das ersetzt die frühere Mustererkennung samt Ausnahmeliste:
+ * „Spielplatz" oder „Radweg" stehen gar nicht erst im Verzeichnis, und
+ * „Am Anger" schlägt nicht mehr in „Am Angerweg" an.
+ */
+function detectStreetsAmtlich(text, namen, max = 12) {
   const found = new Map();
-  if (!text) return [];
+  const toks = [...text.matchAll(TOKEN_RE)];
+  for (let i = 0; i < toks.length && found.size < max; i++) {
+    let phrase = "";
+    for (let n = 0; n < MAX_WORTE && i + n < toks.length; n++) {
+      phrase = n === 0 ? toks[i][0] : `${phrase} ${toks[i + n][0]}`;
+      const key = normStreet(phrase);
+      const amtlich = namen.get(key);
+      if (!amtlich || found.has(key)) continue;
+      const ende = toks[i + n].index + toks[i + n][0].length;
+      if (ADDR_TAIL_RE.test(text.slice(ende, ende + 16))) continue;
+      found.set(key, amtlich);
+    }
+  }
+  return [...found.values()];
+}
+
+/** Rückfallebene, solange geo/strassen.json fehlt (Mustererkennung wie bisher). */
+function detectStreetsHeuristisch(text, max = 12) {
+  const found = new Map();
   for (const m of text.matchAll(STREET_RE)) {
     const name = m[1].replace(/\s+/g, " ").replace(/[.\-–]+$/, "").trim();
     const key = normStreet(name);
@@ -540,6 +585,13 @@ function detectStreets(text, max = 12) {
     if (found.size >= max) break;
   }
   return [...found.values()];
+}
+
+async function detectStreets(text, max = 12) {
+  if (!text) return [];
+  const namen = await loadStrassenNamen();
+  return namen.size ? detectStreetsAmtlich(text, namen, max)
+                    : detectStreetsHeuristisch(text, max);
 }
 
 /** WGS84 → UTM Zone 32N (EPSG:25832) — Koordinatensystem des BayernAtlas. */
@@ -580,8 +632,18 @@ async function geocodeStreet(name) {
   return hit;
 }
 
+/** Geometrie einer Straße aus geo/strassen.geojson; null, wenn nicht enthalten. */
+let strassenGeo = null;
+async function localStreetGeometry(name) {
+  if (strassenGeo === null) {
+    const g = await loadGeo("strassen.geojson");
+    strassenGeo = new Map((g?.features ?? []).map((f) => [normStreet(f.properties.name), f]));
+  }
+  return strassenGeo.get(normStreet(name)) ?? null;
+}
+
 async function showStreetMap(name, box) {
-  box.innerHTML = `<p class="hint">Suche „${escHtml(name)}“ auf der Karte …</p>`;
+  box.innerHTML = `<p class="hint">Zeige „${escHtml(name)}“ auf der Karte …</p>`;
   let cfg;
   try {
     cfg = await loadContent("karte");
@@ -590,41 +652,60 @@ async function showStreetMap(name, box) {
     box.innerHTML = `<p class="hint">Karte nicht verfügbar: ${escHtml(e.message)}</p>`;
     return;
   }
-  const g = await geocodeStreet(name);
-  if (!g) {
-    box.innerHTML = `<p class="hint">„${escHtml(name)}“ ließ sich in Erlangen nicht
-      eindeutig zuordnen — evtl. kein Straßenname oder außerhalb des Stadtgebiets.</p>`;
-    return;
+  const L = window.L;
+
+  // Straßen des Beiratsgebiets liegen als Geometrie im Repository — dafür ist
+  // kein Geokodierdienst nötig. Nur für Straßen außerhalb (Protokolle nennen
+  // auch solche) wird Nominatim gefragt.
+  const feature = await localStreetGeometry(name);
+  let mitte, bounds, quelle;
+  if (feature) {
+    const layer = L.geoJSON(feature);
+    bounds = layer.getBounds();
+    mitte = bounds.getCenter();
+    quelle = layer;
+  } else {
+    const g = await geocodeStreet(name);
+    if (!g) {
+      box.innerHTML = `<p class="hint">„${escHtml(name)}“ ließ sich nicht zuordnen —
+        evtl. kein Straßenname oder außerhalb von Erlangen.</p>`;
+      return;
+    }
+    mitte = L.latLng(Number(g.lat), Number(g.lon));
+    const bb = (g.boundingbox || []).map(Number);
+    bounds = (bb.length === 4 && bb.every(Number.isFinite))
+      ? L.latLngBounds([bb[0], bb[2]], [bb[1], bb[3]]) : null;
   }
-  const lat = Number(g.lat), lon = Number(g.lon);
-  const [e32, n32] = wgs84ToUtm32(lat, lon);
+
+  const [e32, n32] = wgs84ToUtm32(mitte.lat, mitte.lng);
   box.innerHTML = `<div class="street-map"></div>
     <div class="map-actions">
       <a class="btn-primary" href="https://atlas.bayern.de/?c=${e32},${n32}&z=16&r=0&l=atkis&t=ba"
          target="_blank" rel="noopener">„${escHtml(name)}“ im BayernAtlas ↗</a>
-      <a href="https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=17/${lat}/${lon}"
+      <a href="https://www.openstreetmap.org/?mlat=${mitte.lat}&mlon=${mitte.lng}#map=17/${mitte.lat}/${mitte.lng}"
          target="_blank" rel="noopener">In OpenStreetMap öffnen ↗</a>
     </div>`;
-  const L = window.L;
   const map = L.map(box.querySelector(".street-map"), { scrollWheelZoom: false });
   const base = cfg.layers.find((l) => l.default) ?? cfg.layers[0];
   L.tileLayer(base.url, { attribution: base.attribution, maxZoom: base.maxZoom || 19 }).addTo(map);
-  // Nominatim liefert die Ausdehnung der Straße — daran ausrichten, damit die
-  // ganze Straße mittig im Bild liegt (statt nur eines beliebigen Punktes).
-  const bb = (g.boundingbox || []).map(Number);
-  if (bb.length === 4 && bb.every(Number.isFinite))
-    map.fitBounds([[bb[0], bb[2]], [bb[1], bb[3]]], { padding: [24, 24], maxZoom: 17 });
-  else
-    map.setView([lat, lon], 17);
-  L.marker([lat, lon]).addTo(map).bindPopup(`<strong>${escHtml(name)}</strong>`);
+  await addBeiratsgrenzen(L, map, { nachbarnBenennen: false, fuellen: false });
+
+  if (quelle) {
+    // Den Straßenverlauf selbst zeichnen — genauer als ein Punkt in der Mitte
+    L.geoJSON(feature, { style: { color: "#eb6834", weight: 5, opacity: 0.9 } }).addTo(map);
+  } else {
+    L.marker(mitte).addTo(map).bindPopup(`<strong>${escHtml(name)}</strong>`);
+  }
+  if (bounds) map.fitBounds(bounds, { padding: [26, 26], maxZoom: 17 });
+  else map.setView(mitte, 17);
   setTimeout(() => map.invalidateSize(), 80);
 }
 
 /** Chips für die im Dokument erwähnten Straßen; Karte erst auf Klick (schont Nominatim). */
-function renderStreets(text) {
+async function renderStreets(text) {
   const box = $("doc-streets");
   if (!box) return;
-  const streets = detectStreets(text);
+  const streets = await detectStreets(text);
   if (!streets.length) { box.innerHTML = ""; return; }
   box.innerHTML = `<div class="streets">
     <p class="streets-head">Erwähnte Straßen — zum Anzeigen auf der Karte anklicken</p>
@@ -717,6 +798,70 @@ function loadLeaflet() {
   return leafletLoading;
 }
 
+// ── Geodaten (Beiratsgrenzen, Straßen des Gebiets) ───────────────────────────
+// Erzeugt von tools/fetch_geodata.py aus dem Open-Data-Angebot der Stadt und
+// aus OpenStreetMap. Alles liegt fertig im Repository — zur Laufzeit wird
+// kein Geodienst befragt.
+
+const geoFiles = new Map();
+async function loadGeo(name) {
+  if (geoFiles.has(name)) return geoFiles.get(name);
+  let data = null;
+  for (const url of [`geo/${name}`, `../geo/${name}`]) {
+    try {
+      const r = await fetch(url);
+      if (r.ok) { data = await r.json(); break; }
+    } catch { /* nächster Pfad */ }
+  }
+  geoFiles.set(name, data);
+  return data;
+}
+
+const BEIRAT_EIGEN = "#2a78d6";     // eigenes Gebiet
+const BEIRAT_NACHBAR = "#898781";   // Nachbarn: nur Orientierung, zurückhaltend
+
+/**
+ * Beiratsgrenzen auf eine Leaflet-Karte legen; liefert die Grenze des eigenen
+ * Gebiets (zum Ausrichten der Karte).
+ *
+ * Zwei getrennte Layer, weil `interactive` in Leaflet eine Layer-Option ist und
+ * sich nicht je Objekt über die style-Funktion setzen lässt: Die Nachbarn sollen
+ * auf Mauskontakt ihren Namen zeigen, das eigene Gebiet dagegen die Klicks auf
+ * die Marker darunter durchlassen.
+ */
+async function addBeiratsgrenzen(L, map, { nachbarnBenennen = true, fuellen = true } = {}) {
+  const geo = await loadGeo("beiraete.geojson");
+  if (!geo) return null;
+  const teile = (eigen) => ({
+    type: "FeatureCollection",
+    features: geo.features.filter((f) => !!f.properties.eigen === eigen),
+  });
+
+  L.geoJSON(teile(false), {
+    interactive: nachbarnBenennen,
+    // Unsichtbare Füllung plus `pointer-events: all` (CSS-Klasse): So ist die
+    // ganze Nachbarfläche das Ziel für den Mauszeiger. Eine 2px-Strichellinie
+    // zu treffen wäre für niemanden zumutbar.
+    className: nachbarnBenennen ? "beirat-nachbar" : undefined,
+    style: { color: BEIRAT_NACHBAR, weight: 2, opacity: 0.85, dashArray: "6 5",
+             fill: true, fillOpacity: 0 },
+    onEachFeature: (f, l) => {
+      if (nachbarnBenennen) l.bindTooltip(f.properties.name, { sticky: true });
+    },
+  }).addTo(map);
+
+  let eigen = null;
+  L.geoJSON(teile(true), {
+    interactive: false,
+    style: {
+      color: BEIRAT_EIGEN, weight: 3, opacity: 0.95,
+      fillColor: BEIRAT_EIGEN, fillOpacity: fuellen ? 0.05 : 0,
+    },
+    onEachFeature: (_f, l) => { eigen = l; },
+  }).addTo(map);
+  return eigen;
+}
+
 async function renderKarte() {
   const cfg = await loadContent("karte");
   view().innerHTML = `<div class="wrap">${crumb()}
@@ -748,8 +893,112 @@ async function renderKarte() {
     L.marker([m.lat, m.lon]).addTo(map)
       .bindPopup(`<strong>${escHtml(m.titel)}</strong>${m.beschreibung ? "<br>" + escHtml(m.beschreibung) : ""}`);
   }
+
+  // Grenzen des Beiratsgebiets: die Karte auf das eigene Gebiet ausrichten,
+  // die Nachbarn bleiben als Orientierung sichtbar.
+  const eigen = await addBeiratsgrenzen(L, map);
+  if (eigen) {
+    map.fitBounds(eigen.getBounds(), { padding: [20, 20] });
+    $("map").insertAdjacentHTML("afterend", `<p class="map-note">
+      <i class="lg-eigen"></i> Gebiet des Stadtteilbeirats Büchenbach ·
+      <i class="lg-nachbar"></i> benachbarte Beiratsgebiete (Name bei Mauskontakt auf die Grenze)<br>
+      Gebietsgrenzen: Stadt Erlangen, Statistik und Stadtforschung (dl-de/by-2.0),
+      Geometrie im Stand von 2015; Namen nach der Satzung über Orts- und
+      Stadtteilbeiräte in der Fassung ab 01.05.2026. Anger und Bruck sind seither
+      getrennte Beiräte, die Stadt veröffentlicht dafür aber noch keine getrennte
+      Geometrie — sie erscheinen deshalb als ein Gebiet.</p>`);
+  }
   setTimeout(() => map.invalidateSize(), 100);
-  status("Karte geladen. Für amtliche Fachdaten den BayernAtlas-Button nutzen.");
+  status(eigen
+    ? "Karte geladen — die durchgezogene Linie ist die Grenze des Beiratsgebiets."
+    : "Karte geladen. Für amtliche Fachdaten den BayernAtlas-Button nutzen.");
+}
+
+// ── Straßen im Beiratsgebiet ─────────────────────────────────────────────────
+
+async function renderStrassen() {
+  status("Lade Straßenverzeichnis …");
+  const data = await loadGeo("strassen.json");
+  if (!data) {
+    view().innerHTML = `<div class="wrap">${crumb()}
+      <h2 class="section-title">🛣️ Straßen im Beiratsgebiet</h2>
+      <p class="hint">Die Straßendaten fehlen — sie entstehen mit
+      <code>python tools/fetch_geodata.py</code>.</p></div>`;
+    return;
+  }
+
+  // Nach statistischem Bezirk gruppieren: das ist die Gliederung, in der auch
+  // die Statistik der Stadt rechnet, und sie ordnet die 128 Straßen sinnvoll.
+  const gruppen = new Map();
+  for (const s of data.strassen) {
+    const bezirke = s.bezirke.length ? s.bezirke : ["ohne Bezirk (keine Hausnummern)"];
+    for (const b of bezirke) {
+      if (!gruppen.has(b)) gruppen.set(b, []);
+      gruppen.get(b).push(s);
+    }
+  }
+  const sortiert = [...gruppen.entries()].sort((a, b) => b[1].length - a[1].length);
+  const grenz = data.strassen.filter((s) => s.auch_in.length);
+
+  view().innerHTML = `<div class="wrap">${crumb()}
+    <h2 class="section-title">🛣️ Straßen im Beiratsgebiet</h2>
+    <p class="section-intro">Alle ${data.anzahl} Straßen, die im Gebiet des
+      ${escHtml(data.beirat.replace("Stadtteilbeirat ", "Stadtteilbeirats "))} liegen —
+      ermittelt aus der amtlichen Gebietsgrenze und der Straßengeometrie, nicht geschätzt.
+      Ein Klick zeigt die Straße auf der Karte.</p>
+    <div class="street-search">
+      <input id="strassen-filter" type="search" placeholder="Straße suchen …"
+             aria-label="Straße suchen">
+      <span id="strassen-count"></span>
+    </div>
+    <div id="strassen-map-box"></div>
+    ${grenz.length ? `<div class="hinweis"><strong>${grenz.length} Straßen liegen auf der
+      Gebietsgrenze</strong> und gehören damit auch zu einem Nachbargebiet:
+      ${grenz.map((s) => escHtml(s.name)).join(", ")}.</div>` : ""}
+    <div id="strassen-liste">
+      ${sortiert.map(([bez, liste]) => `
+        <section class="bezirk" data-bezirk="${escHtml(bez)}">
+          <h3>${escHtml(bez)} <span class="anz">${liste.length}</span></h3>
+          <div class="street-chips">
+            ${liste.map((s) => `<button type="button" class="chip-street"
+                data-street="${escHtml(s.name)}"
+                title="${s.auch_in.length ? "Grenzlage, auch in: " + escHtml(s.auch_in.join(", ")) : escHtml(bez)}">
+                ${escHtml(s.name)}${s.auch_in.length ? " <span class=\"grenz\">↔</span>" : ""}
+              </button>`).join("")}
+          </div>
+        </section>`).join("")}
+    </div>
+    <p class="quelle">Straßenverzeichnis und Gebietsgrenzen: Stadt Erlangen, Statistik und
+      Stadtforschung (dl-de/by-2.0), Stand ${escHtml(data.stand_verzeichnis)} ·
+      Straßengeometrie: © OpenStreetMap-Mitwirkende (ODbL)</p>
+  </div>`;
+
+  for (const btn of view().querySelectorAll(".chip-street"))
+    btn.addEventListener("click", () => {
+      view().querySelector(".chip-street.active")?.classList.remove("active");
+      btn.classList.add("active");
+      showStreetMap(btn.dataset.street, $("strassen-map-box"));
+    });
+
+  const filter = $("strassen-filter");
+  const zaehlen = () => {
+    const q = filter.value.trim().toLowerCase();
+    let sichtbar = 0;
+    for (const sec of view().querySelectorAll(".bezirk")) {
+      let inSec = 0;
+      for (const btn of sec.querySelectorAll(".chip-street")) {
+        const treffer = !q || btn.dataset.street.toLowerCase().includes(q);
+        btn.hidden = !treffer;
+        if (treffer) inSec++;
+      }
+      sec.hidden = inSec === 0;
+      sichtbar += inSec;
+    }
+    $("strassen-count").textContent = q ? `${sichtbar} von ${data.anzahl}` : `${data.anzahl} Straßen`;
+  };
+  filter.addEventListener("input", zaehlen);
+  zaehlen();
+  status(`${data.anzahl} Straßen im Beiratsgebiet — ${grenz.length} davon auf der Grenze.`);
 }
 
 // ── Boot ─────────────────────────────────────────────────────────────────────

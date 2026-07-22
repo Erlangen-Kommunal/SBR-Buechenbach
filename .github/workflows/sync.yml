@@ -41,6 +41,14 @@ jobs:
         working-directory: SBR
         run: python uvp_agent.py --sync
 
+      # Beiratsgrenzen und Straßen des Gebiets aus dem Open-Data-Angebot der
+      # Stadt und aus OpenStreetMap. Nur Standardbibliothek, keine
+      # pip-Abhängigkeit. Scheitert der Abruf (Overpass überlastet), bleiben die
+      # vorhandenen Dateien stehen — der Sync selbst soll deswegen nicht reißen.
+      - name: Refresh geodata (Beiratsgebiet + Straßen)
+        continue-on-error: true
+        run: python tools/fetch_geodata.py
+
       - name: Commit new documents
         run: |
           git config user.name "github-actions[bot]"

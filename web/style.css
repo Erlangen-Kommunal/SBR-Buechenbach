@@ -309,3 +309,55 @@ footer {
 @media (max-width: 420px) {
   .tiles { grid-template-columns: 1fr; }
 }
+
+/* ── Beiratsgrenzen auf der Karte ─────────────────────────────────── */
+.beirat-label {
+  background: none; border: none; box-shadow: none; padding: 0;
+  color: var(--ink-2); font-size: .7rem; font-weight: 600;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+}
+.beirat-label::before { display: none; }
+
+/* Nachbargebiete: die ganze Fläche ist Hover-Ziel, nicht nur die dünne Linie. */
+.beirat-nachbar { pointer-events: all; cursor: help; }
+
+.map-note {
+  margin: .6rem 0 0; font-size: .76rem; line-height: 1.55; color: var(--muted);
+}
+.map-note i {
+  display: inline-block; width: 18px; height: 0; vertical-align: middle;
+  margin-right: .25rem;
+}
+.lg-eigen   { border-top: 3px solid var(--accent-2); }
+.lg-nachbar { border-top: 2px dashed var(--muted); }
+
+/* ── Sektion „Straßen im Beiratsgebiet" ───────────────────────────── */
+.street-search {
+  display: flex; align-items: center; gap: .7rem; margin: 0 0 1rem;
+}
+.street-search input {
+  flex: 1; max-width: 22rem; padding: .45rem .7rem; font-size: .9rem;
+  border: 1px solid var(--hairline); border-radius: 6px; background: var(--surface-1);
+}
+#strassen-count { font-size: .8rem; color: var(--muted); white-space: nowrap; }
+
+.bezirk { margin-bottom: 1.3rem; }
+.bezirk h3 {
+  font-size: .82rem; font-weight: 600; color: var(--ink-2);
+  text-transform: uppercase; letter-spacing: .04em;
+  margin: 0 0 .5rem; padding-bottom: .3rem; border-bottom: 1px solid var(--hairline);
+}
+.bezirk h3 .anz {
+  float: right; font-weight: 400; color: var(--muted); letter-spacing: 0;
+  text-transform: none;
+}
+.chip-street .grenz { color: var(--warn); font-weight: 700; }
+.chip-street.active .grenz { color: #fff; }
+
+.hinweis {
+  background: var(--surface-1); border: 1px solid var(--hairline);
+  border-left: 3px solid var(--warn); border-radius: 0 8px 8px 0;
+  padding: .7rem .9rem; margin: 0 0 1.4rem;
+  font-size: .82rem; line-height: 1.55; color: var(--ink-2);
+}
+#strassen-map-box:not(:empty) { margin-bottom: 1.4rem; }

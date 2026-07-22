@@ -45,6 +45,10 @@ jobs:
           cp web/index.html web/style.css web/app.js _site/
           cp graph.db _site/graph.db
           cp -r content _site/content
+          # Geodaten: Beiratsgrenzen und Straßen des Gebiets (aus tools/fetch_geodata.py)
+          mkdir -p _site/geo
+          cp geo/*.geojson geo/strassen.json _site/geo/ 2>/dev/null || \
+            echo "::warning::Keine Geodaten in geo/ — Karte ohne Beiratsgrenzen, Straßen-Sektion leer."
           node tools/make-auth.mjs _site/auth.json
 
       - uses: actions/upload-pages-artifact@v3
