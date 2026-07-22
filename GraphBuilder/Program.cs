@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using GraphBuilder;
@@ -40,7 +41,38 @@ if (repoRoot.Length == 0)
 var indexFile = Path.Combine(repoRoot, "SBR", "index.json");
 var records = JsonSerializer.Deserialize<List<SbrDocRecord>>(File.ReadAllText(indexFile))
               ?? throw new InvalidDataException($"Konnte {indexFile} nicht parsen.");
-records = [.. records.OrderByDescending(r => r.Date).ThenBy(r => r.Category)];
+// Das Ratsinformationssystem listet dieselbe Datei gelegentlich zweimal unter
+// verschiedenen Namen — einmal sprechend, einmal mit interner RIS-Kennung (so bei
+// der Niederschrift zur Sitzung 2020-10-20, beide Dateien byte-identisch). Beide
+// Einträge tragen eine eigene doc_id, die Prüfung in Phase 1 greift also nicht.
+// Ohne diesen Schritt steht das Dokument doppelt im Portal, und die Zusammenfassung
+// hängt nur an einem der beiden Namen. Der Index wird bei jedem Sync neu erzeugt,
+// deshalb muss die Entdopplung hier sitzen und nicht in der Datei.
+bool HasEnrichment(SbrDocRecord r) =>
+    File.Exists(Path.Combine(repoRoot, "enrichment", "docs", "SBR", r.Filename + ".md"));
+
+string ContentKey(SbrDocRecord r)
+{
+    var abs = Path.Combine(repoRoot, "SBR", r.Filename);
+    // Ohne lokale Datei lässt sich der Inhalt nicht vergleichen — solche Einträge
+    // bleiben über ihre doc_id für sich stehen.
+    return File.Exists(abs)
+        ? "sha:" + Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(abs)))
+        : "id:" + r.DocId;
+}
+
+var vorEntdopplung = records.Count;
+records = [.. records
+    .GroupBy(ContentKey)
+    .Select(g => g
+        .OrderByDescending(HasEnrichment)      // Anreicherung darf nicht verloren gehen
+        .ThenBy(r => r.Filename.Length)        // sonst der sprechendere (kürzere) Name
+        .ThenBy(r => r.DocId, StringComparer.Ordinal)
+        .First())
+    .OrderByDescending(r => r.Date).ThenBy(r => r.Category)];
+
+if (vorEntdopplung != records.Count)
+    Console.WriteLine($"Entdopplung: {vorEntdopplung - records.Count} inhaltsgleiche Dokumente übersprungen.");
 
 Console.WriteLine($"GraphBuilder — {records.Count} Dokumente aus {indexFile}");
 var sw = Stopwatch.StartNew();

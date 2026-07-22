@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v11 · 2026-07-22";
-const CONTENT_VERSION = "11";
+const APP_VERSION = "v12 · 2026-07-22";
+const CONTENT_VERSION = "12";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -166,7 +166,7 @@ async function renderStart() {
     ["#/statistik", "📊", "Statistik", "Bevölkerung, Sozialstruktur und Prognosen für Erlangen und Büchenbach."],
     ["#/fachbeiraete", "👥", "Fachbeiräte", "Andere Beiräte und Ausschüsse — inkl. UVPA-Infoseite."],
     ["#/links", "🔗", "Links", "Ausgewählte Seiten rund um Büchenbach — ohne Veranstaltungen."],
-    ["#/karte", "🗺️", "Karte", "Büchenbach mit den Grenzen des Beiratsgebiets, amtlich und im BayernAtlas."],
+    ["#/karte", "🗺️", "Karte", "Büchenbach mit den Grenzen des Beiratsgebiets — auf Wunsch mit Luftbild und Flurstücken."],
     ["#/strassen", "🛣️", "Straßen", "Alle Straßen im Beiratsgebiet — welche gehören dazu, welche liegen auf der Grenze?"],
   ];
   view().innerHTML = `
@@ -533,8 +533,8 @@ async function showPdf(d, sourceUrl) {
 // Erkennt Straßennamen im Volltext. Die Namenssuche (Name → Koordinaten +
 // Ausdehnung) liefert Nominatim/OpenStreetMap — der BayernAtlas bietet keine
 // frei einbindbare Geokodierung und lässt sich auch nicht einbetten. Angezeigt
-// wird die Straße auf den amtlichen Kacheln aus content/karte.json; zusätzlich
-// verlinken wir punktgenau in den BayernAtlas (amtliche Fach-/Flurstückdaten).
+// wird die Straße auf den Kacheln aus content/karte.json; der BayernAtlas-Link
+// daneben dient allein der Flurstückkarte auf hochaufgelöstem Luftbild.
 
 const STREET_RE = /(?<![A-Za-zäöüßÄÖÜ])([A-ZÄÖÜ][A-Za-zäöüß.\-]{2,}(?:straße|strasse|weg|platz|allee|ring|gasse|graben)|[A-ZÄÖÜ][A-Za-zäöüß]{2,}er\s(?:Straße|Strasse|Weg|Platz|Allee|Ring|Gasse))(?![A-Za-zäöüß])/g;
 
@@ -737,16 +737,22 @@ async function showStreetMap(name, box) {
   }
 
   const [e32, n32] = wgs84ToUtm32(mitte.lat, mitte.lng);
+  // Der BayernAtlas ist hier bewusst der einzige verbliebene Deeplink: Er zeigt
+  // die Flurstückkarte auf hochaufgelöstem Luftbild (Layer `luftbild_parz`),
+  // enger gezoomt als die Übersichtskarte. Alles, was die Standardkarte selbst
+  // kann, bleibt in der App — dafür gibt es die einbettbaren WMS-Dienste.
+  const baZoom = cfg.bayernatlas_zoom || 17;
+  const baLayer = cfg.bayernatlas_layer || "luftbild_parz";
   box.innerHTML = `<div class="street-map"></div>
     <div class="map-actions">
-      <a class="btn-primary" href="https://atlas.bayern.de/?c=${e32},${n32}&z=16&r=0&l=atkis&t=ba"
-         target="_blank" rel="noopener">„${escHtml(name)}“ im BayernAtlas ↗</a>
+      <a class="btn-primary" href="https://atlas.bayern.de/?c=${e32},${n32}&z=${baZoom}&r=0&l=${encodeURIComponent(baLayer)}&t=ba"
+         target="_blank" rel="noopener">Flurstücke &amp; Luftbild zu „${escHtml(name)}“ ↗</a>
       <a href="https://www.openstreetmap.org/?mlat=${mitte.lat}&mlon=${mitte.lng}#map=17/${mitte.lat}/${mitte.lng}"
          target="_blank" rel="noopener">In OpenStreetMap öffnen ↗</a>
     </div>`;
   const map = L.map(box.querySelector(".street-map"), { scrollWheelZoom: false });
   const base = cfg.layers.find((l) => l.default) ?? cfg.layers[0];
-  L.tileLayer(base.url, { attribution: base.attribution, maxZoom: base.maxZoom || 19 }).addTo(map);
+  buildLayer(L, base).addTo(map);
   await addBeiratsgrenzen(L, map, { nachbarnBenennen: false, fuellen: false });
 
   if (quelle) {
@@ -877,7 +883,7 @@ async function renderAemter() {
   status(`${data.referate.length} Referate mit ${n} Ämtern und Einrichtungen.`);
 }
 
-// ── Karte (Leaflet + amtliche Kacheln, BayernAtlas-Deeplink) ─────────────────
+// ── Karte (Leaflet, OSM/basemap.de + amtliche WMS-Dienste Bayerns) ───────────
 
 let leafletLoading = null;
 function loadLeaflet() {
@@ -960,20 +966,38 @@ async function addBeiratsgrenzen(L, map, { nachbarnBenennen = true, fuellen = tr
   return eigen;
 }
 
+/**
+ * Baut einen Kartenlayer aus der Konfiguration.
+ *
+ * `typ: "wms"` erzeugt einen WMS-Layer der Bayerischen Vermessungsverwaltung
+ * (Luftbild DOP40, ALKIS-Parzellarkarte). Diese Dienste liefern EPSG:3857 und
+ * senden CORS-Header, lassen sich also anders als der BayernAtlas selbst direkt
+ * einbetten — der sperrt die Einbettung per `X-Frame-Options: DENY`.
+ */
+function buildLayer(L, cfg) {
+  if (cfg.typ === "wms") {
+    return L.tileLayer.wms(cfg.url, {
+      layers: cfg.layers,
+      format: cfg.format || "image/png",
+      transparent: !!cfg.transparent,
+      attribution: cfg.attribution,
+      maxZoom: cfg.maxZoom || 20,
+    });
+  }
+  return L.tileLayer(cfg.url, { attribution: cfg.attribution, maxZoom: cfg.maxZoom || 19 });
+}
+
 async function renderKarte() {
   const cfg = await loadContent("karte");
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">🗺️ Karte</h2>
     ${cfg.intro ? `<p class="section-intro">${escHtml(cfg.intro)}</p>` : ""}
-    <div class="map-actions">
-      <a class="btn-primary" href="${escHtml(cfg.bayernatlas_url)}" target="_blank" rel="noopener">${escHtml(cfg.bayernatlas_label || "Im BayernAtlas öffnen")} ↗</a>
-    </div>
     <div id="map"></div></div>`;
   status("Lade Karte …");
   try {
     await loadLeaflet();
   } catch (e) {
-    $("map").innerHTML = `<p class="hint" style="padding:1rem">${escHtml(e.message)} Bitte den BayernAtlas-Link oben nutzen.</p>`;
+    $("map").innerHTML = `<p class="hint" style="padding:1rem">${escHtml(e.message)}</p>`;
     return;
   }
   const L = window.L;
@@ -981,12 +1005,24 @@ async function renderKarte() {
   const layers = {};
   let base = null;
   for (const l of cfg.layers) {
-    const t = L.tileLayer(l.url, { attribution: l.attribution, maxZoom: l.maxZoom || 19 });
+    const t = buildLayer(L, l);
     layers[l.name] = t;
     if (l.default || !base) base = t;
   }
   base.addTo(map);
-  if (Object.keys(layers).length > 1) L.control.layers(layers).addTo(map);
+  const overlays = {};
+  for (const o of cfg.overlays || []) overlays[o.name] = buildLayer(L, o);
+  if (Object.keys(layers).length > 1 || Object.keys(overlays).length)
+    L.control.layers(layers, overlays).addTo(map);
+
+  // Die Flurstücke sind für große Maßstäbe gezeichnet und bleiben weiter draußen
+  // schlicht leer. Ohne Hinweis wirkt der eingeschaltete Layer defekt.
+  map.on("overlayadd", (e) => {
+    const o = (cfg.overlays || []).find((x) => x.name === e.name);
+    if (o?.abZoom && map.getZoom() < o.abZoom) {
+      status(`„${e.name}“ ist eingeschaltet, wird aber erst ab Zoomstufe ${o.abZoom} gezeichnet — bitte näher heranzoomen.`);
+    }
+  });
   for (const m of cfg.marker || []) {
     L.marker([m.lat, m.lon]).addTo(map)
       .bindPopup(`<strong>${escHtml(m.titel)}</strong>${m.beschreibung ? "<br>" + escHtml(m.beschreibung) : ""}`);
@@ -1008,8 +1044,8 @@ async function renderKarte() {
   }
   setTimeout(() => map.invalidateSize(), 100);
   status(eigen
-    ? "Karte geladen — die durchgezogene Linie ist die Grenze des Beiratsgebiets."
-    : "Karte geladen. Für amtliche Fachdaten den BayernAtlas-Button nutzen.");
+    ? "Karte geladen — die durchgezogene Linie ist die Grenze des Beiratsgebiets. Luftbild und Flurstücke lassen sich oben rechts einblenden."
+    : "Karte geladen. Luftbild und Flurstücke lassen sich oben rechts einblenden.");
 }
 
 // ── Straßen im Beiratsgebiet ─────────────────────────────────────────────────

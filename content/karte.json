@@ -1,5 +1,5 @@
 {
-  "intro": "Interaktive Karte von Büchenbach mit amtlichen Kartengrundlagen (basemap.de des Bundes). Für Fachdaten wie Flurstücke, Luftbilder oder Bebauungspläne öffnet der Button den amtlichen BayernAtlas — dieser lässt sich aus technischen Gründen (Einbettungssperre des Landesportals) nicht direkt einbetten.",
+  "intro": "Interaktive Karte von Büchenbach. Grundlage sind OpenStreetMap und die amtliche basemap.de des Bundes. Für Grundstücksgrenzen lässt sich das amtliche Luftbild (40 cm) mit den Flurstücken der ALKIS-Parzellarkarte einblenden — beides kommt als Kartendienst der Bayerischen Vermessungsverwaltung direkt in diese Karte.",
   "center": [49.5922, 10.9597],
   "zoom": 15,
   "marker": [
@@ -18,20 +18,41 @@
   ],
   "layers": [
     {
-      "name": "basemap.de (amtlich)",
-      "url": "https://sgx.geodatenzentrum.de/wmts_basemapde/tile/1.0.0/de_basemapde_web_raster_farbe/default/GLOBAL_WEBMERCATOR/{z}/{y}/{x}.png",
-      "attribution": "© GeoBasis-DE / BKG · basemap.de",
-      "maxZoom": 19,
-      "default": true
-    },
-    {
       "name": "OpenStreetMap",
       "url": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
       "attribution": "© OpenStreetMap-Mitwirkende",
       "maxZoom": 19,
-      "default": false
+      "default": true
+    },
+    {
+      "name": "basemap.de (amtlich)",
+      "url": "https://sgx.geodatenzentrum.de/wmts_basemapde/tile/1.0.0/de_basemapde_web_raster_farbe/default/GLOBAL_WEBMERCATOR/{z}/{y}/{x}.png",
+      "attribution": "© GeoBasis-DE / BKG · basemap.de",
+      "maxZoom": 19
+    },
+    {
+      "name": "Luftbild (amtlich, 40 cm)",
+      "typ": "wms",
+      "url": "https://geoservices.bayern.de/od/wms/dop/v1/dop40",
+      "layers": "by_dop40c",
+      "format": "image/jpeg",
+      "attribution": "© Bayerische Vermessungsverwaltung — DOP40 (CC BY 4.0)",
+      "maxZoom": 20
     }
   ],
-  "bayernatlas_url": "https://atlas.bayern.de/?c=641889,5495396&z=16&r=0&l=atkis&t=ba&crh=true",
-  "bayernatlas_label": "Büchenbach im BayernAtlas öffnen (Luftbild, Flurstücke, Fachkarten)"
+  "overlays": [
+    {
+      "name": "Flurstücke (ALKIS)",
+      "typ": "wms",
+      "url": "https://geoservices.bayern.de/od/wms/alkis/v1/parzellarkarte",
+      "layers": "by_alkis_parzellarkarte_umr_gelb",
+      "format": "image/png",
+      "transparent": true,
+      "attribution": "© Bayerische Vermessungsverwaltung — ALKIS-Parzellarkarte (CC BY 4.0)",
+      "maxZoom": 20,
+      "abZoom": 16
+    }
+  ],
+  "bayernatlas_zoom": 17,
+  "bayernatlas_layer": "luftbild_parz"
 }
