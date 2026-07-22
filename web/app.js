@@ -7,7 +7,7 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v7 · 2026-07-22";
+const APP_VERSION = "v8 · 2026-07-22";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -159,11 +159,11 @@ const crumb = (label = "Startseite") => `<a class="crumb" href="#/">‹ ${escHtm
 
 async function renderStart() {
   const tiles = [
-    ["#/protokolle", "📄", "Protokolle", "Alle Sitzungen seit 2020 — durchsuchbar mit Volltext und Zusammenfassungen."],
+    ["#/aemter", "🏢", "Ämter & Zuständigkeiten", "Schnell klären: Welches Amt ist für ein Anliegen zuständig?"],
+    ["#/protokolle", "📄", "Öffentliche Sitzungsprotokolle", "Alle öffentlichen Sitzungen seit 2020 — durchsuchbar mit Volltext und Zusammenfassungen."],
     ["#/recht", "⚖️", "Satzung & Recht", "Rechtsgrundlage der Stadtteilbeiräte und weiteres Stadtrecht."],
     ["#/statistik", "📊", "Statistik", "Bevölkerung, Sozialstruktur und Prognosen für Erlangen und Büchenbach."],
     ["#/fachbeiraete", "👥", "Fachbeiräte", "Andere Beiräte und Ausschüsse — inkl. UVPA-Infoseite."],
-    ["#/aemter", "🏢", "Ämter", "Welches Amt der Stadt Erlangen ist wofür zuständig?"],
     ["#/links", "🔗", "Links", "Ausgewählte Seiten rund um Büchenbach — ohne Veranstaltungen."],
     ["#/karte", "🗺️", "Karte", "Büchenbach mit den Grenzen des Beiratsgebiets, amtlich und im BayernAtlas."],
     ["#/strassen", "🛣️", "Straßen", "Alle Straßen im Beiratsgebiet — welche gehören dazu, welche liegen auf der Grenze?"],
@@ -171,9 +171,12 @@ async function renderStart() {
   view().innerHTML = `
     <section class="hero">
       <h1>Infoportal Stadtteilbeirat Büchenbach</h1>
-      <p>Alles an einem Ort: die Sitzungsprotokolle seit 2020, die Satzung, verwandte
+      <p>Alles an einem Ort: die öffentlichen Sitzungsprotokolle seit 2020, die Satzung, verwandte
       Gremien, statistische Grundlagen, Zuständigkeiten der Ämter, nützliche Links und
       Karten — damit die Arbeit im Stadtteilbeirat leichter fällt.</p>
+      <p class="disclaimer start-disclaimer">Ehrenamtlich erstellte Anwendung. Es werden ausschließlich
+        öffentlich zugängliche Daten verwendet. Diese Anwendung steht in keiner
+        Verbindung zur Stadt Erlangen.</p>
     </section>
     <nav class="tiles">
       ${tiles.map(([href, icon, t, d]) => `
@@ -204,8 +207,8 @@ async function renderProtokolle() {
 
   view().innerHTML = `<div class="wrap">
     ${crumb()}
-    <h2 class="section-title">📄 Protokolle</h2>
-    <p class="section-intro">Sitzungen des Stadtteilbeirats Büchenbach seit 2020. Jede Sitzung
+    <h2 class="section-title">📄 Öffentliche Sitzungsprotokolle</h2>
+    <p class="section-intro">Öffentliche Sitzungen des Stadtteilbeirats Büchenbach seit 2020. Jede Sitzung
       bündelt Einladung, Niederschrift und Anhänge. Zum Lesen ein Dokument anklicken — der
       Volltext erscheint sofort, das Original-PDF ist verlinkt.</p>
     <div class="map-actions">
@@ -227,7 +230,11 @@ async function renderProtokolle() {
     let dates = Object.keys(byDate).sort().reverse();
     if (ft) dates = dates.filter((dt) => byDate[dt].some((d) => themenText(d.themen).includes(ft)));
 
-    if (!dates.length) { $("sessions").innerHTML = `<p class="hint">Keine Sitzungen für diese Auswahl.</p>`; return; }
+    if (!dates.length) {
+      $("sessions").innerHTML = `<p class="hint">Keine Sitzungen für diese Auswahl.</p>`;
+      status("0 Dokumente in 0 Sitzungen.");
+      return;
+    }
     let html = "", curYear = "";
     for (const dt of dates) {
       const y = dt.slice(0, 4);
@@ -251,11 +258,12 @@ async function renderProtokolle() {
       </div>`;
     }
     $("sessions").innerHTML = html;
+    const visibleDocs = dates.reduce((count, date) => count + byDate[date].length, 0);
+    status(`${visibleDocs} Dokument${visibleDocs === 1 ? "" : "e"} in ${dates.length} Sitzung${dates.length === 1 ? "" : "en"}.`);
   };
   $("f-year").addEventListener("change", draw);
   $("f-thema")?.addEventListener("change", draw);
   draw();
-  status(`${allDocs.length} Dokumente in ${new Set(allDocs.map((d) => d.date)).size} Sitzungen.`);
 }
 
 function fmtDate(iso) {
@@ -499,7 +507,8 @@ async function showPdf(d, sourceUrl) {
   }
   if (pdfBlobUrl) URL.revokeObjectURL(pdfBlobUrl);
   pdfBlobUrl = URL.createObjectURL(new Blob([bytes], { type: "application/pdf" }));
-  $("doc-body").innerHTML = `<iframe class="pdf-frame" src="${pdfBlobUrl}" title="PDF-Ansicht"></iframe>`;
+  $("doc-body").innerHTML = `<p class="pdf-fallback"><a href="${pdfBlobUrl}" target="_blank" rel="noopener">PDF in neuem Tab öffnen</a></p>
+    <iframe class="pdf-frame" src="${pdfBlobUrl}" title="PDF-Ansicht"></iframe>`;
   $("btn-pdf").classList.add("active"); $("btn-text").classList.remove("active");
   status(`PDF angezeigt (${(bytes.length / 1048576).toFixed(1)} MB).`);
 }
@@ -794,19 +803,22 @@ async function renderAemter() {
          target="_blank" rel="noopener">Ämter-Suche, Kontakt &amp; Öffnungszeiten ↗</a>
     </div>
     ${data.relevant?.length ? `
-      <h3 class="sub-head">Wer ist wofür zuständig?</h3>
+      <h3 class="sub-head">Schnellübersicht: Wer ist wofür zuständig?</h3>
       <ul class="zust-list">${data.relevant.map((r) => `<li>
         <span class="z-thema">${escHtml(r.thema)}</span>
         <span class="z-amt">${escHtml(r.amt)}</span></li>`).join("")}</ul>` : ""}
-    <h3 class="sub-head">Aufbau der Stadtverwaltung</h3>
-    <div class="cards">
-      ${data.referate.map((r) => `<div class="card ref-card">
-        <span class="c-tag">${escHtml(r.referat)}</span>
-        <div class="c-title">${escHtml(r.bereich)}</div>
-        <div class="c-zust">${escHtml(r.leitung)}</div>
-        <ul class="amt-list">${r.aemter.map((a) => `<li>${amtLabel(a)}</li>`).join("")}</ul>
-      </div>`).join("")}
-    </div>
+    <details class="amt-structure">
+      <summary>Vollständige Verwaltungsstruktur anzeigen</summary>
+      <h3 class="sub-head">Aufbau der Stadtverwaltung</h3>
+      <div class="cards">
+        ${data.referate.map((r) => `<div class="card ref-card">
+          <span class="c-tag">${escHtml(r.referat)}</span>
+          <div class="c-title">${escHtml(r.bereich)}</div>
+          <div class="c-zust">${escHtml(r.leitung)}</div>
+          <ul class="amt-list">${r.aemter.map((a) => `<li>${amtLabel(a)}</li>`).join("")}</ul>
+        </div>`).join("")}
+      </div>
+    </details>
     ${data.stand ? `<p class="quelle">Quelle: Geschäftsverteilungsplan der Stadt Erlangen · ${escHtml(data.stand)}</p>` : ""}
   </div>`;
   const n = data.referate.reduce((s, r) => s + r.aemter.length, 0);
