@@ -45,6 +45,9 @@ jobs:
           cp web/index.html web/style.css web/app.js _site/
           cp graph.db _site/graph.db
           cp -r content _site/content
+          # Tagesordnungen der Nachbargremien — das Frontend lädt die Datei
+          # direkt, sie liegt bewusst nicht in der graph.db.
+          cp gremien_tops.json _site/ 2>/dev/null || echo "gremien_tops.json fehlt — Abschnitt bleibt leer"
           # Geodaten: Beiratsgrenzen und Straßen des Gebiets (aus tools/fetch_geodata.py)
           mkdir -p _site/geo
           cp geo/*.geojson geo/strassen.json _site/geo/ 2>/dev/null || \

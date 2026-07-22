@@ -94,6 +94,52 @@ foreach (var r in records)
         File.Exists(absPath) ? absPath : null));
 }
 
+// ── Phase 1b: Anträge des Beirats (SBR/antraege.json) ────────────────────────
+// Anträge, Stellungnahmen und Briefe an OB, Fraktionen und Stadtrat. Sie stehen
+// nicht im Ratsinformationssystem, haben also weder doc_id noch RIS-Link, und
+// gehören trotzdem zu den Protokollen — deshalb dieselbe documents-Tabelle,
+// unterschieden nur über die Kategorie (Antrag bzw. Anlage).
+// Zusammenfassung und Themen stehen im Register selbst (wie bei recht/statistik)
+// und nicht unter enrichment/, weil sie von Hand kuratiert und nicht je Sitzung
+// nachgeführt werden.
+var antragTexte = new Dictionary<string, (string? Summary, string? Themen)>();
+var antragCount = 0;
+var antragFile = Path.Combine(repoRoot, "SBR", "antraege.json");
+if (File.Exists(antragFile))
+{
+    var antraege = JsonSerializer.Deserialize<List<AntragRecord>>(File.ReadAllText(antragFile)) ?? [];
+    foreach (var a in antraege)
+    {
+        void Add(string id, string category, string title, string datei, List<string>? themen, string? summary)
+        {
+            var absPath = Path.Combine(repoRoot, "SBR", datei.Replace('/', Path.DirectorySeparatorChar));
+            if (!File.Exists(absPath))
+                Console.WriteLine($"  Warnung: {datei} fehlt — Eintrag {id} ohne PDF.");
+            if (!seen.Add(id))
+            {
+                Console.WriteLine($"  Warnung: doppelte id {id} — Eintrag übersprungen.");
+                return;
+            }
+            docRows.Add((
+                new DocumentRow(id, a.Date, category, title, $"SBR/{datei}", "", 0, null),
+                File.Exists(absPath) ? absPath : null));
+            antragTexte[id] = (summary, themen is { Count: > 0 } ? string.Join("|", themen) : null);
+        }
+
+        Add($"antrag:{a.Id}", "Antrag", a.Title, a.Datei, a.Themen, a.Zusammenfassung);
+        antragCount++;
+        // Anlagen hängen über das Präfix vor '#' am Schreiben — das Frontend
+        // gruppiert sie darüber unter ihren Antrag.
+        for (var i = 0; i < a.Anlagen.Count; i++)
+            Add($"antrag:{a.Id}#anlage-{i + 1}", "Anlage", a.Anlagen[i].Titel, a.Anlagen[i].Datei, null, null);
+    }
+    Console.WriteLine($"Anträge: {antragCount} Schreiben, {antraege.Sum(a => a.Anlagen.Count)} Anlagen aus {antragFile}");
+}
+else
+{
+    Console.WriteLine($"Hinweis: {antragFile} nicht gefunden — Anträge übersprungen.");
+}
+
 Console.WriteLine($"Struktur: {docRows.Count} Dokumente, " +
     $"{docRows.Count(d => d.AbsPath is not null)} lokal vorhanden.");
 
@@ -150,6 +196,10 @@ foreach (var (row, absPath) in docRows)
 {
     var (text, pages) = absPath is not null && texts.TryGetValue(absPath, out var t) ? t : ("", 0);
     var (summary, themen) = ReadEnrichment(row.Path);
+    // Anträge tragen ihre Zusammenfassung im Register; eine Datei unter
+    // enrichment/docs/ hätte trotzdem Vorrang.
+    if (summary is null && antragTexte.TryGetValue(row.Id, out var kuratiert))
+        (summary, themen) = kuratiert;
     if (summary is not null)
         enrichedCount++;
     finalDocs.Add(row with
@@ -218,7 +268,9 @@ using (var db = new GraphDb(dbPath))
     Console.WriteLine($"  Dokumente: {db.Count("documents")} " +
         $"(davon {db.Count("documents WHERE text IS NOT NULL")} mit Volltext, " +
         $"{enrichedCount} mit Zusammenfassung)");
-    Console.WriteLine($"  Sitzungen: {db.Count("(SELECT DISTINCT date FROM documents)")}");
+    Console.WriteLine($"  Sitzungen: {db.Count("(SELECT DISTINCT date FROM documents WHERE category NOT IN ('Antrag', 'Anlage'))")}");
+    Console.WriteLine($"  Anträge:   {db.Count("documents WHERE category = 'Antrag'")} " +
+        $"({db.Count("documents WHERE category = 'Anlage'")} Anlagen)");
     Console.WriteLine($"  Recht:     {db.Count("plans WHERE kind = 'recht'")} " +
         $"({db.Count("plan_files pf JOIN plans p ON p.id = pf.plan_id WHERE p.kind = 'recht'")} Dateien)");
     Console.WriteLine($"  Statistik: {db.Count("plans WHERE kind = 'statistik'")} " +

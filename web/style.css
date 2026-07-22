@@ -135,6 +135,33 @@ a.card:hover { border-color: var(--accent-2); }
   color: var(--muted); font-size: .74rem;
 }
 .card .c-sitzung-leer { color: #b00020; font-weight: 600; }
+/* Büchenbach anderswo: Tagesordnungspunkte fremder Gremien */
+.hinweis-eng {
+  font-size: .78rem; color: var(--muted); line-height: 1.5;
+  margin: -.6rem 0 1rem; max-width: 46rem;
+}
+.tg-eintrag {
+  background: var(--surface-1); border: 1px solid var(--hairline);
+  border-radius: 8px; padding: .6rem .85rem; margin-bottom: .5rem;
+}
+.tg-kopf { display: flex; gap: .5rem; flex-wrap: wrap; align-items: baseline; font-size: .74rem; }
+.tg-datum { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.tg-gremium { color: var(--accent); font-weight: 700; }
+.tg-nr { color: var(--muted); }
+.tg-titel {
+  display: block; margin-top: .2rem; font-size: .92rem; line-height: 1.4;
+  font-weight: 600; color: var(--ink); text-decoration: none;
+}
+.tg-titel:hover { color: var(--accent-2); text-decoration: underline; }
+.tg-titel .ext { font-size: .7rem; color: var(--muted); font-weight: 400; }
+.tg-beschluss { margin-top: .25rem; font-size: .8rem; color: var(--ink-2); }
+.tg-marker { margin-top: .35rem; display: flex; gap: .3rem; flex-wrap: wrap; }
+.tg-strasse, .tg-ort {
+  font-size: .7rem; padding: .1rem .45rem; border-radius: 999px;
+  border: 1px solid var(--hairline); background: var(--page); color: var(--ink-2);
+}
+.tg-ort { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
 .card-group { margin-top: 1.5rem; }
 .card-group:first-of-type { margin-top: .2rem; }
 .card-group .sub-head { margin-top: 0; }

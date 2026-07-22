@@ -49,6 +49,13 @@ jobs:
         continue-on-error: true
         run: python tools/fetch_geodata.py
 
+      # Tagesordnungen der Nachbargremien (Stadtrat, Sport-, Jugendhilfe-
+      # ausschuss). Nur Metadaten, keine Dokumente — ein Request je Sitzung.
+      # Läuft nach den Geodaten, weil der Ortsbezug geo/strassen.json braucht.
+      - name: Refresh Tagesordnungen der Nachbargremien
+        continue-on-error: true
+        run: python tools/fetch_gremien_tops.py
+
       - name: Commit new documents
         run: |
           git config user.name "github-actions[bot]"

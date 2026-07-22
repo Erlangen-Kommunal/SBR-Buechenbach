@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v12 · 2026-07-22";
-const CONTENT_VERSION = "12";
+const APP_VERSION = "v13 · 2026-07-22";
+const CONTENT_VERSION = "13";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -131,6 +131,7 @@ const ROUTES = {
   "links": () => renderCards("links", "Nützliche Links", "🔗"),
   "karte": renderKarte,
   "strassen": renderStrassen,
+  "gremien": renderFremdeGremien,
 };
 
 async function route() {
@@ -168,6 +169,7 @@ async function renderStart() {
     ["#/links", "🔗", "Links", "Ausgewählte Seiten rund um Büchenbach — ohne Veranstaltungen."],
     ["#/karte", "🗺️", "Karte", "Büchenbach mit den Grenzen des Beiratsgebiets — auf Wunsch mit Luftbild und Flurstücken."],
     ["#/strassen", "🛣️", "Straßen", "Alle Straßen im Beiratsgebiet — welche gehören dazu, welche liegen auf der Grenze?"],
+    ["#/gremien", "🏛️", "Büchenbach anderswo", "Was Stadtrat, Sport- und Jugendhilfeausschuss über den Stadtteil beraten haben."],
   ];
   view().innerHTML = `
     <section class="hero">
@@ -785,6 +787,94 @@ async function renderStreets(text) {
       showStreetMap(btn.dataset.street, $("street-map-box"));
     });
   }
+}
+
+// ── Büchenbach in anderen Gremien ────────────────────────────────────────────
+// Der Stadtteilbeirat ist örtlich zuständig, entschieden wird aber anderswo.
+// gremien_tops.json (aus tools/fetch_gremien_tops.py) enthält die
+// Tagesordnungen von Stadtrat, Sport- und Jugendhilfeausschuss — bewusst nur
+// Metadaten, keine Dokumente: die Volltexte wären ein Vielfaches des Repos.
+// Als „relevant" gilt ein Punkt, der eine Straße im Beiratsgebiet oder den
+// Ortsnamen nennt. Das ist eng und findet nicht alles — deshalb steht es auch
+// so auf der Seite, und die vollständige Liste ist einen Klick entfernt.
+
+let fremdeTops = null;
+async function ladeFremdeTops() {
+  if (fremdeTops !== null) return fremdeTops;
+  for (const url of ["gremien_tops.json", "../gremien_tops.json"]) {
+    try {
+      const r = await fetch(`${url}?v=${CONTENT_VERSION}`);
+      if (r.ok) return (fremdeTops = await r.json());
+    } catch { /* nächster Pfad */ }
+  }
+  return (fremdeTops = false);
+}
+
+async function renderFremdeGremien(_rest, nurRelevante = true) {
+  status("Lade Tagesordnungen …");
+  const daten = await ladeFremdeTops();
+  if (!daten) {
+    view().innerHTML = `<div class="wrap">${crumb()}
+      <h2 class="section-title">🏛️ Büchenbach anderswo</h2>
+      <p class="hint">Die Tagesordnungen der anderen Gremien fehlen — sie entstehen
+      mit <code>tools/fetch_gremien_tops.py</code> und werden beim Deploy mitkopiert.</p></div>`;
+    status("Keine Daten.");
+    return;
+  }
+
+  const alle = daten.tops.filter((t) => !t.routine);
+  const relevante = alle.filter((t) => t.relevant);
+  const zeigen = nurRelevante ? relevante : alle;
+
+  view().innerHTML = `<div class="wrap">${crumb()}
+    <h2 class="section-title">🏛️ Büchenbach anderswo</h2>
+    <p class="section-intro">Über vieles, was Büchenbach betrifft, wird nicht im
+      Stadtteilbeirat entschieden. Diese Liste zeigt Tagesordnungspunkte der
+      Wahlperiode ${escHtml(daten.wahlperiode?.label || "")}, die eine Straße im
+      Beiratsgebiet oder den Ortsnamen nennen — aus diesen Gremien:
+      ${escHtml(Object.values(daten.gremien).join(" · "))}.</p>
+    <p class="hinweis-eng">Die Erkennung ist bewusst eng: Sie greift auf Titel, nicht
+      auf Dokumentinhalte, und findet deshalb nicht jeden Bezug. Wiederkehrende
+      Formalpunkte (Anfragen, Mitteilungen, Beirats-Personalien) sind ausgeblendet.</p>
+    <div class="map-actions">
+      <button id="tg-toggle" class="btn-primary" type="button">${nurRelevante
+        ? `Alle ${alle.length} Tagesordnungspunkte zeigen`
+        : `Nur die ${relevante.length} mit Büchenbach-Bezug zeigen`}</button>
+    </div>
+    <div id="tg-liste"></div>
+    <p class="quelle">Quelle: ${escHtml(daten.quelle || "Ratsinformationssystem der Stadt Erlangen")}
+      · Stand ${escHtml(fmtDate(daten.stand))}</p></div>`;
+
+  const liste = $("tg-liste");
+  if (!zeigen.length) {
+    liste.innerHTML = `<p class="hint">Keine Einträge.</p>`;
+  } else {
+    let html = "", jahr = "";
+    for (const t of zeigen) {
+      const y = (t.datum || "").slice(0, 4);
+      if (y !== jahr) { jahr = y; html += `<h3 class="sub-head">${escHtml(jahr)}</h3>`; }
+      const marker = [
+        ...(t.strassen_im_gebiet || []).map((s) => `<span class="tg-strasse">${escHtml(s)}</span>`),
+        t.nennt_ort ? `<span class="tg-ort">Büchenbach</span>` : "",
+      ].filter(Boolean).join("");
+      html += `<div class="tg-eintrag">
+        <div class="tg-kopf">
+          <span class="tg-datum">${escHtml(fmtDate(t.datum))}</span>
+          <span class="tg-gremium">${escHtml(t.gremium)}</span>
+          ${t.top ? `<span class="tg-nr">TOP ${escHtml(t.top)}</span>` : ""}
+        </div>
+        <a class="tg-titel" href="${escHtml(t.url)}" target="_blank" rel="noopener">${escHtml(t.titel)} <span class="ext">↗</span></a>
+        ${t.beschluss ? `<div class="tg-beschluss">${escHtml(t.beschluss)}</div>` : ""}
+        ${marker ? `<div class="tg-marker">${marker}</div>` : ""}
+      </div>`;
+    }
+    liste.innerHTML = html;
+  }
+
+  $("tg-toggle").addEventListener("click", () => renderFremdeGremien(_rest, !nurRelevante));
+  status(nurRelevante
+    ? `${relevante.length} Tagesordnungspunkte mit Büchenbach-Bezug aus ${Object.keys(daten.gremien).length} Gremien.`
+    : `${alle.length} Tagesordnungspunkte (ohne Formalpunkte) aus ${Object.keys(daten.gremien).length} Gremien.`);
 }
 
 // ── Karten-Sektionen: Fachbeiräte / Ämter / Links ────────────────────────────
