@@ -56,7 +56,7 @@ a { color: var(--accent-2); }
 .disclaimer {
   margin: 1rem 0 0; padding-top: .8rem;
   border-top: 1px solid var(--hairline);
-  font-size: .82rem; line-height: 1.5; color: var(--ink-2); font-weight: 700;
+  font-size: .82rem; line-height: 1.5; color: #b00020; font-weight: 700;
 }
 
 /* ── Kopfzeile ───────────────────────────────────────────────────── */
@@ -130,6 +130,10 @@ a.card:hover { border-color: var(--accent-2); }
   text-transform: uppercase; color: var(--accent); margin-bottom: .35rem;
 }
 .card .c-zust { color: var(--muted); font-size: .78rem; margin-top: .3rem; }
+.card-group { margin-top: 1.5rem; }
+.card-group:first-of-type { margin-top: .2rem; }
+.card-group .sub-head { margin-top: 0; }
+.group-count { color: var(--muted); font-weight: 400; letter-spacing: 0; }
 
 /* Ämter: Zuständigkeiten + Referatsstruktur */
 h3.sub-head {

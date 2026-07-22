@@ -7,7 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v8 · 2026-07-22";
+const APP_VERSION = "v9 · 2026-07-22";
+const CONTENT_VERSION = "9";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -98,7 +99,7 @@ async function q(sql) {
 const contentCache = {};
 async function loadContent(key) {
   if (contentCache[key]) return contentCache[key];
-  const r = await fetch(`content/${key}.json`);
+  const r = await fetch(`content/${key}.json?v=${CONTENT_VERSION}`);
   if (!r.ok) throw new Error(`content/${key}.json nicht gefunden.`);
   return (contentCache[key] = await r.json());
 }
@@ -174,9 +175,6 @@ async function renderStart() {
       <p>Alles an einem Ort: die öffentlichen Sitzungsprotokolle seit 2020, die Satzung, verwandte
       Gremien, statistische Grundlagen, Zuständigkeiten der Ämter, nützliche Links und
       Karten — damit die Arbeit im Stadtteilbeirat leichter fällt.</p>
-      <p class="disclaimer start-disclaimer">Ehrenamtlich erstellte Anwendung. Es werden ausschließlich
-        öffentlich zugängliche Daten verwendet. Diese Anwendung steht in keiner
-        Verbindung zur Stadt Erlangen.</p>
     </section>
     <nav class="tiles">
       ${tiles.map(([href, icon, t, d]) => `
@@ -769,16 +767,28 @@ async function renderStreets(text) {
 
 async function renderCards(key, title, icon) {
   const data = await loadContent(key);
-  view().innerHTML = `<div class="wrap">${crumb()}
-    <h2 class="section-title">${icon} ${escHtml(title)}</h2>
-    ${data.intro ? `<p class="section-intro">${escHtml(data.intro)}</p>` : ""}
-    <div class="cards">
-      ${data.eintraege.map((e) => `<a class="card" href="${escHtml(e.url)}" target="_blank" rel="noopener">
+  const groups = [...new Set(data.eintraege.map((e) => e.kategorie).filter(Boolean))];
+  const entries = groups.length
+    ? groups.map((group) => `<section class="card-group">
+        <h3 class="sub-head">${escHtml(group === "Beirat" ? "Beiräte" : group === "Ausschuss" ? "Ausschüsse" : group)} <span class="group-count">(${data.eintraege.filter((e) => e.kategorie === group).length})</span></h3>
+        <div class="cards">${data.eintraege.filter((e) => e.kategorie === group).map((e) => `<a class="card" href="${escHtml(e.url)}" target="_blank" rel="noopener">
+          <div class="c-title">${escHtml(e.name)} <span class="ext">↗</span></div>
+          <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
+        </a>`).join("")}</div>
+      </section>`).join("")
+    : `<div class="cards">${data.eintraege.map((e) => `<a class="card" href="${escHtml(e.url)}" target="_blank" rel="noopener">
         ${e.kategorie ? `<span class="c-tag">${escHtml(e.kategorie)}</span>` : ""}
         <div class="c-title">${escHtml(e.name)} <span class="ext">↗</span></div>
         <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
-      </a>`).join("")}
-    </div></div>`;
+      </a>`).join("")}</div>`;
+  view().innerHTML = `<div class="wrap">${crumb()}
+    <h2 class="section-title">${icon} ${escHtml(title)}</h2>
+    ${data.intro ? `<p class="section-intro">${escHtml(data.intro)}</p>` : ""}
+    ${data.uebersicht_url || data.ausschuesse_url ? `<div class="map-actions">
+      ${data.uebersicht_url ? `<a class="btn-primary" href="${escHtml(data.uebersicht_url)}" target="_blank" rel="noopener">Beiräte im Ratsinformationssystem ↗</a>` : ""}
+      ${data.ausschuesse_url ? `<a class="btn-primary" href="${escHtml(data.ausschuesse_url)}" target="_blank" rel="noopener">Ausschüsse im Ratsinformationssystem ↗</a>` : ""}
+    </div>` : ""}
+    ${entries}</div>`;
   status(`${data.eintraege.length} Einträge.`);
 }
 
