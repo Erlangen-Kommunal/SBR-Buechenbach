@@ -1,61 +1,43 @@
 {
-  "intro": "Der Stadtteilbeirat Büchenbach ist eines von vielen Gremien, mit denen Bürgerinnen und Bürger die Stadt Erlangen mitgestalten. Hier finden Sie verwandte Beiräte und Fachausschüsse — hilfreich für Verweise, gemeinsame Themen und Ansprechpartner.",
+  "intro": "Beiräte und Ausschüsse der Stadt Erlangen, die in der Wahlperiode 2020–2026 tatsächlich getagt haben — mit der letzten Sitzung dieser Wahlperiode. Gremien, die in dieser Zeit nicht zusammengetreten sind, sind hier nicht aufgeführt; die vollständige Liste aller Gremien steht im Ratsinformationssystem. Ein Klick öffnet die jeweilige Gremiumsseite mit Sitzungen, Mitgliedern und Dokumenten.",
+  "wahlperiode": {"label":"2020 – 2026","von":"2020-05-01","bis":"2026-04-30"},
+  "stand": "2026-07-22",
+  "quelle": "Ratsinformationssystem der Stadt Erlangen (SessionNet)",
+  "start_url": "https://ratsinfo.erlangen.de/info.asp",
+  "uebersicht_url": "https://ratsinfo.erlangen.de/gr0040.asp?__igrnr=7,10,12,13,14,16,18,3,4,20,9,33,34,47,48,49,50,51,52,53,54,59&__ctitle=3",
+  "ausschuesse_url": "https://ratsinfo.erlangen.de/gr0040.asp?__igrnr=5,6,8,11,15,19,21,22,45,46&__ctitle=1",
   "eintraege": [
-    {
-      "name": "UVPA – Umwelt-, Verkehrs- und Planungsausschuss",
-      "kategorie": "Partnerprojekt",
-      "beschreibung": "Fachausschuss des Stadtrats für Umwelt, Verkehr und Planung. Eigene Infosite mit Volltextsuche über alle Ausschussprotokolle seit 2020 — Schwesterprojekt dieser Seite.",
-      "url": "https://erlangen-kommunal.github.io/UVPA/",
-      "extern": true
-    },
-    {
-      "name": "Orts- und Stadtteilbeiräte (Übersicht)",
-      "kategorie": "Beiräte",
-      "beschreibung": "Alle Orts- und Stadtteilbeiräte Erlangens: Aufgaben, Zusammensetzung und Ansprechpartner. Büchenbach ist einer davon.",
-      "url": "https://erlangen.de/themenseite/mitgestalten/politik-mitgestalten/orts-und-stadtteilbeiraete",
-      "extern": true
-    },
-    {
-      "name": "Seniorenbeirat",
-      "kategorie": "Beiräte",
-      "beschreibung": "Vertritt die Interessen der älteren Bürgerinnen und Bürger (60+) gegenüber Stadtrat und Verwaltung.",
-      "url": "https://erlangen.de/themenseite/mitgestalten/politik-mitgestalten/seniorenbeirat",
-      "extern": true
-    },
-    {
-      "name": "Ausländer- und Integrationsbeirat (AIB)",
-      "kategorie": "Beiräte",
-      "beschreibung": "Vertritt die Belange von Menschen mit Migrationsgeschichte und fördert das Zusammenleben in den Stadtteilen.",
-      "url": "https://erlangen.de/themenseite/mitgestalten/politik-mitgestalten/aib",
-      "extern": true
-    },
-    {
-      "name": "Jugendparlament",
-      "kategorie": "Beiräte",
-      "beschreibung": "Beteiligung von Kindern und Jugendlichen an der Kommunalpolitik.",
-      "url": "https://erlangen.de/themenseite/mitgestalten/politik-mitgestalten/jugendparlament",
-      "extern": true
-    },
-    {
-      "name": "Nachhaltigkeitsbeirat",
-      "kategorie": "Beiräte",
-      "beschreibung": "Berät Stadtrat und Verwaltung zu Umwelt, Klima und nachhaltiger Stadtentwicklung.",
-      "url": "https://erlangen.de/themenseite/mitgestalten/politik-mitgestalten/nachhaltigkeitsbeirat",
-      "extern": true
-    },
-    {
-      "name": "Bildungsrat",
-      "kategorie": "Beiräte",
-      "beschreibung": "Beteiligungsgremium für Bildungsthemen in Erlangen.",
-      "url": "https://erlangen.de/themenseite/mitgestalten/politik-mitgestalten/bildungsrat",
-      "extern": true
-    },
-    {
-      "name": "Ratsinformationssystem – Gremium Büchenbach",
-      "kategorie": "Übersicht",
-      "beschreibung": "Sitzungen, Tagesordnungen und Dokumente des Stadtteilbeirats Büchenbach im offiziellen Ratsinformationssystem der Stadt Erlangen.",
-      "url": "https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=51",
-      "extern": true
-    }
+    {"name":"Ausländer- und Integrationsbeirat","kategorie":"Beirat","beschreibung":"Vertritt die Belange von Menschen mit Migrationsgeschichte.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=3","sitzungen":40,"letzte_sitzung":"2026-04-16"},
+    {"name":"Baukunstbeirat","kategorie":"Beirat","beschreibung":"Berät zu Fragen der Baukultur und Stadtgestaltung.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=4","sitzungen":47,"letzte_sitzung":"2026-03-12"},
+    {"name":"Jugendparlament","kategorie":"Beirat","beschreibung":"Beteiligung von Kindern und Jugendlichen an der Kommunalpolitik.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=54","sitzungen":42,"letzte_sitzung":"2026-03-23"},
+    {"name":"Nachhaltigkeitsbeirat","kategorie":"Beirat","beschreibung":"Berät Stadtrat und Verwaltung zu Umwelt, Klima und nachhaltiger Stadtentwicklung.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=59","sitzungen":24,"letzte_sitzung":"2026-02-05"},
+    {"name":"Naturschutzbeirat","kategorie":"Beirat","beschreibung":"Berät in Fragen des Naturschutzes und der Landschaftspflege.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=20","sitzungen":24,"letzte_sitzung":"2026-03-02"},
+    {"name":"Ortsbeirat Dechsendorf","kategorie":"Beirat","beschreibung":"Vertretung der Interessen des Stadtteils Dechsendorf.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=7","sitzungen":18,"letzte_sitzung":"2026-02-24"},
+    {"name":"Ortsbeirat Eltersdorf","kategorie":"Beirat","beschreibung":"Vertretung der Interessen des Stadtteils Eltersdorf.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=10","sitzungen":17,"letzte_sitzung":"2026-03-24"},
+    {"name":"Ortsbeirat Frauenaurach","kategorie":"Beirat","beschreibung":"Vertretung der Interessen des Stadtteils Frauenaurach.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=12","sitzungen":17,"letzte_sitzung":"2026-03-11"},
+    {"name":"Ortsbeirat Hüttendorf","kategorie":"Beirat","beschreibung":"Vertretung der Interessen des Stadtteils Hüttendorf.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=13","sitzungen":16,"letzte_sitzung":"2026-03-12"},
+    {"name":"Ortsbeirat Kosbach","kategorie":"Beirat","beschreibung":"Vertretung der Interessen des Stadtteils Kosbach.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=14","sitzungen":16,"letzte_sitzung":"2026-04-22"},
+    {"name":"Ortsbeirat Kriegenbrunn","kategorie":"Beirat","beschreibung":"Vertretung der Interessen des Stadtteils Kriegenbrunn.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=16","sitzungen":15,"letzte_sitzung":"2026-03-25"},
+    {"name":"Ortsbeirat Tennenlohe","kategorie":"Beirat","beschreibung":"Vertretung der Interessen des Stadtteils Tennenlohe.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=18","sitzungen":17,"letzte_sitzung":"2026-03-19"},
+    {"name":"Seniorenbeirat","kategorie":"Beirat","beschreibung":"Vertritt die Interessen älterer Bürgerinnen und Bürger.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=9","sitzungen":29,"letzte_sitzung":"2026-03-23"},
+    {"name":"Sozial- und EJC-Beirat","kategorie":"Beirat","beschreibung":"Befasst sich mit sozialen Themen und dem Erlanger Jobcenter.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=33","sitzungen":28,"letzte_sitzung":"2026-03-04"},
+    {"name":"Sportbeirat","kategorie":"Beirat","beschreibung":"Berät zu Sport und Bewegungsangeboten in Erlangen.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=34","sitzungen":29,"letzte_sitzung":"2026-04-21"},
+    {"name":"Stadtteilbeirat Alterlangen","kategorie":"Beirat","beschreibung":"Vertretung der Interessen des Stadtteils Alterlangen.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=53","sitzungen":18,"letzte_sitzung":"2026-02-03"},
+    {"name":"Stadtteilbeirat Anger / Bruck","kategorie":"Beirat","beschreibung":"Vertretung der Interessen der Stadtteile Anger und Bruck.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=48","sitzungen":17,"letzte_sitzung":"2026-03-03"},
+    {"name":"Stadtteilbeirat Büchenbach","kategorie":"Beirat","beschreibung":"Der eigene Stadtteilbeirat im offiziellen Ratsinformationssystem.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=51","sitzungen":14,"letzte_sitzung":"2025-10-15"},
+    {"name":"Stadtteilbeirat Innenstadt","kategorie":"Beirat","beschreibung":"Vertretung der Interessen der Innenstadt.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=52","sitzungen":16,"letzte_sitzung":"2026-04-16"},
+    {"name":"Stadtteilbeirat Ost","kategorie":"Beirat","beschreibung":"Vertretung der Interessen des Stadtteils Ost.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=49","sitzungen":17,"letzte_sitzung":"2026-04-21"},
+    {"name":"Stadtteilbeirat Süd","kategorie":"Beirat","beschreibung":"Vertretung der Interessen des Stadtteils Süd.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=50","sitzungen":17,"letzte_sitzung":"2025-10-23"},
+    {"name":"Umwelt-, Verkehrs- und Planungsbeirat","kategorie":"Beirat","beschreibung":"Berät zu Umwelt, Verkehr und Planung.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=47","sitzungen":62,"letzte_sitzung":"2026-04-14"},
+    {"name":"Ältestenrat","kategorie":"Ausschuss","beschreibung":"Gremium des Stadtrats für Fragen der Geschäftsordnung und Zusammenarbeit.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=22","sitzungen":30,"letzte_sitzung":"2026-04-15"},
+    {"name":"Bauausschuss / Werkausschuss für den Entwässerungsbetrieb","kategorie":"Ausschuss","beschreibung":"Befasst sich mit Baufragen und dem Entwässerungsbetrieb.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=8","sitzungen":64,"letzte_sitzung":"2026-04-14"},
+    {"name":"Bildungsausschuss","kategorie":"Ausschuss","beschreibung":"Berät über Bildung und Schulen.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=46","sitzungen":35,"letzte_sitzung":"2026-04-23"},
+    {"name":"Haupt-, Finanz- und Personalausschuss","kategorie":"Ausschuss","beschreibung":"Berät zentrale Finanz-, Personal- und Verwaltungsfragen.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=5","sitzungen":68,"letzte_sitzung":"2026-04-22"},
+    {"name":"Jugendhilfeausschuss","kategorie":"Ausschuss","beschreibung":"Befasst sich mit Jugendhilfe und den Belangen junger Menschen.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=19","sitzungen":35,"letzte_sitzung":"2026-04-16"},
+    {"name":"Kultur- und Freizeitausschuss","kategorie":"Ausschuss","beschreibung":"Berät über Kultur, Freizeit und die entsprechenden Einrichtungen.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=6","sitzungen":33,"letzte_sitzung":"2026-04-29"},
+    {"name":"Revisionsausschuss","kategorie":"Ausschuss","beschreibung":"Befasst sich mit Prüfungs- und Revisionsfragen.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=45","sitzungen":18,"letzte_sitzung":"2026-03-25"},
+    {"name":"Sozial- und Gesundheitsausschuss / Werkausschuss EJC","kategorie":"Ausschuss","beschreibung":"Berät über Soziales, Gesundheit und den Erlanger Jobcenterbetrieb.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=21","sitzungen":29,"letzte_sitzung":"2026-03-04"},
+    {"name":"Sportausschuss","kategorie":"Ausschuss","beschreibung":"Berät über Sport und Bewegungsangebote.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=11","sitzungen":30,"letzte_sitzung":"2026-04-21"},
+    {"name":"Umwelt-, Verkehrs- und Planungsausschuss / Werkausschuss EB77","kategorie":"Ausschuss","beschreibung":"Berät über Umwelt, Verkehr, Planung und den Betrieb EB77.","url":"https://ratsinfo.erlangen.de/kp0040.asp?__kgrnr=15","sitzungen":64,"letzte_sitzung":"2026-04-14"}
   ]
 }
