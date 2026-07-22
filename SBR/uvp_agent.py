@@ -78,20 +78,32 @@ Respond in the same language the user uses (German or English).\
 # ── HTML Scraping ─────────────────────────────────────────────────────────────
 
 class _RowParser(HTMLParser):
-    """Extracts table rows from Ratsinformationsystem listing pages."""
+    """Extracts table rows from Ratsinformationsystem listing pages.
+
+    Merkt sich zu jeder Zelle ihre CSS-Klasse. Das ist nicht kosmetisch: Das RIS
+    schiebt bei terminierten Sitzungen eine zusaetzliche Spalte `sitermin` ein,
+    wodurch sich die Position der Dokumentenspalte verschiebt. Wer hart auf
+    row[2] zugreift, liest dann eine leere Zelle und findet keine Dokumente —
+    genau so fehlte die gemeinsame Sitzung aller Stadtteilbeiraete vom
+    02.07.2026 im Index. Deshalb wird die Spalte ueber ihre Klasse gesucht.
+    """
 
     def __init__(self):
         super().__init__()
         self.rows: list = []
+        self.row_classes: list = []
         self._row: list = []
+        self._row_cls: list = []
         self._cell: list = []
+        self._cell_cls = ""
         self._in_cell = False
 
     def handle_starttag(self, tag, attrs):
         if tag == "tr":
-            self._row = []
+            self._row, self._row_cls = [], []
         elif tag in ("td", "th"):
             self._in_cell, self._cell = True, []
+            self._cell_cls = dict(attrs).get("class", "") or ""
         elif tag == "a" and self._in_cell:
             href = dict(attrs).get("href", "")
             if href:
@@ -105,10 +117,23 @@ class _RowParser(HTMLParser):
         if tag in ("td", "th"):
             self._in_cell = False
             self._row.append(self._cell)
+            self._row_cls.append(self._cell_cls)
         elif tag == "tr" and self._row:
             self.rows.append(self._row)
+            self.row_classes.append(self._row_cls)
         elif tag == "a" and self._in_cell:
             self._cell.append(("link_end", ""))
+
+    def docs_cell(self, index: int) -> list:
+        """Dokumentenzelle einer Zeile — ueber die Klasse `sidocs`, nicht ueber
+        die Position. Faellt auf die letzte Zelle zurueck, falls das RIS die
+        Klasse einmal umbenennt."""
+        row = self.rows[index]
+        classes = self.row_classes[index] if index < len(self.row_classes) else []
+        for i, cls in enumerate(classes):
+            if "sidocs" in cls and i < len(row):
+                return row[i]
+        return row[-1] if row else []
 
 
 def _sanitize(name: str) -> str:
@@ -143,7 +168,7 @@ def _scrape_year(http: requests.Session, year: int) -> list[dict]:
     parser.feed(r.text)
 
     docs = []
-    for row in parser.rows:
+    for row_index, row in enumerate(parser.rows):
         if not any(
             kind == "link_start" and "si0057.asp" in val
             for cell in row
@@ -160,7 +185,7 @@ def _scrape_year(http: requests.Session, year: int) -> list[dict]:
         curr_href = curr_text = ""
         in_link = False
 
-        for kind, val in row[2]:
+        for kind, val in parser.docs_cell(row_index):
             if kind == "link_start":
                 curr_href, curr_text, in_link = val, "", True
             elif kind == "link_end":
