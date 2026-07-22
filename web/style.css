@@ -361,3 +361,34 @@ footer {
   font-size: .82rem; line-height: 1.55; color: var(--ink-2);
 }
 #strassen-map-box:not(:empty) { margin-bottom: 1.4rem; }
+
+/* Straße → Protokolle */
+.nur-protokoll { display: flex; align-items: center; gap: .35rem;
+  font-size: .82rem; color: var(--ink-2); cursor: pointer; white-space: nowrap; }
+.chip-street .anzahl {
+  display: inline-block; margin-left: .3rem; padding: 0 .32rem;
+  border-radius: 999px; background: var(--accent); color: #fff;
+  font-size: .68rem; font-weight: 700; line-height: 1.35;
+}
+.chip-street.active .anzahl { background: #fff; color: var(--accent); }
+
+.treffer-box {
+  background: var(--surface-1); border: 1px solid var(--hairline);
+  border-radius: 8px; padding: .8rem 1rem; margin-bottom: .9rem;
+}
+.treffer-box h3 { margin: 0 0 .3rem; font-size: 1rem; }
+.t-intro { margin: 0 0 .5rem; font-size: .83rem; color: var(--ink-2); }
+.treffer-liste {
+  list-style: none; margin: 0; padding: 0;
+  /* Gedeckelt, damit die Karte darunter erreichbar bleibt — die
+     meistgenannte Straße kommt auf über 20 Protokolle. */
+  max-height: 15rem; overflow-y: auto;
+}
+.treffer-liste li { border-top: 1px solid var(--hairline); }
+.treffer-liste a {
+  display: flex; align-items: baseline; gap: .5rem; padding: .4rem .1rem;
+  text-decoration: none; color: var(--ink); font-size: .85rem;
+}
+.treffer-liste a:hover { color: var(--accent); }
+.t-datum { color: var(--muted); font-size: .78rem; white-space: nowrap; }
+.t-titel { flex: 1; min-width: 0; }

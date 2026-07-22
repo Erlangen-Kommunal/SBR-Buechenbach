@@ -7,7 +7,7 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v6 · 2026-07-22";
+const APP_VERSION = "v7 · 2026-07-22";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -594,6 +594,40 @@ async function detectStreets(text, max = 12) {
                     : detectStreetsHeuristisch(text, max);
 }
 
+/**
+ * Umkehrung: Straße → Protokolle, die sie nennen. Einmal über alle Volltexte
+ * aufgebaut (rund 180 KB — im Browser eine Sache von Millisekunden).
+ *
+ * Bewusst dieselbe Erkennungsfunktion wie für die Chips am Dokument: Was auf
+ * der einen Seite als Straße gilt, gilt auf der anderen genauso. Zwei getrennte
+ * Implementierungen würden früher oder später auseinanderlaufen.
+ */
+let strassenIndex = null;
+async function loadStrassenIndex() {
+  if (strassenIndex) return strassenIndex;
+  const namen = await loadStrassenNamen();
+  // Schlüssel ist die Vergleichsform, nicht der Name: Die Straßenliste trägt
+  // die OSM-Schreibweise („Adenauerring"), der Protokolltext die amtliche
+  // („Adenauer-Ring"). Über den Namen verglichen ginge der Treffer verloren.
+  const idx = new Map();
+  if (namen.size) {
+    // date::VARCHAR — fmtDate erwartet die ISO-Zeichenkette, nicht den DATE-Typ
+    const docs = await q(`SELECT id, date::VARCHAR AS date, category, title, text
+                          FROM documents WHERE text IS NOT NULL ORDER BY date DESC, title`);
+    for (const d of docs) {
+      for (const name of detectStreetsAmtlich(d.text, namen, Infinity)) {
+        const key = normStreet(name);
+        if (!idx.has(key)) idx.set(key, []);
+        idx.get(key).push({ id: d.id, date: d.date, category: d.category, title: d.title });
+      }
+    }
+  }
+  return (strassenIndex = idx);
+}
+
+/** Protokolle zu einer Straße (schreibweisen-tolerant). */
+const protokolleZu = (index, name) => index.get(normStreet(name)) ?? [];
+
 /** WGS84 → UTM Zone 32N (EPSG:25832) — Koordinatensystem des BayernAtlas. */
 function wgs84ToUtm32(lat, lon) {
   const a = 6378137.0, f = 1 / 298.257223563, k0 = 0.9996, lon0 = 9 * Math.PI / 180;
@@ -939,18 +973,25 @@ async function renderStrassen() {
   }
   const sortiert = [...gruppen.entries()].sort((a, b) => b[1].length - a[1].length);
   const grenz = data.strassen.filter((s) => s.auch_in.length);
+  const index = await loadStrassenIndex();
+  const mitProtokoll = data.strassen.filter((s) => protokolleZu(index, s.name).length).length;
 
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">🛣️ Straßen im Beiratsgebiet</h2>
     <p class="section-intro">Alle ${data.anzahl} Straßen, die im Gebiet des
       ${escHtml(data.beirat.replace("Stadtteilbeirat ", "Stadtteilbeirats "))} liegen —
       ermittelt aus der amtlichen Gebietsgrenze und der Straßengeometrie, nicht geschätzt.
-      Ein Klick zeigt die Straße auf der Karte.</p>
+      Ein Klick zeigt die Straße auf der Karte — und die Protokolle, in denen sie
+      vorkommt. <strong>${mitProtokoll}</strong> der Straßen wurden im Beirat schon
+      einmal behandelt.</p>
     <div class="street-search">
       <input id="strassen-filter" type="search" placeholder="Straße suchen …"
              aria-label="Straße suchen">
+      <label class="nur-protokoll"><input type="checkbox" id="nur-protokoll">
+        nur mit Protokollbezug</label>
       <span id="strassen-count"></span>
     </div>
+    <div id="strassen-treffer"></div>
     <div id="strassen-map-box"></div>
     ${grenz.length ? `<div class="hinweis"><strong>${grenz.length} Straßen liegen auf der
       Gebietsgrenze</strong> und gehören damit auch zu einem Nachbargebiet:
@@ -960,11 +1001,15 @@ async function renderStrassen() {
         <section class="bezirk" data-bezirk="${escHtml(bez)}">
           <h3>${escHtml(bez)} <span class="anz">${liste.length}</span></h3>
           <div class="street-chips">
-            ${liste.map((s) => `<button type="button" class="chip-street"
-                data-street="${escHtml(s.name)}"
-                title="${s.auch_in.length ? "Grenzlage, auch in: " + escHtml(s.auch_in.join(", ")) : escHtml(bez)}">
-                ${escHtml(s.name)}${s.auch_in.length ? " <span class=\"grenz\">↔</span>" : ""}
-              </button>`).join("")}
+            ${liste.map((s) => {
+              const n = protokolleZu(index, s.name).length;
+              return `<button type="button" class="chip-street" data-street="${escHtml(s.name)}"
+                data-protokolle="${n}"
+                title="${s.auch_in.length ? "Grenzlage, auch in: " + escHtml(s.auch_in.join(", ")) : escHtml(bez)}${n ? ` · in ${n} Protokoll${n === 1 ? "" : "en"}` : ""}">
+                ${escHtml(s.name)}${s.auch_in.length ? ' <span class="grenz">↔</span>' : ""}
+                ${n ? `<span class="anzahl">${n}</span>` : ""}
+              </button>`;
+            }).join("")}
           </div>
         </section>`).join("")}
     </div>
@@ -973,32 +1018,58 @@ async function renderStrassen() {
       Straßengeometrie: © OpenStreetMap-Mitwirkende (ODbL)</p>
   </div>`;
 
+  const zeigeStrasse = (name) => {
+    const treffer = protokolleZu(index, name);
+    $("strassen-treffer").innerHTML = `<div class="treffer-box">
+      <h3>${escHtml(name)}</h3>
+      ${treffer.length
+        ? `<p class="t-intro">In ${treffer.length} Protokoll${treffer.length === 1 ? "" : "en"}
+             erwähnt — zum Öffnen anklicken:</p>
+           <ul class="treffer-liste">
+             ${treffer.map((t) => `<li><a href="#/doc/${encodeURIComponent(t.id)}">
+               <span class="badge ${CAT_BADGE[t.category] || ""}">${CAT_SHORT[t.category] || "DOK"}</span>
+               <span class="t-datum">${fmtDate(t.date)}</span>
+               <span class="t-titel">${escHtml(shortLabel(t.title, 70))}</span></a></li>`).join("")}
+           </ul>`
+        : `<p class="t-intro">In den vorliegenden Protokollen bisher nicht erwähnt.</p>`}
+    </div>`;
+    showStreetMap(name, $("strassen-map-box"));
+  };
+
   for (const btn of view().querySelectorAll(".chip-street"))
     btn.addEventListener("click", () => {
       view().querySelector(".chip-street.active")?.classList.remove("active");
       btn.classList.add("active");
-      showStreetMap(btn.dataset.street, $("strassen-map-box"));
+      zeigeStrasse(btn.dataset.street);
     });
 
   const filter = $("strassen-filter");
+  const nurProtokoll = $("nur-protokoll");
   const zaehlen = () => {
     const q = filter.value.trim().toLowerCase();
-    let sichtbar = 0;
+    const nur = nurProtokoll.checked;
+    // Straßen zählen, nicht Chips: Eine Straße in zwei Bezirken erscheint
+    // zweimal in der Liste, ist aber eine Straße.
+    const sichtbareStrassen = new Set();
     for (const sec of view().querySelectorAll(".bezirk")) {
       let inSec = 0;
       for (const btn of sec.querySelectorAll(".chip-street")) {
-        const treffer = !q || btn.dataset.street.toLowerCase().includes(q);
+        const treffer = (!q || btn.dataset.street.toLowerCase().includes(q))
+          && (!nur || btn.dataset.protokolle !== "0");
         btn.hidden = !treffer;
-        if (treffer) inSec++;
+        if (treffer) { inSec++; sichtbareStrassen.add(btn.dataset.street); }
       }
       sec.hidden = inSec === 0;
-      sichtbar += inSec;
     }
-    $("strassen-count").textContent = q ? `${sichtbar} von ${data.anzahl}` : `${data.anzahl} Straßen`;
+    const sichtbar = sichtbareStrassen.size;
+    $("strassen-count").textContent = (q || nur)
+      ? `${sichtbar} von ${data.anzahl}` : `${data.anzahl} Straßen`;
   };
   filter.addEventListener("input", zaehlen);
+  nurProtokoll.addEventListener("change", zaehlen);
   zaehlen();
-  status(`${data.anzahl} Straßen im Beiratsgebiet — ${grenz.length} davon auf der Grenze.`);
+  status(`${data.anzahl} Straßen im Beiratsgebiet — ${mitProtokoll} davon in Protokollen, `
+    + `${grenz.length} auf der Gebietsgrenze.`);
 }
 
 // ── Boot ─────────────────────────────────────────────────────────────────────
