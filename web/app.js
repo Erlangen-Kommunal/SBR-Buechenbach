@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v9 · 2026-07-22";
-const CONTENT_VERSION = "9";
+const APP_VERSION = "v10 · 2026-07-22";
+const CONTENT_VERSION = "10";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -489,6 +489,12 @@ async function fetchPdf(path) {
 }
 async function showPdf(d, sourceUrl) {
   if (!d.path) { notice("Dieses Dokument ist nur extern verfügbar — bitte „Original öffnen“ nutzen."); return; }
+
+  // Mobile-Erkennung: schmaler Viewport ODER Touch-Gerät (iOS Safari kann keine PDFs in iframes)
+  const isMobile = window.innerWidth <= 680
+    || ("ontouchstart" in window)
+    || navigator.maxTouchPoints > 0;
+
   status("Prüfe Dateigröße …");
   const size = await headSize(d.path);
   if (size != null && size > PDF_SIZE_WARN) {
@@ -505,8 +511,20 @@ async function showPdf(d, sourceUrl) {
   }
   if (pdfBlobUrl) URL.revokeObjectURL(pdfBlobUrl);
   pdfBlobUrl = URL.createObjectURL(new Blob([bytes], { type: "application/pdf" }));
-  $("doc-body").innerHTML = `<p class="pdf-fallback"><a href="${pdfBlobUrl}" target="_blank" rel="noopener">PDF in neuem Tab öffnen</a></p>
-    <iframe class="pdf-frame" src="${pdfBlobUrl}" title="PDF-Ansicht"></iframe>`;
+
+  if (isMobile) {
+    // Mobilgeräte: großer Button statt iframe (iOS Safari zeigt PDFs in iframes nicht an)
+    const sizeMb = (bytes.length / 1048576).toFixed(1);
+    $("doc-body").innerHTML = `<div class="pdf-mobile">
+      <div class="pdf-mobile-icon">📄</div>
+      <p class="pdf-mobile-hint">PDF-Dateien können auf Mobilgeräten nicht eingebettet werden.</p>
+      <a class="pdf-mobile-btn" href="${pdfBlobUrl}" target="_blank" rel="noopener">PDF öffnen (${sizeMb}\u00a0MB)</a>
+      ${sourceUrl ? `<a class="pdf-mobile-btn pdf-mobile-btn-alt" href="${escHtml(sourceUrl)}" target="_blank" rel="noopener">Original im Ratsinformationssystem</a>` : ""}
+    </div>`;
+  } else {
+    $("doc-body").innerHTML = `<p class="pdf-fallback"><a href="${pdfBlobUrl}" target="_blank" rel="noopener">PDF in neuem Tab öffnen</a></p>
+      <iframe class="pdf-frame" src="${pdfBlobUrl}" title="PDF-Ansicht"></iframe>`;
+  }
   $("btn-pdf").classList.add("active"); $("btn-text").classList.remove("active");
   status(`PDF angezeigt (${(bytes.length / 1048576).toFixed(1)} MB).`);
 }
@@ -765,22 +783,41 @@ async function renderStreets(text) {
 
 // ── Karten-Sektionen: Fachbeiräte / Ämter / Links ────────────────────────────
 
+/**
+ * Sitzungszeile einer Gremiumskarte. Unterscheidet bewusst drei Fälle, damit die
+ * Seite keine Vollständigkeit behauptet, die die Daten nicht hergeben:
+ * gar keine Angabe (Feld fehlt) → nichts anzeigen; ausdrücklich keine Sitzung
+ * (null) → das auch so sagen; Datum → letzte Sitzung der Wahlperiode.
+ */
+function sitzungsZeile(e, wp) {
+  if (!("letzte_sitzung" in e)) return "";
+  const periode = wp?.label ? ` ${wp.label}` : "";
+  if (!e.letzte_sitzung) {
+    return `<div class="c-sitzung c-sitzung-leer">Keine Sitzung in der Wahlperiode${escHtml(periode)}</div>`;
+  }
+  const anzahl = e.sitzungen ? ` · ${e.sitzungen} Sitzung${e.sitzungen === 1 ? "" : "en"}` : "";
+  return `<div class="c-sitzung">Letzte Sitzung${escHtml(periode)}: ${escHtml(fmtDate(e.letzte_sitzung))}${escHtml(anzahl)}</div>`;
+}
+
 async function renderCards(key, title, icon) {
   const data = await loadContent(key);
+  const card = (e, withTag) => `<a class="card" href="${escHtml(e.url)}" target="_blank" rel="noopener">
+    ${withTag && e.kategorie ? `<span class="c-tag">${escHtml(e.kategorie)}</span>` : ""}
+    <div class="c-title">${escHtml(e.name)} <span class="ext">↗</span></div>
+    <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
+    ${sitzungsZeile(e, data.wahlperiode)}
+  </a>`;
   const groups = [...new Set(data.eintraege.map((e) => e.kategorie).filter(Boolean))];
   const entries = groups.length
-    ? groups.map((group) => `<section class="card-group">
-        <h3 class="sub-head">${escHtml(group === "Beirat" ? "Beiräte" : group === "Ausschuss" ? "Ausschüsse" : group)} <span class="group-count">(${data.eintraege.filter((e) => e.kategorie === group).length})</span></h3>
-        <div class="cards">${data.eintraege.filter((e) => e.kategorie === group).map((e) => `<a class="card" href="${escHtml(e.url)}" target="_blank" rel="noopener">
-          <div class="c-title">${escHtml(e.name)} <span class="ext">↗</span></div>
-          <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
-        </a>`).join("")}</div>
-      </section>`).join("")
-    : `<div class="cards">${data.eintraege.map((e) => `<a class="card" href="${escHtml(e.url)}" target="_blank" rel="noopener">
-        ${e.kategorie ? `<span class="c-tag">${escHtml(e.kategorie)}</span>` : ""}
-        <div class="c-title">${escHtml(e.name)} <span class="ext">↗</span></div>
-        <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
-      </a>`).join("")}</div>`;
+    ? groups.map((group) => {
+        const inGroup = data.eintraege.filter((e) => e.kategorie === group);
+        const label = group === "Beirat" ? "Beiräte" : group === "Ausschuss" ? "Ausschüsse" : group;
+        return `<section class="card-group">
+          <h3 class="sub-head">${escHtml(label)} <span class="group-count">(${inGroup.length})</span></h3>
+          <div class="cards">${inGroup.map((e) => card(e, false)).join("")}</div>
+        </section>`;
+      }).join("")
+    : `<div class="cards">${data.eintraege.map((e) => card(e, true)).join("")}</div>`;
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">${icon} ${escHtml(title)}</h2>
     ${data.intro ? `<p class="section-intro">${escHtml(data.intro)}</p>` : ""}
@@ -789,8 +826,12 @@ async function renderCards(key, title, icon) {
       ${data.uebersicht_url ? `<a class="btn-primary" href="${escHtml(data.uebersicht_url)}" target="_blank" rel="noopener">Beiräte im Ratsinformationssystem ↗</a>` : ""}
       ${data.ausschuesse_url ? `<a class="btn-primary" href="${escHtml(data.ausschuesse_url)}" target="_blank" rel="noopener">Ausschüsse im Ratsinformationssystem ↗</a>` : ""}
     </div>` : ""}
-    ${entries}</div>`;
-  status(`${data.eintraege.length} Einträge.`);
+    ${entries}
+    ${data.quelle ? `<p class="quelle">Quelle: ${escHtml(data.quelle)}${data.stand ? ` · Stand ${escHtml(fmtDate(data.stand))}` : ""}</p>` : ""}</div>`;
+  const mitDatum = data.eintraege.filter((e) => e.letzte_sitzung).length;
+  status(data.wahlperiode
+    ? `${data.eintraege.length} Gremien mit Sitzungen in der Wahlperiode ${data.wahlperiode.label} (${mitDatum} mit Datum der letzten Sitzung).`
+    : `${data.eintraege.length} Einträge.`);
 }
 
 /**

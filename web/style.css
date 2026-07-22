@@ -130,6 +130,11 @@ a.card:hover { border-color: var(--accent-2); }
   text-transform: uppercase; color: var(--accent); margin-bottom: .35rem;
 }
 .card .c-zust { color: var(--muted); font-size: .78rem; margin-top: .3rem; }
+.card .c-sitzung {
+  margin-top: .45rem; padding-top: .4rem; border-top: 1px solid var(--hairline);
+  color: var(--muted); font-size: .74rem;
+}
+.card .c-sitzung-leer { color: #b00020; font-weight: 600; }
 .card-group { margin-top: 1.5rem; }
 .card-group:first-of-type { margin-top: .2rem; }
 .card-group .sub-head { margin-top: 0; }
@@ -310,6 +315,29 @@ footer {
 #statusbar { flex: 1; min-width: 0; }
 #version { flex: none; white-space: nowrap; opacity: .8; }
 
+/* ── Mobiler PDF-Fallback (statt iframe) ──────────────────────────── */
+.pdf-mobile {
+  text-align: center; padding: 2rem 1rem;
+  background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 9px;
+}
+.pdf-mobile-icon { font-size: 3rem; margin-bottom: .6rem; }
+.pdf-mobile-hint {
+  font-size: .88rem; color: var(--ink-2); margin: 0 0 1.2rem; line-height: 1.5;
+}
+.pdf-mobile-btn {
+  display: block; max-width: 22rem; margin: .5rem auto;
+  padding: .75rem 1.2rem; border-radius: 8px;
+  background: var(--accent); color: #fff; font-size: 1rem; font-weight: 600;
+  text-decoration: none; text-align: center;
+  border: 2px solid var(--accent);
+}
+.pdf-mobile-btn:hover { background: #006e00; }
+.pdf-mobile-btn-alt {
+  background: var(--surface-1); color: var(--ink); border-color: var(--hairline);
+  font-size: .88rem;
+}
+.pdf-mobile-btn-alt:hover { border-color: var(--accent-2); color: var(--accent-2); background: var(--surface-1); }
+
 /* ── Mobil ───────────────────────────────────────────────────────── */
 @media (max-width: 680px) {
   header { flex-direction: column; align-items: stretch; gap: .5rem; }
@@ -319,10 +347,15 @@ footer {
   .hero h1 { font-size: 1.35rem; }
   .tiles { grid-template-columns: 1fr 1fr; }
   .cards { grid-template-columns: 1fr; }
-  .pdf-frame { height: 72vh; }
+  .pdf-frame { height: 60vh; }
+  /* doc-actions: Buttons stapeln und langen Link kürzen */
+  .doc-actions { flex-direction: column; align-items: stretch; }
+  .doc-actions a, .doc-actions button { text-align: center; }
+  .doc-actions a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 }
 @media (max-width: 420px) {
   .tiles { grid-template-columns: 1fr; }
+  .pdf-frame { height: 50vh; }
 }
 
 /* ── Beiratsgrenzen auf der Karte ─────────────────────────────────── */
