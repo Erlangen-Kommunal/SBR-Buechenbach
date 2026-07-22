@@ -11,6 +11,7 @@
   --accent: #008300;     /* Grün — Leitfarbe Stadtteilbeirat */
   --accent-2: #2a78d6;   /* Blau — Sekundär/Links */
   --plan: #4a3aa7;       /* Violett — Register (Recht/Statistik) */
+  --antrag: #b8430f;     /* Rotbraun — Anträge des Beirats */
   --warn: #eda100;
 }
 
@@ -219,8 +220,14 @@ h3.sub-head {
 .badge-plan { background: var(--plan); border-color: var(--plan); color: #fff; }
 .badge-ei { background: var(--accent-2); border-color: var(--accent-2); color: #fff; }
 .badge-ni { background: var(--accent); border-color: var(--accent); color: #fff; }
+.badge-an { background: var(--antrag); border-color: var(--antrag); color: #fff; }
 
-/* ── Protokolle: Sitzungsliste ───────────────────────────────────── */
+/* ── Protokolle: Sitzungsliste + Anträge ─────────────────────────── */
+.sub-head {
+  font-size: 1.05rem; margin: 1.8rem 0 .4rem;
+  padding-top: 1.2rem; border-top: 1px solid var(--hairline);
+}
+#block-sitzungen > .sub-head { margin-top: .4rem; padding-top: 0; border-top: 0; }
 .year-head { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 1.2rem 0 .5rem; }
 .session {
   background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 10px;
@@ -234,6 +241,11 @@ h3.sub-head {
   font-size: .85rem; line-height: 1.5; color: var(--ink);
 }
 .session .s-themen { margin-top: .3rem; }
+/* Antrag: Titel steht vorn (statt des Sitzungsdatums), Zusammenfassung in Antragsfarbe */
+.session.antrag .s-date { font-size: .98rem; line-height: 1.4; }
+.session.antrag .s-date a.doc-open { color: var(--ink); text-decoration: none; }
+.session.antrag .s-date a.doc-open:hover { color: var(--accent-2); text-decoration: underline; }
+.session.antrag .s-summary { border-left-color: var(--antrag); }
 .chip-thema {
   display: inline-block; font-size: .7rem; color: var(--ink-2);
   background: var(--page); border: 1px solid var(--hairline); border-radius: 20px;

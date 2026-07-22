@@ -7,7 +7,7 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v13 · 2026-07-22";
+const APP_VERSION = "v14 · 2026-07-22";
 const CONTENT_VERSION = "13";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
@@ -22,8 +22,11 @@ const escRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const themenText = (s) => String(s ?? "").split("|").map((t) => t.trim()).filter(Boolean);
 const shortLabel = (s, max = 80) => (s && s.length > max ? s.slice(0, max - 1).trimEnd() + "…" : s ?? "");
 
-const CAT_BADGE = { Einladung: "badge-ei", Niederschrift: "badge-ni" };
-const CAT_SHORT = { Einladung: "EIN", Niederschrift: "NIED", Anhang: "ANH" };
+const CAT_BADGE = { Einladung: "badge-ei", Niederschrift: "badge-ni", Antrag: "badge-an" };
+const CAT_SHORT = { Einladung: "EIN", Niederschrift: "NIED", Anhang: "ANH", Antrag: "ANTRAG", Anlage: "ANL" };
+// Dokumenttypen aus dem Antragsregister (SBR/antraege.json) — sie hängen nicht an
+// einem Sitzungstermin und dürfen die Sitzungsgruppierung deshalb nicht füllen.
+const ANTRAG_KATS = new Set(["Antrag", "Anlage"]);
 
 // ── Zugangs-Gate (PBKDF2-Hash-Vergleich; fehlt auth.json → Dev-Modus ohne Gate) ─
 
@@ -162,7 +165,7 @@ const crumb = (label = "Startseite") => `<a class="crumb" href="#/">‹ ${escHtm
 async function renderStart() {
   const tiles = [
     ["#/aemter", "🏢", "Ämter & Zuständigkeiten", "Schnell klären: Welches Amt ist für ein Anliegen zuständig?"],
-    ["#/protokolle", "📄", "Öffentliche Sitzungsprotokolle", "Alle öffentlichen Sitzungen seit 2020 — durchsuchbar mit Volltext und Zusammenfassungen."],
+    ["#/protokolle", "📄", "Protokolle & Anträge", "Alle öffentlichen Sitzungen seit 2020 und die Anträge des Beirats — durchsuchbar mit Volltext und Zusammenfassungen."],
     ["#/recht", "⚖️", "Satzung & Recht", "Rechtsgrundlage der Stadtteilbeiräte und weiteres Stadtrecht."],
     ["#/statistik", "📊", "Statistik", "Bevölkerung, Sozialstruktur und Prognosen für Erlangen und Büchenbach."],
     ["#/fachbeiraete", "👥", "Fachbeiräte", "Andere Beiräte und Ausschüsse — inkl. UVPA-Infoseite."],
@@ -186,11 +189,19 @@ async function renderStart() {
         </a>`).join("")}
     </nav>`;
   const [m] = await q(`SELECT (SELECT count(*) FROM documents)::INT AS d,
-                              (SELECT count(DISTINCT date) FROM documents)::INT AS s`);
-  status(`Bereit — ${m.s} Sitzungen, ${m.d} Dokumente. Wählen Sie einen Bereich oder suchen Sie oben.`);
+                              (SELECT count(DISTINCT date) FROM documents
+                               WHERE category NOT IN ('Antrag', 'Anlage'))::INT AS s,
+                              (SELECT count(*) FROM documents WHERE category = 'Antrag')::INT AS a`);
+  status(`Bereit — ${m.s} Sitzungen, ${m.a} Anträge, ${m.d} Dokumente. `
+    + `Wählen Sie einen Bereich oder suchen Sie oben.`);
 }
 
-// ── Protokolle (Sitzungen, gruppiert nach Jahr) ──────────────────────────────
+// ── Protokolle (Sitzungen + Anträge, je nach Jahr gruppiert) ─────────────────
+//
+// Die Seite zeigt zwei Bestände, die sich in der Struktur unterscheiden:
+// Sitzungsdokumente hängen an einem Termin und werden zur Sitzung gebündelt,
+// Anträge sind einzelne Schreiben mit eigenem Datum. Beide stehen in derselben
+// documents-Tabelle und werden über die Kategorie auseinandergehalten.
 
 let allDocs = null;
 async function renderProtokolle() {
@@ -202,65 +213,123 @@ async function renderProtokolle() {
        FROM documents ORDER BY date DESC,
             CASE category WHEN 'Einladung' THEN 0 WHEN 'Niederschrift' THEN 1 ELSE 2 END, title`);
   }
+  const sitzungsDocs = allDocs.filter((d) => !ANTRAG_KATS.has(d.category));
+  // Anlagen tragen die id ihres Schreibens vor dem '#' — daran hängen sie darunter.
+  const antragDocs = allDocs.filter((d) => d.category === "Antrag")
+    .sort((a, b) => b.date.localeCompare(a.date));
+  const anlagenZu = {};
+  for (const d of allDocs.filter((d) => d.category === "Anlage"))
+    (anlagenZu[d.id.split("#")[0]] ??= []).push(d);
+  for (const list of Object.values(anlagenZu)) list.sort((a, b) => a.id.localeCompare(b.id));
+
   const years = [...new Set(allDocs.map((d) => d.date.slice(0, 4)))].sort().reverse();
   const themen = [...new Set(allDocs.flatMap((d) => themenText(d.themen)))].sort();
 
   view().innerHTML = `<div class="wrap">
     ${crumb()}
-    <h2 class="section-title">📄 Öffentliche Sitzungsprotokolle</h2>
-    <p class="section-intro">Öffentliche Sitzungen des Stadtteilbeirats Büchenbach seit 2020. Jede Sitzung
-      bündelt Einladung, Niederschrift und Anhänge. Zum Lesen ein Dokument anklicken — der
-      Volltext erscheint sofort, das Original-PDF ist verlinkt.</p>
+    <h2 class="section-title">📄 Protokolle & Anträge</h2>
+    <p class="section-intro">Öffentliche Sitzungen des Stadtteilbeirats Büchenbach seit 2020 — jede Sitzung
+      bündelt Einladung, Niederschrift und Anhänge — sowie die Anträge und Stellungnahmen, die der
+      Beirat an Oberbürgermeister, Fraktionen und Stadtrat gerichtet hat. Zum Lesen ein Dokument
+      anklicken; der Volltext erscheint sofort, das PDF ist eingebettet.</p>
     <div class="map-actions">
+      <label>Dokumenttyp <select id="f-art">
+        <option value="">alle</option>
+        <option value="sitzung">Sitzungsdokumente</option>
+        <option value="antrag">Anträge des Beirats</option>
+      </select></label>
       <label>Jahr <select id="f-year"><option value="">alle</option>
         ${years.map((y) => `<option value="${y}">${y}</option>`).join("")}</select></label>
       ${themen.length ? `<label>Thema <select id="f-thema"><option value="">alle</option>
         ${themen.map((t) => `<option value="${escHtml(t)}">${escHtml(t)}</option>`).join("")}</select></label>` : ""}
     </div>
-    <div id="sessions"></div>
+    <section id="block-sitzungen">
+      <h3 class="sub-head">Sitzungen</h3>
+      <div id="sessions"></div>
+    </section>
+    <section id="block-antraege">
+      <h3 class="sub-head">Anträge & Stellungnahmen des Beirats</h3>
+      <p class="section-intro">Schreiben des Beirats an Oberbürgermeister, Fraktionen und Stadtrat.
+        Sie stehen nicht im Ratsinformationssystem, sondern stammen aus der Sammlung des Beirats —
+        eine Übersicht dazu liegt im Repo unter <code>SBR/ANTRAEGE.md</code>.</p>
+      <div id="antraege"></div>
+    </section>
   </div>`;
 
+  const docLink = (d) => `<li>
+    <span class="badge ${CAT_BADGE[d.category] || ""}">${CAT_SHORT[d.category] || "DOK"}</span>
+    <a class="doc-open" href="#/doc/${encodeURIComponent(d.id)}">${escHtml(d.title)}</a>
+    ${d.pages ? `<span class="d-pages">${d.pages} S.</span>` : ""}
+  </li>`;
+
+  const jahresBloecke = (eintraege, karte) => {
+    let html = "", curYear = "";
+    for (const e of eintraege) {
+      const y = e.date.slice(0, 4);
+      if (y !== curYear) { curYear = y; html += `<div class="year-head">${y}</div>`; }
+      html += karte(e);
+    }
+    return html;
+  };
+
   const draw = () => {
-    const fy = $("f-year").value, ft = $("f-thema") ? $("f-thema").value : "";
-    let docs = allDocs;
-    if (fy) docs = docs.filter((d) => d.date.startsWith(fy));
-    // Nach Sitzungsdatum gruppieren
+    const fa = $("f-art").value, fy = $("f-year").value, ft = $("f-thema") ? $("f-thema").value : "";
+    const passt = (d) => (!fy || d.date.startsWith(fy)) && (!ft || themenText(d.themen).includes(ft));
+
+    // Sitzungen: nach Datum bündeln, Filter greift auf die Sitzung als Ganzes
     const byDate = {};
-    for (const d of docs) (byDate[d.date] ??= []).push(d);
+    for (const d of sitzungsDocs.filter((d) => !fy || d.date.startsWith(fy)))
+      (byDate[d.date] ??= []).push(d);
     let dates = Object.keys(byDate).sort().reverse();
     if (ft) dates = dates.filter((dt) => byDate[dt].some((d) => themenText(d.themen).includes(ft)));
 
-    if (!dates.length) {
-      $("sessions").innerHTML = `<p class="hint">Keine Sitzungen für diese Auswahl.</p>`;
-      status("0 Dokumente in 0 Sitzungen.");
-      return;
-    }
-    let html = "", curYear = "";
-    for (const dt of dates) {
-      const y = dt.slice(0, 4);
-      if (y !== curYear) { curYear = y; html += `<div class="year-head">${y}</div>`; }
-      const docs = byDate[dt];
-      const ni = docs.find((d) => d.category === "Niederschrift");
-      const sumSrc = ni && ni.summary ? ni : docs.find((d) => d.summary);
-      const th = [...new Set(docs.flatMap((d) => themenText(d.themen)))];
-      html += `<div class="session">
-        <div class="s-date">${fmtDate(dt)}</div>
-        <div class="s-meta">${docs.length} Dokument${docs.length === 1 ? "" : "e"}</div>
-        ${sumSrc && sumSrc.summary ? `<div class="s-summary">${escHtml(sumSrc.summary)}</div>` : ""}
-        ${th.length ? `<div class="s-themen">${th.map((t) => `<span class="chip-thema">${escHtml(t)}</span>`).join("")}</div>` : ""}
-        <ul class="s-docs">
-          ${docs.map((d) => `<li>
-            <span class="badge ${CAT_BADGE[d.category] || ""}">${CAT_SHORT[d.category] || "DOK"}</span>
-            <a class="doc-open" href="#/doc/${encodeURIComponent(d.id)}">${escHtml(d.title)}</a>
-            ${d.pages ? `<span class="d-pages">${d.pages} S.</span>` : ""}
-          </li>`).join("")}
-        </ul>
-      </div>`;
-    }
-    $("sessions").innerHTML = html;
-    const visibleDocs = dates.reduce((count, date) => count + byDate[date].length, 0);
-    status(`${visibleDocs} Dokument${visibleDocs === 1 ? "" : "e"} in ${dates.length} Sitzung${dates.length === 1 ? "" : "en"}.`);
+    $("sessions").innerHTML = dates.length
+      ? jahresBloecke(dates.map((dt) => ({ date: dt, docs: byDate[dt] })), ({ date, docs }) => {
+          const ni = docs.find((d) => d.category === "Niederschrift");
+          const sumSrc = ni && ni.summary ? ni : docs.find((d) => d.summary);
+          const th = [...new Set(docs.flatMap((d) => themenText(d.themen)))];
+          return `<div class="session">
+            <div class="s-date">${fmtDate(date)}</div>
+            <div class="s-meta">${docs.length} Dokument${docs.length === 1 ? "" : "e"}</div>
+            ${sumSrc && sumSrc.summary ? `<div class="s-summary">${escHtml(sumSrc.summary)}</div>` : ""}
+            ${th.length ? `<div class="s-themen">${th.map((t) => `<span class="chip-thema">${escHtml(t)}</span>`).join("")}</div>` : ""}
+            <ul class="s-docs">${docs.map(docLink).join("")}</ul>
+          </div>`;
+        })
+      : `<p class="hint">Keine Sitzungen für diese Auswahl.</p>`;
+
+    // Anträge: einzelne Schreiben, Anlagen darunter
+    const antraege = antragDocs.filter(passt);
+    $("antraege").innerHTML = antraege.length
+      ? jahresBloecke(antraege, (d) => {
+          const anl = anlagenZu[d.id] ?? [];
+          const th = themenText(d.themen);
+          return `<div class="session antrag">
+            <div class="s-date">
+              <span class="badge ${CAT_BADGE[d.category]}">${CAT_SHORT[d.category]}</span>
+              <a class="doc-open" href="#/doc/${encodeURIComponent(d.id)}">${escHtml(d.title)}</a>
+            </div>
+            <div class="s-meta">${fmtDate(d.date)}${d.pages ? ` · ${d.pages} Seite${d.pages === 1 ? "" : "n"}` : ""}${
+              anl.length ? ` · ${anl.length} Anlage${anl.length === 1 ? "" : "n"}` : ""}</div>
+            ${d.summary ? `<div class="s-summary">${escHtml(d.summary)}</div>` : ""}
+            ${th.length ? `<div class="s-themen">${th.map((t) => `<span class="chip-thema">${escHtml(t)}</span>`).join("")}</div>` : ""}
+            ${anl.length ? `<ul class="s-docs">${anl.map(docLink).join("")}</ul>` : ""}
+          </div>`;
+        })
+      : `<p class="hint">Keine Anträge für diese Auswahl.</p>`;
+
+    $("block-sitzungen").hidden = fa === "antrag";
+    $("block-antraege").hidden = fa === "sitzung";
+
+    const sitzungsCount = dates.reduce((n, dt) => n + byDate[dt].length, 0);
+    const teile = [];
+    if (fa !== "antrag")
+      teile.push(`${sitzungsCount} Dokument${sitzungsCount === 1 ? "" : "e"} in ${dates.length} Sitzung${dates.length === 1 ? "" : "en"}`);
+    if (fa !== "sitzung")
+      teile.push(`${antraege.length} Antr${antraege.length === 1 ? "ag" : "äge"} & Stellungnahmen`);
+    status(teile.join(" · ") + ".");
   };
+  $("f-art").addEventListener("change", draw);
   $("f-year").addEventListener("change", draw);
   $("f-thema")?.addEventListener("change", draw);
   draw();
@@ -355,7 +424,9 @@ async function renderDoc(id) {
       <div class="doc-actions">
         <button id="btn-text" class="active" type="button">Text</button>
         <button id="btn-pdf" type="button">PDF</button>
-        <a href="${escHtml(d.url)}" target="_blank" rel="noopener">⬇ Original im Ratsinfosystem</a>
+        ${d.url
+          ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener">⬇ Original im Ratsinfosystem</a>`
+          : `<span class="meta">Schreiben des Beirats — nicht im Ratsinformationssystem</span>`}
       </div>
     </div>
     <div id="doc-notice" class="notice" hidden></div>

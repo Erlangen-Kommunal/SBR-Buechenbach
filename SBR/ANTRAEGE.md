@@ -5,6 +5,11 @@ Stellungnahmen und Briefe, die der Beirat zwischen 2019 und 2025 an den
 Oberbürgermeister, die Fraktionen und den Stadtrat gerichtet hat. Die Dateien
 liegen daneben in [`Anträge_Übersicht/`](Anträge_Übersicht).
 
+Dieses Dokument ist die Lesefassung für Menschen. Maschinenlesbar steht dieselbe
+Sammlung in [`antraege.json`](antraege.json) — daraus baut GraphBuilder die
+Einträge, die im Portal unter „Protokolle & Anträge" als Dokumenttyp **Antrag**
+erscheinen. Wer einen Antrag ergänzt, pflegt beide Dateien.
+
 Diese Schreiben stammen **vom Beirat selbst**, nicht aus dem
 Ratsinformationssystem — die Sitzungsdokumente in [`index.json`](index.json)
 enthalten sie nicht. Im Ratsinfo tauchen sie allenfalls als Antragsnummer oder
@@ -239,7 +244,6 @@ Radfahrer in den Autoverkehr ausweichen.
 ### 2022-09-18 — Stellungnahme: StUB-Trassenführung im Baugebiet 413
 
 `Stadtteilbeirat-Stellungnahme_Beschlussvorlage_Ö23_StUB_Trassenführung_413.pdf`
-(die Datei `… 413 (1).pdf` ist eine byte-identische Kopie)
 
 Zur Beschlussvorlage Ö 23, nach dem Lokalforum des Zweckverbands am 13.09.2022
 im Baugebiet 413 mit rund 30 Bürgern. Alle Wortmeldungen bevorzugten Variante 1
@@ -428,8 +432,8 @@ strukturelle Problem hinter vielen dieser Vorgänge.
 
 ---
 
-Quelle: Sammlung „Anträge_Übersicht" des Stadtteilbeirats (24 PDF-Dateien, davon
-18 eigenständige Schreiben, 5 Anlagen und 1 Dublette), abgelegt unter
+Quelle: Sammlung „Anträge_Übersicht" des Stadtteilbeirats (23 PDF-Dateien:
+18 eigenständige Schreiben und 5 Anlagen), abgelegt unter
 [`Anträge_Übersicht/`](Anträge_Übersicht). Der Abschnitt
 [Nicht in der Sammlung](#nicht-in-der-sammlung) wurde gegen die Niederschriften
 der öffentlichen Sitzungen 2020–2025 abgeglichen.

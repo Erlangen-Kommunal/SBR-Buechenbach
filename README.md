@@ -18,6 +18,8 @@ Schwesterprojekt: [UVPA-Dokumentensuche](https://github.com/Erlangen-Kommunal/UV
 
 - **Öffentliche Sitzungsprotokolle** seit 2020 (Einladungen, Niederschriften,
   Anhänge), im Volltext durchsuchbar, mit einer Zusammenfassung je Sitzung
+- **Anträge & Stellungnahmen des Beirats** — die Schreiben an Oberbürgermeister,
+  Fraktionen und Stadtrat, im selben Bereich wie die Protokolle
 - **Satzung & Recht** — Rechtsgrundlage der Orts- und Stadtteilbeiräte,
   weiteres Stadtrecht
 - **Statistik** — Bevölkerung, Sozialstruktur, Prognosen
@@ -32,6 +34,7 @@ Schwesterprojekt: [UVPA-Dokumentensuche](https://github.com/Erlangen-Kommunal/UV
 
 ```
 SBR/                  Sitzungs-PDFs (flach) + index.json
+SBR/Anträge_Übersicht/  Anträge des Beirats + antraege.json, ANTRAEGE.md
 uvp_agent.py          Scraper: Index + PDFs aus dem Ratsinformationssystem
 tools/                Geodaten, Passwort-Hash, link-content.ps1
 enrichment/           Zusammenfassungen je Sitzung + Themen-Taxonomie
@@ -43,6 +46,22 @@ web/                  statisches Frontend (DuckDB-Wasm, Leaflet)
 ```
 
 `graph.db` wird in der CI gebaut und ist **nicht** im Repo.
+
+### Anträge: eigenes Register neben `index.json`
+
+Die Anträge, Stellungnahmen und Briefe des Beirats stehen nicht im
+Ratsinformationssystem — sie kommen vom Beirat selbst. `SBR/index.json` schreibt
+der Wochen-Sync bei jedem Lauf neu, dort eingetragen wären sie beim nächsten Lauf
+verschwunden. Sie liegen deshalb in `SBR/antraege.json`, das von Hand gepflegt
+wird und Zusammenfassung und Themen gleich mitbringt (wie `recht/` und
+`statistik/`, nicht wie `enrichment/`). GraphBuilder schreibt beide Quellen in
+dieselbe `documents`-Tabelle; unterschieden werden sie über die Kategorie
+`Antrag` bzw. `Anlage`. Im Portal erscheinen sie unter „Protokolle & Anträge" in
+einem eigenen Abschnitt, in der Volltextsuche und im Straßenbezug gleichrangig
+mit den Sitzungsdokumenten.
+
+Ein neuer Antrag braucht also: die PDF nach `SBR/Anträge_Übersicht/`, einen
+Eintrag in `SBR/antraege.json` und eine Zeile in `SBR/ANTRAEGE.md`.
 
 ### `content/` ist kanonisch — `web/content/` nur eine Verknüpfung
 
