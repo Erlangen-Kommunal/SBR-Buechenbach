@@ -784,7 +784,8 @@ async function renderCards(key, title, icon) {
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">${icon} ${escHtml(title)}</h2>
     ${data.intro ? `<p class="section-intro">${escHtml(data.intro)}</p>` : ""}
-    ${data.uebersicht_url || data.ausschuesse_url ? `<div class="map-actions">
+    ${data.start_url || data.uebersicht_url || data.ausschuesse_url ? `<div class="map-actions">
+      ${data.start_url ? `<a class="btn-primary" href="${escHtml(data.start_url)}" target="_blank" rel="noopener">Ratsinfo-Startseite ↗</a>` : ""}
       ${data.uebersicht_url ? `<a class="btn-primary" href="${escHtml(data.uebersicht_url)}" target="_blank" rel="noopener">Beiräte im Ratsinformationssystem ↗</a>` : ""}
       ${data.ausschuesse_url ? `<a class="btn-primary" href="${escHtml(data.ausschuesse_url)}" target="_blank" rel="noopener">Ausschüsse im Ratsinformationssystem ↗</a>` : ""}
     </div>` : ""}
