@@ -574,40 +574,73 @@ footer {
   #home-link { justify-content: center; }
   #search-form { min-width: 0; max-width: none; margin-left: 0; }
   main#view { padding: 1rem .8rem 3rem; }
-  .hero h1 { font-size: 1.45rem; }
-  .tiles { grid-template-columns: 1fr 1fr; }
-  .cards { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 1.55rem; font-weight: 800; }
+  .tiles { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .cards { grid-template-columns: 1fr; gap: 1rem; }
   .pdf-frame { height: 60vh; }
   /* doc-actions: Buttons stapeln und langen Link kürzen */
   .doc-actions { flex-direction: column; align-items: stretch; }
   .doc-actions a, .doc-actions button { text-align: center; }
   .doc-actions a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  /* Auf dem Handy sind die Fließtexte sonst zu klein — noch etwas größer & luftiger */
+
+  /* Kacheln auf dem Handy deutlich größer, lesbarer & prägnanter */
   p.section-intro { font-size: 1.08rem; line-height: 1.6; }
   .hero p { font-size: 1.12rem; line-height: 1.55; }
-  .tile .t-title { font-size: 1.18rem; font-weight: 750; }
-  .tile .t-desc { font-size: 1.02rem; line-height: 1.5; }
-  .card .c-title { font-size: 1.18rem; font-weight: 750; }
-  .card .c-desc { font-size: 1.02rem; line-height: 1.55; }
-  .card .c-sitzung, .card .c-zust { font-size: .94rem; }
-  .hinweis-eng { font-size: .92rem; }
-  .tg-kopf { font-size: .9rem; }
-  .tg-titel { font-size: 1.08rem; }
-  .tg-beschluss { font-size: .95rem; }
-  .reg-list .r-desc, .amt-list li { font-size: .98rem; line-height: 1.55; }
-  .doc-page { font-size: 1.04rem; line-height: 1.65; }
-  .session .s-summary, .doc-summary { font-size: 1.02rem; line-height: 1.65; }
-  .results .r-snippet { font-size: .96rem; }
-  /* Organigramm auf Mobilgeräten deutlich größer */
-  .org-card-ob .org-name { font-size: 1.2rem; }
-  .org-ref-title { font-size: 1.02rem; }
-  .org-ref-tag { font-size: .85rem; }
-  .org-ref-leitung { font-size: .9rem; }
-  .org-ref-aemter { font-size: .85rem; }
+
+  /* Startseite Kacheln */
+  .tile { padding: 1.15rem 1.2rem; }
+  .tile .icon { font-size: 2.3rem; }
+  .tile .t-title { font-size: 1.28rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: .35rem; }
+  .tile .t-desc { font-size: 1.05rem; line-height: 1.55; color: var(--ink); font-weight: 450; }
+
+  /* Standard / Referat / Gremien Kacheln */
+  .card { padding: 1.1rem 1.2rem; }
+  .card .c-tag { font-size: .88rem; font-weight: 800; letter-spacing: .04em; margin-bottom: .45rem; }
+  .card .c-title { font-size: 1.28rem; font-weight: 800; line-height: 1.38; }
+  .card .c-desc { font-size: 1.08rem; line-height: 1.58; color: var(--ink); font-weight: 450; }
+  .card .c-sitzung, .card .c-zust { font-size: 1.0rem; font-weight: 600; }
+
+  .hinweis-eng { font-size: .95rem; }
+  .tg-kopf { font-size: .92rem; }
+  .tg-titel { font-size: 1.12rem; font-weight: 750; }
+  .tg-beschluss { font-size: .98rem; }
+  .reg-list .r-desc, .amt-list li { font-size: 1.04rem; line-height: 1.58; }
+  .amt-name { font-size: 1.06rem; font-weight: 700; }
+  .amt-leitung { font-size: .92rem; font-weight: 500; }
+  .doc-page { font-size: 1.06rem; line-height: 1.68; }
+  .session .s-summary, .doc-summary { font-size: 1.05rem; line-height: 1.68; }
+  .results .r-snippet { font-size: .98rem; }
+
+  /* Organigramm-Kacheln auf Mobilgeräten prägnanter */
+  .org-card-ob { padding: 1rem 1.4rem; min-width: 0; }
+  .org-card-ob .org-role { font-size: .88rem; font-weight: 700; }
+  .org-card-ob .org-name { font-size: 1.38rem; font-weight: 800; }
+  .org-card-ob .org-sub { font-size: .94rem; }
+  .org-card-ref { padding: 0.95rem 1.1rem; }
+  .org-ref-tag { font-size: .9rem; font-weight: 800; }
+  .org-ref-title { font-size: 1.22rem; font-weight: 800; line-height: 1.35; margin: .25rem 0; }
+  .org-ref-leitung { font-size: 1.0rem; font-weight: 600; color: var(--ink-2); }
+  .org-ref-aemter { font-size: .92rem; font-weight: 600; color: var(--muted); margin-top: .35rem; }
+
+  /* Statistik-Kacheln auf Mobilgeräten */
+  .stat-card { padding: 1.2rem 1.25rem; }
+  .stat-badge { font-size: .85rem; font-weight: 800; padding: .2rem .6rem; }
+  .stat-title { font-size: 1.32rem; font-weight: 800; margin-bottom: .5rem; }
+  .stat-main-val { font-size: 2.1rem; font-weight: 850; }
+  .stat-sub-val { font-size: .92rem; font-weight: 600; }
+  .stat-metrics li { font-size: .98rem; padding: .55rem 0; }
+  .stat-desc { font-size: .98rem; line-height: 1.58; }
+  .stat-table { font-size: .94rem; }
+
+  /* Schnellübersicht Kacheln/Listen */
+  .zust-list li { padding: .65rem .9rem; font-size: 1.0rem; }
+  .z-thema { font-size: 1.04rem; font-weight: 650; }
+  .z-amt { font-size: 1.0rem; font-weight: 700; }
 }
 @media (max-width: 420px) {
   .tiles { grid-template-columns: 1fr; }
   .pdf-frame { height: 50vh; }
+  .tile .t-title, .card .c-title, .stat-title { font-size: 1.35rem; }
 }
 
 /* ── Beiratsgrenzen auf der Karte ─────────────────────────────────── */

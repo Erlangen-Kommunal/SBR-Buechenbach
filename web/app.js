@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v21 · 2026-07-23";
-const CONTENT_VERSION = "21";
+const APP_VERSION = "v23 · 2026-07-23";
+const CONTENT_VERSION = "23";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -607,66 +607,6 @@ async function renderStatistik() {
           </ul>
           <p class="stat-desc">Büchenbach West weist eine sozial stabile Struktur auf und ist der Hauptwachstumsraum im Erlanger Westen (Neubaugebiete BP 412 & BP 413).</p>
         </div>
-      </div>
-
-      <!-- Detailtabelle -->
-      <div class="stat-table-wrapper">
-        <h4 class="stat-table-title">Sozial- &amp; Strukturindikatoren im Überblick (Stadt Erlangen, Stand 2026.05)</h4>
-        <table class="stat-table">
-          <thead>
-            <tr>
-              <th>Indikator</th>
-              <th>Büchenbach Dorf (76)</th>
-              <th>Büchenbach Nord (77)</th>
-              <th>Büchenbach West (78)</th>
-              <th>Erlangen Gesamt</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Sozialindex (Rang 1–33)</strong></td>
-              <td>53,6 (Rang 30)</td>
-              <td>75,7 (Rang 33)</td>
-              <td>29,6 (Rang 29)</td>
-              <td>Ø ~40,0</td>
-            </tr>
-            <tr>
-              <td><strong>Bürgergeld-Quote U15 (Kinder)</strong></td>
-              <td>14,3 %</td>
-              <td><strong>28,0 %</strong></td>
-              <td>8,5 %</td>
-              <td>~8,5 %</td>
-            </tr>
-            <tr>
-              <td><strong>Bürgergeld-Quote 15–55 Jahre</strong></td>
-              <td>8,4 %</td>
-              <td><strong>12,0 %</strong></td>
-              <td>3,3 %</td>
-              <td>3,9 %</td>
-            </tr>
-            <tr>
-              <td><strong>Grundsicherung im Alter (>65 J.)</strong></td>
-              <td>4,5 %</td>
-              <td>7,3 %</td>
-              <td>3,5 %</td>
-              <td>~4,0 %</td>
-            </tr>
-            <tr>
-              <td><strong>Anteil Alleinerziehende an Familien</strong></td>
-              <td>27,5 %</td>
-              <td>26,4 %</td>
-              <td>18,6 %</td>
-              <td>~20,0 %</td>
-            </tr>
-            <tr>
-              <td><strong>Prognose Wohnneubau (bis 2035)</strong></td>
-              <td>Gering / Nachverd.</td>
-              <td>Gering / Nachverd.</td>
-              <td><strong>+674 Wohnungen</strong></td>
-              <td>+5.057 Wohnungen</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </section>
 
