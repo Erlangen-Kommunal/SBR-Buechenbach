@@ -1,4 +1,4 @@
-# Verbindet web/content mit dem kanonischen content/ im Repo-Wurzelverzeichnis.
+﻿# Verbindet web/content mit dem kanonischen content/ im Repo-Wurzelverzeichnis.
 #
 # Warum das nötig ist: Das Frontend lädt `content/<name>.json` relativ zur Seite,
 # im Deploy liegt das Verzeichnis durch `cp -r content _site/content` neben der

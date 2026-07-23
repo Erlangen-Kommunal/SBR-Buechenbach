@@ -38,6 +38,11 @@ if (repoRoot.Length == 0)
         "SBR/index.json nicht gefunden — Repo-Wurzel als Argument angeben.");
 }
 
+if (!Path.IsPathRooted(dbPath))
+{
+    dbPath = Path.Combine(repoRoot, dbPath);
+}
+
 var indexFile = Path.Combine(repoRoot, "SBR", "index.json");
 var records = JsonSerializer.Deserialize<List<SbrDocRecord>>(File.ReadAllText(indexFile))
               ?? throw new InvalidDataException($"Konnte {indexFile} nicht parsen.");

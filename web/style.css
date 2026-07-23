@@ -193,13 +193,134 @@ h3.sub-head {
 }
 .quelle { color: var(--muted); font-size: .74rem; margin-top: 1.4rem; }
 .amt-structure { margin-top: 1.6rem; }
-.amt-structure summary {
-  cursor: pointer; color: var(--accent-2); font-size: .9rem; font-weight: 700;
-  padding: .7rem .8rem; border: 1px solid var(--hairline); border-radius: 7px;
-  background: var(--surface-1); list-style-position: inside;
+
+/* ── Organigramm / Orgchart ────────────────────────────────────────── */
+.orgchart-container {
+  margin: 1.5rem 0 2rem;
+  padding: 1.2rem 1.4rem;
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
 }
-.amt-structure summary:hover { border-color: var(--accent-2); }
-.amt-structure[open] summary { margin-bottom: .2rem; }
+.orgchart-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 1.2rem 0;
+  color: var(--ink);
+}
+.orgchart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.org-node-top {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+  position: relative;
+  width: 100%;
+}
+.org-node-top::after {
+  content: "";
+  position: absolute;
+  bottom: -1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 1.2rem;
+  background: var(--accent);
+}
+.org-card-ob {
+  background: linear-gradient(135deg, #008300 0%, #155724 100%);
+  color: #ffffff;
+  padding: .85rem 1.6rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 131, 0, 0.18);
+  min-width: 260px;
+  max-width: 380px;
+}
+.org-card-ob .org-role {
+  font-size: .74rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  opacity: .9;
+  font-weight: 600;
+}
+.org-card-ob .org-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: .25rem 0;
+}
+.org-card-ob .org-sub {
+  font-size: .78rem;
+  opacity: .88;
+}
+
+.org-tree-line {
+  width: 100%;
+  height: 2px;
+  background: var(--hairline);
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+
+.org-referate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.9rem;
+  width: 100%;
+}
+
+.org-card-ref {
+  display: block;
+  text-decoration: none;
+  background: var(--page);
+  border: 1px solid var(--hairline);
+  border-left: 4px solid var(--accent-2);
+  border-radius: 7px;
+  padding: .75rem .9rem;
+  transition: all .18s ease-in-out;
+}
+.org-card-ref:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-2);
+  box-shadow: 0 4px 12px rgba(42, 120, 214, 0.12);
+  background: var(--surface-1);
+}
+.org-card-ref:nth-child(1) { border-left-color: var(--accent); }
+
+.org-ref-tag {
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--accent-2);
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  margin-bottom: .2rem;
+}
+.org-card-ref:nth-child(1) .org-ref-tag { color: var(--accent); }
+
+.org-ref-title {
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: .3rem;
+}
+.org-ref-leitung {
+  font-size: .78rem;
+  color: var(--ink-2);
+}
+.org-ref-aemter {
+  margin-top: .4rem;
+  padding-top: .4rem;
+  border-top: 1px dashed var(--hairline);
+  font-size: .72rem;
+  color: var(--muted);
+  font-weight: 500;
+}
 
 /* Register-Listen (Recht/Statistik) */
 .reg-list { list-style: none; margin: 0; padding: 0; }
@@ -463,6 +584,12 @@ footer {
   .doc-page { font-size: .96rem; line-height: 1.6; }
   .session .s-summary, .doc-summary { font-size: .94rem; line-height: 1.6; }
   .results .r-snippet { font-size: .9rem; }
+  /* Organigramm auf Mobilgeräten gut lesbar */
+  .org-card-ob .org-name { font-size: 1.1rem; }
+  .org-ref-title { font-size: .95rem; }
+  .org-ref-tag { font-size: .78rem; }
+  .org-ref-leitung { font-size: .84rem; }
+  .org-ref-aemter { font-size: .78rem; }
 }
 @media (max-width: 420px) {
   .tiles { grid-template-columns: 1fr; }

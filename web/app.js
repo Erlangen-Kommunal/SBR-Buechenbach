@@ -1115,6 +1115,17 @@ async function renderAemter() {
     `<span class="amt-name">${escHtml(a.name)}</span>`
     + (a.nr ? `<span class="amt-nr">${escHtml(a.nr)}</span>` : "")
     + (a.leitung ? `<span class="amt-leitung">${escHtml(a.leitung)}</span>` : "");
+
+  const referateGrid = data.referate.map((r, idx) => {
+    const aemterNrs = r.aemter.map((a) => a.nr).filter(Boolean).join(", ");
+    return `<a href="#ref-card-${idx}" class="org-card org-card-ref" title="Zu ${escHtml(r.referat)} springen">
+      <div class="org-ref-tag">${escHtml(r.referat)}</div>
+      <div class="org-ref-title">${escHtml(r.bereich)}</div>
+      <div class="org-ref-leitung">${escHtml(r.leitung)}</div>
+      ${aemterNrs ? `<div class="org-ref-aemter">Ämter: ${escHtml(aemterNrs)}</div>` : ""}
+    </a>`;
+  }).join("");
+
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">🏢 Ämter & Zuständigkeiten</h2>
     ${data.intro ? `<p class="section-intro">${escHtml(data.intro)}</p>` : ""}
@@ -1122,23 +1133,43 @@ async function renderAemter() {
       <a class="btn-primary" href="${escHtml(data.aemter_uebersicht_url)}"
          target="_blank" rel="noopener">Ämter-Suche, Kontakt &amp; Öffnungszeiten ↗</a>
     </div>
+
+    <!-- Organigramm-Übersicht oben -->
+    <div class="orgchart-container">
+      <h3 class="orgchart-title">📊 Organigramm der Stadtverwaltung Erlangen</h3>
+      <div class="orgchart">
+        <div class="org-node-top">
+          <div class="org-card org-card-ob">
+            <div class="org-role">Oberbürgermeister</div>
+            <div class="org-name">Jörg Volleth</div>
+            <div class="org-sub">Leitung der Stadtverwaltung Erlangen</div>
+          </div>
+        </div>
+        <div class="org-tree-line"></div>
+        <div class="org-referate-grid">
+          ${referateGrid}
+        </div>
+      </div>
+    </div>
+
     ${data.relevant?.length ? `
       <h3 class="sub-head">Schnellübersicht: Wer ist wofür zuständig?</h3>
       <ul class="zust-list">${data.relevant.map((r) => `<li>
         <span class="z-thema">${escHtml(r.thema)}</span>
         <span class="z-amt">${escHtml(r.amt)}</span></li>`).join("")}</ul>` : ""}
-    <details class="amt-structure">
-      <summary>Vollständige Verwaltungsstruktur anzeigen</summary>
+
+    <!-- Struktur unten: immer eingeblendet -->
+    <section class="amt-structure">
       <h3 class="sub-head">Aufbau der Stadtverwaltung</h3>
       <div class="cards">
-        ${data.referate.map((r) => `<div class="card ref-card">
+        ${data.referate.map((r, idx) => `<div class="card ref-card" id="ref-card-${idx}">
           <span class="c-tag">${escHtml(r.referat)}</span>
           <div class="c-title">${escHtml(r.bereich)}</div>
           <div class="c-zust">${escHtml(r.leitung)}</div>
           <ul class="amt-list">${r.aemter.map((a) => `<li>${amtLabel(a)}</li>`).join("")}</ul>
         </div>`).join("")}
       </div>
-    </details>
+    </section>
     ${data.stand ? `<p class="quelle">Quelle: Geschäftsverteilungsplan der Stadt Erlangen · ${escHtml(data.stand)}</p>` : ""}
   </div>`;
   const n = data.referate.reduce((s, r) => s + r.aemter.length, 0);
@@ -1293,9 +1324,6 @@ async function renderKarte() {
     ${data ? `
     <details id="strassen-details" open>
       <summary><strong>${data.anzahl} Straßen</strong> im Beiratsgebiet${mitProtokoll ? ` · ${mitProtokoll} in Protokollen` : ""}${grenz.length ? ` · ${grenz.length} auf der Grenze` : ""}</summary>
-      ${grenz.length ? `<p class="hinweis"><strong>${grenz.length} Straßen liegen auf der
-        Gebietsgrenze</strong> und gehören damit auch zu einem Nachbargebiet:
-        ${grenz.map((s) => escHtml(s.name)).join(", ")}.</p>` : ""}
       <div id="strassen-liste">
         ${sortiert.map(([bez, liste]) => `
           <section class="bezirk" data-bezirk="${escHtml(bez)}">
@@ -1346,7 +1374,10 @@ async function renderKarte() {
       .bindPopup(`<strong>${escHtml(m.titel)}</strong>${m.beschreibung ? "<br>" + escHtml(m.beschreibung) : ""}`);
 
   const eigen = await addBeiratsgrenzen(L, map);
-  if (eigen) map.fitBounds(eigen.getBounds(), { padding: [20, 20] });
+  if (eigen) {
+    map.fitBounds(eigen.getBounds(), { padding: [20, 20] });
+    map.setZoom(map.getZoom() + 1);
+  }
   $("map-note").innerHTML = `<i class="lg-eigen"></i> Grenze des Beiratsgebiets Büchenbach ·
     <i class="lg-nachbar"></i> Nachbargebiete (Name bei Mauskontakt) · Themen-Symbole: © OpenStreetMap.
     Gebietsgrenze: Stadt Erlangen (dl-de/by-2.0), Geometrie im Stand 2015; Anger und Bruck erscheinen als ein Gebiet.`;
