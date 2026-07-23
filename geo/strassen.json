@@ -8,8 +8,1179 @@
     "lizenz_stadt": "Datenlizenz Deutschland Namensnennung 2.0 (dl-de/by-2.0)",
     "lizenz_osm": "ODbL, © OpenStreetMap-Mitwirkende"
   },
-  "anzahl": 0,
-  "strassen": [],
+  "anzahl": 128,
+  "strassen": [
+    {
+      "name": "Adenauerring",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 0.96,
+      "auch_in": [],
+      "amtlich": true,
+      "amtliche_schreibweise": "Adenauer-Ring"
+    },
+    {
+      "name": "Adlersteinweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Alte Mönaustraße",
+      "bezirke": [],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": false
+    },
+    {
+      "name": "Alter Markt",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Am Dinkelfeld",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Am Dummetsweiher",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Am Europakanal",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "77 Büchenbach Nord",
+        "71 In der Reuth"
+      ],
+      "anteil": 0.826,
+      "auch_in": [
+        "Ortsbeirat Dechsendorf"
+      ],
+      "amtlich": true
+    },
+    {
+      "name": "Am Hafen",
+      "bezirke": [
+        "75 Industriehafen"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Am Kornfeld",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Am Leitenbrünnlein",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Am Neuweiher",
+      "bezirke": [
+        "71 In der Reuth"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "An den Häuslinger Wegäckern",
+      "bezirke": [],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": false
+    },
+    {
+      "name": "An der Weißen Marter",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Aschaffenburger Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Bachgraben",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Bamberger Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Beim Drudenbaum",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Blumenweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Büchenbacher Anlage",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Büchenbacher Damm",
+      "bezirke": [],
+      "anteil": 0.34,
+      "auch_in": [
+        "Stadtteilbeirat Alterlangen",
+        "Stadtteilbeirat Anger / Bruck"
+      ],
+      "amtlich": false
+    },
+    {
+      "name": "Büchenbacher Steg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 0.565,
+      "auch_in": [
+        "Stadtteilbeirat Alterlangen"
+      ],
+      "amtlich": true
+    },
+    {
+      "name": "Coburger Straße",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "David-Morgenstern-Weg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Demlingweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Dompropststraße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Donato-Polli-Straße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Dorfmeisterweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Dorfstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Dreibergstraße",
+      "bezirke": [
+        "71 In der Reuth"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Dresselweg",
+      "bezirke": [],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": false
+    },
+    {
+      "name": "Dünischweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Ebracher Weg",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Egerichtsweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Eifelweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Einkornweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Emmerweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Flachsweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Fleischmannstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Flinzweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Forchheimer Straße",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Frankenalbstraße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Frankenwaldallee",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Franz-Steinmetz-Weg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Frauenauracher Straße",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "75 Industriehafen"
+      ],
+      "anteil": 0.94,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Georg-Frank-Straße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Goeschelstraße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Goldwitzerstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Gundstraße",
+      "bezirke": [
+        "75 Industriehafen"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Hausäckerweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Haßfurter Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Heckenweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Hegemannweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Heidackerstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Heinrich-Kirchner-Straße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Heubaumweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Hintere Gasse",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Hofer Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Holunderweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 0.6,
+      "auch_in": [
+        "Ortsbeirat Dechsendorf"
+      ],
+      "amtlich": true
+    },
+    {
+      "name": "Holzweg",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Hummerbergweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Häuslinger Straße",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Högelsteinweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Höllwiesenweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "In den Straßäckern",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "In der Reuth",
+      "bezirke": [
+        "71 In der Reuth"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Jakob-Nein-Straße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Joseph-Will-Straße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kapellensteg",
+      "bezirke": [
+        "12 Steinforst"
+      ],
+      "anteil": 0.162,
+      "auch_in": [
+        "Stadtteilbeirat Alterlangen"
+      ],
+      "amtlich": true
+    },
+    {
+      "name": "Kapellenstraße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Karmelitenstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kernbergstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Keuperstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kirchenweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kitzinger Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kolpingweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kornblumenweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kosbacher Damm",
+      "bezirke": [],
+      "anteil": 0.311,
+      "auch_in": [
+        "Stadtteilbeirat Alterlangen"
+      ],
+      "amtlich": false
+    },
+    {
+      "name": "Kraepelinstraße",
+      "bezirke": [
+        "71 In der Reuth"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kronacher Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kulmbacher Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kunigundenstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Kößweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Lehmgrubenweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Lettenweg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Lichtenfelser Weg",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Ligusterweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Lindnerstraße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Malvenweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Marienstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Meistergasse",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Mittlere Heide",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Mohnweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Mönaustraße",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Niederndorfer Straße",
+      "bezirke": [
+        "60 Neuses"
+      ],
+      "anteil": 0.183,
+      "auch_in": [
+        "Ortsbeirat Frauenaurach"
+      ],
+      "amtlich": true
+    },
+    {
+      "name": "Obere Gasse",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Obere Heide",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Odenwaldallee",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Pohlsgäßchen",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Pätzoldweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Rapunzelweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Reinschartenweg",
+      "bezirke": [
+        "71 In der Reuth"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Reuthlehenstraße",
+      "bezirke": [
+        "71 In der Reuth"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Rhönstraße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Ritterspornweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Rodensteinweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Rudeltplatz",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Sackgasse",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Schaldachweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Schwarzdornweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Schweinfurter Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Sehmerweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Sixtusstraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Spessartweg",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Steigerwaldallee",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Steudacher Straße",
+      "bezirke": [
+        "76 Büchenbach Dorf",
+        "75 Industriehafen"
+      ],
+      "anteil": 0.849,
+      "auch_in": [
+        "Ortsbeirat Kosbach/Häusling/Steudach"
+      ],
+      "amtlich": true
+    },
+    {
+      "name": "Stiftungsstraße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Straßberg",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Streitbergweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Taunusstraße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Untere Heide",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Volkacher Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Walberlaweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Walburgastraße",
+      "bezirke": [
+        "76 Büchenbach Dorf"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Westerwaldweg",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Windsheimer Straße",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Würzburger Ring",
+      "bezirke": [
+        "77 Büchenbach Nord"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Zambellistraße",
+      "bezirke": [
+        "78 Büchenbach West"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    },
+    {
+      "name": "Zum Hutacker",
+      "bezirke": [
+        "75 Industriehafen"
+      ],
+      "anteil": 1.0,
+      "auch_in": [],
+      "amtlich": true
+    }
+  ],
   "alle_namen": [
     "Adalbert-Stifter-Straße",
     "Adam-Kraft-Straße",
