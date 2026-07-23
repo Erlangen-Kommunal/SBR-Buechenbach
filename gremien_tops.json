@@ -1,5 +1,5 @@
 {
- "stand": "2026-07-22",
+ "stand": "2026-07-23",
  "wahlperiode": {
   "label": "2020 – 2026",
   "von": "2020-05-01",
@@ -2903,11 +2903,9 @@
    "strassen": [
     "Steudacher Straße"
    ],
-   "strassen_im_gebiet": [
-    "Steudacher Straße"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -2924,11 +2922,9 @@
    "strassen": [
     "Steudacher Straße"
    ],
-   "strassen_im_gebiet": [
-    "Steudacher Straße"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -2945,11 +2941,9 @@
    "strassen": [
     "Adenauer-Ring"
    ],
-   "strassen_im_gebiet": [
-    "Adenauer-Ring"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -2966,11 +2960,9 @@
    "strassen": [
     "Adenauer-Ring"
    ],
-   "strassen_im_gebiet": [
-    "Adenauer-Ring"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -10588,11 +10580,9 @@
    "strassen": [
     "Adenauer-Ring"
    ],
-   "strassen_im_gebiet": [
-    "Adenauer-Ring"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -13908,11 +13898,9 @@
    "strassen": [
     "Adenauer-Ring"
    ],
-   "strassen_im_gebiet": [
-    "Adenauer-Ring"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Sportausschuss",
@@ -14441,9 +14429,7 @@
    "strassen": [
     "Büchenbacher Anlage"
    ],
-   "strassen_im_gebiet": [
-    "Büchenbacher Anlage"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": true,
    "relevant": true
   },
@@ -17411,11 +17397,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Stadtrat",
@@ -17999,11 +17983,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -19026,11 +19008,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -22289,11 +22269,9 @@
    "strassen": [
     "Am Hafen"
    ],
-   "strassen_im_gebiet": [
-    "Am Hafen"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -22994,11 +22972,9 @@
    "strassen": [
     "Steigerwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Steigerwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -27012,11 +26988,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -29107,9 +29081,7 @@
    "strassen": [
     "Holzweg"
    ],
-   "strassen_im_gebiet": [
-    "Holzweg"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": true,
    "relevant": true
   },
@@ -29176,14 +29148,10 @@
    "beschluss": "",
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5060775",
-   "strassen": [
-    "Kosbacher Damm"
-   ],
-   "strassen_im_gebiet": [
-    "Kosbacher Damm"
-   ],
+   "strassen": [],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -29253,11 +29221,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -30469,11 +30435,9 @@
    "strassen": [
     "Lindnerstraße"
    ],
-   "strassen_im_gebiet": [
-    "Lindnerstraße"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -32680,11 +32644,9 @@
    "strassen": [
     "Am Europakanal"
    ],
-   "strassen_im_gebiet": [
-    "Am Europakanal"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -33952,11 +33914,9 @@
    "strassen": [
     "Am Europakanal"
    ],
-   "strassen_im_gebiet": [
-    "Am Europakanal"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -39025,12 +38985,9 @@
     "Am Europakanal",
     "Dorfstraße"
    ],
-   "strassen_im_gebiet": [
-    "Am Europakanal",
-    "Dorfstraße"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -39544,11 +39501,9 @@
    "strassen": [
     "Kulmbacher Straße"
    ],
-   "strassen_im_gebiet": [
-    "Kulmbacher Straße"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Jugendhilfeausschuss",
@@ -40722,12 +40677,9 @@
     "Am Europakanal",
     "Dorfstraße"
    ],
-   "strassen_im_gebiet": [
-    "Am Europakanal",
-    "Dorfstraße"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -43691,11 +43643,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -44669,11 +44619,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -44707,11 +44655,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -45589,11 +45535,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -45847,14 +45791,10 @@
    "beschluss": "",
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5054395",
-   "strassen": [
-    "Kosbacher Damm"
-   ],
-   "strassen_im_gebiet": [
-    "Kosbacher Damm"
-   ],
+   "strassen": [],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -46808,11 +46748,9 @@
    "strassen": [
     "Steigerwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Steigerwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Stadtrat",
@@ -49283,10 +49221,7 @@
     "Adenauer-Ring",
     "Lindnerstraße"
    ],
-   "strassen_im_gebiet": [
-    "Adenauer-Ring",
-    "Lindnerstraße"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": true,
    "relevant": true
   },
@@ -50232,10 +50167,7 @@
     "Adenauer-Ring",
     "Lindnerstraße"
    ],
-   "strassen_im_gebiet": [
-    "Adenauer-Ring",
-    "Lindnerstraße"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": true,
    "relevant": true
   },
@@ -50409,9 +50341,7 @@
    "strassen": [
     "Rudeltplatz"
    ],
-   "strassen_im_gebiet": [
-    "Rudeltplatz"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": true,
    "relevant": true
   },
@@ -54642,10 +54572,7 @@
     "Adenauer-Ring",
     "Lindnerstraße"
    ],
-   "strassen_im_gebiet": [
-    "Adenauer-Ring",
-    "Lindnerstraße"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": true,
    "relevant": true
   },
@@ -55157,11 +55084,9 @@
    "strassen": [
     "Adenauer-Ring"
    ],
-   "strassen_im_gebiet": [
-    "Adenauer-Ring"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -55291,10 +55216,7 @@
     "Adenauer-Ring",
     "Lindnerstraße"
    ],
-   "strassen_im_gebiet": [
-    "Adenauer-Ring",
-    "Lindnerstraße"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": true,
    "relevant": true
   },
@@ -55370,11 +55292,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -55727,11 +55647,9 @@
    "strassen": [
     "Holzweg"
    ],
-   "strassen_im_gebiet": [
-    "Holzweg"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -57369,11 +57287,9 @@
    "strassen": [
     "Am Europakanal"
    ],
-   "strassen_im_gebiet": [
-    "Am Europakanal"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -57749,9 +57665,7 @@
    "strassen": [
     "Büchenbacher Anlage"
    ],
-   "strassen_im_gebiet": [
-    "Büchenbacher Anlage"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": true,
    "relevant": true
   },
@@ -59965,11 +59879,9 @@
    "strassen": [
     "Am Europakanal"
    ],
-   "strassen_im_gebiet": [
-    "Am Europakanal"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -66236,11 +66148,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -66441,14 +66351,10 @@
    "beschluss": "",
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5047919",
-   "strassen": [
-    "Kosbacher Damm"
-   ],
-   "strassen_im_gebiet": [
-    "Kosbacher Damm"
-   ],
+   "strassen": [],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -68532,11 +68438,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Stadtrat",
@@ -68895,11 +68799,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -70114,11 +70016,9 @@
    "strassen": [
     "Odenwaldallee"
    ],
-   "strassen_im_gebiet": [
-    "Odenwaldallee"
-   ],
+   "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": true
+   "relevant": false
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
