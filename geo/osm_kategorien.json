@@ -1,0 +1,106 @@
+{
+  "stand": "2026-07-23",
+  "quelle": "© OpenStreetMap-Mitwirkende (ODbL)",
+  "punkt": [
+    {
+      "key": "spielplatz",
+      "label": "Spielplätze",
+      "icon": "🛝",
+      "farbe": "#2f9e44",
+      "count": 33
+    },
+    {
+      "key": "schule_kita",
+      "label": "Schulen & Kitas",
+      "icon": "🏫",
+      "farbe": "#e8590c",
+      "count": 11
+    },
+    {
+      "key": "gesundheit",
+      "label": "Gesundheit",
+      "icon": "🩺",
+      "farbe": "#e64980",
+      "count": 25
+    },
+    {
+      "key": "nahversorgung",
+      "label": "Nahversorgung",
+      "icon": "🛒",
+      "farbe": "#1971c2",
+      "count": 15
+    },
+    {
+      "key": "gastro",
+      "label": "Gastronomie",
+      "icon": "🍽️",
+      "farbe": "#b8860b",
+      "count": 15
+    },
+    {
+      "key": "gemeinschaft",
+      "label": "Kirche & Gemeinschaft",
+      "icon": "⛪",
+      "farbe": "#7048e8",
+      "count": 19
+    },
+    {
+      "key": "historisch",
+      "label": "Historisch & Denkmal",
+      "icon": "🏛️",
+      "farbe": "#846358",
+      "count": 7
+    },
+    {
+      "key": "sport",
+      "label": "Sportanlagen",
+      "icon": "⚽",
+      "farbe": "#0c8599",
+      "count": 69
+    },
+    {
+      "key": "haltestelle",
+      "label": "Bushaltestellen",
+      "icon": "🚌",
+      "farbe": "#1c7ed6",
+      "count": 54
+    },
+    {
+      "key": "querung",
+      "label": "Querungen",
+      "icon": "🚸",
+      "farbe": "#f08c00",
+      "count": 174
+    },
+    {
+      "key": "abfall",
+      "label": "Abfall & Recycling",
+      "icon": "🗑️",
+      "farbe": "#5c940d",
+      "count": 53
+    },
+    {
+      "key": "bank",
+      "label": "Sitzbänke",
+      "icon": "🪑",
+      "farbe": "#868e96",
+      "count": 150
+    }
+  ],
+  "linie": [
+    {
+      "key": "radweg",
+      "label": "Radweg-Infrastruktur",
+      "icon": "🚲",
+      "farbe": "#087f5b",
+      "count": 65
+    },
+    {
+      "key": "tempo",
+      "label": "Tempo-Beschränkung",
+      "icon": "🚦",
+      "farbe": "#e03131",
+      "count": 353
+    }
+  ]
+}

@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v15 · 2026-07-23";
-const CONTENT_VERSION = "14";
+const APP_VERSION = "v16 · 2026-07-23";
+const CONTENT_VERSION = "15";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -131,9 +131,9 @@ const ROUTES = {
   "statistik": () => renderRegistry("statistik", "Statistik", "📊"),
   "fachbeiraete": () => renderCards("fachbeiraete", "Andere Fachbeiräte & Ausschüsse", "👥"),
   "aemter": () => renderAemter(),
-  "links": () => renderCards("links", "Nützliche Links", "🔗"),
+  "links": () => renderCards("links", "Ratsinfosystem & Links", "🔗"),
   "karte": renderKarte,
-  "strassen": renderStrassen,
+  "strassen": renderKarte,   // alter Link → zusammengeführter Tab „Straße & Karte“
   "gremien": renderFremdeGremien,
 };
 
@@ -163,16 +163,17 @@ const crumb = (label = "Startseite") => `<a class="crumb" href="#/">‹ ${escHtm
 // ── Startseite (Portal) ──────────────────────────────────────────────────────
 
 async function renderStart() {
+  // Reihenfolge nach Priorität (Nutzer-Vorgabe): Protokolle → Büchenbach
+  // anderswo → Ämter → Fachbeiräte → Karte → Straße → Statistik → Satzung → Links.
   const tiles = [
-    ["#/aemter", "🏢", "Ämter & Zuständigkeiten", "Schnell klären: Welches Amt ist für ein Anliegen zuständig?"],
     ["#/protokolle", "📄", "Protokolle & Anträge", "Alle öffentlichen Sitzungen seit 2020 und die Anträge des Beirats — durchsuchbar mit Volltext und Zusammenfassungen."],
-    ["#/recht", "⚖️", "Satzung & Recht", "Rechtsgrundlage der Stadtteilbeiräte und weiteres Stadtrecht."],
-    ["#/statistik", "📊", "Statistik", "Bevölkerung, Sozialstruktur und Prognosen für Erlangen und Büchenbach."],
-    ["#/fachbeiraete", "👥", "Fachbeiräte", "Andere Beiräte und Ausschüsse — inkl. UVPA-Infoseite."],
-    ["#/links", "🔗", "Links", "Ausgewählte Seiten rund um Büchenbach — ohne Veranstaltungen."],
-    ["#/karte", "🗺️", "Karte", "Büchenbach mit den Grenzen des Beiratsgebiets — auf Wunsch mit Luftbild, historischer Uraufnahme und Denkmälern."],
-    ["#/strassen", "🛣️", "Straßen", "Alle Straßen im Beiratsgebiet — welche gehören dazu, welche liegen auf der Grenze?"],
     ["#/gremien", "🏛️", "Büchenbach anderswo", "Was Stadtrat, Sport- und Jugendhilfeausschuss über den Stadtteil beraten haben."],
+    ["#/aemter", "🏢", "Ämter & Zuständigkeiten", "Schnell klären: Welches Amt ist für ein Anliegen zuständig?"],
+    ["#/fachbeiraete", "👥", "Fachbeiräte", "Andere Beiräte und Ausschüsse — inkl. UVPA-Infoseite."],
+    ["#/karte", "🗺️", "Straße & Karte", "Büchenbach mit Beiratsgrenze, Straßensuche mit Protokollbezug und einblendbaren OSM-Themen: Spielplätze, Haltestellen, Nahversorgung, Denkmäler, Tempo-Beschränkungen …"],
+    ["#/statistik", "📊", "Statistik", "Bevölkerung, Sozialstruktur und Prognosen für Erlangen und Büchenbach."],
+    ["#/recht", "⚖️", "Satzung & Recht", "Rechtsgrundlage der Stadtteilbeiräte und weiteres Stadtrecht."],
+    ["#/links", "🔗", "Ratsinfosystem & Links", "Direkt ins Ratsinformationssystem und weitere ausgewählte Seiten rund um Büchenbach."],
   ];
   view().innerHTML = `
     <section class="hero">
@@ -342,7 +343,30 @@ function fmtDate(iso) {
   return `${Number(d)}. ${mon} ${y}`;
 }
 
-// ── Suche (FTS über Protokolle + Register) ───────────────────────────────────
+// ── Suche (übergreifend über ALLE Kategorien) ────────────────────────────────
+//
+// Zwei Trefferquellen mit unterschiedlicher Mechanik, bewusst getrennt gehalten:
+// die Volltextbestände (Protokolle, Satzung, Statistik) liegen in DuckDB und
+// werden per FTS/BM25 durchsucht; die Link-/Metadaten-Sektionen (Büchenbach
+// anderswo, Ämter, Fachbeiräte, Links) stehen als JSON im Browser und werden
+// per Stichwort-Abgleich durchsucht. Ergebnis wird nach Kategorie gruppiert,
+// damit jede Quelle sichtbar ist — statt einen einzigen Score-Topf zu mischen,
+// dessen Zahlen zwischen BM25 und Stichworttreffern nicht vergleichbar wären.
+
+// Stichwort-Score für die JSON-Sektionen: AND-Semantik (jedes Wort muss
+// vorkommen), Trefferhäufigkeit als Rang. 0 = kein Treffer.
+function textScore(hay, terms) {
+  if (!hay) return 0;
+  const h = hay.toLowerCase();
+  let s = 0;
+  for (const t of terms) {
+    let i = h.indexOf(t), c = 0;
+    while (i !== -1) { c++; i = h.indexOf(t, i + t.length); }
+    if (!c) return 0;
+    s += c;
+  }
+  return s;
+}
 
 async function renderSuche(query) {
   $("search-input").value = query;
@@ -358,14 +382,16 @@ async function renderSuche(query) {
   }
   status(`Suche „${query}“ …`);
   const qy = esc(query);
+  const terms = query.toLowerCase().split(/\s+/)
+    .map((w) => w.replace(/[^\p{L}\p{N}\/.\-]/gu, "")).filter((w) => w.length >= 2);
+  const rank = (a, b) => b.score - a.score;
 
+  // ── Volltextbestände (DuckDB/FTS) ──────────────────────────────────────────
   const docRows = await q(
-    `SELECT d.id, 'doc' AS kind, d.title, d.category, d.date::VARCHAR AS date, d.summary, s.score
+    `SELECT d.id, d.title, d.category, d.date::VARCHAR AS date, d.summary, s.score
      FROM (SELECT id, fts_main_documents.match_bm25(id, '${qy}') AS score FROM documents) s
      JOIN documents d ON d.id = s.id
      WHERE s.score IS NOT NULL ORDER BY s.score DESC LIMIT 40`);
-
-  // Snippets für die Treffer
   if (docRows.length && lastTerms.length) {
     const ids = docRows.map((r) => `'${esc(r.id)}'`).join(",");
     const w = esc(lastTerms[0].toLowerCase());
@@ -375,35 +401,106 @@ async function renderSuche(query) {
     const byId = Object.fromEntries(snips.map((s) => [s.id, s.snip]));
     for (const r of docRows) r.snippet = byId[r.id];
   }
-
   const planRows = await q(
-    `SELECT id, 'planfile' AS kind, title, plan_title, pkind, score FROM (
+    `SELECT id, title, plan_title, pkind, score FROM (
        SELECT pf.rowid::VARCHAR AS id, pf.titel AS title, p.title AS plan_title, p.kind AS pkind,
               fts_main_plan_files.match_bm25(pf.rowid, '${qy}') AS score
        FROM plan_files pf JOIN plans p ON p.id = pf.plan_id
-     ) WHERE score IS NOT NULL ORDER BY score DESC LIMIT 12`);
+     ) WHERE score IS NOT NULL ORDER BY score DESC LIMIT 15`);
 
-  const rows = [...docRows, ...planRows].sort((a, b) => b.score - a.score);
-  if (!rows.length) {
+  // ── Link-/Metadaten-Sektionen (JSON) ───────────────────────────────────────
+  const [fb, ae, lk, tops] = await Promise.all([
+    loadContent("fachbeiraete").catch(() => null),
+    loadContent("aemter").catch(() => null),
+    loadContent("links").catch(() => null),
+    ladeFremdeTops(),
+  ]);
+
+  const kartei = (e) => {
+    const sc = textScore(`${e.name} ${e.beschreibung || ""}`, terms);
+    return sc ? { score: sc + (textScore(e.name, terms) ? 5 : 0), title: e.name,
+                  snippet: e.beschreibung, href: e.url } : null;
+  };
+  const fbLabel = (k) => k === "Ausschuss" ? "Ausschuss"
+    : k === "Orts- und Stadtteilbeirat" ? "Orts-/Stadtteilbeirat" : "Beirat";
+  const fbItems = !fb ? [] : fb.eintraege.map((e) => {
+    const it = kartei(e); if (it) it.meta = fbLabel(e.kategorie); return it;
+  }).filter(Boolean).sort(rank).slice(0, 12);
+  const lkItems = !lk ? [] : lk.eintraege.map((e) => {
+    const it = kartei(e); if (it) it.meta = "Link"; return it;
+  }).filter(Boolean).sort(rank).slice(0, 12);
+
+  let aeItems = [];
+  if (ae) {
+    const recs = [];
+    for (const r of ae.relevant || []) recs.push({ hay: `${r.thema} ${r.amt}`, title: r.thema, meta: r.amt });
+    for (const ref of ae.referate || []) for (const a of ref.aemter || [])
+      recs.push({ hay: `${a.name} ${a.nr || ""} ${a.leitung || ""}`,
+                  title: a.nr ? `${a.name} (${a.nr})` : a.name, meta: ref.referat || ref.bereich || "" });
+    const seen = new Set();
+    aeItems = recs.map((x) => { const sc = textScore(x.hay, terms); return sc ? { ...x, score: sc } : null; })
+      .filter(Boolean).sort(rank)
+      .filter((x) => { if (seen.has(x.title)) return false; seen.add(x.title); return true; })
+      .slice(0, 12).map((x) => ({ score: x.score, title: x.title, meta: x.meta, route: "/aemter" }));
+  }
+
+  const topItems = !tops ? [] : tops.tops.filter((t) => !t.routine).map((t) => {
+    const sc = textScore(`${t.titel} ${t.beschluss || ""}`, terms);
+    return sc ? { score: sc + (textScore(t.titel, terms) ? 5 : 0), title: t.titel,
+                  meta: `${t.gremium} · ${fmtDate(t.datum)}`, snippet: t.beschluss, href: t.url } : null;
+  }).filter(Boolean).sort(rank).slice(0, 15);
+
+  // ── Ergebnis-Items je Gruppe aufbereiten ───────────────────────────────────
+  const docItems = docRows.map((r) => ({
+    score: r.score, showScore: true, title: r.title,
+    meta: `${r.category} · ${fmtDate(r.date)}`, route: `/doc/${encodeURIComponent(r.id)}`,
+    snippetHtml: r.snippet ? `… ${highlight(escHtml(r.snippet))} …`
+      : r.summary ? escHtml(shortLabel(r.summary, 200)) : "",
+  }));
+  const planItems = planRows.map((r) => ({
+    score: r.score, showScore: true, badge: r.pkind === "recht" ? "RECHT" : "STATISTIK",
+    title: r.title, meta: r.plan_title, route: `/planfile/${encodeURIComponent(r.id)}`,
+  }));
+
+  const groups = [
+    ["📄 Protokolle & Anträge", docItems],
+    ["🏛️ Büchenbach anderswo", topItems],
+    ["🏢 Ämter & Zuständigkeiten", aeItems],
+    ["👥 Fachbeiräte", fbItems],
+    ["⚖️ Satzung & Statistik", planItems],
+    ["🔗 Ratsinfosystem & Links", lkItems],
+  ].filter(([, items]) => items.length);
+
+  const total = groups.reduce((n, [, items]) => n + items.length, 0);
+  if (!total) {
     box.innerHTML = `<p class="hint">Keine Treffer für „${escHtml(query)}“. Tipp: einzelne
       Stichwörter statt ganzer Sätze, z. B. „Spielplatz“ oder „Stromnetz“.</p>`;
     status(`Keine Treffer für „${query}“.`);
     return;
   }
-  box.innerHTML = `<ol class="results">${rows.map((r) => {
-    if (r.kind === "planfile") return `<li data-go="/planfile/${encodeURIComponent(r.id)}">
-      <div class="r-title"><span class="badge badge-plan">${r.pkind === "recht" ? "RECHT" : "STATISTIK"}</span>${escHtml(r.title)}</div>
-      <div class="r-meta">${escHtml(r.plan_title)} · <strong>Score ${r.score.toFixed(2)}</strong></div></li>`;
-    return `<li data-go="/doc/${encodeURIComponent(r.id)}">
-      <div class="r-title">${escHtml(r.title)}</div>
-      <div class="r-meta">${escHtml(r.category)} · ${fmtDate(r.date)} · <strong>Score ${r.score.toFixed(2)}</strong></div>
-      ${r.snippet ? `<div class="r-snippet">… ${highlight(escHtml(r.snippet))} …</div>`
-        : r.summary ? `<div class="r-snippet">${escHtml(shortLabel(r.summary, 200))}</div>` : ""}
+
+  const item = (it) => {
+    const badge = it.badge ? `<span class="badge badge-plan">${it.badge}</span>` : "";
+    const ext = it.href ? ` <span class="ext">↗</span>` : "";
+    const scoreTxt = it.showScore ? ` · <strong>Score ${it.score.toFixed(2)}</strong>` : "";
+    const snippet = it.snippetHtml !== undefined ? it.snippetHtml
+      : it.snippet ? highlight(escHtml(shortLabel(it.snippet, 200))) : "";
+    const attr = it.href ? `data-href="${escHtml(it.href)}"` : `data-go="${escHtml(it.route)}"`;
+    return `<li ${attr}>
+      <div class="r-title">${badge}${escHtml(it.title)}${ext}</div>
+      ${it.meta ? `<div class="r-meta">${escHtml(it.meta)}${scoreTxt}</div>` : ""}
+      ${snippet ? `<div class="r-snippet">${snippet}</div>` : ""}
     </li>`;
-  }).join("")}</ol>`;
+  };
+  box.innerHTML = groups.map(([label, items]) => `<section class="search-group">
+    <h3 class="sub-head">${escHtml(label)} <span class="group-count">(${items.length})</span></h3>
+    <ol class="results">${items.map(item).join("")}</ol></section>`).join("");
+
   for (const li of box.querySelectorAll("li[data-go]"))
     li.addEventListener("click", () => go(li.dataset.go));
-  status(`${rows.length} Treffer für „${query}“.`);
+  for (const li of box.querySelectorAll("li[data-href]"))
+    li.addEventListener("click", () => window.open(li.dataset.href, "_blank", "noopener"));
+  status(`${total} Treffer für „${query}“ in ${groups.length} Kategorie${groups.length === 1 ? "" : "n"}.`);
 }
 
 // ── Dokument-Reader (Sitzungsdokument) ───────────────────────────────────────
@@ -851,7 +948,35 @@ async function ladeFremdeTops() {
   return (fremdeTops = false);
 }
 
-async function renderFremdeGremien(_rest, nurRelevante = true) {
+// Themengebiete für den Filter — dieselbe kuratierte Taxonomie wie die
+// Protokollsuche (enrichment/themen.md). Die fremden Tagesordnungen tragen kein
+// Themen-Feld, deshalb wird hier über Titel und Beschluss geschätzt. Bewusst
+// dieselbe Logik wie die Bezugs-Erkennung: nur Metadaten, keine Volltexte, also
+// eng und nicht vollständig. Reihenfolge = Anzeigereihenfolge im Filter.
+const TG_THEMEN = [
+  ["Verkehr & Mobilität", ["verkehr", "straße", "strasse", "kreuzung", "ampel", "tempo", "verkehrsberuhig"]],
+  ["Rad- & Fußverkehr", ["radweg", "fahrrad", "gehweg", "fußgäng", "fussgäng", "querung", "zebrastreif", "überweg", "ueberweg"]],
+  ["ÖPNV & Stadt-Umland-Bahn", ["bus", "öpnv", "oepnv", "haltestelle", "nahverkehr", "stub", "stadt-umland"]],
+  ["Parken", ["parkplatz", "stellplatz", "bewohnerpark", "parkraum", "parken"]],
+  ["Verkehrssicherheit", ["schulweg", "tempo 30", "unfall", "verkehrssicher"]],
+  ["Wohnen & Stadtentwicklung", ["wohnbau", "bebauungsplan", "quartier", "baugebiet", "stadtentwicklung", "nachverdicht", "wohngebiet", "bauleitplan"]],
+  ["Soziales & Nachbarschaft", ["soziale", "diakonie", "nachbarschaft", "sozialstruktur", "integration"]],
+  ["Kinder, Jugend & Familie", ["kinder", "jugend", "familie", "spielplatz", "jugendtreff"]],
+  ["Senioren & Inklusion", ["senior", "barrierefrei", "inklusion", "pflege", "rikscha"]],
+  ["Bildung (Schulen & Kitas)", ["schule", "kita", "kindergarten", "hort", "bildung"]],
+  ["Grün, Natur & Spielplätze", ["grünanlage", "gruenanlage", "baum", "spielplatz", "park", "umwelt", "natur", "begrünung", "begruen"]],
+  ["Sport & Freizeit", ["sport", "freizeit", "verein", "bolzplatz"]],
+  ["Sicherheit & Ordnung", ["sicherheit", "ordnung", "feuerwehr", "rettung", "defibrillator", "sauberkeit"]],
+  ["Infrastruktur & Versorgung", ["stromnetz", "estw", "eb77", "abfall", "straßenreinig", "breitband", "versorgung", "glasfaser"]],
+  ["Bürgerbeteiligung & Gremien", ["beteiligung", "bürgerversamml", "buergerversamml", "antrag", "beirat", "satzung", "wahl"]],
+  ["Vereine & Ehrenamt", ["verein", "ehrenamt", "kirchengemeinde", "initiative", "bürgertreff", "buergertreff"]],
+];
+function themenEinesTops(t) {
+  const txt = `${t.titel || ""} ${t.beschluss || ""}`.toLowerCase();
+  return TG_THEMEN.filter(([, kw]) => kw.some((k) => txt.includes(k))).map(([name]) => name);
+}
+
+async function renderFremdeGremien() {
   status("Lade Tagesordnungen …");
   const daten = await ladeFremdeTops();
   if (!daten) {
@@ -863,9 +988,13 @@ async function renderFremdeGremien(_rest, nurRelevante = true) {
     return;
   }
 
-  const alle = daten.tops.filter((t) => !t.routine);
-  const relevante = alle.filter((t) => t.relevant);
-  const zeigen = nurRelevante ? relevante : alle;
+  const relevante = daten.tops.filter((t) => !t.routine && t.relevant);
+  // Themen einmal pro Eintrag bestimmen und anhängen; nur Themen mit
+  // mindestens einem Treffer landen im Filter, in Taxonomie-Reihenfolge.
+  relevante.forEach((t) => { t._themen = themenEinesTops(t); });
+  const themenAnzahl = new Map();
+  for (const t of relevante) for (const th of t._themen) themenAnzahl.set(th, (themenAnzahl.get(th) || 0) + 1);
+  const themenOptionen = TG_THEMEN.map(([name]) => name).filter((name) => themenAnzahl.has(name));
 
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">🏛️ Büchenbach anderswo</h2>
@@ -877,19 +1006,18 @@ async function renderFremdeGremien(_rest, nurRelevante = true) {
     <p class="hinweis-eng">Die Erkennung ist bewusst eng: Sie greift auf Titel, nicht
       auf Dokumentinhalte, und findet deshalb nicht jeden Bezug. Wiederkehrende
       Formalpunkte (Anfragen, Mitteilungen, Beirats-Personalien) sind ausgeblendet.</p>
-    <div class="map-actions">
-      <button id="tg-toggle" class="btn-primary" type="button">${nurRelevante
-        ? `Alle ${alle.length} Tagesordnungspunkte zeigen`
-        : `Nur die ${relevante.length} mit Büchenbach-Bezug zeigen`}</button>
-    </div>
+    ${themenOptionen.length ? `<div class="map-actions">
+      <label>Themengebiet <select id="tg-thema"><option value="">alle Themen</option>
+        ${themenOptionen.map((th) => `<option value="${escHtml(th)}">${escHtml(th)} (${themenAnzahl.get(th)})</option>`).join("")}</select></label>
+    </div>` : ""}
     <div id="tg-liste"></div>
     <p class="quelle">Quelle: ${escHtml(daten.quelle || "Ratsinformationssystem der Stadt Erlangen")}
       · Stand ${escHtml(fmtDate(daten.stand))}</p></div>`;
 
   const liste = $("tg-liste");
-  if (!zeigen.length) {
-    liste.innerHTML = `<p class="hint">Keine Einträge.</p>`;
-  } else {
+  const zeichne = (thema) => {
+    const zeigen = thema ? relevante.filter((t) => t._themen.includes(thema)) : relevante;
+    if (!zeigen.length) { liste.innerHTML = `<p class="hint">Keine Einträge.</p>`; return; }
     let html = "", jahr = "";
     for (const t of zeigen) {
       const y = (t.datum || "").slice(0, 4);
@@ -910,12 +1038,12 @@ async function renderFremdeGremien(_rest, nurRelevante = true) {
       </div>`;
     }
     liste.innerHTML = html;
-  }
+    status(`${zeigen.length} Tagesordnungspunkte mit Büchenbach-Bezug${thema ? ` · Thema „${thema}"` : ""} aus ${Object.keys(daten.gremien).length} Gremien.`);
+  };
 
-  $("tg-toggle").addEventListener("click", () => renderFremdeGremien(_rest, !nurRelevante));
-  status(nurRelevante
-    ? `${relevante.length} Tagesordnungspunkte mit Büchenbach-Bezug aus ${Object.keys(daten.gremien).length} Gremien.`
-    : `${alle.length} Tagesordnungspunkte (ohne Formalpunkte) aus ${Object.keys(daten.gremien).length} Gremien.`);
+  const sel = $("tg-thema");
+  if (sel) sel.addEventListener("change", () => zeichne(sel.value));
+  zeichne("");
 }
 
 // ── Karten-Sektionen: Fachbeiräte / Ämter / Links ────────────────────────────
@@ -948,7 +1076,10 @@ async function renderCards(key, title, icon) {
   const entries = groups.length
     ? groups.map((group) => {
         const inGroup = data.eintraege.filter((e) => e.kategorie === group);
-        const label = group === "Beirat" ? "Beiräte" : group === "Ausschuss" ? "Ausschüsse" : group;
+        const label = group === "Beirat" ? "Beiräte"
+          : group === "Ausschuss" ? "Ausschüsse"
+          : group === "Orts- und Stadtteilbeirat" ? "Andere Orts- und Stadtteilbeiräte"
+          : group;
         return `<section class="card-group">
           <h3 class="sub-head">${escHtml(label)} <span class="group-count">(${inGroup.length})</span></h3>
           <div class="cards">${inGroup.map((e) => card(e, false)).join("")}</div>
@@ -1014,7 +1145,7 @@ async function renderAemter() {
   status(`${data.referate.length} Referate mit ${n} Ämtern und Einrichtungen.`);
 }
 
-// ── Karte (Leaflet, OSM/basemap.de + amtliche WMS-Dienste Bayerns) ───────────
+// ── Straße & Karte (Leaflet, OSM/basemap.de + OSM-Themen aus Overpass) ───────
 
 let leafletLoading = null;
 function loadLeaflet() {
@@ -1106,115 +1237,45 @@ async function addBeiratsgrenzen(L, map, { nachbarnBenennen = true, fuellen = tr
  * der BayernAtlas selbst direkt einbetten — der sperrt sie per `X-Frame-Options: DENY`.
  */
 function buildLayer(L, cfg) {
-  if (cfg.typ === "wms") {
-    return L.tileLayer.wms(cfg.url, {
-      layers: cfg.layers,
-      format: cfg.format || "image/png",
-      transparent: !!cfg.transparent,
-      attribution: cfg.attribution,
-      maxZoom: cfg.maxZoom || 20,
-    });
-  }
   return L.tileLayer(cfg.url, { attribution: cfg.attribution, maxZoom: cfg.maxZoom || 19 });
 }
 
 async function renderKarte() {
+  status("Lade Straße & Karte …");
   const cfg = await loadContent("karte");
-  view().innerHTML = `<div class="wrap">${crumb()}
-    <h2 class="section-title">🗺️ Karte</h2>
-    ${cfg.intro ? `<p class="section-intro">${escHtml(cfg.intro)}</p>` : ""}
-    <div id="map"></div></div>`;
-  status("Lade Karte …");
-  try {
-    await loadLeaflet();
-  } catch (e) {
-    $("map").innerHTML = `<p class="hint" style="padding:1rem">${escHtml(e.message)}</p>`;
-    return;
-  }
-  const L = window.L;
-  const map = L.map("map").setView(cfg.center, cfg.zoom);
-  const layers = {};
-  let base = null;
-  for (const l of cfg.layers) {
-    const t = buildLayer(L, l);
-    layers[l.name] = t;
-    if (l.default || !base) base = t;
-  }
-  base.addTo(map);
-  const overlays = {};
-  for (const o of cfg.overlays || []) overlays[o.name] = buildLayer(L, o);
-  if (Object.keys(layers).length > 1 || Object.keys(overlays).length)
-    L.control.layers(layers, overlays).addTo(map);
-
-  // Manche Overlays sind nur für große Maßstäbe gezeichnet (`abZoom`) und bleiben
-  // weiter draußen leer. Ohne Hinweis wirkt der eingeschaltete Layer defekt.
-  map.on("overlayadd", (e) => {
-    const o = (cfg.overlays || []).find((x) => x.name === e.name);
-    if (o?.abZoom && map.getZoom() < o.abZoom) {
-      status(`„${e.name}“ ist eingeschaltet, wird aber erst ab Zoomstufe ${o.abZoom} gezeichnet — bitte näher heranzoomen.`);
-    }
-  });
-  for (const m of cfg.marker || []) {
-    L.marker([m.lat, m.lon]).addTo(map)
-      .bindPopup(`<strong>${escHtml(m.titel)}</strong>${m.beschreibung ? "<br>" + escHtml(m.beschreibung) : ""}`);
-  }
-
-  // Grenzen des Beiratsgebiets: die Karte auf das eigene Gebiet ausrichten,
-  // die Nachbarn bleiben als Orientierung sichtbar.
-  const eigen = await addBeiratsgrenzen(L, map);
-  if (eigen) {
-    map.fitBounds(eigen.getBounds(), { padding: [20, 20] });
-    $("map").insertAdjacentHTML("afterend", `<p class="map-note">
-      <i class="lg-eigen"></i> Gebiet des Stadtteilbeirats Büchenbach ·
-      <i class="lg-nachbar"></i> benachbarte Beiratsgebiete (Name bei Mauskontakt auf die Grenze)<br>
-      Gebietsgrenzen: Stadt Erlangen, Statistik und Stadtforschung (dl-de/by-2.0),
-      Geometrie im Stand von 2015; Namen nach der Satzung über Orts- und
-      Stadtteilbeiräte in der Fassung ab 01.05.2026. Anger und Bruck sind seither
-      getrennte Beiräte, die Stadt veröffentlicht dafür aber noch keine getrennte
-      Geometrie — sie erscheinen deshalb als ein Gebiet.</p>`);
-  }
-  setTimeout(() => map.invalidateSize(), 100);
-  status(eigen
-    ? "Karte geladen — die durchgezogene Linie ist die Grenze des Beiratsgebiets. Luftbild, historische Uraufnahme und Denkmäler lassen sich oben rechts einblenden."
-    : "Karte geladen. Luftbild, historische Uraufnahme und Denkmäler lassen sich oben rechts einblenden.");
-}
-
-// ── Straßen im Beiratsgebiet ─────────────────────────────────────────────────
-
-async function renderStrassen() {
-  status("Lade Straßenverzeichnis …");
   const data = await loadGeo("strassen.json");
-  if (!data) {
-    view().innerHTML = `<div class="wrap">${crumb()}
-      <h2 class="section-title">🛣️ Straßen im Beiratsgebiet</h2>
-      <p class="hint">Die Straßendaten fehlen — sie entstehen mit
-      <code>python tools/fetch_geodata.py</code>.</p></div>`;
-    return;
+  const katCfg = await loadGeo("osm_kategorien.json");
+
+  // Straßen nach statistischem Bezirk gruppieren (wie im früheren Straßen-Tab).
+  let sortiert = [], grenz = [], index = null, mitProtokoll = 0;
+  if (data) {
+    const gruppen = new Map();
+    for (const s of data.strassen) {
+      const bezirke = s.bezirke.length ? s.bezirke : ["ohne Bezirk (keine Hausnummern)"];
+      for (const b of bezirke) {
+        if (!gruppen.has(b)) gruppen.set(b, []);
+        gruppen.get(b).push(s);
+      }
+    }
+    sortiert = [...gruppen.entries()].sort((a, b) => b[1].length - a[1].length);
+    grenz = data.strassen.filter((s) => s.auch_in.length);
+    index = await loadStrassenIndex();
+    mitProtokoll = data.strassen.filter((s) => protokolleZu(index, s.name).length).length;
   }
 
-  // Nach statistischem Bezirk gruppieren: das ist die Gliederung, in der auch
-  // die Statistik der Stadt rechnet, und sie ordnet die 128 Straßen sinnvoll.
-  const gruppen = new Map();
-  for (const s of data.strassen) {
-    const bezirke = s.bezirke.length ? s.bezirke : ["ohne Bezirk (keine Hausnummern)"];
-    for (const b of bezirke) {
-      if (!gruppen.has(b)) gruppen.set(b, []);
-      gruppen.get(b).push(s);
-    }
-  }
-  const sortiert = [...gruppen.entries()].sort((a, b) => b[1].length - a[1].length);
-  const grenz = data.strassen.filter((s) => s.auch_in.length);
-  const index = await loadStrassenIndex();
-  const mitProtokoll = data.strassen.filter((s) => protokolleZu(index, s.name).length).length;
+  // Themen-Schalter (Punkte + Linien) über der Karte, aus osm_kategorien.json.
+  const alleKats = [...(katCfg?.punkt || []), ...(katCfg?.linie || [])];
+  const punktKeys = new Set((katCfg?.punkt || []).map((k) => k.key));
+  const chips = alleKats.map((k) => `
+    <button type="button" class="kat-chip" data-kat="${k.key}" style="--kc:${k.farbe}"
+      aria-pressed="false" ${k.count ? "" : "disabled"}
+      title="${escHtml(k.label)} — ${k.count} in Büchenbach">
+      <span class="kc-icon">${k.icon}</span>${escHtml(k.label)}
+      <span class="kc-n">${k.count}</span></button>`).join("");
 
   view().innerHTML = `<div class="wrap">${crumb()}
-    <h2 class="section-title">🛣️ Straßen im Beiratsgebiet</h2>
-    <p class="section-intro">Alle ${data.anzahl} Straßen, die im Gebiet des
-      ${escHtml(data.beirat.replace("Stadtteilbeirat ", "Stadtteilbeirats "))} liegen —
-      ermittelt aus der amtlichen Gebietsgrenze und der Straßengeometrie, nicht geschätzt.
-      Ein Klick zeigt die Straße auf der Karte — und die Protokolle, in denen sie
-      vorkommt. <strong>${mitProtokoll}</strong> der Straßen wurden im Beirat schon
-      einmal behandelt.</p>
+    <h2 class="section-title">🗺️ Straße &amp; Karte</h2>
+    ${cfg.intro ? `<p class="section-intro">${escHtml(cfg.intro)}</p>` : ""}
     <div class="street-search">
       <input id="strassen-filter" type="search" placeholder="Straße suchen …"
              aria-label="Straße suchen">
@@ -1223,48 +1284,169 @@ async function renderStrassen() {
       <span id="strassen-count"></span>
     </div>
     <div id="strassen-treffer"></div>
-    <div id="strassen-map-box"></div>
-    ${grenz.length ? `<div class="hinweis"><strong>${grenz.length} Straßen liegen auf der
-      Gebietsgrenze</strong> und gehören damit auch zu einem Nachbargebiet:
-      ${grenz.map((s) => escHtml(s.name)).join(", ")}.</div>` : ""}
-    <div id="strassen-liste">
-      ${sortiert.map(([bez, liste]) => `
-        <section class="bezirk" data-bezirk="${escHtml(bez)}">
-          <h3>${escHtml(bez)} <span class="anz">${liste.length}</span></h3>
-          <div class="street-chips">
-            ${liste.map((s) => {
-              const n = protokolleZu(index, s.name).length;
-              return `<button type="button" class="chip-street" data-street="${escHtml(s.name)}"
-                data-protokolle="${n}"
-                title="${s.auch_in.length ? "Grenzlage, auch in: " + escHtml(s.auch_in.join(", ")) : escHtml(bez)}${n ? ` · in ${n} Protokoll${n === 1 ? "" : "en"}` : ""}">
-                ${escHtml(s.name)}${s.auch_in.length ? ' <span class="grenz">↔</span>' : ""}
-                ${n ? `<span class="anzahl">${n}</span>` : ""}
-              </button>`;
-            }).join("")}
-          </div>
-        </section>`).join("")}
-    </div>
-    <p class="quelle">Straßenverzeichnis und Gebietsgrenzen: Stadt Erlangen, Statistik und
-      Stadtforschung (dl-de/by-2.0), Stand ${escHtml(data.stand_verzeichnis)} ·
-      Straßengeometrie: © OpenStreetMap-Mitwirkende (ODbL)</p>
+    ${alleKats.length ? `<div class="kat-leiste" role="group" aria-label="Themen aus OpenStreetMap">
+      <span class="kat-hint">Themen aus OpenStreetMap einblenden:</span>${chips}
+      <button type="button" class="kat-clear" id="kat-clear" hidden>× alle aus</button>
+    </div>` : ""}
+    <div id="map"></div>
+    <p class="map-note" id="map-note"></p>
+    ${data ? `
+    <details id="strassen-details" open>
+      <summary><strong>${data.anzahl} Straßen</strong> im Beiratsgebiet${mitProtokoll ? ` · ${mitProtokoll} in Protokollen` : ""}${grenz.length ? ` · ${grenz.length} auf der Grenze` : ""}</summary>
+      ${grenz.length ? `<p class="hinweis"><strong>${grenz.length} Straßen liegen auf der
+        Gebietsgrenze</strong> und gehören damit auch zu einem Nachbargebiet:
+        ${grenz.map((s) => escHtml(s.name)).join(", ")}.</p>` : ""}
+      <div id="strassen-liste">
+        ${sortiert.map(([bez, liste]) => `
+          <section class="bezirk" data-bezirk="${escHtml(bez)}">
+            <h3>${escHtml(bez)} <span class="anz">${liste.length}</span></h3>
+            <div class="street-chips">
+              ${liste.map((s) => {
+                const n = protokolleZu(index, s.name).length;
+                return `<button type="button" class="chip-street" data-street="${escHtml(s.name)}"
+                  data-protokolle="${n}"
+                  title="${s.auch_in.length ? "Grenzlage, auch in: " + escHtml(s.auch_in.join(", ")) : escHtml(bez)}${n ? ` · in ${n} Protokoll${n === 1 ? "" : "en"}` : ""}">
+                  ${escHtml(s.name)}${s.auch_in.length ? ' <span class="grenz">↔</span>' : ""}
+                  ${n ? `<span class="anzahl">${n}</span>` : ""}
+                </button>`;
+              }).join("")}
+            </div>
+          </section>`).join("")}
+      </div>
+      <p class="quelle">Straßenverzeichnis und Gebietsgrenzen: Stadt Erlangen, Statistik und
+        Stadtforschung (dl-de/by-2.0), Stand ${escHtml(data.stand_verzeichnis)} ·
+        Geometrie &amp; Themenobjekte: © OpenStreetMap-Mitwirkende (ODbL)</p>
+    </details>` : `<p class="hint">Die Straßendaten fehlen — sie entstehen mit
+      <code>python tools/fetch_geodata.py</code>.</p>`}
   </div>`;
 
-  const zeigeStrasse = (name) => {
-    const treffer = protokolleZu(index, name);
-    $("strassen-treffer").innerHTML = `<div class="treffer-box">
-      <h3>${escHtml(name)}</h3>
-      ${treffer.length
-        ? `<p class="t-intro">In ${treffer.length} Protokoll${treffer.length === 1 ? "" : "en"}
-             erwähnt — zum Öffnen anklicken:</p>
-           <ul class="treffer-liste">
-             ${treffer.map((t) => `<li><a href="#/doc/${encodeURIComponent(t.id)}">
-               <span class="badge ${CAT_BADGE[t.category] || ""}">${CAT_SHORT[t.category] || "DOK"}</span>
-               <span class="t-datum">${fmtDate(t.date)}</span>
-               <span class="t-titel">${escHtml(shortLabel(t.title, 70))}</span></a></li>`).join("")}
-           </ul>`
-        : `<p class="t-intro">In den vorliegenden Protokollen bisher nicht erwähnt.</p>`}
-    </div>`;
-    showStreetMap(name, $("strassen-map-box"));
+  try {
+    await loadLeaflet();
+  } catch (e) {
+    $("map").innerHTML = `<p class="hint" style="padding:1rem">${escHtml(e.message)}</p>`;
+    return;
+  }
+  const L = window.L;
+  const map = L.map("map").setView(cfg.center, cfg.zoom);
+
+  // Grundkarten: nur OSM (Vorgabe) und basemap.de, kleine Umschaltung oben rechts.
+  const layers = {};
+  let base = null;
+  for (const l of cfg.layers) {
+    const t = buildLayer(L, l);
+    layers[l.name] = t;
+    if (l.default || !base) base = t;
+  }
+  base.addTo(map);
+  if (Object.keys(layers).length > 1)
+    L.control.layers(layers, {}, { position: "topright" }).addTo(map);
+
+  for (const m of cfg.marker || [])
+    L.marker([m.lat, m.lon]).addTo(map)
+      .bindPopup(`<strong>${escHtml(m.titel)}</strong>${m.beschreibung ? "<br>" + escHtml(m.beschreibung) : ""}`);
+
+  const eigen = await addBeiratsgrenzen(L, map);
+  if (eigen) map.fitBounds(eigen.getBounds(), { padding: [20, 20] });
+  $("map-note").innerHTML = `<i class="lg-eigen"></i> Grenze des Beiratsgebiets Büchenbach ·
+    <i class="lg-nachbar"></i> Nachbargebiete (Name bei Mauskontakt) · Themen-Symbole: © OpenStreetMap.
+    Gebietsgrenze: Stadt Erlangen (dl-de/by-2.0), Geometrie im Stand 2015; Anger und Bruck erscheinen als ein Gebiet.`;
+  setTimeout(() => map.invalidateSize(), 100);
+
+  // ── OSM-Themen-Layer, je Kategorie erst bei Bedarf gebaut ──────────────────
+  const poiData = await loadGeo("osm_poi.geojson");
+  const linData = await loadGeo("osm_linien.geojson");
+  const meta = Object.fromEntries(alleKats.map((k) => [k.key, k]));
+  const katLayers = {};
+  const buildKatLayer = (key) => {
+    const grp = L.layerGroup();
+    const { farbe, icon, label } = meta[key];
+    if (punktKeys.has(key)) {
+      for (const f of (poiData?.features || [])) {
+        if (f.properties.kat !== key) continue;
+        const [lon, lat] = f.geometry.coordinates;
+        const p = f.properties;
+        L.marker([lat, lon], {
+          icon: L.divIcon({
+            className: "poi-pin-wrap",
+            html: `<span class="poi-pin" style="--kc:${farbe}">${icon}</span>`,
+            iconSize: [26, 26], iconAnchor: [13, 13],
+          }),
+        }).bindPopup(`<strong>${escHtml(p.name)}</strong>${p.sub ? `<br>${escHtml(p.sub)}` : ""}${p.bf ? " ♿" : ""}`)
+          .addTo(grp);
+      }
+    } else {
+      for (const f of (linData?.features || [])) {
+        if (f.properties.kat !== key) continue;
+        const p = f.properties;
+        const latlngs = f.geometry.coordinates.map(([lon, lat]) => [lat, lon]);
+        const txt = key === "tempo"
+          ? `Tempo ${escHtml(p.tempo || "?")}${p.name ? " · " + escHtml(p.name) : ""}`
+          : (p.name ? escHtml(p.name) : label);
+        L.polyline(latlngs, { color: farbe, weight: 5, opacity: 0.8 })
+          .bindPopup(`<strong>${escHtml(label)}</strong><br>${txt}`).addTo(grp);
+      }
+    }
+    return grp;
+  };
+
+  const aktiv = new Set();
+  const clearBtn = $("kat-clear");
+  const syncClear = () => { if (clearBtn) clearBtn.hidden = aktiv.size === 0; };
+  const setChip = (key, on) => {
+    const c = view().querySelector(`.kat-chip[data-kat="${key}"]`);
+    c?.classList.toggle("active", on);
+    c?.setAttribute("aria-pressed", on ? "true" : "false");
+  };
+  for (const chip of view().querySelectorAll(".kat-chip")) {
+    chip.addEventListener("click", () => {
+      const key = chip.dataset.kat;
+      if (aktiv.has(key)) {
+        map.removeLayer(katLayers[key]); aktiv.delete(key); setChip(key, false);
+      } else {
+        if (!katLayers[key]) katLayers[key] = buildKatLayer(key);
+        katLayers[key].addTo(map); aktiv.add(key); setChip(key, true);
+      }
+      syncClear();
+    });
+  }
+  clearBtn?.addEventListener("click", () => {
+    for (const key of [...aktiv]) { map.removeLayer(katLayers[key]); aktiv.delete(key); setChip(key, false); }
+    syncClear();
+  });
+
+  // ── Straßensuche: gewählte Straße auf DERSELBEN Karte hervorheben ──────────
+  let strasseLayer = null;
+  const zeigeStrasse = async (name) => {
+    if (index) {
+      const treffer = protokolleZu(index, name);
+      $("strassen-treffer").innerHTML = `<div class="treffer-box">
+        <h3>${escHtml(name)}</h3>
+        ${treffer.length
+          ? `<p class="t-intro">In ${treffer.length} Protokoll${treffer.length === 1 ? "" : "en"}
+               erwähnt — zum Öffnen anklicken:</p>
+             <ul class="treffer-liste">
+               ${treffer.map((t) => `<li><a href="#/doc/${encodeURIComponent(t.id)}">
+                 <span class="badge ${CAT_BADGE[t.category] || ""}">${CAT_SHORT[t.category] || "DOK"}</span>
+                 <span class="t-datum">${fmtDate(t.date)}</span>
+                 <span class="t-titel">${escHtml(shortLabel(t.title, 70))}</span></a></li>`).join("")}
+             </ul>`
+          : `<p class="t-intro">In den vorliegenden Protokollen bisher nicht erwähnt.</p>`}
+      </div>`;
+    }
+    if (strasseLayer) { map.removeLayer(strasseLayer); strasseLayer = null; }
+    const feature = await localStreetGeometry(name);
+    if (feature) {
+      strasseLayer = L.geoJSON(feature, { style: { color: "#eb6834", weight: 6, opacity: 0.95 } }).addTo(map);
+      map.fitBounds(strasseLayer.getBounds(), { padding: [40, 40], maxZoom: 17 });
+    } else {
+      const g = await geocodeStreet(name);
+      if (g) {
+        strasseLayer = L.marker([Number(g.lat), Number(g.lon)]).addTo(map)
+          .bindPopup(`<strong>${escHtml(name)}</strong>`).openPopup();
+        map.setView([Number(g.lat), Number(g.lon)], 17);
+      }
+    }
+    document.getElementById("map").scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   for (const btn of view().querySelectorAll(".chip-street"))
@@ -1274,33 +1456,40 @@ async function renderStrassen() {
       zeigeStrasse(btn.dataset.street);
     });
 
-  const filter = $("strassen-filter");
-  const nurProtokoll = $("nur-protokoll");
-  const zaehlen = () => {
-    const q = filter.value.trim().toLowerCase();
-    const nur = nurProtokoll.checked;
-    // Straßen zählen, nicht Chips: Eine Straße in zwei Bezirken erscheint
-    // zweimal in der Liste, ist aber eine Straße.
-    const sichtbareStrassen = new Set();
-    for (const sec of view().querySelectorAll(".bezirk")) {
-      let inSec = 0;
-      for (const btn of sec.querySelectorAll(".chip-street")) {
-        const treffer = (!q || btn.dataset.street.toLowerCase().includes(q))
-          && (!nur || btn.dataset.protokolle !== "0");
-        btn.hidden = !treffer;
-        if (treffer) { inSec++; sichtbareStrassen.add(btn.dataset.street); }
+  if (data) {
+    const filter = $("strassen-filter");
+    const nurProtokoll = $("nur-protokoll");
+    const zaehlen = () => {
+      const qv = filter.value.trim().toLowerCase();
+      const nur = nurProtokoll.checked;
+      const sichtbar = new Set();
+      for (const sec of view().querySelectorAll(".bezirk")) {
+        let inSec = 0;
+        for (const btn of sec.querySelectorAll(".chip-street")) {
+          const t = (!qv || btn.dataset.street.toLowerCase().includes(qv))
+            && (!nur || btn.dataset.protokolle !== "0");
+          btn.hidden = !t;
+          if (t) { inSec++; sichtbar.add(btn.dataset.street); }
+        }
+        sec.hidden = inSec === 0;
       }
-      sec.hidden = inSec === 0;
-    }
-    const sichtbar = sichtbareStrassen.size;
-    $("strassen-count").textContent = (q || nur)
-      ? `${sichtbar} von ${data.anzahl}` : `${data.anzahl} Straßen`;
-  };
-  filter.addEventListener("input", zaehlen);
-  nurProtokoll.addEventListener("change", zaehlen);
-  zaehlen();
-  status(`${data.anzahl} Straßen im Beiratsgebiet — ${mitProtokoll} davon in Protokollen, `
-    + `${grenz.length} auf der Gebietsgrenze.`);
+      $("strassen-count").textContent = (qv || nur)
+        ? `${sichtbar.size} von ${data.anzahl}` : `${data.anzahl} Straßen`;
+    };
+    filter.addEventListener("input", zaehlen);
+    nurProtokoll.addEventListener("change", zaehlen);
+    filter.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter") return;
+      e.preventDefault();
+      const first = view().querySelector(".bezirk:not([hidden]) .chip-street:not([hidden])");
+      if (first) first.click();
+    });
+    zaehlen();
+  }
+
+  status(data
+    ? `Straße & Karte geladen — ${data.anzahl} Straßen, ${alleKats.length} OSM-Themen zuschaltbar.`
+    : "Karte geladen.");
 }
 
 // ── Boot ─────────────────────────────────────────────────────────────────────

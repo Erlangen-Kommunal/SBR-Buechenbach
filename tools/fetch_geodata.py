@@ -99,6 +99,112 @@ way["highway"]["name"];
 out geom;
 """
 
+# ── OSM-Themenkategorien für den Karten-Tab ──────────────────────────────────
+# Für jede Kategorie eine Overpass-Auswahl (im gemeinsamen Union-Query) und ein
+# Python-Prädikat, das ein Objekt anhand seiner Tags derselben Kategorie
+# zuordnet. Reihenfolge = Priorität: das erste passende Prädikat gewinnt, damit
+# ein Objekt mit mehreren Tags (etwa eine historische Kirche) genau einmal
+# erscheint. `farbe`/`icon` steuern die Darstellung im Frontend.
+POI_KATEGORIEN = [
+    ("spielplatz", "Spielplätze", "🛝", "#2f9e44",
+     lambda t: t.get("leisure") == "playground"),
+    ("schule_kita", "Schulen & Kitas", "🏫", "#e8590c",
+     lambda t: t.get("amenity") in {"school", "kindergarten"}),
+    ("gesundheit", "Gesundheit", "🩺", "#e64980",
+     lambda t: t.get("amenity") in {"pharmacy", "doctors", "dentist", "clinic"}
+     or "healthcare" in t),
+    ("nahversorgung", "Nahversorgung", "🛒", "#1971c2",
+     lambda t: t.get("shop") in {"supermarket", "bakery", "convenience",
+                                 "butcher", "greengrocer"}),
+    ("gastro", "Gastronomie", "🍽️", "#b8860b",
+     lambda t: t.get("amenity") in {"restaurant", "cafe", "fast_food", "pub",
+                                    "bar", "biergarten", "ice_cream"}),
+    ("gemeinschaft", "Kirche & Gemeinschaft", "⛪", "#7048e8",
+     lambda t: t.get("amenity") in {"place_of_worship", "community_centre",
+                                    "social_facility"}),
+    ("historisch", "Historisch & Denkmal", "🏛️", "#846358",
+     lambda t: "historic" in t),
+    ("sport", "Sportanlagen", "⚽", "#0c8599",
+     lambda t: t.get("leisure") in {"pitch", "sports_centre", "fitness_station",
+                                    "fitness_centre", "swimming_pool"}),
+    ("haltestelle", "Bushaltestellen", "🚌", "#1c7ed6",
+     lambda t: t.get("highway") == "bus_stop"
+     or (t.get("public_transport") == "platform" and t.get("bus") == "yes")),
+    ("querung", "Querungen", "🚸", "#f08c00",
+     lambda t: t.get("highway") == "crossing" or "crossing" in t),
+    ("abfall", "Abfall & Recycling", "🗑️", "#5c940d",
+     lambda t: t.get("amenity") in {"waste_basket", "recycling"}),
+    ("bank", "Sitzbänke", "🪑", "#868e96",
+     lambda t: t.get("amenity") == "bench"),
+]
+
+LINIEN_KATEGORIEN = [
+    ("radweg", "Radweg-Infrastruktur", "🚲", "#087f5b",
+     lambda t: t.get("highway") == "cycleway"
+     or t.get("cycleway") in {"lane", "track", "opposite", "opposite_lane",
+                              "opposite_track"}
+     or any(k.startswith("cycleway:") and v in {"lane", "track"}
+            for k, v in t.items())),
+    ("tempo", "Tempo-Beschränkung", "🚦", "#e03131",
+     lambda t: "maxspeed" in t and t.get("highway") is not None),
+]
+
+# Punkt-Objekte aller Kategorien in einem Rutsch (mit Zentroid für Flächen).
+POI_QUERY = """
+[out:json][timeout:180][bbox:{bbox}];
+(
+  nwr[leisure=playground];
+  nwr[amenity~"^(school|kindergarten)$"];
+  nwr[amenity~"^(pharmacy|doctors|dentist|clinic)$"];
+  nwr[healthcare];
+  nwr[shop~"^(supermarket|bakery|convenience|butcher|greengrocer)$"];
+  nwr[amenity~"^(restaurant|cafe|fast_food|pub|bar|biergarten|ice_cream)$"];
+  nwr[amenity~"^(place_of_worship|community_centre|social_facility)$"];
+  nwr[historic];
+  nwr[leisure~"^(pitch|sports_centre|fitness_station|fitness_centre|swimming_pool)$"];
+  node[highway=bus_stop];
+  node[public_transport=platform][bus=yes];
+  node[highway=crossing];
+  node[crossing];
+  nwr[amenity~"^(waste_basket|recycling)$"];
+  node[amenity=bench];
+);
+out center tags;
+"""
+
+# Linien-Objekte (Radinfrastruktur, tempolimitierte Straßen) mit Geometrie.
+LINIEN_QUERY = """
+[out:json][timeout:180][bbox:{bbox}];
+(
+  way[highway=cycleway];
+  way[highway][cycleway];
+  way[highway]["cycleway:both"];
+  way[highway]["cycleway:left"];
+  way[highway]["cycleway:right"];
+  way[highway][maxspeed];
+);
+out geom tags;
+"""
+
+# Rohwert eines definierenden Tags → deutsches Label für den Popup-Untertitel.
+SUBTYP_DE = {
+    "restaurant": "Restaurant", "cafe": "Café", "fast_food": "Imbiss",
+    "pub": "Kneipe", "bar": "Bar", "biergarten": "Biergarten",
+    "ice_cream": "Eisdiele", "supermarket": "Supermarkt", "bakery": "Bäckerei",
+    "convenience": "Kiosk", "butcher": "Metzgerei", "greengrocer": "Obst & Gemüse",
+    "pharmacy": "Apotheke", "doctors": "Arztpraxis", "dentist": "Zahnarztpraxis",
+    "clinic": "Klinik", "school": "Schule", "kindergarten": "Kindergarten",
+    "playground": "Spielplatz", "place_of_worship": "Kirche/Gebetsstätte",
+    "community_centre": "Gemeinschaftshaus", "social_facility": "Soziale Einrichtung",
+    "pitch": "Sportplatz", "sports_centre": "Sportzentrum",
+    "fitness_station": "Fitnessstation", "fitness_centre": "Fitnessstudio",
+    "swimming_pool": "Schwimmbad", "bus_stop": "Bushaltestelle",
+    "crossing": "Fußgängerquerung", "waste_basket": "Abfalleimer",
+    "recycling": "Recycling", "bench": "Sitzbank", "memorial": "Denkmal",
+    "monument": "Denkmal", "wayside_cross": "Feldkreuz", "wayside_shrine": "Bildstock",
+    "building": "Historisches Gebäude", "yes": "",
+}
+
 
 def log(msg: str) -> None:
     print(msg, flush=True)
@@ -177,6 +283,97 @@ def parse_amt(blob: bytes) -> tuple[str, dict[str, list[str]]]:
         if bez and norm(bez) not in eintrag:
             eintrag.append(norm(bez))
     return stand, strassen
+
+
+# ── OSM-Themenobjekte für den Karten-Tab ─────────────────────────────────────
+
+def _subtyp(tags: dict) -> str:
+    for k in ("amenity", "shop", "leisure", "historic", "healthcare", "highway"):
+        v = tags.get(k)
+        if v:
+            return SUBTYP_DE.get(v, v.replace("_", " "))
+    return ""
+
+
+def klassifiziere(tags: dict, kats) -> str | None:
+    for key, _label, _icon, _farbe, pred in kats:
+        if pred(tags):
+            return key
+    return None
+
+
+def extract_osm_kategorien(out: Path, finde, beirat: str,
+                           eigen_bbox: tuple[float, float, float, float]) -> None:
+    """OSM-Themenobjekte (Punkte + Linien) aus Overpass holen, präzise auf das
+    Beiratspolygon clippen und drei Dateien schreiben: osm_poi.geojson,
+    osm_linien.geojson, osm_kategorien.json."""
+    lon0, lat0, lon1, lat1 = eigen_bbox
+    bbox = f"{lat0},{lon0},{lat1},{lon1}"       # Overpass erwartet S,W,N,O
+
+    log("OpenStreetMap: Themenobjekte (Punkte) …")
+    data = overpass(POI_QUERY.format(bbox=bbox))
+    punkte, zaehl_p = [], {k: 0 for k, *_ in POI_KATEGORIEN}
+    for el in data.get("elements", []):
+        tags = el.get("tags", {})
+        if el["type"] == "node":
+            lon, lat = el.get("lon"), el.get("lat")
+        else:                                    # Weg/Relation: Zentroid
+            c = el.get("center") or {}
+            lon, lat = c.get("lon"), c.get("lat")
+        if lon is None or lat is None or finde(lon, lat) != beirat:
+            continue                             # nur echt im Polygon
+        kat = klassifiziere(tags, POI_KATEGORIEN)
+        if not kat:
+            continue
+        label = next(l for k, l, *_ in POI_KATEGORIEN if k == kat)
+        props = {"kat": kat,
+                 "name": norm(tags.get("name") or tags.get("ref") or label),
+                 "sub": _subtyp(tags)}
+        if tags.get("wheelchair") in {"yes", "limited"}:
+            props["bf"] = True
+        punkte.append({"type": "Feature", "properties": props,
+                       "geometry": {"type": "Point",
+                                    "coordinates": [round(lon, PRECISION),
+                                                    round(lat, PRECISION)]}})
+        zaehl_p[kat] += 1
+    write_json(out / "osm_poi.geojson",
+               {"type": "FeatureCollection", "features": punkte}, compact=True)
+
+    log("OpenStreetMap: Themenobjekte (Linien) …")
+    data = overpass(LINIEN_QUERY.format(bbox=bbox))
+    linien, zaehl_l = [], {k: 0 for k, *_ in LINIEN_KATEGORIEN}
+    for el in data.get("elements", []):
+        g = el.get("geometry")
+        tags = el.get("tags", {})
+        if not g:
+            continue
+        kat = klassifiziere(tags, LINIEN_KATEGORIEN)
+        if not kat:
+            continue
+        probe = g[:: max(1, len(g) // 6)]
+        if not any(finde(p["lon"], p["lat"]) == beirat for p in probe):
+            continue                             # mindestens ein Stützpunkt im Gebiet
+        props = {"kat": kat, "name": norm(tags.get("name", ""))}
+        if kat == "tempo":
+            props["tempo"] = tags.get("maxspeed", "")
+        linien.append({"type": "Feature", "properties": props,
+                       "geometry": {"type": "LineString",
+                                    "coordinates": [[round(p["lon"], PRECISION),
+                                                     round(p["lat"], PRECISION)]
+                                                    for p in g]}})
+        zaehl_l[kat] += 1
+    write_json(out / "osm_linien.geojson",
+               {"type": "FeatureCollection", "features": linien}, compact=True)
+
+    write_json(out / "osm_kategorien.json", {
+        "stand": time.strftime("%Y-%m-%d"),
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)",
+        "punkt": [{"key": k, "label": l, "icon": i, "farbe": f, "count": zaehl_p[k]}
+                  for k, l, i, f, _ in POI_KATEGORIEN],
+        "linie": [{"key": k, "label": l, "icon": i, "farbe": f, "count": zaehl_l[k]}
+                  for k, l, i, f, _ in LINIEN_KATEGORIEN],
+    }, compact=False)
+    log(f"  {len(punkte)} Punkte, {len(linien)} Linien im Gebiet „{beirat}“")
 
 
 # ── Hauptlauf ────────────────────────────────────────────────────────────────
@@ -305,6 +502,14 @@ def main() -> int:
     ohne = sum(1 for s in eigene if not s["amtlich"])
     log(f"  {len(eigene)} Straßen im Gebiet „{args.beirat}“ "
         f"({grenzlage} auf der Grenze, {ohne} nicht im amtlichen Verzeichnis)")
+
+    # OSM-Themenobjekte für den Karten-Tab. Nicht kritisch — schlägt Overpass
+    # hier fehl, bleiben die Straßendaten oben trotzdem erhalten.
+    eigen_bbox = next(bb for name, _r, bb in gebiete if name == args.beirat)
+    try:
+        extract_osm_kategorien(out, finde, args.beirat, eigen_bbox)
+    except Exception as e:
+        log(f"  OSM-Kategorien übersprungen: {e}")
     return 0
 
 

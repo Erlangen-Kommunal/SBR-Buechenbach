@@ -1,7 +1,7 @@
 {
-  "intro": "Interaktive Karte von Büchenbach. Grundlage sind OpenStreetMap und die amtliche basemap.de des Bundes. Als Kartendienste der Bayerischen Vermessungsverwaltung lassen sich direkt einblenden: das amtliche Luftbild (20 cm) und die historische Uraufnahme (Ur-Kataster um 1810) als Grundkarten sowie — als Overlay — die Baudenkmäler aus dem Denkmal-Atlas des Bayerischen Landesamts für Denkmalpflege.",
+  "intro": "Interaktive Karte von Büchenbach mit der Grenze des Beiratsgebiets. Grundlage sind OpenStreetMap und die amtliche basemap.de des Bundes. Über die Schalter oberhalb der Karte lassen sich Themen aus OpenStreetMap einblenden — Spielplätze, Bushaltestellen, Nahversorgung, Denkmäler, Tempo-Beschränkungen und mehr. Eine Straße suchen zeigt sie auf der Karte samt Protokollbezug.",
   "center": [49.5922, 10.9597],
-  "zoom": 15,
+  "zoom": 14,
   "marker": [
     {
       "lat": 49.5946439,
@@ -29,36 +29,6 @@
       "url": "https://sgx.geodatenzentrum.de/wmts_basemapde/tile/1.0.0/de_basemapde_web_raster_farbe/default/GLOBAL_WEBMERCATOR/{z}/{y}/{x}.png",
       "attribution": "© GeoBasis-DE / BKG · basemap.de",
       "maxZoom": 19
-    },
-    {
-      "name": "Luftbild (amtlich, 20 cm)",
-      "typ": "wms",
-      "url": "https://geoservices.bayern.de/od/wms/dop/v1/dop20",
-      "layers": "by_dop20c",
-      "format": "image/jpeg",
-      "attribution": "© Bayerische Vermessungsverwaltung — DOP20 (CC BY 4.0)",
-      "maxZoom": 20
-    },
-    {
-      "name": "Uraufnahme (um 1810, historisch)",
-      "typ": "wms",
-      "url": "https://geoservices.bayern.de/od/wms/hist/v1/uraufnahme",
-      "layers": "ur",
-      "format": "image/png",
-      "attribution": "© LDBV / Bayerische Vermessungsverwaltung — Uraufnahme (frei anzeigbar)",
-      "maxZoom": 19
-    }
-  ],
-  "overlays": [
-    {
-      "name": "Denkmäler (Denkmal-Atlas)",
-      "typ": "wms",
-      "url": "https://geoservices.bayern.de/od/wms/gdi/v1/denkmal",
-      "layers": "bauensembleO,einzeldenkmalO,bodendenkmalO",
-      "format": "image/png",
-      "transparent": true,
-      "attribution": "© Bayerisches Landesamt für Denkmalpflege (BLfD)",
-      "maxZoom": 20
     }
   ]
 }

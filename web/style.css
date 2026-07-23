@@ -261,7 +261,11 @@ h3.sub-head {
 .s-docs .d-pages { color: var(--muted); font-size: .76rem; }
 
 /* ── Suchergebnisse ──────────────────────────────────────────────── */
+.search-group { margin-bottom: 1.6rem; }
+.search-group > .sub-head { margin-top: 0; }
+.search-group .group-count { color: var(--muted); font-weight: 400; }
 .results { list-style: none; margin: 0; padding: 0; }
+.results .r-title .ext { font-size: .7rem; color: var(--muted); font-weight: 400; }
 .results li {
   padding: .7rem .9rem; margin-bottom: .55rem;
   background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px;
@@ -345,6 +349,58 @@ ul.plan-files li:last-child { border-bottom: none; }
 .btn-primary:hover { background: #006e00; }
 .leaflet-container { font: inherit; }
 
+/* ── Themen-Umschalter über der Karte ──────────────────────────────── */
+.kat-leiste { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin: .3rem 0 .7rem; }
+.kat-hint {
+  width: 100%; margin: 0 0 .1rem; font-size: .72rem; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--muted);
+}
+.kat-chip {
+  --kc: var(--accent-2);
+  display: inline-flex; align-items: center; gap: .35rem; cursor: pointer;
+  font-size: .8rem; padding: .26rem .55rem;
+  background: var(--surface-1); color: var(--ink-2);
+  border: 1px solid var(--hairline); border-radius: 20px;
+  transition: background .12s, border-color .12s, color .12s;
+}
+.kat-chip:hover { border-color: var(--kc); color: var(--ink); }
+.kat-chip .kc-icon {
+  width: 1.2rem; height: 1.2rem; display: inline-grid; place-items: center;
+  border-radius: 50%; font-size: .82rem; line-height: 1;
+  background: color-mix(in srgb, var(--kc) 20%, transparent);
+}
+.kat-chip .kc-n {
+  font-size: .68rem; font-variant-numeric: tabular-nums; color: var(--muted);
+  background: var(--page); padding: 0 .32rem; border-radius: 9px;
+}
+.kat-chip.active { background: var(--kc); border-color: var(--kc); color: #fff; }
+.kat-chip.active .kc-icon { background: rgba(255, 255, 255, .3); }
+.kat-chip.active .kc-n { background: rgba(255, 255, 255, .92); color: var(--ink); }
+.kat-chip[disabled] { opacity: .45; cursor: not-allowed; }
+.kat-clear {
+  cursor: pointer; font-size: .76rem; padding: .26rem .55rem;
+  background: none; color: var(--muted);
+  border: 1px dashed var(--hairline); border-radius: 20px;
+}
+.kat-clear:hover { color: var(--antrag); border-color: var(--antrag); }
+
+/* POI-Marker: Emoji in farbig umrandetem Kreis */
+.poi-pin-wrap { background: none; border: 0; }
+.poi-pin {
+  --kc: var(--accent-2);
+  display: grid; place-items: center; width: 26px; height: 26px;
+  font-size: 15px; line-height: 1; background: #fff;
+  border: 2px solid var(--kc); border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+}
+
+#strassen-details { margin-top: 1rem; }
+#strassen-details > summary {
+  cursor: pointer; font-size: .92rem; padding: .5rem .2rem;
+  border-top: 1px solid var(--hairline);
+}
+#strassen-details > summary:hover { color: var(--accent); }
+
 /* ── Fußzeile ────────────────────────────────────────────────────── */
 footer {
   padding: .35rem 1.1rem; font-size: .75rem; color: var(--muted);
@@ -391,6 +447,22 @@ footer {
   .doc-actions { flex-direction: column; align-items: stretch; }
   .doc-actions a, .doc-actions button { text-align: center; }
   .doc-actions a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  /* Auf dem Handy sind die Fließtexte sonst zu klein — größer und lesbarer. */
+  p.section-intro { font-size: 1rem; line-height: 1.6; }
+  .hero p { font-size: 1.02rem; }
+  .tile .t-title { font-size: 1.05rem; }
+  .tile .t-desc { font-size: .9rem; line-height: 1.45; }
+  .card .c-title { font-size: 1.05rem; }
+  .card .c-desc { font-size: .92rem; line-height: 1.5; }
+  .card .c-sitzung, .card .c-zust { font-size: .82rem; }
+  .hinweis-eng { font-size: .86rem; }
+  .tg-kopf { font-size: .82rem; }
+  .tg-titel { font-size: 1rem; }
+  .tg-beschluss { font-size: .88rem; }
+  .reg-list .r-desc, .amt-list li { font-size: .92rem; line-height: 1.5; }
+  .doc-page { font-size: .96rem; line-height: 1.6; }
+  .session .s-summary, .doc-summary { font-size: .94rem; line-height: 1.6; }
+  .results .r-snippet { font-size: .9rem; }
 }
 @media (max-width: 420px) {
   .tiles { grid-template-columns: 1fr; }
