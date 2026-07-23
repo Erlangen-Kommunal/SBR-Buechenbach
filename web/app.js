@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v19 · 2026-07-23";
-const CONTENT_VERSION = "19";
+const APP_VERSION = "v21 · 2026-07-23";
+const CONTENT_VERSION = "21";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -128,7 +128,7 @@ const ROUTES = {
   "": renderStart,
   "protokolle": renderProtokolle,
   "recht": () => renderRegistry("recht", "Satzung & Recht", "⚖️"),
-  "statistik": () => renderRegistry("statistik", "Statistik", "📊"),
+  "statistik": renderStatistik,
   "fachbeiraete": () => renderCards("fachbeiraete", "Andere Fachbeiräte & Ausschüsse", "👥"),
   "aemter": () => renderAemter(),
   "links": () => renderCards("links", "Ratsinfosystem & Links", "🔗"),
@@ -554,6 +554,139 @@ function renderDocText(d) {
 }
 
 // ── Register (Recht / Statistik) ─────────────────────────────────────────────
+
+async function renderStatistik() {
+  const rows = await q(
+    `SELECT id, title, beschreibung, themen, erstellt, quelle_url,
+            (SELECT count(*) FROM plan_files pf WHERE pf.plan_id = plans.id)::INT AS n
+     FROM plans WHERE kind = 'statistik' ORDER BY title`);
+
+  view().innerHTML = `<div class="wrap">${crumb()}
+    <h2 class="section-title">📊 Statistik &amp; Sozialstruktur Büchenbach</h2>
+    <p class="section-intro">Kleinräumiges Sozialmonitoring (Stand 2026.05) und Bevölkerungsprognose (2026–2041) der Stadt Erlangen mit gezielter Auswertung für die Büchenbacher Bezirke.</p>
+
+    <!-- Auswertung der Sozialstatistiken für Büchenbach -->
+    <section class="stat-eval-section">
+      <h3 class="sub-head">Auswertung: Die Büchenbacher Bezirke im Vergleich</h3>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-badge stat-badge-warn">Bezirk 77</div>
+          <h4 class="stat-title">Büchenbach Nord</h4>
+          <div class="stat-main-val">75,7 <span class="stat-sub-val">Sozialindex (Rang 33 von 33)</span></div>
+          <ul class="stat-metrics">
+            <li><span>Bürgergeld U15 (Kinder):</span> <strong>28,0 %</strong> <span class="stat-hi">(Erlangen Ø ~8,5 %)</span></li>
+            <li><span>Bürgergeld 15–55 J. (Erwerbsf.):</span> <strong>12,0 %</strong> <span class="stat-hi">(Höchster Wert Erlangens)</span></li>
+            <li><span>Alleinerziehende Familien:</span> <strong>26,4 %</strong></li>
+            <li><span>Grundsicherung im Alter (>65):</span> <strong>7,3 %</strong></li>
+          </ul>
+          <p class="stat-desc">Büchenbach Nord weist den höchsten Sozialindex-Wert aller Erlanger Bezirke auf. In allen Altersklassen liegen die Sozialleistungs-Bezugsquoten über dem städtischen Durchschnitt.</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-badge stat-badge-info">Bezirk 76</div>
+          <h4 class="stat-title">Büchenbach Dorf</h4>
+          <div class="stat-main-val">53,6 <span class="stat-sub-val">Sozialindex (Rang 30 von 33)</span></div>
+          <ul class="stat-metrics">
+            <li><span>Bürgergeld U15 (Kinder):</span> <strong>14,3 %</strong> <span class="stat-good">(sank von 23 % in 10 J.)</span></li>
+            <li><span>Bürgergeld 15–55 J. (Erwerbsf.):</span> <strong>8,4 %</strong></li>
+            <li><span>Alleinerziehende Familien:</span> <strong>27,5 %</strong></li>
+            <li><span>Grundsicherung im Alter (>65):</span> <strong>4,5 %</strong></li>
+          </ul>
+          <p class="stat-desc">Der Belastungsindex in Büchenbach Dorf zeigt einen positiven Trend. Insbesondere die Kinderarmut (U15-Bürgergeldbezug) konnte in den letzten 10 Jahren von ca. 23 % auf 14,3 % gesenkt werden.</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-badge stat-badge-ok">Bezirk 78</div>
+          <h4 class="stat-title">Büchenbach West</h4>
+          <div class="stat-main-val">29,6 <span class="stat-sub-val">Sozialindex (Rang 29 von 33)</span></div>
+          <ul class="stat-metrics">
+            <li><span>Bürgergeld U15 (Kinder):</span> <strong>8,5 %</strong> <span class="stat-good">(im Erlanger Schnitt)</span></li>
+            <li><span>Bürgergeld 15–55 J. (Erwerbsf.):</span> <strong>3,3 %</strong></li>
+            <li><span>Alleinerziehende Familien:</span> <strong>18,6 %</strong></li>
+            <li><span>Wohnbau-Prognose:</span> <strong>+674 Wohnungen</strong> <span class="stat-hi">(Wegäcker/Breite Äcker)</span></li>
+          </ul>
+          <p class="stat-desc">Büchenbach West weist eine sozial stabile Struktur auf und ist der Hauptwachstumsraum im Erlanger Westen (Neubaugebiete BP 412 & BP 413).</p>
+        </div>
+      </div>
+
+      <!-- Detailtabelle -->
+      <div class="stat-table-wrapper">
+        <h4 class="stat-table-title">Sozial- &amp; Strukturindikatoren im Überblick (Stadt Erlangen, Stand 2026.05)</h4>
+        <table class="stat-table">
+          <thead>
+            <tr>
+              <th>Indikator</th>
+              <th>Büchenbach Dorf (76)</th>
+              <th>Büchenbach Nord (77)</th>
+              <th>Büchenbach West (78)</th>
+              <th>Erlangen Gesamt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Sozialindex (Rang 1–33)</strong></td>
+              <td>53,6 (Rang 30)</td>
+              <td>75,7 (Rang 33)</td>
+              <td>29,6 (Rang 29)</td>
+              <td>Ø ~40,0</td>
+            </tr>
+            <tr>
+              <td><strong>Bürgergeld-Quote U15 (Kinder)</strong></td>
+              <td>14,3 %</td>
+              <td><strong>28,0 %</strong></td>
+              <td>8,5 %</td>
+              <td>~8,5 %</td>
+            </tr>
+            <tr>
+              <td><strong>Bürgergeld-Quote 15–55 Jahre</strong></td>
+              <td>8,4 %</td>
+              <td><strong>12,0 %</strong></td>
+              <td>3,3 %</td>
+              <td>3,9 %</td>
+            </tr>
+            <tr>
+              <td><strong>Grundsicherung im Alter (>65 J.)</strong></td>
+              <td>4,5 %</td>
+              <td>7,3 %</td>
+              <td>3,5 %</td>
+              <td>~4,0 %</td>
+            </tr>
+            <tr>
+              <td><strong>Anteil Alleinerziehende an Familien</strong></td>
+              <td>27,5 %</td>
+              <td>26,4 %</td>
+              <td>18,6 %</td>
+              <td>~20,0 %</td>
+            </tr>
+            <tr>
+              <td><strong>Prognose Wohnneubau (bis 2035)</strong></td>
+              <td>Gering / Nachverd.</td>
+              <td>Gering / Nachverd.</td>
+              <td><strong>+674 Wohnungen</strong></td>
+              <td>+5.057 Wohnungen</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Offizielle Berichte -->
+    <section class="stat-reports-section">
+      <h3 class="sub-head">Statistische Berichte &amp; Original-Dokumente</h3>
+      <ul class="reg-list">
+        ${rows.map((r) => `<li data-go="/plan/${encodeURIComponent(r.id)}">
+          <div class="r-title"><span class="badge badge-plan">STATISTIK</span>${escHtml(r.title)}</div>
+          <div class="r-desc">${escHtml(r.beschreibung)}</div>
+          <div class="r-desc" style="color:var(--muted)">${r.n} Dokument${r.n === 1 ? "" : "e"}${r.erstellt ? " · " + escHtml(r.erstellt) : ""}</div>
+        </li>`).join("")}
+      </ul>
+    </section>
+  </div>`;
+
+  for (const li of view().querySelectorAll("li[data-go]"))
+    li.addEventListener("click", () => go(li.dataset.go));
+  status(`Statistik & Sozialmonitoring Büchenbach geladen (${rows.length} Berichte).`);
+}
 
 async function renderRegistry(kind, title, icon) {
   const rows = await q(
@@ -1118,12 +1251,12 @@ async function renderAemter() {
 
   const referateGrid = data.referate.map((r, idx) => {
     const aemterNrs = r.aemter.map((a) => a.nr).filter(Boolean).join(", ");
-    return `<a href="#ref-card-${idx}" class="org-card org-card-ref" title="Zu ${escHtml(r.referat)} springen">
+    return `<button type="button" data-ref-card="ref-card-${idx}" class="org-card org-card-ref" title="Zu ${escHtml(r.referat)} springen">
       <div class="org-ref-tag">${escHtml(r.referat)}</div>
       <div class="org-ref-title">${escHtml(r.bereich)}</div>
       <div class="org-ref-leitung">${escHtml(r.leitung)}</div>
       ${aemterNrs ? `<div class="org-ref-aemter">Ämter: ${escHtml(aemterNrs)}</div>` : ""}
-    </a>`;
+    </button>`;
   }).join("");
 
   view().innerHTML = `<div class="wrap">${crumb()}
@@ -1152,15 +1285,9 @@ async function renderAemter() {
       </div>
     </div>
 
-    ${data.relevant?.length ? `
-      <h3 class="sub-head">Schnellübersicht: Wer ist wofür zuständig?</h3>
-      <ul class="zust-list">${data.relevant.map((r) => `<li>
-        <span class="z-thema">${escHtml(r.thema)}</span>
-        <span class="z-amt">${escHtml(r.amt)}</span></li>`).join("")}</ul>` : ""}
-
-    <!-- Struktur unten: immer eingeblendet -->
+    <!-- Struktur: Einzelne Referate im Detail direkt unter dem Organigramm -->
     <section class="amt-structure">
-      <h3 class="sub-head">Aufbau der Stadtverwaltung</h3>
+      <h3 class="sub-head">Aufbau der Stadtverwaltung — Die Referate im Detail</h3>
       <div class="cards">
         ${data.referate.map((r, idx) => `<div class="card ref-card" id="ref-card-${idx}">
           <span class="c-tag">${escHtml(r.referat)}</span>
@@ -1170,8 +1297,34 @@ async function renderAemter() {
         </div>`).join("")}
       </div>
     </section>
+
+    <!-- Schnellübersicht ganz unten -->
+    ${data.relevant?.length ? `
+      <section class="amt-schnelluebersicht">
+        <h3 class="sub-head">Schnellübersicht: Wer ist wofür zuständig?</h3>
+        <ul class="zust-list">${data.relevant.map((r) => `<li>
+          <span class="z-thema">${escHtml(r.thema)}</span>
+          <span class="z-amt">${escHtml(r.amt)}</span></li>`).join("")}</ul>
+      </section>` : ""}
+
     ${data.stand ? `<p class="quelle">Quelle: Geschäftsverteilungsplan der Stadt Erlangen · ${escHtml(data.stand)}</p>` : ""}
   </div>`;
+
+  const grid = view().querySelector(".org-referate-grid");
+  if (grid) {
+    grid.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-ref-card]");
+      if (!btn) return;
+      const targetId = btn.getAttribute("data-ref-card");
+      const target = $(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        target.classList.add("ref-card-highlight");
+        setTimeout(() => target.classList.remove("ref-card-highlight"), 1800);
+      }
+    });
+  }
+
   const n = data.referate.reduce((s, r) => s + r.aemter.length, 0);
   status(`${data.referate.length} Referate mit ${n} Ämtern und Einrichtungen.`);
 }

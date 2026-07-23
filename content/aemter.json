@@ -10,7 +10,16 @@
     { "thema": "Kitas, Jugendarbeit, Familien", "amt": "Stadtjugendamt (51)" },
     { "thema": "Soziales, Senioren, Inklusion", "amt": "Sozialamt (50)" },
     { "thema": "Bürgerservice, Meldewesen, Ausweise", "amt": "Bürgeramt (33)" },
-    { "thema": "Sport- und Bewegungsangebote", "amt": "Amt für Sport und Gesundheitsförderung (52)" }
+    { "thema": "Sport- und Bewegungsangebote", "amt": "Amt für Sport und Gesundheitsförderung (52)" },
+    { "thema": "Bauanträge, Baugenehmigungen, Denkmalschutz", "amt": "Bauaufsichtsamt (63)" },
+    { "thema": "Klimaschutz, Umweltschutz, Energieberatung", "amt": "Amt für Umweltschutz und Energiefragen (31)" },
+    { "thema": "Schulen, Schulanmeldung, Schulverwaltung", "amt": "Schulverwaltungsamt (40)" },
+    { "thema": "Standesamt, Eheschließungen, Urkunden, Geburten", "amt": "Standesamt (34)" },
+    { "thema": "Abwasser, Kanäle, Entwässerung", "amt": "Entwässerungsbetrieb (EBE)" },
+    { "thema": "Feuerwehr, Katastrophenschutz, Notfallvorsorge", "amt": "Amt für Brand- und Katastrophenschutz (37)" },
+    { "thema": "Kultur, Stadtbibliothek, Volkshochschule, Theater, Stadtmuseum", "amt": "Kultureinrichtungen (Ref. IV)" },
+    { "thema": "Gewerbe, Wirtschaftsförderung, Jobcenter", "amt": "Wirtschaftsförderung / Jobcenter (EJC)" },
+    { "thema": "Digitalisierung, IT-Services", "amt": "Amt für Digitalisierung und Informationstechnik (17)" }
   ],
   "referate": [
     {

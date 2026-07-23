@@ -283,6 +283,11 @@ h3.sub-head {
   border-radius: 7px;
   padding: .75rem .9rem;
   transition: all .18s ease-in-out;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  font: inherit;
+  color: inherit;
 }
 .org-card-ref:hover {
   transform: translateY(-2px);
@@ -291,6 +296,15 @@ h3.sub-head {
   background: var(--surface-1);
 }
 .org-card-ref:nth-child(1) { border-left-color: var(--accent); }
+
+.ref-card {
+  scroll-margin-top: 1rem;
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+.ref-card-highlight {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px var(--accent), 0 4px 16px rgba(0, 131, 0, 0.2) !important;
+}
 
 .org-ref-tag {
   font-size: .72rem;
@@ -678,3 +692,55 @@ footer {
 .treffer-liste a:hover { color: var(--accent); }
 .t-datum { color: var(--muted); font-size: .78rem; white-space: nowrap; }
 .t-titel { flex: 1; min-width: 0; }
+
+/* ── Statistik-Auswertung ────────────────────────────────────────── */
+.stat-eval-section { margin: 1.5rem 0 2rem; }
+.stat-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+  margin-bottom: 1.5rem;
+}
+.stat-card {
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: 9px;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.stat-badge {
+  display: inline-block; align-self: flex-start;
+  font-size: .72rem; font-weight: 800; letter-spacing: .04em;
+  text-transform: uppercase; padding: .15rem .55rem; border-radius: 4px;
+  margin-bottom: .5rem;
+}
+.stat-badge-warn { background: rgba(184, 67, 15, 0.12); color: #b8430f; }
+.stat-badge-info { background: rgba(42, 120, 214, 0.12); color: var(--accent-2); }
+.stat-badge-ok { background: rgba(0, 131, 0, 0.12); color: var(--accent); }
+
+.stat-title { font-size: 1.15rem; margin: 0 0 .4rem; font-weight: 700; color: var(--ink); }
+.stat-main-val {
+  font-size: 1.8rem; font-weight: 800; color: var(--ink); line-height: 1.1; margin-bottom: .8rem;
+}
+.stat-sub-val { font-size: .8rem; font-weight: 500; color: var(--muted); display: block; margin-top: .15rem; }
+.stat-metrics { list-style: none; padding: 0; margin: 0 0 .8rem; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+.stat-metrics li {
+  font-size: .84rem; padding: .4rem 0; border-bottom: 1px dashed var(--hairline);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: .3rem;
+}
+.stat-metrics li:last-child { border-bottom: 0; }
+.stat-hi { color: #b8430f; font-size: .76rem; font-weight: 600; }
+.stat-good { color: var(--accent); font-size: .76rem; font-weight: 600; }
+.stat-desc { font-size: .84rem; color: var(--ink-2); line-height: 1.48; margin: 0; margin-top: auto; }
+
+.stat-table-wrapper {
+  background: var(--surface-1); border: 1px solid var(--hairline);
+  border-radius: 9px; padding: 1.1rem; overflow-x: auto;
+}
+.stat-table-title { font-size: .95rem; font-weight: 700; margin: 0 0 .8rem; color: var(--ink); }
+.stat-table { width: 100%; border-collapse: collapse; font-size: .85rem; text-align: left; }
+.stat-table th, .stat-table td { padding: .55rem .75rem; border-bottom: 1px solid var(--hairline); }
+.stat-table th { background: var(--page); font-weight: 700; color: var(--ink-2); font-size: .78rem; text-transform: uppercase; letter-spacing: .03em; }
+.stat-table tr:last-child td { border-bottom: 0; }
