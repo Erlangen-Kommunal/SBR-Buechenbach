@@ -112,28 +112,28 @@ p.section-intro { color: var(--ink-2); font-size: .9rem; line-height: 1.55; marg
   color: var(--ink); transition: border-color .12s, box-shadow .12s;
 }
 .tile:hover { border-color: var(--accent); box-shadow: 0 2px 14px rgba(11,11,11,.06); }
-.tile .icon { font-size: 1.7rem; line-height: 1; flex: none; }
-.tile .t-title { display: block; font-weight: 700; font-size: 1rem; margin-bottom: .15rem; }
-.tile .t-desc { display: block; color: var(--muted); font-size: .8rem; line-height: 1.4; }
+.tile .icon { font-size: 2.1rem; line-height: 1; flex: none; }
+.tile .t-title { display: block; font-weight: 700; font-size: 1.12rem; margin-bottom: .2rem; color: var(--ink); }
+.tile .t-desc { display: block; color: var(--ink-2); font-size: .9rem; line-height: 1.48; font-weight: 400; }
 
 /* ── Karten-/Listen-Elemente (Register, Fachbeiräte, Ämter, Links) ── */
 .cards { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); }
 .card {
-  display: block; padding: .9rem 1rem; text-decoration: none; color: var(--ink);
+  display: block; padding: .95rem 1.1rem; text-decoration: none; color: var(--ink);
   background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 9px;
 }
 a.card:hover { border-color: var(--accent-2); }
-.card .c-title { font-weight: 700; font-size: .98rem; margin-bottom: .2rem; }
-.card .c-title .ext { font-size: .7rem; color: var(--muted); font-weight: 400; }
-.card .c-desc { color: var(--ink-2); font-size: .82rem; line-height: 1.45; }
+.card .c-title { font-weight: 700; font-size: 1.08rem; margin-bottom: .25rem; }
+.card .c-title .ext { font-size: .75rem; color: var(--muted); font-weight: 400; }
+.card .c-desc { color: var(--ink-2); font-size: .9rem; line-height: 1.5; }
 .card .c-tag {
-  display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .03em;
+  display: inline-block; font-size: .75rem; font-weight: 800; letter-spacing: .04em;
   text-transform: uppercase; color: var(--accent); margin-bottom: .35rem;
 }
-.card .c-zust { color: var(--muted); font-size: .78rem; margin-top: .3rem; }
+.card .c-zust { color: var(--ink-2); font-size: .84rem; font-weight: 500; margin-top: .3rem; }
 .card .c-sitzung {
   margin-top: .45rem; padding-top: .4rem; border-top: 1px solid var(--hairline);
-  color: var(--muted); font-size: .74rem;
+  color: var(--ink-2); font-size: .82rem;
 }
 .card .c-sitzung-leer { color: #b00020; font-weight: 600; }
 /* Büchenbach anderswo: Tagesordnungspunkte fremder Gremien */
@@ -571,11 +571,11 @@ footer {
   /* Auf dem Handy sind die Fließtexte sonst zu klein — noch etwas größer & luftiger */
   p.section-intro { font-size: 1.08rem; line-height: 1.6; }
   .hero p { font-size: 1.12rem; line-height: 1.55; }
-  .tile .t-title { font-size: 1.12rem; }
-  .tile .t-desc { font-size: .98rem; line-height: 1.5; }
-  .card .c-title { font-size: 1.12rem; }
-  .card .c-desc { font-size: .98rem; line-height: 1.55; }
-  .card .c-sitzung, .card .c-zust { font-size: .9rem; }
+  .tile .t-title { font-size: 1.18rem; font-weight: 750; }
+  .tile .t-desc { font-size: 1.02rem; line-height: 1.5; }
+  .card .c-title { font-size: 1.18rem; font-weight: 750; }
+  .card .c-desc { font-size: 1.02rem; line-height: 1.55; }
+  .card .c-sitzung, .card .c-zust { font-size: .94rem; }
   .hinweis-eng { font-size: .92rem; }
   .tg-kopf { font-size: .9rem; }
   .tg-titel { font-size: 1.08rem; }
