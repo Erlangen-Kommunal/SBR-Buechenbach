@@ -48,9 +48,11 @@ jobs:
           # Tagesordnungen der Nachbargremien — das Frontend lädt die Datei
           # direkt, sie liegt bewusst nicht in der graph.db.
           cp gremien_tops.json _site/ 2>/dev/null || echo "gremien_tops.json fehlt — Abschnitt bleibt leer"
-          # Geodaten: Beiratsgrenzen und Straßen des Gebiets (aus tools/fetch_geodata.py)
+          # Geodaten: Beiratsgrenzen, Straßen und OSM-Themen (aus tools/fetch_geodata.py).
+          # *.geojson UND *.json kopieren — sonst fehlt osm_kategorien.json und die
+          # Themen-Umschalter der Karte bleiben leer.
           mkdir -p _site/geo
-          cp geo/*.geojson geo/strassen.json _site/geo/ 2>/dev/null || \
+          cp geo/*.geojson geo/*.json _site/geo/ 2>/dev/null || \
             echo "::warning::Keine Geodaten in geo/ — Karte ohne Beiratsgrenzen, Straßen-Sektion leer."
           node tools/make-auth.mjs _site/auth.json
 
