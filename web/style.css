@@ -560,7 +560,7 @@ footer {
   #home-link { justify-content: center; }
   #search-form { min-width: 0; max-width: none; margin-left: 0; }
   main#view { padding: 1rem .8rem 3rem; }
-  .hero h1 { font-size: 1.35rem; }
+  .hero h1 { font-size: 1.45rem; }
   .tiles { grid-template-columns: 1fr 1fr; }
   .cards { grid-template-columns: 1fr; }
   .pdf-frame { height: 60vh; }
@@ -568,28 +568,28 @@ footer {
   .doc-actions { flex-direction: column; align-items: stretch; }
   .doc-actions a, .doc-actions button { text-align: center; }
   .doc-actions a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  /* Auf dem Handy sind die Fließtexte sonst zu klein — größer und lesbarer. */
-  p.section-intro { font-size: 1rem; line-height: 1.6; }
-  .hero p { font-size: 1.02rem; }
-  .tile .t-title { font-size: 1.05rem; }
-  .tile .t-desc { font-size: .9rem; line-height: 1.45; }
-  .card .c-title { font-size: 1.05rem; }
-  .card .c-desc { font-size: .92rem; line-height: 1.5; }
-  .card .c-sitzung, .card .c-zust { font-size: .82rem; }
-  .hinweis-eng { font-size: .86rem; }
-  .tg-kopf { font-size: .82rem; }
-  .tg-titel { font-size: 1rem; }
-  .tg-beschluss { font-size: .88rem; }
-  .reg-list .r-desc, .amt-list li { font-size: .92rem; line-height: 1.5; }
-  .doc-page { font-size: .96rem; line-height: 1.6; }
-  .session .s-summary, .doc-summary { font-size: .94rem; line-height: 1.6; }
-  .results .r-snippet { font-size: .9rem; }
-  /* Organigramm auf Mobilgeräten gut lesbar */
-  .org-card-ob .org-name { font-size: 1.1rem; }
-  .org-ref-title { font-size: .95rem; }
-  .org-ref-tag { font-size: .78rem; }
-  .org-ref-leitung { font-size: .84rem; }
-  .org-ref-aemter { font-size: .78rem; }
+  /* Auf dem Handy sind die Fließtexte sonst zu klein — noch etwas größer & luftiger */
+  p.section-intro { font-size: 1.08rem; line-height: 1.6; }
+  .hero p { font-size: 1.12rem; line-height: 1.55; }
+  .tile .t-title { font-size: 1.12rem; }
+  .tile .t-desc { font-size: .98rem; line-height: 1.5; }
+  .card .c-title { font-size: 1.12rem; }
+  .card .c-desc { font-size: .98rem; line-height: 1.55; }
+  .card .c-sitzung, .card .c-zust { font-size: .9rem; }
+  .hinweis-eng { font-size: .92rem; }
+  .tg-kopf { font-size: .9rem; }
+  .tg-titel { font-size: 1.08rem; }
+  .tg-beschluss { font-size: .95rem; }
+  .reg-list .r-desc, .amt-list li { font-size: .98rem; line-height: 1.55; }
+  .doc-page { font-size: 1.04rem; line-height: 1.65; }
+  .session .s-summary, .doc-summary { font-size: 1.02rem; line-height: 1.65; }
+  .results .r-snippet { font-size: .96rem; }
+  /* Organigramm auf Mobilgeräten deutlich größer */
+  .org-card-ob .org-name { font-size: 1.2rem; }
+  .org-ref-title { font-size: 1.02rem; }
+  .org-ref-tag { font-size: .85rem; }
+  .org-ref-leitung { font-size: .9rem; }
+  .org-ref-aemter { font-size: .85rem; }
 }
 @media (max-width: 420px) {
   .tiles { grid-template-columns: 1fr; }
