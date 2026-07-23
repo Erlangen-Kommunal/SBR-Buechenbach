@@ -1,5 +1,5 @@
 {
-  "intro": "Interaktive Karte von Büchenbach. Grundlage sind OpenStreetMap und die amtliche basemap.de des Bundes. Für Grundstücksgrenzen lässt sich das amtliche Luftbild (40 cm) mit den Flurstücken der ALKIS-Parzellarkarte einblenden — beides kommt als Kartendienst der Bayerischen Vermessungsverwaltung direkt in diese Karte.",
+  "intro": "Interaktive Karte von Büchenbach. Grundlage sind OpenStreetMap und die amtliche basemap.de des Bundes. Als Kartendienste der Bayerischen Vermessungsverwaltung lassen sich direkt einblenden: das amtliche Luftbild (20 cm) und die historische Uraufnahme (Ur-Kataster um 1810) als Grundkarten sowie — als Overlay — die Baudenkmäler aus dem Denkmal-Atlas des Bayerischen Landesamts für Denkmalpflege.",
   "center": [49.5922, 10.9597],
   "zoom": 15,
   "marker": [
@@ -31,28 +31,34 @@
       "maxZoom": 19
     },
     {
-      "name": "Luftbild (amtlich, 40 cm)",
+      "name": "Luftbild (amtlich, 20 cm)",
       "typ": "wms",
-      "url": "https://geoservices.bayern.de/od/wms/dop/v1/dop40",
-      "layers": "by_dop40c",
+      "url": "https://geoservices.bayern.de/od/wms/dop/v1/dop20",
+      "layers": "by_dop20c",
       "format": "image/jpeg",
-      "attribution": "© Bayerische Vermessungsverwaltung — DOP40 (CC BY 4.0)",
+      "attribution": "© Bayerische Vermessungsverwaltung — DOP20 (CC BY 4.0)",
       "maxZoom": 20
+    },
+    {
+      "name": "Uraufnahme (um 1810, historisch)",
+      "typ": "wms",
+      "url": "https://geoservices.bayern.de/od/wms/hist/v1/uraufnahme",
+      "layers": "ur",
+      "format": "image/png",
+      "attribution": "© LDBV / Bayerische Vermessungsverwaltung — Uraufnahme (frei anzeigbar)",
+      "maxZoom": 19
     }
   ],
   "overlays": [
     {
-      "name": "Flurstücke (ALKIS)",
+      "name": "Denkmäler (Denkmal-Atlas)",
       "typ": "wms",
-      "url": "https://geoservices.bayern.de/od/wms/alkis/v1/parzellarkarte",
-      "layers": "by_alkis_parzellarkarte_umr_gelb",
+      "url": "https://geoservices.bayern.de/od/wms/gdi/v1/denkmal",
+      "layers": "bauensembleO,einzeldenkmalO,bodendenkmalO",
       "format": "image/png",
       "transparent": true,
-      "attribution": "© Bayerische Vermessungsverwaltung — ALKIS-Parzellarkarte (CC BY 4.0)",
-      "maxZoom": 20,
-      "abZoom": 16
+      "attribution": "© Bayerisches Landesamt für Denkmalpflege (BLfD)",
+      "maxZoom": 20
     }
-  ],
-  "bayernatlas_zoom": 17,
-  "bayernatlas_layer": "luftbild_parz"
+  ]
 }
