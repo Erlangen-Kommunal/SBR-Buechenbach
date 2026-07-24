@@ -7,15 +7,21 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v23 · 2026-07-23";
-const CONTENT_VERSION = "23";
+const APP_VERSION = "v24 · 2026-07-24";
+const CONTENT_VERSION = "24";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
 const view = () => $("view");
 const status = (m) => { $("statusbar").textContent = m; };
 const bootMsg = (m) => { $("boot-msg").textContent = m; };
-const esc = (s) => String(s).replace(/'/g, "''");
+const esc = (s) => String(s ?? "").replace(/[\0\x08\x09\x1a\n\r]/g, "").replace(/'/g, "''");
+const safeUrl = (url) => {
+  if (!url) return "#";
+  const trimmed = String(url).trim();
+  if (/^(https?:\/\/|mailto:|\/|#)/i.test(trimmed)) return trimmed;
+  return "#";
+};
 const escHtml = (s) => String(s ?? "").replace(/[&<>"]/g,
   (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const escRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -499,7 +505,7 @@ async function renderSuche(query) {
   for (const li of box.querySelectorAll("li[data-go]"))
     li.addEventListener("click", () => go(li.dataset.go));
   for (const li of box.querySelectorAll("li[data-href]"))
-    li.addEventListener("click", () => window.open(li.dataset.href, "_blank", "noopener"));
+    li.addEventListener("click", () => window.open(safeUrl(li.dataset.href), "_blank", "noopener"));
   status(`${total} Treffer für „${query}“ in ${groups.length} Kategorie${groups.length === 1 ? "" : "n"}.`);
 }
 
@@ -522,7 +528,7 @@ async function renderDoc(id) {
         <button id="btn-text" class="active" type="button">Text</button>
         <button id="btn-pdf" type="button">PDF</button>
         ${d.url
-          ? `<a href="${escHtml(d.url)}" target="_blank" rel="noopener">⬇ Original im Ratsinfosystem</a>`
+          ? `<a href="${escHtml(safeUrl(d.url))}" target="_blank" rel="noopener">⬇ Original im Ratsinfosystem</a>`
           : `<span class="meta">Schreiben des Beirats — nicht im Ratsinformationssystem</span>`}
       </div>
     </div>
@@ -665,13 +671,13 @@ async function renderPlan(planId) {
       <h2><span class="badge badge-plan">${p.kind === "recht" ? "RECHT" : "STATISTIK"}</span>${escHtml(p.title)}</h2>
       ${p.beschreibung ? `<p class="meta">${escHtml(p.beschreibung)}</p>` : ""}
       ${p.themen ? `<p class="meta">Themen: ${themenText(p.themen).map(escHtml).join(", ")}</p>` : ""}
-      ${p.quelle_url ? `<div class="doc-actions"><a href="${escHtml(p.quelle_url)}" target="_blank" rel="noopener">🔗 Quelle bei der Stadt Erlangen</a></div>` : ""}
+      ${p.quelle_url ? `<div class="doc-actions"><a href="${escHtml(safeUrl(p.quelle_url))}" target="_blank" rel="noopener">🔗 Quelle bei der Stadt Erlangen</a></div>` : ""}
     </div>
     ${files.length ? `<ul class="plan-files">${files.map((f) => `<li>
       ${f.has_text || f.path ? `<a href="#/planfile/${encodeURIComponent(f.id)}">${escHtml(f.titel)}</a>`
         : `<span>${escHtml(f.titel)}</span>`}
       ${f.pages ? `<span class="d-pages"> · ${f.pages} S.</span>` : ""}
-      ${f.quelle_url ? ` · <a href="${escHtml(f.quelle_url)}" target="_blank" rel="noopener">Original öffnen</a>` : ""}
+      ${f.quelle_url ? ` · <a href="${escHtml(safeUrl(f.quelle_url))}" target="_blank" rel="noopener">Original öffnen</a>` : ""}
     </li>`).join("")}</ul>` : `<p class="hint">Keine hinterlegten Dateien — siehe Quelle oben.</p>`}
   </div>`;
   status(escHtml(p.title));
@@ -742,7 +748,7 @@ async function showPdf(d, sourceUrl) {
   const size = await headSize(d.path);
   if (size != null && size > PDF_SIZE_WARN) {
     notice(`Dieses PDF ist mit ${(size / 1048576).toFixed(1)} MB sehr groß und wird hier nicht automatisch geladen. `
-      + (sourceUrl ? `Bitte das <a href="${escHtml(sourceUrl)}" target="_blank" rel="noopener">Original öffnen</a>.` : ""));
+      + (sourceUrl ? `Bitte das <a href="${escHtml(safeUrl(sourceUrl))}" target="_blank" rel="noopener">Original öffnen</a>.` : ""));
     status("PDF zu groß für die Inline-Anzeige.");
     return;
   }
@@ -1139,7 +1145,7 @@ function sitzungsZeile(e, wp) {
 
 async function renderCards(key, title, icon) {
   const data = await loadContent(key);
-  const card = (e, withTag) => `<a class="card" href="${escHtml(e.url)}" target="_blank" rel="noopener">
+  const card = (e, withTag) => `<a class="card" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener">
     ${withTag && e.kategorie ? `<span class="c-tag">${escHtml(e.kategorie)}</span>` : ""}
     <div class="c-title">${escHtml(e.name)} <span class="ext">↗</span></div>
     <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
@@ -1279,9 +1285,13 @@ function loadLeaflet() {
     const css = document.createElement("link");
     css.rel = "stylesheet";
     css.href = "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css";
+    css.integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=";
+    css.crossOrigin = "anonymous";
     document.head.appendChild(css);
     const s = document.createElement("script");
     s.src = "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js";
+    s.integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
+    s.crossOrigin = "anonymous";
     s.onload = resolve; s.onerror = () => reject(new Error("Leaflet konnte nicht geladen werden."));
     document.head.appendChild(s);
   });
