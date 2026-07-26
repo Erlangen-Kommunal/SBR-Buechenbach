@@ -1,6 +1,7 @@
 # Baut graph.db aus den im Repo liegenden Dokumenten + Registern + Anreicherungen
 # (GraphBuilder, C#/.NET) und deployt das statische Infoportal nach GitHub Pages.
-# Läuft bei jedem Push auf main — auch nach dem Wochen-Sync (sync.yml) und nach
+# Läuft bei jedem Push auf main — also auch nach dem MERGE eines Wochen-Sync-PRs
+# (sync.yml pusht nicht mehr direkt auf main, sondern öffnet einen PR) und nach
 # manuellen Commits neuer enrichment/docs/*.md-Zusammenfassungen. Das Secret
 # SITE_PASSWORD speist nur das Frontend-Gate (Hash in auth.json) — die
 # Original-PDFs holt das Frontend direkt aus dem öffentlichen Repo (jsDelivr).

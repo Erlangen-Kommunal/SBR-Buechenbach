@@ -1,6 +1,26 @@
 # Deterministischer Wochen-Sync (KEIN LLM): liest den Dokumentindex von
 # ratsinfo.erlangen.de neu ein, lädt neue Sitzungsdokumente, komprimiert
-# übergroße PDFs und committet die Neuzugänge nach main.
+# übergroße PDFs — und öffnet einen PULL REQUEST statt direkt nach main zu
+# pushen. Erst der Merge durch einen Menschen veröffentlicht die Daten
+# (deploy.yml läuft beim Push auf main, also nach dem Merge).
+#
+# Warum PR statt Direkt-Push: Der Sync committet Fremddaten (Ratsinfo-HTML,
+# OpenStreetMap — Letzteres von jedermann editierbar). Der PR stellt einen
+# Review-Schritt davor; die PR-Beschreibung (tools/sync_report.py) fasst die
+# Änderungen inhaltlich zusammen.
+#
+# Voraussetzungen (einmalig einzurichten):
+# - Repo-Einstellung: Settings → Actions → General →
+#   „Allow GitHub Actions to create and approve pull requests" AKTIVIEREN,
+#   sonst scheitert `gh pr create` mit GITHUB_TOKEN.
+# - Secrets für den E-Mail-Report (optional — fehlen sie, wird der Versand
+#   übersprungen, der PR entsteht trotzdem): MAIL_TO, SMTP_HOST, SMTP_USER,
+#   SMTP_PASS, optional SMTP_PORT (465 = SSL, sonst STARTTLS, Standard 587).
+#
+# Läuft ein Sync, bevor der PR der Vorwoche gemerget wurde, ist das unschädlich:
+# Der Lauf startet von main, findet alle noch nicht gemergten Dokumente erneut
+# und force-pusht den Branch `sync/ratsinfo` — der offene PR wird damit zum
+# kumulierten Stand aktualisiert, es entsteht kein zweiter PR.
 name: Weekly Sync (Ratsinfo)
 
 on:
@@ -19,7 +39,8 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write
+  contents: write        # Branch sync/ratsinfo pushen
+  pull-requests: write   # PR öffnen/aktualisieren
 
 jobs:
   sync:
@@ -56,18 +77,70 @@ jobs:
         continue-on-error: true
         run: python tools/fetch_gremien_tops.py
 
-      - name: Commit new documents
+      - name: Detect changes
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "any=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "any=false" >> "$GITHUB_OUTPUT"
+            echo "Keine neuen Dokumente — nichts zu tun."
+          fi
+
+      # Report VOR dem Commit erzeugen: das Skript vergleicht Arbeitsstand
+      # gegen HEAD (= main) und schreibt report.md + title.txt.
+      - name: Build change report
+        if: steps.changes.outputs.any == 'true'
+        run: python tools/sync_report.py --out-dir "$RUNNER_TEMP/sync-report"
+
+      - name: Commit to sync branch
+        if: steps.changes.outputs.any == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet && git diff --cached --quiet; then
-            echo "Keine neuen Dokumente — nichts zu committen."
-            exit 0
-          fi
+          git checkout -B sync/ratsinfo
           git add -A
           # Pre-Commit-Hook (>=12MB-Sperre) läuft mit; scheitert er, bricht der Job ab.
           git commit -m "Weekly Ratsinfo sync: new committee documents
 
           Automated deterministic sync (uvp_agent.py --sync): refreshed index,
-          downloaded new documents, compressed oversized PDFs. No LLM."
-          git push origin HEAD:main
+          downloaded new documents, compressed oversized PDFs. No LLM.
+          Review via pull request; merge publishes (deploy.yml)."
+          git push --force origin sync/ratsinfo
+
+      - name: Create or update pull request
+        if: steps.changes.outputs.any == 'true'
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TITLE="$(cat "$RUNNER_TEMP/sync-report/title.txt")"
+          BODY="$RUNNER_TEMP/sync-report/report.md"
+          EXISTING=$(gh pr list --head sync/ratsinfo --state open \
+                       --json number --jq '.[0].number // empty')
+          if [ -n "$EXISTING" ]; then
+            gh pr edit "$EXISTING" --title "$TITLE" --body-file "$BODY"
+            echo "PR #$EXISTING aktualisiert."
+          else
+            gh pr create --base main --head sync/ratsinfo \
+              --title "$TITLE" --body-file "$BODY"
+          fi
+          echo "url=$(gh pr view sync/ratsinfo --json url --jq .url)" >> "$GITHUB_OUTPUT"
+
+      # E-Mail an den Admin — Versandfehler sollen PR/Sync nicht kippen,
+      # deshalb continue-on-error; fehlende Secrets überspringt das Skript
+      # selbst mit einer Warnung.
+      - name: Mail report to admin
+        if: steps.changes.outputs.any == 'true'
+        continue-on-error: true
+        env:
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        run: |
+          python tools/send_report_mail.py \
+            --subject "$(cat "$RUNNER_TEMP/sync-report/title.txt")" \
+            --body "$RUNNER_TEMP/sync-report/report.md" \
+            --url "${{ steps.pr.outputs.url }}"
