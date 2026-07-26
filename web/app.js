@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v24 · 2026-07-24";
-const CONTENT_VERSION = "24";
+const APP_VERSION = "v25 · 2026-07-26";
+const CONTENT_VERSION = "25";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
