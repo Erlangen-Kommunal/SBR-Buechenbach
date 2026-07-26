@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v25 · 2026-07-26";
-const CONTENT_VERSION = "25";
+const APP_VERSION = "v26 · 2026-07-26";
+const CONTENT_VERSION = "26";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -22,6 +22,8 @@ const safeUrl = (url) => {
   if (/^(https?:\/\/|mailto:|\/|#)/i.test(trimmed)) return trimmed;
   return "#";
 };
+// Farben aus den Build-JSONs landen in style-Attributen — nur Hex durchlassen.
+const safeColor = (c) => /^#[0-9a-fA-F]{3,8}$/.test(String(c ?? "")) ? c : "#888";
 const escHtml = (s) => String(s ?? "").replace(/[&<>"]/g,
   (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const escRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -684,9 +686,10 @@ async function renderPlan(planId) {
 }
 
 async function renderPlanFile(rowid) {
-  const [f] = await q(
+  // Nicht-numerische IDs (manipulierte URL) sauber abfangen statt NaN ins SQL zu geben
+  const [f] = Number.isInteger(Number(rowid)) ? await q(
     `SELECT pf.titel, pf.path, pf.quelle_url, pf.pages, pf.text, p.id AS plan_id, p.kind, p.title AS plan_title
-     FROM plan_files pf JOIN plans p ON p.id = pf.plan_id WHERE pf.rowid = ${Number(rowid)}`);
+     FROM plan_files pf JOIN plans p ON p.id = pf.plan_id WHERE pf.rowid = ${Number(rowid)}`) : [];
   if (!f) { view().innerHTML = `<div class="wrap">${crumb()}<p class="hint">Datei nicht gefunden.</p></div>`; return; }
   view().innerHTML = `<div class="wrap">
     <a class="crumb" href="#/plan/${encodeURIComponent(f.plan_id)}">‹ ${escHtml(shortLabel(f.plan_title, 40))}</a>
@@ -696,7 +699,7 @@ async function renderPlanFile(rowid) {
       <div class="doc-actions">
         <button id="btn-text" class="active" type="button">Text</button>
         ${f.path ? `<button id="btn-pdf" type="button">PDF</button>` : ""}
-        ${f.quelle_url ? `<a href="${escHtml(f.quelle_url)}" target="_blank" rel="noopener">⬇ Original öffnen</a>` : ""}
+        ${f.quelle_url ? `<a href="${escHtml(safeUrl(f.quelle_url))}" target="_blank" rel="noopener">⬇ Original öffnen</a>` : ""}
       </div>
     </div>
     <div id="doc-notice" class="notice" hidden></div>
@@ -768,7 +771,7 @@ async function showPdf(d, sourceUrl) {
       <div class="pdf-mobile-icon">📄</div>
       <p class="pdf-mobile-hint">PDF-Dateien können auf Mobilgeräten nicht eingebettet werden.</p>
       <a class="pdf-mobile-btn" href="${pdfBlobUrl}" target="_blank" rel="noopener">PDF öffnen (${sizeMb}\u00a0MB)</a>
-      ${sourceUrl ? `<a class="pdf-mobile-btn pdf-mobile-btn-alt" href="${escHtml(sourceUrl)}" target="_blank" rel="noopener">Original im Ratsinformationssystem</a>` : ""}
+      ${sourceUrl ? `<a class="pdf-mobile-btn pdf-mobile-btn-alt" href="${escHtml(safeUrl(sourceUrl))}" target="_blank" rel="noopener">Original im Ratsinformationssystem</a>` : ""}
     </div>`;
   } else {
     $("doc-body").innerHTML = `<p class="pdf-fallback"><a href="${pdfBlobUrl}" target="_blank" rel="noopener">PDF in neuem Tab öffnen</a></p>
@@ -1111,7 +1114,7 @@ async function renderFremdeGremien() {
           <span class="tg-gremium">${escHtml(t.gremium)}</span>
           ${t.top ? `<span class="tg-nr">TOP ${escHtml(t.top)}</span>` : ""}
         </div>
-        <a class="tg-titel" href="${escHtml(t.url)}" target="_blank" rel="noopener">${escHtml(t.titel)} <span class="ext">↗</span></a>
+        <a class="tg-titel" href="${escHtml(safeUrl(t.url))}" target="_blank" rel="noopener">${escHtml(t.titel)} <span class="ext">↗</span></a>
         ${t.beschluss ? `<div class="tg-beschluss">${escHtml(t.beschluss)}</div>` : ""}
         ${marker ? `<div class="tg-marker">${marker}</div>` : ""}
       </div>`;
@@ -1169,9 +1172,9 @@ async function renderCards(key, title, icon) {
     <h2 class="section-title">${icon} ${escHtml(title)}</h2>
     ${data.intro ? `<p class="section-intro">${escHtml(data.intro)}</p>` : ""}
     ${data.start_url || data.uebersicht_url || data.ausschuesse_url ? `<div class="map-actions">
-      ${data.start_url ? `<a class="btn-primary" href="${escHtml(data.start_url)}" target="_blank" rel="noopener">Ratsinfo-Startseite ↗</a>` : ""}
-      ${data.uebersicht_url ? `<a class="btn-primary" href="${escHtml(data.uebersicht_url)}" target="_blank" rel="noopener">Beiräte im Ratsinformationssystem ↗</a>` : ""}
-      ${data.ausschuesse_url ? `<a class="btn-primary" href="${escHtml(data.ausschuesse_url)}" target="_blank" rel="noopener">Ausschüsse im Ratsinformationssystem ↗</a>` : ""}
+      ${data.start_url ? `<a class="btn-primary" href="${escHtml(safeUrl(data.start_url))}" target="_blank" rel="noopener">Ratsinfo-Startseite ↗</a>` : ""}
+      ${data.uebersicht_url ? `<a class="btn-primary" href="${escHtml(safeUrl(data.uebersicht_url))}" target="_blank" rel="noopener">Beiräte im Ratsinformationssystem ↗</a>` : ""}
+      ${data.ausschuesse_url ? `<a class="btn-primary" href="${escHtml(safeUrl(data.ausschuesse_url))}" target="_blank" rel="noopener">Ausschüsse im Ratsinformationssystem ↗</a>` : ""}
     </div>` : ""}
     ${entries}
     ${data.quelle ? `<p class="quelle">Quelle: ${escHtml(data.quelle)}${data.stand ? ` · Stand ${escHtml(fmtDate(data.stand))}` : ""}</p>` : ""}</div>`;
@@ -1401,11 +1404,11 @@ async function renderKarte() {
   const alleKats = [...(katCfg?.punkt || []), ...(katCfg?.linie || [])];
   const punktKeys = new Set((katCfg?.punkt || []).map((k) => k.key));
   const chips = alleKats.map((k) => `
-    <button type="button" class="kat-chip" data-kat="${k.key}" style="--kc:${k.farbe}"
+    <button type="button" class="kat-chip" data-kat="${escHtml(k.key)}" style="--kc:${safeColor(k.farbe)}"
       aria-pressed="false" ${k.count ? "" : "disabled"}
-      title="${escHtml(k.label)} — ${k.count} in Büchenbach">
-      <span class="kc-icon">${k.icon}</span>${escHtml(k.label)}
-      <span class="kc-n">${k.count}</span></button>`).join("");
+      title="${escHtml(k.label)} — ${escHtml(k.count)} in Büchenbach">
+      <span class="kc-icon">${escHtml(k.icon)}</span>${escHtml(k.label)}
+      <span class="kc-n">${escHtml(k.count)}</span></button>`).join("");
 
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">🗺️ Straße &amp; Karte</h2>
@@ -1502,7 +1505,7 @@ async function renderKarte() {
         L.marker([lat, lon], {
           icon: L.divIcon({
             className: "poi-pin-wrap",
-            html: `<span class="poi-pin" style="--kc:${farbe}">${icon}</span>`,
+            html: `<span class="poi-pin" style="--kc:${safeColor(farbe)}">${escHtml(icon)}</span>`,
             iconSize: [26, 26], iconAnchor: [13, 13],
           }),
         }).bindPopup(`<strong>${escHtml(p.name)}</strong>${p.sub ? `<br>${escHtml(p.sub)}` : ""}${p.bf ? " ♿" : ""}`)
@@ -1516,7 +1519,7 @@ async function renderKarte() {
         const txt = key === "tempo"
           ? `Tempo ${escHtml(p.tempo || "?")}${p.name ? " · " + escHtml(p.name) : ""}`
           : (p.name ? escHtml(p.name) : label);
-        L.polyline(latlngs, { color: farbe, weight: 5, opacity: 0.8 })
+        L.polyline(latlngs, { color: safeColor(farbe), weight: 5, opacity: 0.8 })
           .bindPopup(`<strong>${escHtml(label)}</strong><br>${txt}`).addTo(grp);
       }
     }

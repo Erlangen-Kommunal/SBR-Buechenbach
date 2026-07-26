@@ -583,6 +583,17 @@ footer {
   .doc-actions a, .doc-actions button { text-align: center; }
   .doc-actions a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
+  /* Filter-Auswahlfelder (Dokumenttyp/Jahr/Thema): grösser & leichter zu treffen.
+     16px Schrift vermeidet zugleich den iOS-Safari-Autozoom bei Fokus < 16px. */
+  .map-actions { gap: .7rem 1rem; }
+  .map-actions label { font-size: .95rem; }
+  .map-actions select {
+    display: block; margin-top: .3rem;
+    font-size: 1rem; padding: .5rem .65rem; min-height: 2.5rem;
+    border-radius: 7px; border: 1px solid var(--hairline);
+    background: var(--surface-1); color: var(--ink);
+  }
+
   /* Kacheln auf dem Handy deutlich größer, lesbarer & prägnanter */
   p.section-intro { font-size: 1.08rem; line-height: 1.6; }
   .hero p { font-size: 1.12rem; line-height: 1.55; }
