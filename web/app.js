@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v26 · 2026-07-26";
-const CONTENT_VERSION = "26";
+const APP_VERSION = "v27 · 2026-07-28";
+const CONTENT_VERSION = "27";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -1058,6 +1058,20 @@ function themenEinesTops(t) {
   return TG_THEMEN.filter(([, kw]) => kw.some((k) => txt.includes(k))).map(([name]) => name);
 }
 
+/**
+ * „der Wahlperiode X" bzw. „der Wahlperioden X und Y". Seit dem Wechsel im Mai
+ * 2026 führt gremien_tops.json mehrere Perioden (`wahlperioden`); ältere Stände
+ * der Datei hatten genau eine (`wahlperiode`).
+ */
+function wahlperiodenText(daten) {
+  const wp = daten.wahlperioden || (daten.wahlperiode ? [daten.wahlperiode] : []);
+  const labels = wp.map((p) => p?.label).filter(Boolean);
+  if (!labels.length) return "";
+  return labels.length === 1
+    ? `der Wahlperiode ${labels[0]}`
+    : `der Wahlperioden ${labels.slice(0, -1).join(", ")} und ${labels[labels.length - 1]}`;
+}
+
 async function renderFremdeGremien() {
   status("Lade Tagesordnungen …");
   const daten = await ladeFremdeTops();
@@ -1081,8 +1095,8 @@ async function renderFremdeGremien() {
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">🏛️ Büchenbach anderswo</h2>
     <p class="section-intro">Über vieles, was Büchenbach betrifft, wird nicht im
-      Stadtteilbeirat entschieden. Diese Liste zeigt Tagesordnungspunkte der
-      Wahlperiode ${escHtml(daten.wahlperiode?.label || "")}, die eine Straße im
+      Stadtteilbeirat entschieden. Diese Liste zeigt Tagesordnungspunkte
+      ${escHtml(wahlperiodenText(daten))}, die eine Straße im
       Beiratsgebiet oder den Ortsnamen nennen — aus diesen Gremien:
       ${escHtml(Object.values(daten.gremien).join(" · "))}.</p>
     <p class="hinweis-eng">Die Erkennung ist bewusst eng: Sie greift auf Titel, nicht
@@ -1134,16 +1148,19 @@ async function renderFremdeGremien() {
  * Sitzungszeile einer Gremiumskarte. Unterscheidet bewusst drei Fälle, damit die
  * Seite keine Vollständigkeit behauptet, die die Daten nicht hergeben:
  * gar keine Angabe (Feld fehlt) → nichts anzeigen; ausdrücklich keine Sitzung
- * (null) → das auch so sagen; Datum → letzte Sitzung der Wahlperiode.
+ * (null) → das auch so sagen; Datum → letzte bekannte Sitzung.
+ * `zeitraum` sagt, worauf sich Zählung und Datum beziehen: seit dem Wechsel der
+ * Wahlperiode im Mai 2026 zählen die Karten über beide Perioden, eine einzelne
+ * Wahlperiode danebenzuschreiben wäre falsch.
  */
-function sitzungsZeile(e, wp) {
+function sitzungsZeile(e, zeitraum) {
   if (!("letzte_sitzung" in e)) return "";
-  const periode = wp?.label ? ` ${wp.label}` : "";
+  const seit = zeitraum?.label ? ` ${zeitraum.label}` : "";
   if (!e.letzte_sitzung) {
-    return `<div class="c-sitzung c-sitzung-leer">Keine Sitzung in der Wahlperiode${escHtml(periode)}</div>`;
+    return `<div class="c-sitzung c-sitzung-leer">Keine Sitzung${escHtml(seit)}</div>`;
   }
-  const anzahl = e.sitzungen ? ` · ${e.sitzungen} Sitzung${e.sitzungen === 1 ? "" : "en"}` : "";
-  return `<div class="c-sitzung">Letzte Sitzung${escHtml(periode)}: ${escHtml(fmtDate(e.letzte_sitzung))}${escHtml(anzahl)}</div>`;
+  const anzahl = e.sitzungen ? ` · ${e.sitzungen} Sitzung${e.sitzungen === 1 ? "" : "en"}${seit}` : "";
+  return `<div class="c-sitzung">Letzte Sitzung: ${escHtml(fmtDate(e.letzte_sitzung))}${escHtml(anzahl)}</div>`;
 }
 
 async function renderCards(key, title, icon) {
@@ -1152,7 +1169,7 @@ async function renderCards(key, title, icon) {
     ${withTag && e.kategorie ? `<span class="c-tag">${escHtml(e.kategorie)}</span>` : ""}
     <div class="c-title">${escHtml(e.name)} <span class="ext">↗</span></div>
     <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
-    ${sitzungsZeile(e, data.wahlperiode)}
+    ${sitzungsZeile(e, data.zeitraum)}
   </a>`;
   const groups = [...new Set(data.eintraege.map((e) => e.kategorie).filter(Boolean))];
   const entries = groups.length
@@ -1179,8 +1196,8 @@ async function renderCards(key, title, icon) {
     ${entries}
     ${data.quelle ? `<p class="quelle">Quelle: ${escHtml(data.quelle)}${data.stand ? ` · Stand ${escHtml(fmtDate(data.stand))}` : ""}</p>` : ""}</div>`;
   const mitDatum = data.eintraege.filter((e) => e.letzte_sitzung).length;
-  status(data.wahlperiode
-    ? `${data.eintraege.length} Gremien mit Sitzungen in der Wahlperiode ${data.wahlperiode.label} (${mitDatum} mit Datum der letzten Sitzung).`
+  status(data.zeitraum?.label
+    ? `${data.eintraege.length} Gremien mit Sitzungen ${data.zeitraum.label} (${mitDatum} mit Datum der letzten Sitzung).`
     : `${data.eintraege.length} Einträge.`);
 }
 

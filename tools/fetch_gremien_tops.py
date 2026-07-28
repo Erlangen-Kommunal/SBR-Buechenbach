@@ -57,8 +57,13 @@ GREMIEN = {
     19: "Jugendhilfeausschuss",
 }
 
-# Wahlperiode 2020–2026: 72 Monate ab Mai 2020. Für spätere Perioden anpassen.
-WP_START_JAHR, WP_START_MONAT, WP_MONATE = 2020, 5, 72
+# Wahlperioden: je Eintrag (Startjahr, Startmonat, Anzahl_Monate).
+# Neue Amtszeit ab Mai 2026 (Kommunalwahl Bayern 2026). 84 Monate = 7 Jahre Puffer;
+# das Skript holt nur Sitzungen, die das RIS tatsächlich kennt.
+PERIODEN = [
+    (2020, 5, 72),   # 2020-05 – 2026-04 (1. Wahlperiode)
+    (2026, 5, 84),   # 2026-05 – 2033-04 (2. Wahlperiode, Puffer)
+]
 
 # Wiederkehrende Formalpunkte ohne eigenen Sachgehalt. Anker auf Zeilenanfang,
 # damit „Anfragen zur Verkehrssituation …" nicht mitgefangen wird.
@@ -149,13 +154,35 @@ def strassen_in(titel: str, nmap: dict[str, str]) -> list[str]:
 
 TOP_ROW_RE = re.compile(r'(?is)<tr[^>]*class="smc-t-r-l"[^>]*>(.*?)</tr>')
 NUM_RE = re.compile(r'(?is)class="tofnum".*?<span[^>]*>(.*?)</span>')
+# Das RIS liefert zwei Zeilen-Layouts. Welches kommt, hängt an der einzelnen
+# Sitzung, NICHT an der Wahlperiode: Kartenlayout gibt es schon 2025, und noch
+# im Mai 2026 tagte der Stadtrat im alten Layout. Deshalb immer beides probieren.
+# Listen-Layout: TOP hat einen to0050-Link mit smc_datatype_to-Klasse.
 TITLE_RE = re.compile(r'(?is)href="to0050\.asp\?__ktonr=(\d+)"[^>]*class="[^"]*smc_datatype_to[^"]*"[^>]*>(.*?)</a>')
+# Kartenlayout: kein to0050-Link, der Titel steht in einem Div — es gibt für
+# diese TOPs keine Detailseite, die ktonr wird deshalb synthetisiert (top_url).
+TITLE_NEW_RE = re.compile(r'(?is)class="[^"]*smc-card-header-title(?:-simple)?[^"]*"[^>]*>(.*?)</(?:div|a|span)>')
 VORLAGE_RE = re.compile(r'(?is)href="vo0050\.asp\?__kvonr=(\d+)"')
 BESCHLUSS_RE = re.compile(r'(?is)smc_field_smcdv0_box\d+_beschluss[^>]*>(.*?)</p>')
 
 
 def text(s: str) -> str:
     return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", s))).strip()
+
+
+def top_url(t: dict) -> str:
+    """Bester belastbarer Link zum TOP.
+
+    Nur echte (numerische) ktonr haben eine Detailseite; mit einer
+    synthetischen ktonr antwortet `to0050.asp` mit der SessionNet-Fehlerseite
+    (HTTP 200, geprüft). Dann führt die Vorlage am nächsten ans Thema heran,
+    sonst die Sitzungsseite, auf der der TOP steht.
+    """
+    if t["ktonr"].isdigit():
+        return f"{BASE}/to0050.asp?__ktonr={t['ktonr']}"
+    if t.get("kvonr"):
+        return f"{BASE}/vo0050.asp?__kvonr={t['kvonr']}"
+    return f"{BASE}/si0057.asp?__ksinr={t['ksinr']}"
 
 
 def hole(url: str, versuche: int = 3) -> str:
@@ -172,16 +199,17 @@ def hole(url: str, versuche: int = 3) -> str:
 
 
 def sitzungen(kgrnr: int) -> list[tuple[str, str]]:
-    """(ksinr, ISO-Datum) aller Sitzungen des Gremiums in der Wahlperiode."""
-    url = (f"{BASE}/si0046.asp?__cjahr={WP_START_JAHR}&__cmonat={WP_START_MONAT}"
-           f"&__canz={WP_MONATE}&smccont=85&__osidat=d&__kgsgrnr={kgrnr}&__cselect=65536")
-    seite = hole(url)
+    """(ksinr, ISO-Datum) aller Sitzungen des Gremiums über alle Wahlperioden."""
     out = []
-    for row in TOP_ROW_RE.findall(seite):
-        m = re.search(r"si0057\.asp\?__ksinr=(\d+)", row)
-        d = re.search(r"(\d{2})\.(\d{2})\.(\d{4})", row)
-        if m and d:
-            out.append((m.group(1), f"{d.group(3)}-{d.group(2)}-{d.group(1)}"))
+    for wp_jahr, wp_monat, wp_monate in PERIODEN:
+        url = (f"{BASE}/si0046.asp?__cjahr={wp_jahr}&__cmonat={wp_monat}"
+               f"&__canz={wp_monate}&smccont=85&__osidat=d&__kgsgrnr={kgrnr}&__cselect=65536")
+        seite = hole(url)
+        for row in TOP_ROW_RE.findall(seite):
+            m = re.search(r"si0057\.asp\?__ksinr=(\d+)", row)
+            d = re.search(r"(\d{2})\.(\d{2})\.(\d{4})", row)
+            if m and d:
+                out.append((m.group(1), f"{d.group(3)}-{d.group(2)}-{d.group(1)}"))
     return list(dict.fromkeys(out))
 
 
@@ -190,22 +218,47 @@ def tops(ksinr: str) -> list[dict]:
     out = []
     for row in TOP_ROW_RE.findall(seite):
         t = TITLE_RE.search(row)
-        if not t:
-            continue
-        titel = text(t.group(2))
-        if len(titel) < 4:
-            continue
-        nummer = NUM_RE.search(row)
-        vorlage = VORLAGE_RE.search(row)
-        beschluss = BESCHLUSS_RE.search(row)
-        out.append({
-            "ktonr": t.group(1),
-            "top": text(nummer.group(1)) if nummer else "",
-            "titel": titel,
-            "kvonr": vorlage.group(1) if vorlage else "",
-            "beschluss": text(beschluss.group(1)).removeprefix("Beschluss:").strip() if beschluss else "",
-            "routine": any(r.search(titel) for r in ROUTINE),
-        })
+        if t:
+            # Altes Format: ktonr aus to0050-Link
+            titel = text(t.group(2))
+            if len(titel) < 4:
+                continue
+            nummer = NUM_RE.search(row)
+            vorlage = VORLAGE_RE.search(row)
+            beschluss = BESCHLUSS_RE.search(row)
+            out.append({
+                "ktonr": t.group(1),
+                "top": text(nummer.group(1)) if nummer else "",
+                "titel": titel,
+                "kvonr": vorlage.group(1) if vorlage else "",
+                "beschluss": text(beschluss.group(1)).removeprefix("Beschluss:").strip() if beschluss else "",
+                "routine": any(r.search(titel) for r in ROUTINE),
+            })
+        else:
+            # Neues Format (ab WP 2026): kein to0050-Link; Titel im smc-card-header-title-Div.
+            t2 = TITLE_NEW_RE.search(row)
+            if not t2:
+                continue
+            titel = text(t2.group(1))
+            if len(titel) < 4:
+                continue
+            # Abschnittsüberschriften ("Werkausschuss EB77:", "Empfehlungen:") überspringen.
+            if titel.endswith(":") and len(titel) < 60:
+                continue
+            nummer = NUM_RE.search(row)
+            top_num = text(nummer.group(1)) if nummer else ""
+            vorlage = VORLAGE_RE.search(row)
+            beschluss = BESCHLUSS_RE.search(row)
+            # Synthetische ktonr: ksinr_TOPNUM (eindeutig je Sitzung).
+            syn_ktonr = f"{ksinr}_{top_num.replace(' ', '_') or str(len(out))}"
+            out.append({
+                "ktonr": syn_ktonr,
+                "top": top_num,
+                "titel": titel,
+                "kvonr": vorlage.group(1) if vorlage else "",
+                "beschluss": text(beschluss.group(1)).removeprefix("Beschluss:").strip() if beschluss else "",
+                "routine": any(r.search(titel) for r in ROUTINE),
+            })
     # Ein TOP kann in der Tabelle mehrfach auftauchen (Unterpunkte je Vorlage).
     return list({t["ktonr"]: t for t in out}.values())
 
@@ -237,9 +290,7 @@ def main() -> None:
                 for (ksinr, datum), ts in zip(offen, pool.map(lambda s: tops(s[0]), offen)):
                     for t in ts:
                         alle.append({
-                            "gremium": name, "kgrnr": kgrnr, "datum": datum, "ksinr": ksinr,
-                            **t,
-                            "url": f"{BASE}/to0050.asp?__ktonr={t['ktonr']}",
+                            "gremium": name, "kgrnr": kgrnr, "datum": datum, "ksinr": ksinr, **t,
                         })
 
     # Ortsbezug nachtragen (auch für Einträge aus dem Bestand, damit ein
@@ -250,6 +301,9 @@ def main() -> None:
     # neben dem Straßenbezug das zweite belastbare Relevanzsignal.
     ort = norm_strasse(beiratsname.split()[-1]) if beiratsname else ""
     for t in alle:
+        # Link ebenfalls für alle neu bestimmen, damit eine korrigierte
+        # Link-Regel auch die schon erfassten Einträge repariert.
+        t["url"] = top_url(t)
         t["strassen"] = strassen_in(t["titel"], nmap) if nmap else []
         im_gebiet = [s for s in t["strassen"] if norm_strasse(s) in gebiet]
         nennt_ort = bool(ort) and ort in norm_strasse(t["titel"])
@@ -262,7 +316,10 @@ def main() -> None:
     alle.sort(key=lambda t: (t["datum"], t["gremium"], t["top"]), reverse=True)
     OUT_JSON.write_text(json.dumps({
         "stand": date.today().isoformat(),
-        "wahlperiode": {"label": "2020 – 2026", "von": "2020-05-01", "bis": "2026-04-30"},
+        "wahlperioden": [
+            {"label": "2020 – 2026", "von": "2020-05-01", "bis": "2026-04-30"},
+            {"label": "2026 – 2032", "von": "2026-05-01", "bis": "2032-04-30"},
+        ],
         "quelle": "Ratsinformationssystem der Stadt Erlangen (SessionNet)",
         "gremien": {str(k): v for k, v in GREMIEN.items()},
         "tops": alle,
