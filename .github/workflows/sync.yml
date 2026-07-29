@@ -71,10 +71,15 @@ jobs:
         run: python tools/fetch_geodata.py
 
       # Tagesordnungen der Nachbargremien (Stadtrat, Sport-, Jugendhilfe-
-      # ausschuss). Nur Metadaten, keine Dokumente — ein Request je Sitzung.
-      # Läuft nach den Geodaten, weil der Ortsbezug geo/strassen.json braucht.
+      # ausschuss). Ins Repo kommen nur Metadaten und kurze Belegschnipsel,
+      # keine Dokumente. Gelesen werden zusätzlich Vorlagentexte, deren Anlagen
+      # und die Niederschriften (pypdf/pymupdf oben) — inkrementell und
+      # kontingentiert (Vorgabe: Anlagen ab 2026, 600 Vorlagen je Lauf), der
+      # Lauf holt nur, was noch nicht geprüft ist. Läuft nach den Geodaten, weil
+      # der Ortsbezug geo/strassen.json und geo/buslinien.json braucht.
       - name: Refresh Tagesordnungen der Nachbargremien
         continue-on-error: true
+        timeout-minutes: 45
         run: python tools/fetch_gremien_tops.py
 
       - name: Detect changes

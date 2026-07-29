@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v27 · 2026-07-28";
-const CONTENT_VERSION = "27";
+const APP_VERSION = "v28 · 2026-07-28";
+const CONTENT_VERSION = "28";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -1054,7 +1054,8 @@ const TG_THEMEN = [
   ["Vereine & Ehrenamt", ["verein", "ehrenamt", "kirchengemeinde", "initiative", "bürgertreff", "buergertreff"]],
 ];
 function themenEinesTops(t) {
-  const txt = `${t.titel || ""} ${t.beschluss || ""}`.toLowerCase();
+  const belege = (t.fundstellen || []).map((f) => f.beleg || "").join(" ");
+  const txt = `${t.titel || ""} ${t.beschluss || ""} ${belege}`.toLowerCase();
   return TG_THEMEN.filter(([, kw]) => kw.some((k) => txt.includes(k))).map(([name]) => name);
 }
 
@@ -1070,6 +1071,30 @@ function wahlperiodenText(daten) {
   return labels.length === 1
     ? `der Wahlperiode ${labels[0]}`
     : `der Wahlperioden ${labels.slice(0, -1).join(", ")} und ${labels[labels.length - 1]}`;
+}
+
+const QUELLE_LABEL = { titel: "Titel", vorlage: "Vorlage", anlage: "Anlage", niederschrift: "Niederschrift" };
+
+/**
+ * Belege der Tiefenprüfung: Steht der Bezug nicht im Titel, sondern im
+ * Sachverhalt der Vorlage, in einer Anlage oder in der Niederschrift, muss die
+ * Seite zeigen, woher er stammt — sonst wirkt der Eintrag wie ein Fehlgriff.
+ * Bei Anlagen steht der Dateiname dabei: „Kein Weiterbetrieb der Linie 298"
+ * ist ohne den Hinweis auf „Anlage 1 — Einsparmaßnahmen ÖPNV" nicht auffindbar.
+ * Die Schnipsel kommen aus fetch_gremien_tops.py; Volltexte liegen nicht im Repo.
+ */
+function fundstellen(t) {
+  const f = (t.fundstellen || []).filter((x) => x && x.beleg);
+  if (!f.length) return "";
+  const quellen = f.map((x) => QUELLE_LABEL[x.quelle] || x.quelle).join(" · ");
+  return `<details class="tg-fund">
+    <summary>Fundstelle: ${escHtml(quellen)}</summary>
+    ${f.map((x) => `<div class="tg-beleg">
+      <span class="tg-quelle">${escHtml(QUELLE_LABEL[x.quelle] || x.quelle)}</span>
+      ${x.dokument ? `<span class="tg-dokument">${escHtml(x.dokument)}</span>` : ""}
+      ${escHtml(x.beleg)}
+    </div>`).join("")}
+  </details>`;
 }
 
 async function renderFremdeGremien() {
@@ -1099,9 +1124,15 @@ async function renderFremdeGremien() {
       ${escHtml(wahlperiodenText(daten))}, die eine Straße im
       Beiratsgebiet oder den Ortsnamen nennen — aus diesen Gremien:
       ${escHtml(Object.values(daten.gremien).join(" · "))}.</p>
-    <p class="hinweis-eng">Die Erkennung ist bewusst eng: Sie greift auf Titel, nicht
-      auf Dokumentinhalte, und findet deshalb nicht jeden Bezug. Wiederkehrende
-      Formalpunkte (Anfragen, Mitteilungen, Beirats-Personalien) sind ausgeblendet.</p>
+    <p class="hinweis-eng">Gesucht wird im Titel, im Sachverhalt der Vorlage, in ihren
+      Anlagen und in der Niederschrift der Sitzung — ein Punkt wie „Einrichtung neuer
+      Tempo-30-Anordnungen" nennt die betroffenen Straßen erst im Text, und
+      „Maßnahmen zur Kosteneinsparung im ÖPNV" erst in der Anlage. Steht der Bezug
+      nicht schon im Titel, zeigt „Fundstelle" die Belegstelle. Als Bezug gilt eine
+      Straße des Beiratsgebiets, der Ortsname oder eine Buslinie, die hier hält;
+      Niederschriften erscheinen erst Wochen nach der Sitzung, Anlagen älterer
+      Vorlagen werden nach und nach nachgelesen. Wiederkehrende Formalpunkte
+      (Anfragen, Mitteilungen, Beirats-Personalien) sind ausgeblendet.</p>
     ${themenOptionen.length ? `<div class="map-actions">
       <label>Themengebiet <select id="tg-thema"><option value="">alle Themen</option>
         ${themenOptionen.map((th) => `<option value="${escHtml(th)}">${escHtml(th)} (${themenAnzahl.get(th)})</option>`).join("")}</select></label>
@@ -1111,6 +1142,10 @@ async function renderFremdeGremien() {
       · Stand ${escHtml(fmtDate(daten.stand))}</p></div>`;
 
   const liste = $("tg-liste");
+  // Sitzungen, die noch bevorstehen: Das Ratsinformationssystem veröffentlicht
+  // Tagesordnung und Vorlagen vor der Sitzung — solche Punkte sind noch zu
+  // beeinflussen und dürfen nicht wie Beschlossenes aussehen.
+  const heute = new Date().toISOString().slice(0, 10);
   const zeichne = (thema) => {
     const zeigen = thema ? relevante.filter((t) => t._themen.includes(thema)) : relevante;
     if (!zeigen.length) { liste.innerHTML = `<p class="hint">Keine Einträge.</p>`; return; }
@@ -1120,6 +1155,9 @@ async function renderFremdeGremien() {
       if (y !== jahr) { jahr = y; html += `<h3 class="sub-head">${escHtml(jahr)}</h3>`; }
       const marker = [
         ...(t.strassen_im_gebiet || []).map((s) => `<span class="tg-strasse">${escHtml(s)}</span>`),
+        // Linien, die im Gebiet halten — ein gestrichener Bus trifft den
+        // Stadtteil, ohne dass eine Büchenbacher Straße im Text steht.
+        ...(t.linien || []).map((l) => `<span class="tg-linie">Linie ${escHtml(l)}</span>`),
         t.nennt_ort ? `<span class="tg-ort">Büchenbach</span>` : "",
       ].filter(Boolean).join("");
       html += `<div class="tg-eintrag">
@@ -1127,10 +1165,12 @@ async function renderFremdeGremien() {
           <span class="tg-datum">${escHtml(fmtDate(t.datum))}</span>
           <span class="tg-gremium">${escHtml(t.gremium)}</span>
           ${t.top ? `<span class="tg-nr">TOP ${escHtml(t.top)}</span>` : ""}
+          ${t.datum > heute ? `<span class="tg-geplant">geplant</span>` : ""}
         </div>
         <a class="tg-titel" href="${escHtml(safeUrl(t.url))}" target="_blank" rel="noopener">${escHtml(t.titel)} <span class="ext">↗</span></a>
         ${t.beschluss ? `<div class="tg-beschluss">${escHtml(t.beschluss)}</div>` : ""}
         ${marker ? `<div class="tg-marker">${marker}</div>` : ""}
+        ${fundstellen(t)}
       </div>`;
     }
     liste.innerHTML = html;

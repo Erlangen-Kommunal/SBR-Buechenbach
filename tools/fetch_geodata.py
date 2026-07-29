@@ -40,6 +40,7 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 import zipfile
+from datetime import date
 from io import BytesIO
 from pathlib import Path
 
@@ -302,6 +303,58 @@ def klassifiziere(tags: dict, kats) -> str | None:
     return None
 
 
+# Linien des öffentlichen Nahverkehrs, die im Gebiet halten. Warum über die
+# Haltestellen und nicht über die Streckenführung: Eine Linie, die Büchenbach
+# nur durchquert, ohne zu halten, ist für den Stadtteil folgenlos — eine, die
+# hier hält, verschwindet aus dem Fahrplan, wenn sie gestrichen wird. Die
+# Nummern sind ein eigenes Relevanzsignal: „Kein Weiterbetrieb der Linie 298"
+# nennt weder Büchenbach noch eine Straße und betrifft den Stadtteil trotzdem.
+HALTESTELLEN_QUERY = """
+[out:json][timeout:180];
+node({bbox})["highway"="bus_stop"];
+out;
+"""
+LINIEN_ZU_HALT_QUERY = """
+[out:json][timeout:180];
+node(id:{ids});
+rel(bn)["type"="route"]["route"~"^(bus|tram|light_rail)$"];
+out tags;
+"""
+
+
+def extract_buslinien(out: Path, finde, beirat: str,
+                      eigen_bbox: tuple[float, float, float, float]) -> None:
+    lon0, lat0, lon1, lat1 = eigen_bbox
+    bbox = f"{lat0},{lon0},{lat1},{lon1}"
+
+    log("OpenStreetMap: Haltestellen und Linien im Gebiet …")
+    halte = [e for e in overpass(HALTESTELLEN_QUERY.format(bbox=bbox)).get("elements", [])
+             if finde(e.get("lon"), e.get("lat")) == beirat]
+    if not halte:
+        log("  Keine Haltestellen im Gebiet gefunden — Linien bleiben unverändert.")
+        return
+
+    ids = ",".join(str(e["id"]) for e in halte)
+    linien: dict[str, dict] = {}
+    for el in overpass(LINIEN_ZU_HALT_QUERY.format(ids=ids)).get("elements", []):
+        tags = el.get("tags", {})
+        ref = (tags.get("ref") or "").strip()
+        if not ref:
+            continue
+        eintrag = linien.setdefault(ref, {"ref": ref, "art": tags.get("route", "bus"), "richtungen": 0})
+        eintrag["richtungen"] += 1
+
+    write_json(out / "buslinien.json", {
+        "stand": date.today().isoformat(),
+        "quelle": "OpenStreetMap (Linien mit Halt im Beiratsgebiet)",
+        "beirat": beirat,
+        "haltestellen": sorted({norm(e.get("tags", {}).get("name", "")) for e in halte} - {""}),
+        "linien": [linien[r] for r in sorted(linien, key=lambda r: (len(r), r))],
+    }, compact=False)
+    log(f"  {len(linien)} Linien an {len(halte)} Haltestellen: "
+        f"{', '.join(sorted(linien, key=lambda r: (len(r), r)))}")
+
+
 def extract_osm_kategorien(out: Path, finde, beirat: str,
                            eigen_bbox: tuple[float, float, float, float]) -> None:
     """OSM-Themenobjekte (Punkte + Linien) aus Overpass holen, präzise auf das
@@ -510,6 +563,11 @@ def main() -> int:
         extract_osm_kategorien(out, finde, args.beirat, eigen_bbox)
     except Exception as e:
         log(f"  OSM-Kategorien übersprungen: {e}")
+
+    try:
+        extract_buslinien(out, finde, args.beirat, eigen_bbox)
+    except Exception as e:
+        log(f"  Buslinien übersprungen: {e}")
     return 0
 
 

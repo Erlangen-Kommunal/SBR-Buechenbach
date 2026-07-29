@@ -1,0 +1,90 @@
+{
+  "stand": "2026-07-29",
+  "quelle": "OpenStreetMap (Linien mit Halt im Beiratsgebiet)",
+  "beirat": "Stadtteilbeirat Büchenbach",
+  "haltestellen": [
+    "Am Hafen",
+    "Am Herzogenauracher Damm",
+    "Aschaffenburger Straße",
+    "Büchenbach Markt",
+    "Büchenbach Schule",
+    "Büchenbacher Anlage",
+    "Diakonisches Zentrum",
+    "Donato-Polli-Straße",
+    "Dreibergstraße",
+    "Frankenwaldallee",
+    "Gerätewerk",
+    "Heinrich-Kirchner-Schule",
+    "Heinrich-Kirchner-Straße",
+    "In der Reuth",
+    "Joseph-Will-Straße",
+    "Klinikum am Europakanal",
+    "Kraepelinstraße",
+    "Lindnerstraße",
+    "Mönauschule",
+    "Neuweiher",
+    "Odenwaldallee",
+    "Steigerwaldallee",
+    "Straßberg",
+    "Würzburger Ring",
+    "Zambellistraße",
+    "Zum Hutacker"
+  ],
+  "linien": [
+    {
+      "ref": "201",
+      "art": "bus",
+      "richtungen": 29
+    },
+    {
+      "ref": "280",
+      "art": "bus",
+      "richtungen": 2
+    },
+    {
+      "ref": "281",
+      "art": "bus",
+      "richtungen": 7
+    },
+    {
+      "ref": "286",
+      "art": "bus",
+      "richtungen": 3
+    },
+    {
+      "ref": "287",
+      "art": "bus",
+      "richtungen": 3
+    },
+    {
+      "ref": "289",
+      "art": "bus",
+      "richtungen": 3
+    },
+    {
+      "ref": "293",
+      "art": "bus",
+      "richtungen": 2
+    },
+    {
+      "ref": "296",
+      "art": "bus",
+      "richtungen": 2
+    },
+    {
+      "ref": "298",
+      "art": "bus",
+      "richtungen": 2
+    },
+    {
+      "ref": "N28",
+      "art": "bus",
+      "richtungen": 2
+    },
+    {
+      "ref": "287T",
+      "art": "bus",
+      "richtungen": 2
+    }
+  ]
+}
