@@ -13,6 +13,8 @@ python tools/fetch_geodata.py
 | `beiraete.geojson` | Gebiete aller 13 Orts- und Stadtteilbeiräte; das eigene ist mit `"eigen": true` markiert |
 | `strassen.json` | Die 128 Straßen im Beiratsgebiet mit statistischem Bezirk, dazu alle 914 amtlichen Straßennamen der Stadt |
 | `strassen.geojson` | Geometrie dieser Straßen — damit zeigt das Portal eine Straße ohne Geokodierdienst |
+| `osm_poi.geojson`, `osm_linien.geojson`, `osm_kategorien.json` | einblendbare OSM-Themen der Karte (Spielplätze, Haltestellen, Radwege, Tempo-Beschränkungen …), präzise aufs Polygon geclippt |
+| `buslinien.json` | Linien mit **Halt** im Beiratsgebiet, dazu die Haltestellennamen |
 
 ## Quellen und Lizenzen
 
@@ -47,6 +49,21 @@ sind in der Liste mit ↔ markiert; ab 15 % Anteil zählt eine Straße zum Gebie
 
 **5 Straßen kennt OpenStreetMap, das amtliche Verzeichnis nicht** — es führt
 nur Straßen mit Hausnummern. Betroffen sind Dämme und Wirtschaftswege.
+
+## Buslinien: über die Haltestellen, nicht über die Strecke
+
+`buslinien.json` entsteht in zwei Overpass-Abfragen: erst die Haltestellen im
+Gebiet (aufs Polygon geclippt, nicht per Bounding Box), dann die Linien, die
+diese Haltestellen bedienen. Stand: **11 Linien an 26 Haltestellen** (201, 280,
+281, 286, 287, 287T, 289, 293, 296, 298, N28). OSM führt 54 Haltepunkte — je
+Fahrtrichtung einen —, die Datei listet die 26 Namen.
+
+Warum der Halt und nicht die Streckenführung: Eine Linie, die Büchenbach nur
+durchquert, ist für den Stadtteil folgenlos — eine, die hier hält, verschwindet
+aus dem Fahrplan, wenn sie gestrichen wird. Genau dafür werden die Nummern
+gebraucht: „Kein Weiterbetrieb der Linie 298" nennt weder Büchenbach noch eine
+Straße und betrifft den Stadtteil trotzdem (siehe „Büchenbach anderswo" im
+Haupt-README).
 
 ## Vorbehalt zur Geometrie
 
