@@ -2,7 +2,7 @@
   {
     "id": "ortsbeiraete",
     "title": "Satzung über Orts- und Stadtteilbeiräte",
-    "beschreibung": "Rechtsgrundlage der Stadtteilbeiräte der Stadt Erlangen (Stadtrecht 140.00): Bildung, Zusammensetzung, Aufgaben, Rechte, Anhörung und Sitzungen der Orts- und Stadtteilbeiräte. Maßgeblich für die Arbeit des Stadtteilbeirats Büchenbach.",
+    "beschreibung": "Rechtsgrundlage der Stadtteilbeiräte (Stadtrecht 140.00): Bildung, Zusammensetzung, Aufgaben, Rechte und Sitzungen.",
     "erstellt": "2026-02-26",
     "themen": ["Bürgerbeteiligung & Gremien"],
     "quelle_url": "https://erlangen.de/aktuelles/orts-und-stadtteilbeiraete",
@@ -15,7 +15,7 @@
   {
     "id": "stadtrecht-uebersicht",
     "title": "Erlanger Stadtrecht (A–Z)",
-    "beschreibung": "Sammlung aller Satzungen und Verordnungen der Stadt Erlangen (Ortsrecht). Einstieg für alle weiteren Rechtsvorschriften mit Bezug zur Stadtteilarbeit (z. B. Grünanlagen-, Straßenreinigungs-, Sondernutzungssatzung).",
+    "beschreibung": "Alle Satzungen und Verordnungen der Stadt Erlangen — Einstieg für weitere Rechtsvorschriften.",
     "themen": ["Bürgerbeteiligung & Gremien"],
     "quelle_url": "https://erlangen.de/themenseite/recht/stadtrecht-a-z",
     "dateien": []

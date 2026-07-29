@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v28 · 2026-07-28";
-const CONTENT_VERSION = "28";
+const APP_VERSION = "v31 · 2026-07-29";
+const CONTENT_VERSION = "31";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -180,7 +180,7 @@ async function renderStart() {
     ["#/fachbeiraete", "👥", "Fachbeiräte", "Andere Beiräte und Ausschüsse — inkl. UVPA-Infoseite."],
     ["#/karte", "🗺️", "Straße & Karte", "Büchenbach mit Beiratsgrenze, Straßensuche mit Protokollbezug und einblendbaren OSM-Themen: Spielplätze, Haltestellen, Nahversorgung, Denkmäler, Tempo-Beschränkungen …"],
     ["#/statistik", "📊", "Statistik", "Bevölkerung, Sozialstruktur und Prognosen für Erlangen und Büchenbach."],
-    ["#/recht", "⚖️", "Satzung & Recht", "Rechtsgrundlage der Stadtteilbeiräte und weiteres Stadtrecht."],
+    ["#/recht", "⚖️", "Satzung & Recht", "Die Satzung der Stadtteilbeiräte und das Erlanger Stadtrecht."],
     ["#/links", "🔗", "Ratsinfosystem & Links", "Direkt ins Ratsinformationssystem und weitere ausgewählte Seiten rund um Büchenbach."],
   ];
   view().innerHTML = `
@@ -637,10 +637,16 @@ async function renderStatistik() {
 }
 
 async function renderRegistry(kind, title, icon) {
+  // Zuerst die Einträge mit eigenen Dokumenten (bei „Recht“ also die Satzung
+  // selbst), danach die weiterführenden Sammeleinträge ohne eigene Dateien —
+  // sonst stünde das Stadtrecht-Verzeichnis alphabetisch vor der Satzung.
+  // Der Unterselect ist nötig: DuckDB sortiert nicht über einen Alias, dessen
+  // Ausdruck eine Unterabfrage enthält.
   const rows = await q(
-    `SELECT id, title, beschreibung, themen, erstellt, quelle_url,
-            (SELECT count(*) FROM plan_files pf WHERE pf.plan_id = plans.id)::INT AS n
-     FROM plans WHERE kind = '${esc(kind)}' ORDER BY title`);
+    `SELECT * FROM (
+       SELECT id, title, beschreibung, themen, erstellt, quelle_url,
+              (SELECT count(*) FROM plan_files pf WHERE pf.plan_id = plans.id)::INT AS n
+       FROM plans WHERE kind = '${esc(kind)}') ORDER BY n = 0, title`);
   const intro = kind === "recht"
     ? "Die maßgebliche Satzung für die Arbeit der Stadtteilbeiräte sowie weiteres Erlanger Stadtrecht."
     : "Ausgewählte statistische Berichte der Stadt Erlangen mit Bezug zu Büchenbach und zur kleinräumigen Entwicklung.";
@@ -1423,12 +1429,13 @@ async function addBeiratsgrenzen(L, map, { nachbarnBenennen = true, fuellen = tr
 }
 
 /**
- * Baut einen Kartenlayer aus der Konfiguration.
+ * Baut einen Kartenlayer aus der Konfiguration (`content/karte.json`).
  *
- * `typ: "wms"` erzeugt einen WMS-Layer der offenen bayerischen Geodienste
- * (Luftbild DOP20, historische Uraufnahme, Denkmal-Atlas des BLfD). Diese
- * Dienste liefern EPSG:3857 und senden CORS-Header, lassen sich also anders als
- * der BayernAtlas selbst direkt einbetten — der sperrt sie per `X-Frame-Options: DENY`.
+ * Nur Rasterkacheln: OpenStreetMap und das amtliche basemap.de. Die bayerischen
+ * WMS-Dienste (Luftbild DOP20, Uraufnahme, Denkmal-Atlas) waren einmal
+ * eingebaut und sind auf Wunsch wieder entfernt worden — `typ: "wms"` in der
+ * Konfiguration bewirkt hier deshalb nichts mehr. Der BayernAtlas selbst lässt
+ * sich ohnehin nicht einbetten, er sperrt das per `X-Frame-Options: DENY`.
  */
 function buildLayer(L, cfg) {
   return L.tileLayer(cfg.url, { attribution: cfg.attribution, maxZoom: cfg.maxZoom || 19 });
