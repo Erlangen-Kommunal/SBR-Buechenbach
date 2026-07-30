@@ -87,8 +87,10 @@ header {
 /* ── Hauptbereich ────────────────────────────────────────────────── */
 main#view { flex: 1; overflow-y: auto; padding: 1.2rem 1.1rem 3rem; }
 .wrap { max-width: 60rem; margin: 0 auto; }
+/* Zurück-Link: steht immer oben über der Überschrift und ist fett gesetzt,
+   damit der Rückweg auf jeder Seite sofort ins Auge fällt (wie im UVPA-Portal). */
 .crumb {
-  display: inline-block; margin-bottom: .9rem; font-size: .85rem;
+  display: inline-block; margin-bottom: .9rem; font-size: .85rem; font-weight: 700;
   color: var(--accent-2); text-decoration: none;
 }
 .crumb:hover { text-decoration: underline; }
