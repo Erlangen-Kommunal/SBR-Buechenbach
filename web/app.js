@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v32 · 2026-07-30";
-const CONTENT_VERSION = "32";
+const APP_VERSION = "v33 · 2026-07-30";
+const CONTENT_VERSION = "33";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -168,6 +168,39 @@ async function route() {
 
 const crumb = (label = "Startseite") => `<a class="crumb" href="#/">‹ ${escHtml(label)}</a>`;
 
+// ── Suchleiste ───────────────────────────────────────────────────────────────
+// Sie steht nicht mehr in der Kopfzeile, sondern dort, wo gesucht wird: über den
+// Filtern der Protokollseite und auf der Trefferseite. Weil beide Ansichten neu
+// gezeichnet werden, hängt bindSuche() den Handler nach jedem Rendern an.
+
+const sucheForm = (query = "") => `
+  <form id="search-form" role="search">
+    <input id="search-input" type="search" value="${escHtml(query)}"
+           placeholder="Protokolle durchsuchen, z. B. Spielplatz, StUB, Stromnetz …"
+           aria-label="Protokolle durchsuchen">
+    <button type="submit">Suchen</button>
+  </form>`;
+
+/**
+ * Hängt das Suchformular an. Ohne Argument führt die Suche auf die
+ * übergreifende Trefferseite; mit `beiEingabe` bleibt sie auf der Seite und
+ * filtert dort (Protokolle) — inklusive Leeren über das ✕ des Suchfelds.
+ */
+function bindSuche(beiEingabe = null) {
+  const form = $("search-form");
+  if (!form) return;
+  form.addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const query = $("search-input").value.trim();
+    if (beiEingabe) beiEingabe(query);
+    else if (query) go(`/suche/${encodeURIComponent(query)}`);
+  });
+  if (beiEingabe)
+    $("search-input").addEventListener("input", (ev) => {
+      if (!ev.target.value.trim()) beiEingabe("");
+    });
+}
+
 // ── Startseite (Portal) ──────────────────────────────────────────────────────
 
 async function renderStart() {
@@ -177,7 +210,7 @@ async function renderStart() {
     ["#/protokolle", "📄", "Protokolle & Anträge", "Alle öffentlichen Sitzungen seit 2020 und die Anträge des Beirats — durchsuchbar mit Volltext und Zusammenfassungen."],
     ["#/gremien", "🏛️", "Büchenbach anderswo", "Was Stadtrat, Sport- und Jugendhilfeausschuss über den Stadtteil beraten haben."],
     ["#/aemter", "🏢", "Ämter & Zuständigkeiten", "Schnell klären: Welches Amt ist für ein Anliegen zuständig?"],
-    ["#/fachbeiraete", "👥", "Fachbeiräte", "Andere Beiräte und Ausschüsse — inkl. UVPA-Infoseite."],
+    ["#/fachbeiraete", "👥", "Fachbeiräte", "Schnell finden: andere Beiräte und Ausschüsse der Stadt — inkl. UVPA-Infoseite."],
     ["#/karte", "🗺️", "Straße & Karte", "Büchenbach mit Beiratsgrenze, Straßensuche mit Protokollbezug und einblendbaren OSM-Themen: Spielplätze, Haltestellen, Nahversorgung, Denkmäler, Tempo-Beschränkungen …"],
     ["#/statistik", "📊", "Statistik", "Bevölkerung, Sozialstruktur und Prognosen für Erlangen und Büchenbach."],
     ["#/recht", "⚖️", "Satzung & Recht", "Die Satzung der Stadtteilbeiräte und das Erlanger Stadtrecht."],
@@ -213,6 +246,32 @@ async function renderStart() {
 // documents-Tabelle und werden über die Kategorie auseinandergehalten.
 
 let allDocs = null;
+
+// Schlagwortsuche auf der Protokollseite: Sie filtert die Liste an Ort und
+// Stelle, statt auf die übergreifende Trefferseite zu springen — die Filter für
+// Dokumenttyp, Jahr und Thema bleiben dabei wirksam. protoTreffer ist null,
+// solange keine Suche läuft; sonst enthält es die Treffer-IDs mit BM25-Score.
+let protoQuery = "";
+let protoTreffer = null;
+let protoSnippets = new Map();
+
+async function protoSuche(query) {
+  protoQuery = query;
+  setTerms(query);
+  if (!query) { protoTreffer = null; protoSnippets = new Map(); return; }
+  const rows = await q(
+    `SELECT id, fts_main_documents.match_bm25(id, '${esc(query)}') AS score FROM documents`);
+  protoTreffer = new Map(rows.filter((r) => r.score != null).map((r) => [r.id, r.score]));
+  protoSnippets = new Map();
+  if (protoTreffer.size && lastTerms.length) {
+    const ids = [...protoTreffer.keys()].map((id) => `'${esc(id)}'`).join(",");
+    const w = esc(lastTerms[0].toLowerCase());
+    const snips = await q(
+      `SELECT id, substr(text, greatest(position('${w}' IN lower(text)) - 90, 1), 240) AS snip
+       FROM documents WHERE id IN (${ids}) AND text IS NOT NULL`);
+    protoSnippets = new Map(snips.map((r) => [r.id, r.snip]));
+  }
+}
 async function renderProtokolle() {
   status("Lade Protokolle …");
   if (!allDocs) {
@@ -241,6 +300,7 @@ async function renderProtokolle() {
       bündelt Einladung, Niederschrift und Anhänge — sowie die Anträge und Stellungnahmen, die der
       Beirat an Oberbürgermeister, Fraktionen und Stadtrat gerichtet hat. Zum Lesen ein Dokument
       anklicken; der Volltext erscheint sofort, das PDF ist eingebettet.</p>
+    ${sucheForm(protoQuery)}
     <div class="map-actions">
       <label>Dokumenttyp <select id="f-art">
         <option value="">alle</option>
@@ -252,6 +312,7 @@ async function renderProtokolle() {
       ${themen.length ? `<label>Thema <select id="f-thema"><option value="">alle</option>
         ${themen.map((t) => `<option value="${escHtml(t)}">${escHtml(t)}</option>`).join("")}</select></label>` : ""}
     </div>
+    <p id="suche-hinweis" class="hint" hidden></p>
     <section id="block-sitzungen">
       <h3 class="sub-head">Sitzungen</h3>
       <div id="sessions"></div>
@@ -267,8 +328,10 @@ async function renderProtokolle() {
 
   const docLink = (d) => `<li>
     <span class="badge ${CAT_BADGE[d.category] || ""}">${CAT_SHORT[d.category] || "DOK"}</span>
-    <a class="doc-open" href="#/doc/${encodeURIComponent(d.id)}">${escHtml(d.title)}</a>
+    <a class="doc-open" href="#/doc/${encodeURIComponent(d.id)}">${highlight(escHtml(d.title))}</a>
     ${d.pages ? `<span class="d-pages">${d.pages} S.</span>` : ""}
+    ${protoSnippets.has(d.id)
+      ? `<div class="r-snippet">… ${highlight(escHtml(protoSnippets.get(d.id)))} …</div>` : ""}
   </li>`;
 
   const jahresBloecke = (eintraege, karte) => {
@@ -281,13 +344,18 @@ async function renderProtokolle() {
     return html;
   };
 
+  setTerms(protoQuery);           // Hervorhebung passt zur aktiven Suche
   const draw = () => {
     const fa = $("f-art").value, fy = $("f-year").value, ft = $("f-thema") ? $("f-thema").value : "";
+    // Ohne Suche trifft jedes Dokument zu; mit Suche nur die Volltexttreffer.
+    const trifft = (d) => !protoTreffer || protoTreffer.has(d.id);
     const passt = (d) => (!fy || d.date.startsWith(fy)) && (!ft || themenText(d.themen).includes(ft));
 
-    // Sitzungen: nach Datum bündeln, Filter greift auf die Sitzung als Ganzes
+    // Sitzungen: nach Datum bündeln, Filter greift auf die Sitzung als Ganzes;
+    // bei aktiver Suche bleiben nur Sitzungen mit Treffer und darin nur die
+    // Dokumente, in denen der Begriff vorkommt.
     const byDate = {};
-    for (const d of sitzungsDocs.filter((d) => !fy || d.date.startsWith(fy)))
+    for (const d of sitzungsDocs.filter((d) => (!fy || d.date.startsWith(fy)) && trifft(d)))
       (byDate[d.date] ??= []).push(d);
     let dates = Object.keys(byDate).sort().reverse();
     if (ft) dates = dates.filter((dt) => byDate[dt].some((d) => themenText(d.themen).includes(ft)));
@@ -305,13 +373,16 @@ async function renderProtokolle() {
             <ul class="s-docs">${docs.map(docLink).join("")}</ul>
           </div>`;
         })
-      : `<p class="hint">Keine Sitzungen für diese Auswahl.</p>`;
+      : `<p class="hint">${protoQuery ? `Keine Sitzung enthält „${escHtml(protoQuery)}“.`
+                                       : "Keine Sitzungen für diese Auswahl."}</p>`;
 
-    // Anträge: einzelne Schreiben, Anlagen darunter
-    const antraege = antragDocs.filter(passt);
+    // Anträge: einzelne Schreiben, Anlagen darunter. Ein Schreiben zählt als
+    // Treffer, wenn es selbst oder eine seiner Anlagen den Begriff enthält.
+    const antraege = antragDocs.filter((d) =>
+      passt(d) && (trifft(d) || (anlagenZu[d.id] ?? []).some(trifft)));
     $("antraege").innerHTML = antraege.length
       ? jahresBloecke(antraege, (d) => {
-          const anl = anlagenZu[d.id] ?? [];
+          const anl = (anlagenZu[d.id] ?? []).filter(trifft);
           const th = themenText(d.themen);
           return `<div class="session antrag">
             <div class="s-date">
@@ -325,10 +396,20 @@ async function renderProtokolle() {
             ${anl.length ? `<ul class="s-docs">${anl.map(docLink).join("")}</ul>` : ""}
           </div>`;
         })
-      : `<p class="hint">Keine Anträge für diese Auswahl.</p>`;
+      : `<p class="hint">${protoQuery ? `Kein Antrag enthält „${escHtml(protoQuery)}“.`
+                                       : "Keine Anträge für diese Auswahl."}</p>`;
 
     $("block-sitzungen").hidden = fa === "antrag";
     $("block-antraege").hidden = fa === "sitzung";
+
+    // Der übrige Bestand (Satzung, Statistik, Links, Nachbargremien) liegt nicht
+    // auf dieser Seite — dorthin führt bei aktiver Suche ein Hinweis.
+    const hinweis = $("suche-hinweis");
+    hinweis.hidden = !protoQuery;
+    if (protoQuery)
+      hinweis.innerHTML = `Gesucht wird in Protokollen und Anträgen. `
+        + `<a href="#/suche/${encodeURIComponent(protoQuery)}">Auch in Satzung, Statistik, `
+        + `Links und Nachbargremien suchen →</a>`;
 
     const sitzungsCount = dates.reduce((n, dt) => n + byDate[dt].length, 0);
     const teile = [];
@@ -336,8 +417,13 @@ async function renderProtokolle() {
       teile.push(`${sitzungsCount} Dokument${sitzungsCount === 1 ? "" : "e"} in ${dates.length} Sitzung${dates.length === 1 ? "" : "en"}`);
     if (fa !== "sitzung")
       teile.push(`${antraege.length} Antr${antraege.length === 1 ? "ag" : "äge"} & Stellungnahmen`);
-    status(teile.join(" · ") + ".");
+    status((protoQuery ? `Treffer für „${protoQuery}“: ` : "") + teile.join(" · ") + ".");
   };
+  bindSuche(async (query) => {
+    status(query ? `Suche „${query}“ …` : "Suche zurückgesetzt.");
+    await protoSuche(query);
+    draw();
+  });
   $("f-art").addEventListener("change", draw);
   $("f-year").addEventListener("change", draw);
   $("f-thema")?.addEventListener("change", draw);
@@ -377,11 +463,12 @@ function textScore(hay, terms) {
 }
 
 async function renderSuche(query) {
-  $("search-input").value = query;
   setTerms(query);
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">🔎 Suche</h2>
+    ${sucheForm(query)}
     <div id="search-results"></div></div>`;
+  bindSuche();
   const box = $("search-results");
   if (!query || query.trim().length < 2) {
     box.innerHTML = `<p class="hint">Bitte einen Suchbegriff mit mindestens 2 Zeichen eingeben.</p>`;
@@ -771,19 +858,31 @@ async function showPdf(d, sourceUrl) {
   pdfBlobUrl = URL.createObjectURL(new Blob([bytes], { type: "application/pdf" }));
 
   if (isMobile) {
-    // Mobilgeräte: großer Button statt iframe (iOS Safari zeigt PDFs in iframes nicht an)
+    // Mobilgeräte können PDFs nicht einbetten (iOS Safari zeigt sie in iframes
+    // nicht an). Statt eines zweiten Buttons weiter unten wird der PDF-Knopf der
+    // Aktionszeile selbst zum Öffnen-Link — an derselben Stelle, an der gerade
+    // getippt wurde. Der window.open-Versuch spart den zweiten Tipp, wo der
+    // Browser ihn zulässt; blockiert er ihn, steht der Link bereit.
     const sizeMb = (bytes.length / 1048576).toFixed(1);
+    const link = document.createElement("a");
+    link.id = "btn-pdf";
+    link.className = "pdf-open-link active";
+    link.href = pdfBlobUrl;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = `PDF öffnen (${sizeMb} MB)`;
+    $("btn-pdf").replaceWith(link);
     $("doc-body").innerHTML = `<div class="pdf-mobile">
       <div class="pdf-mobile-icon">📄</div>
-      <p class="pdf-mobile-hint">PDF-Dateien können auf Mobilgeräten nicht eingebettet werden.</p>
-      <a class="pdf-mobile-btn" href="${pdfBlobUrl}" target="_blank" rel="noopener">PDF öffnen (${sizeMb}\u00a0MB)</a>
-      ${sourceUrl ? `<a class="pdf-mobile-btn pdf-mobile-btn-alt" href="${escHtml(safeUrl(sourceUrl))}" target="_blank" rel="noopener">Original im Ratsinformationssystem</a>` : ""}
+      <p class="pdf-mobile-hint">PDF-Dateien lassen sich auf Mobilgeräten nicht einbetten —
+        „PDF öffnen“ zeigt die Datei in einem neuen Tab.</p>
     </div>`;
+    window.open(pdfBlobUrl, "_blank", "noopener");
   } else {
     $("doc-body").innerHTML = `<p class="pdf-fallback"><a href="${pdfBlobUrl}" target="_blank" rel="noopener">PDF in neuem Tab öffnen</a></p>
       <iframe class="pdf-frame" src="${pdfBlobUrl}" title="PDF-Ansicht"></iframe>`;
   }
-  $("btn-pdf").classList.add("active"); $("btn-text").classList.remove("active");
+  $("btn-pdf")?.classList.add("active"); $("btn-text").classList.remove("active");
   status(`PDF angezeigt (${(bytes.length / 1048576).toFixed(1)} MB).`);
 }
 
@@ -1696,11 +1795,6 @@ async function renderKarte() {
 // ── Boot ─────────────────────────────────────────────────────────────────────
 
 $("version").textContent = APP_VERSION;
-$("search-form").addEventListener("submit", (ev) => {
-  ev.preventDefault();
-  const query = $("search-input").value.trim();
-  if (query) go(`/suche/${encodeURIComponent(query)}`);
-});
 window.addEventListener("hashchange", route);
 
 try {

@@ -74,7 +74,9 @@ header {
 #home-link .logo { font-size: 1.5rem; }
 #home-link .brand { font-weight: 700; font-size: 1.02rem; line-height: 1.1; display: flex; flex-direction: column; }
 #home-link .sub { font-weight: 400; font-size: .72rem; color: var(--muted); }
-#search-form { display: flex; gap: .4rem; flex: 1; min-width: 16rem; max-width: 40rem; margin-left: auto; }
+/* Suchleiste: im Bereich „Protokolle & Anträge" direkt über den Filtern und
+   auf der Trefferseite — nicht mehr in der Kopfzeile. */
+#search-form { display: flex; gap: .4rem; max-width: 40rem; margin: 0 0 .8rem; }
 #search-input {
   flex: 1; padding: .45rem .7rem;
   border: 1px solid var(--hairline); border-radius: 6px; font-size: .95rem;
@@ -585,6 +587,12 @@ footer {
 .pdf-mobile-hint {
   font-size: .88rem; color: var(--ink-2); margin: 0 0 1.2rem; line-height: 1.5;
 }
+/* Auf dem Handy wird der PDF-Knopf zum Öffnen-Link — gleiche Optik wie ein
+   aktiver Aktionsbutton, damit die Zeile beim Wechsel nicht springt. */
+.doc-actions a.pdf-open-link {
+  background: var(--accent); border-color: var(--accent); color: #fff;
+  font-weight: 600; text-align: center; text-decoration: none;
+}
 .pdf-mobile-btn {
   display: block; max-width: 22rem; margin: .5rem auto;
   padding: .75rem 1.2rem; border-radius: 8px;
@@ -593,17 +601,12 @@ footer {
   border: 2px solid var(--accent);
 }
 .pdf-mobile-btn:hover { background: #006e00; }
-.pdf-mobile-btn-alt {
-  background: var(--surface-1); color: var(--ink); border-color: var(--hairline);
-  font-size: .88rem;
-}
-.pdf-mobile-btn-alt:hover { border-color: var(--accent-2); color: var(--accent-2); background: var(--surface-1); }
 
 /* ── Mobil ───────────────────────────────────────────────────────── */
 @media (max-width: 680px) {
   header { flex-direction: column; align-items: stretch; gap: .5rem; }
   #home-link { justify-content: center; }
-  #search-form { min-width: 0; max-width: none; margin-left: 0; }
+  #search-form { max-width: none; }
   main#view { padding: 1rem .8rem 3rem; }
   .hero h1 { font-size: 1.55rem; font-weight: 800; }
   .tiles { grid-template-columns: 1fr 1fr; gap: 1rem; }
