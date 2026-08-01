@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v33 · 2026-07-30";
-const CONTENT_VERSION = "33";
+const APP_VERSION = "v34 · 2026-08-01";
+const CONTENT_VERSION = "34";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -698,11 +698,73 @@ async function renderStatistik() {
             <li><span>Bürgergeld U15 (Kinder):</span> <strong>8,5 %</strong> <span class="stat-good">(im Erlanger Schnitt)</span></li>
             <li><span>Bürgergeld 15–55 J. (Erwerbsf.):</span> <strong>3,3 %</strong></li>
             <li><span>Alleinerziehende Familien:</span> <strong>18,6 %</strong></li>
-            <li><span>Wohnbau-Prognose:</span> <strong>+674 Wohnungen</strong> <span class="stat-hi">(Wegäcker/Breite Äcker)</span></li>
+            <li><span>Neubau BP 412/413:</span> <strong>+674 Personen</strong> <span class="stat-hi">(erwartet 2026–2035)</span></li>
           </ul>
           <p class="stat-desc">Büchenbach West weist eine sozial stabile Struktur auf und ist der Hauptwachstumsraum im Erlanger Westen (Neubaugebiete BP 412 & BP 413).</p>
         </div>
       </div>
+    </section>
+
+    <!-- Auswertung der Bevölkerungsprognose für Büchenbach -->
+    <section class="stat-eval-section">
+      <h3 class="sub-head">Bevölkerungsprognose 2026–2041: die Büchenbacher Bezirke</h3>
+      <p class="section-intro">Erlangen wächst laut Prognose von 120.646 Einwohnern (Ende 2025)
+        auf 125.409 im Jahr 2041, also um 3,9 %. Die drei Büchenbacher Bezirke entwickeln sich
+        dabei sehr unterschiedlich: Dorf und Nord bleiben in der Größe nahezu konstant und
+        verschieben sich in der Altersstruktur, West wächst kräftig durch die Neubaugebiete
+        <strong>BP 412 (Häuslinger Wegäcker West)</strong> und <strong>BP 413 (Breite Äcker)</strong>
+        — für sie erwartet die Stadt 674 zusätzliche Personen zwischen 2026 und 2035.</p>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-badge stat-badge-info">Bezirk 76</div>
+          <h4 class="stat-title">Büchenbach Dorf</h4>
+          <div class="stat-main-val">4.335 <span class="stat-sub-val">Einwohner 2041 (2025: 4.213)</span></div>
+          <ul class="stat-metrics">
+            <li><span>Veränderung bis 2041:</span> <strong>+122</strong> <span class="stat-hi">(+2,9 %)</span></li>
+            <li><span>Kinder unter 15 J.:</span> <strong>640 → 614</strong></li>
+            <li><span>30 bis 45 Jahre:</span> <strong>922 → 962</strong></li>
+            <li><span>65 Jahre und älter:</span> <strong>798 → 871</strong></li>
+          </ul>
+          <p class="stat-desc">Der kleinste der drei Bezirke bleibt in seiner Größe fast unverändert.
+            Die Altersstruktur verschiebt sich nur leicht: etwas weniger Kinder, etwas mehr Ältere.</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-badge stat-badge-info">Bezirk 77</div>
+          <h4 class="stat-title">Büchenbach Nord</h4>
+          <div class="stat-main-val">5.668 <span class="stat-sub-val">Einwohner 2041 (2025: 5.581)</span></div>
+          <ul class="stat-metrics">
+            <li><span>Veränderung bis 2041:</span> <strong>+87</strong> <span class="stat-hi">(+1,6 %)</span></li>
+            <li><span>30 bis 45 Jahre:</span> <strong>1.017 → 1.261</strong> <span class="stat-hi">(+244)</span></li>
+            <li><span>65 bis 80 Jahre:</span> <strong>992 → 798</strong> <span class="stat-good">(−194)</span></li>
+            <li><span>80 Jahre und älter:</span> <strong>434 → 486</strong> <span class="stat-hi">(7,8 % → 8,6 %)</span></li>
+          </ul>
+          <p class="stat-desc">Fast konstante Einwohnerzahl, deutliche Verschiebung im Inneren:
+            mehr jüngere Erwachsene, weniger jüngere Senioren. Mit 8,6 % hat Nord 2041 den
+            höchsten Anteil Hochaltriger der drei Bezirke.</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-badge stat-badge-warn">Bezirk 78</div>
+          <h4 class="stat-title">Büchenbach West</h4>
+          <div class="stat-main-val">6.620 <span class="stat-sub-val">Einwohner 2041 (2025: 5.869)</span></div>
+          <ul class="stat-metrics">
+            <li><span>Veränderung bis 2041:</span> <strong>+751</strong> <span class="stat-hi">(+12,8 %)</span></li>
+            <li><span>6 bis 15 Jahre:</span> <strong>716 → 550</strong> <span class="stat-hi">(−166)</span></li>
+            <li><span>65 bis 80 Jahre:</span> <strong>564 → 1.154</strong> <span class="stat-hi">(9,7 % → 17,4 %)</span></li>
+            <li><span>80 Jahre und älter:</span> <strong>131 → 444</strong> <span class="stat-hi">(2,2 % → 6,7 %)</span></li>
+          </ul>
+          <p class="stat-desc">Der Wachstumsraum des Stadtteils — und zugleich der Bezirk mit der
+            stärksten Alterung: Die Wohngebiete der 2000er Jahre kommen gemeinsam in die Jahre.
+            Bei den 45- bis unter 65-Jährigen erwartet die Prognose hier den stadtweit größten
+            Rückgang (rund −200, zusammen mit dem Röthelheimpark).</p>
+        </div>
+      </div>
+      <p class="quelle">Zahlen aus den Datenblättern der Statistischen Bezirke (S. 58–60) und den
+        Neubaugebieten (S. 8) der
+        <a href="#/plan/statistik:bevoelkerungsprognose-2026-2041">Bevölkerungsprognose 2026–2041
+        (Statistik aktuell 2026.03)</a>. Einwohnerzahlen jeweils zum Stand 2025 und 2041,
+        Altersgruppen aus den Prognosejahren 2023 und 2041.</p>
     </section>
 
     <!-- Offizielle Berichte -->
