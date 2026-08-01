@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v34 · 2026-08-01";
-const CONTENT_VERSION = "34";
+const APP_VERSION = "v36 · 2026-08-01";
+const CONTENT_VERSION = "36";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -658,7 +658,7 @@ async function renderStatistik() {
 
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">📊 Statistik &amp; Sozialstruktur Büchenbach</h2>
-    <p class="section-intro">Kleinräumiges Sozialmonitoring (Stand 2026.05) und Bevölkerungsprognose (2026–2041) der Stadt Erlangen mit gezielter Auswertung für die Büchenbacher Bezirke.</p>
+    <p class="section-intro">Kleinräumiges Sozialmonitoring (Stand 2026.05) und Bevölkerungsprognose (2026–2041) der Stadt Erlangen mit gezielter Auswertung für die vier statistischen Bezirke des Beiratsgebiets: Büchenbach Dorf (76), Nord (77), West (78) und In der Reuth (71) — letzterer statistisch eigenständig, aber laut amtlichem Straßenverzeichnis Teil des Beiratsgebiets (Straßen In der Reuth, Am Neuweiher, Dreibergstraße, Kraepelinstraße, Reinschartenweg, Reuthlehenstraße).</p>
 
     <!-- Auswertung der Sozialstatistiken für Büchenbach -->
     <section class="stat-eval-section">
@@ -702,6 +702,18 @@ async function renderStatistik() {
           </ul>
           <p class="stat-desc">Büchenbach West weist eine sozial stabile Struktur auf und ist der Hauptwachstumsraum im Erlanger Westen (Neubaugebiete BP 412 & BP 413).</p>
         </div>
+
+        <div class="stat-card">
+          <div class="stat-badge stat-badge-ok">Bezirk 71</div>
+          <h4 class="stat-title">In der Reuth</h4>
+          <div class="stat-main-val">11,6 <span class="stat-sub-val">Sozialindex (Rang 2 von 33 — einer der niedrigsten)</span></div>
+          <ul class="stat-metrics">
+            <li><span>Entwicklung seit 2019:</span> <strong>7,4 → 11,6</strong> <span class="stat-hi">(leicht steigend)</span></li>
+            <li><span>Prognose bis 2030:</span> <strong>14,1</strong></li>
+            <li><span>Einwohner 2025:</span> <strong>1.020</strong> <span class="stat-hi">(kleinster Bezirk des Gebiets)</span></li>
+          </ul>
+          <p class="stat-desc">Statistisch eigenständiger Bezirk am nördlichen Rand des Beiratsgebiets, am Europakanal gelegen. Mit einem der niedrigsten Sozialindex-Werte Erlangens — nur Hüttendorf liegt noch niedriger — bildet er den Gegenpol zu Büchenbach Nord. Detaillierte Bezugsquoten weist der Bericht nur für Bezirke mit Sozialindex über 50 aus.</p>
+        </div>
       </div>
     </section>
 
@@ -709,11 +721,12 @@ async function renderStatistik() {
     <section class="stat-eval-section">
       <h3 class="sub-head">Bevölkerungsprognose 2026–2041: die Büchenbacher Bezirke</h3>
       <p class="section-intro">Erlangen wächst laut Prognose von 120.646 Einwohnern (Ende 2025)
-        auf 125.409 im Jahr 2041, also um 3,9 %. Die drei Büchenbacher Bezirke entwickeln sich
-        dabei sehr unterschiedlich: Dorf und Nord bleiben in der Größe nahezu konstant und
-        verschieben sich in der Altersstruktur, West wächst kräftig durch die Neubaugebiete
-        <strong>BP 412 (Häuslinger Wegäcker West)</strong> und <strong>BP 413 (Breite Äcker)</strong>
-        — für sie erwartet die Stadt 674 zusätzliche Personen zwischen 2026 und 2035.</p>
+        auf 125.409 im Jahr 2041, also um 3,9 %. Die vier statistischen Bezirke des Beiratsgebiets
+        entwickeln sich dabei sehr unterschiedlich: Dorf und Nord bleiben in der Größe nahezu
+        konstant und verschieben sich in der Altersstruktur, West wächst kräftig durch die
+        Neubaugebiete <strong>BP 412 (Häuslinger Wegäcker West)</strong> und
+        <strong>BP 413 (Breite Äcker)</strong> — für sie erwartet die Stadt 674 zusätzliche
+        Personen zwischen 2026 und 2035 —, während In der Reuth als einziger Bezirk schrumpft.</p>
       <div class="stat-grid">
         <div class="stat-card">
           <div class="stat-badge stat-badge-info">Bezirk 76</div>
@@ -759,11 +772,29 @@ async function renderStatistik() {
             Bei den 45- bis unter 65-Jährigen erwartet die Prognose hier den stadtweit größten
             Rückgang (rund −200, zusammen mit dem Röthelheimpark).</p>
         </div>
+
+        <div class="stat-card">
+          <div class="stat-badge stat-badge-ok">Bezirk 71</div>
+          <h4 class="stat-title">In der Reuth</h4>
+          <div class="stat-main-val">963 <span class="stat-sub-val">Einwohner 2041 (2025: 1.020)</span></div>
+          <ul class="stat-metrics">
+            <li><span>Veränderung bis 2041:</span> <strong>−57</strong> <span class="stat-hi">(−5,6 %, einziger schrumpfender Bezirk)</span></li>
+            <li><span>18 bis 25 Jahre:</span> <strong>76 → 141</strong> <span class="stat-hi">(7,7 % → 14,7 %)</span></li>
+            <li><span>65 bis 80 Jahre:</span> <strong>285 → 125</strong> <span class="stat-good">(28,8 % → 12,9 %)</span></li>
+            <li><span>80 Jahre und älter:</span> <strong>114 → 71</strong> <span class="stat-good">(11,5 % → 7,3 %)</span></li>
+          </ul>
+          <p class="stat-desc">Der kleinste und zugleich am stärksten schrumpfende Bezirk des
+            Beiratsgebiets — bei gleichzeitiger Verjüngung: Der heute hohe Seniorenanteil geht
+            deutlich zurück, während junge Erwachsene in Ausbildung und Studium stark zunehmen.</p>
+        </div>
       </div>
-      <p class="quelle">Zahlen aus den Datenblättern der Statistischen Bezirke (S. 58–60) und den
+      <p class="quelle">Zahlen aus den Datenblättern der Statistischen Bezirke (S. 54, 58–60) und den
         Neubaugebieten (S. 8) der
         <a href="#/plan/statistik:bevoelkerungsprognose-2026-2041">Bevölkerungsprognose 2026–2041
-        (Statistik aktuell 2026.03)</a>. Einwohnerzahlen jeweils zum Stand 2025 und 2041,
+        (Statistik aktuell 2026.03)</a>, Sozialindex-Werte aus der Bezirksübersicht (Abbildung 2,
+        S. 7–8) des
+        <a href="#/plan/statistik:sozialmonitoring-2026">Kleinräumigen Sozialmonitorings 2026
+        (Statistik aktuell 2026.05)</a>. Einwohnerzahlen jeweils zum Stand 2025 und 2041,
         Altersgruppen aus den Prognosejahren 2023 und 2041.</p>
     </section>
 
@@ -1276,6 +1307,13 @@ async function renderFremdeGremien() {
     return;
   }
 
+  // Kuratierte Chronik: Themen, die Büchenbach betreffen, deren Vorlagen den
+  // Stadtteil aber nur im Text nennen. Die automatische Erkennung stützt sich
+  // auf Straßennamen und Buslinien und findet sie deshalb nicht.
+  // Fehlt die Datei, bleibt die Seite trotzdem nutzbar — die Chronik ist
+  // Beiwerk zur automatischen Liste.
+  const fluglaerm = await loadContent("fluglaerm").catch(() => null);
+
   const relevante = daten.tops.filter((t) => !t.routine && t.relevant);
   // Themen einmal pro Eintrag bestimmen und anhängen; nur Themen mit
   // mindestens einem Treffer landen im Filter, in Taxonomie-Reihenfolge.
@@ -1296,7 +1334,13 @@ async function renderFremdeGremien() {
       Tempo-30-Anordnungen" nennt die betroffenen Straßen erst im Text, und
       „Maßnahmen zur Kosteneinsparung im ÖPNV" erst in der Anlage. Steht der Bezug
       nicht schon im Titel, zeigt „Fundstelle" die Belegstelle. Als Bezug gilt eine
-      Straße des Beiratsgebiets, der Ortsname oder eine Buslinie, die hier hält;
+      Straße des Beiratsgebiets, eine Buslinie, die hier hält, eine Einrichtung
+      im Stadtteil (Mönauschule, Heinrich-Kirchner-Schule, Grundschule Büchenbach,
+      Doktors-, Neu- und Dummetsweiher, Stadtteilhaus West, Baugebiete 411 bis 413,
+      In der Reuth, Klinikum am Europakanal) oder der Ortsname — auch wenn er
+      erst in der Vorlage steht; solche Punkte
+      tragen die Marke „Büchenbach (im Text)". In gesamtstädtischen Aufzählungen
+      zählt der Ortsname nicht, in Anlagen erst ab der zweiten Nennung;
       Niederschriften erscheinen erst Wochen nach der Sitzung, Anlagen älterer
       Vorlagen werden nach und nach nachgelesen. Wiederkehrende Formalpunkte
       (Anfragen, Mitteilungen, Beirats-Personalien) sind ausgeblendet.</p>
@@ -1304,6 +1348,7 @@ async function renderFremdeGremien() {
       <label>Themengebiet <select id="tg-thema"><option value="">alle Themen</option>
         ${themenOptionen.map((th) => `<option value="${escHtml(th)}">${escHtml(th)} (${themenAnzahl.get(th)})</option>`).join("")}</select></label>
     </div>` : ""}
+    ${chronikHtml(fluglaerm)}
     <div id="tg-liste"></div>
     <p class="quelle">Quelle: ${escHtml(daten.quelle || "Ratsinformationssystem der Stadt Erlangen")}
       · Stand ${escHtml(fmtDate(daten.stand))}</p></div>`;
@@ -1325,7 +1370,13 @@ async function renderFremdeGremien() {
         // Linien, die im Gebiet halten — ein gestrichener Bus trifft den
         // Stadtteil, ohne dass eine Büchenbacher Straße im Text steht.
         ...(t.linien || []).map((l) => `<span class="tg-linie">Linie ${escHtml(l)}</span>`),
-        t.nennt_ort ? `<span class="tg-ort">Büchenbach</span>` : "",
+        // Einrichtungen und Baugebiete, die es nur hier gibt (Mönauschule,
+        // Neuweiher, Baugebiet 412 …) — so eindeutig wie ein Straßenname.
+        ...(t.marken || []).map((mk) => `<span class="tg-marke">${escHtml(mk)}</span>`),
+        // Ortsname nur im Text der Unterlagen: schwächeres Signal als eine
+        // Straße hier — das steht am Eintrag, statt beides gleich auszusehen.
+        t.nennt_ort ? `<span class="tg-ort">Büchenbach${
+          t.nennt_ort_titel === false ? " (im Text)" : ""}</span>` : "",
       ].filter(Boolean).join("");
       html += `<div class="tg-eintrag">
         <div class="tg-kopf">
@@ -1347,6 +1398,37 @@ async function renderFremdeGremien() {
   const sel = $("tg-thema");
   if (sel) sel.addEventListener("change", () => zeichne(sel.value));
   zeichne("");
+}
+
+/**
+ * Kuratierte Themen-Chronik über der automatischen Liste.
+ *
+ * Die Liste darunter entsteht aus Straßen- und Linientreffern. Ein Thema wie
+ * Fluglärm hat keinen Straßenbezug — es trifft den halben Stadtteil auf einmal
+ * und steht in den Vorlagen nur als Ortsname im Fließtext. Solche Stränge
+ * werden hier von Hand gepflegt (content/fluglaerm.json) und ausdrücklich als
+ * Zusammenstellung gekennzeichnet.
+ */
+function chronikHtml(daten) {
+  if (!daten?.eintraege?.length) return "";
+  return `<section class="chronik">
+    <h3 class="sub-head">${escHtml(daten.titel || "Chronik")}</h3>
+    ${daten.intro ? `<p class="section-intro">${escHtml(daten.intro)}</p>` : ""}
+    ${daten.eintraege.map((e) => `<div class="tg-eintrag">
+      <div class="tg-kopf">
+        <span class="tg-datum">${escHtml(fmtDate(e.datum))}</span>
+        <span class="tg-gremium">${escHtml(e.gremium)}</span>
+        ${e.top ? `<span class="tg-nr">TOP ${escHtml(e.top)}</span>` : ""}
+        ${e.vorlage ? `<span class="tg-nr">Vorlage ${escHtml(e.vorlage)}</span>` : ""}
+      </div>
+      <a class="tg-titel" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener">${escHtml(e.titel)} <span class="ext">↗</span></a>
+      ${e.beschluss ? `<div class="tg-beschluss">${escHtml(e.beschluss)}</div>` : ""}
+      ${e.kern ? `<div class="chronik-kern">${escHtml(e.kern)}</div>` : ""}
+    </div>`).join("")}
+    ${daten.hinweis ? `<p class="hinweis-eng">${escHtml(daten.hinweis)}</p>` : ""}
+    ${daten.quelle ? `<p class="quelle">Zusammenstellung aus: ${escHtml(daten.quelle)}${
+      daten.stand ? ` · Stand ${escHtml(fmtDate(daten.stand))}` : ""}</p>` : ""}
+  </section>`;
 }
 
 // ── Karten-Sektionen: Fachbeiräte / Ämter / Links ────────────────────────────

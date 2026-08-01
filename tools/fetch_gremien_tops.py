@@ -194,6 +194,87 @@ LINIEN_KONTEXT_RE = re.compile(
 LINIEN_NUMMER_RE = re.compile(r"[A-Z]?\d{1,3}[A-Z]?")
 
 
+# ── Ortsname und Eigennamen als Signale ─────────────────────────────────────
+# Der Stadtteilname ist das dritte Ortssignal. Bisher zählte er nur im Titel —
+# Themen wie Fluglärm nennen aber weder eine Straße noch eine Buslinie und
+# stehen mit „Büchenbach" erst im Sachverhalt der Vorlage. Das Muster fängt
+# auch Ableitungen („Büchenbacher", „Büchenbach-Nord").
+ORT_RE: re.Pattern | None = None
+
+
+def setze_ort(beiratsname: str) -> None:
+    """Ortsnamen aus dem Beiratsnamen ableiten („Stadtteilbeirat Büchenbach")."""
+    global ORT_RE
+    wort = beiratsname.split()[-1] if beiratsname else ""
+    ORT_RE = re.compile(rf"\b{re.escape(wort)}\w*", re.I) if len(wort) > 3 else None
+
+
+# Andere Stadtteile. Steht der eigene Name mitten in einer solchen Aufzählung,
+# klappert ein gesamtstädtischer Bericht alle Stadtteile ab — das ist kein
+# Ortsthema, sondern eine Zeile in einer Tabelle.
+ANDERE_ORTE = (
+    "Alterlangen", "Anger", "Bruck", "Burgberg", "Dechsendorf", "Eltersdorf",
+    "Frauenaurach", "Häusling", "Hüttendorf", "Innenstadt", "Kosbach", "Kriegenbrunn",
+    "Röthelheim", "Sebaldus", "Sieglitzhof", "Steudach", "Tennenlohe", "Bachfeld",
+    "Rathenau", "Stubenloh", "Altstadt", "Markgrafenstadt",
+)
+ANDERE_ORTE_RE = re.compile(r"\b(?:" + "|".join(ANDERE_ORTE) + r")\w*", re.I)
+ORT_UMFELD = 150        # Zeichen links und rechts der Fundstelle
+ORT_AUFZAEHLUNG_AB = 2  # so viele andere Stadtteile im Umfeld → Aufzählung
+
+# Einrichtungen und Gebiete, die es nur hier gibt. Sie sind so eindeutig wie ein
+# Straßenname und zählen deshalb schon bei einer einzigen Nennung — der
+# Doktorsweiher liegt nun einmal in Büchenbach, egal wie der TOP heißt.
+ORTSMARKEN = {
+    "Mönauschule": r"Mönauschule",
+    "Grundschule Büchenbach": r"Grund-?\s*(?:und\s+Hauptschule\s+)?[Ss]chule\s+Büchenbach",
+    "Heinrich-Kirchner-Schule": r"Heinrich-Kirchner",
+    "Doktorsweiher": r"Doktorsweiher",
+    "Neuweiher": r"Neuweiher",
+    "Dummetsweiher": r"Dummetsweiher",
+    "Stadtteilhaus West": r"Stadtteilhaus\s+West",
+    "Bürgerhaus West": r"Bürgerhaus\s+West",
+    "Baugebiet 411": r"(?:BP|B-?Plan|Bebauungsplan|Baugebiet)\s*(?:Nr\.?\s*)?411\b",
+    "Baugebiet 412": r"(?:BP|B-?Plan|Bebauungsplan|Baugebiet)\s*(?:Nr\.?\s*)?412\b",
+    "Baugebiet 413": r"(?:BP|B-?Plan|Bebauungsplan|Baugebiet)\s*(?:Nr\.?\s*)?413\b",
+    # Bezirk 71 „In der Reuth" ist statistisch eigenständig, gehört laut
+    # amtlichem Straßenverzeichnis aber zum Beiratsgebiet (Straßen In der
+    # Reuth, Am Neuweiher, Dreibergstraße u. a.) — "Reuth" allein bliebe
+    # ungeeignet, das Wort steckt in vielen fränkischen Ortsnamen (Bayreuth
+    # etc.), daher die volle Wendung.
+    "In der Reuth": r"\bin\s+der\s+Reuth\b",
+    "Klinikum am Europakanal": r"Klinik(?:um)?\s+am\s+Europakanal",
+}
+ORTSMARKEN_RE = {name: re.compile(p, re.I) for name, p in ORTSMARKEN.items()}
+
+# Wie oft muss der Stadtteilname fallen, damit er das Thema trägt? Im Sachverhalt
+# der Vorlage und im TOP-Abschnitt der Niederschrift genügt eine Nennung — beides
+# ist knapper Text zur Sache. Anlagen sind oft hundertseitige Berichte; dort
+# braucht es mehr als eine Streifnotiz.
+ORT_SCHWELLE = {"vorlage": 1, "niederschrift": 1, "anlage": 2}
+
+
+def ort_fundstellen(quelle_text: str) -> list[re.Match]:
+    """Nennungen des Ortsnamens ohne die in Stadtteil-Aufzählungen."""
+    if not ORT_RE:
+        return []
+    treffer = []
+    for m in ORT_RE.finditer(quelle_text):
+        umfeld = quelle_text[max(0, m.start() - ORT_UMFELD):m.end() + ORT_UMFELD]
+        andere = {x.group(0).lower()[:6] for x in ANDERE_ORTE_RE.finditer(umfeld)}
+        if len(andere) < ORT_AUFZAEHLUNG_AB:
+            treffer.append(m)
+    return treffer
+
+
+def marke_in(quelle_text: str) -> tuple[str, re.Match] | tuple[None, None]:
+    for name, muster in ORTSMARKEN_RE.items():
+        m = muster.search(quelle_text)
+        if m:
+            return name, m
+    return None, None
+
+
 def linien_in(text_: str, refs: set[str]) -> list[str]:
     if not refs:
         return []
@@ -455,18 +536,41 @@ def linien_schnipsel(quelle: str, nummer: str) -> str:
 
 def fundstelle(quelle_text: str, herkunft: str, nmap: dict[str, str], gebiet: set[str],
                refs: set[str]) -> dict | None:
-    """Ortsbezug in einem Dokumenttext: Straßen des Gebiets, Linien mit Halt hier."""
+    """Ortsbezug in einem Dokumenttext.
+
+    Drei Signale, absteigend nach Aussagekraft: eine Straße des Beiratsgebiets,
+    eine Buslinie mit Halt hier, der Stadtteilname selbst. Der Name allein ist
+    das schwächste davon — er steht auch in gesamtstädtischen Berichten, die
+    alle Stadtteile aufzählen. Er wird deshalb als `ort` gekennzeichnet, damit
+    die Anzeige „betrifft eine Straße hier" von „nennt den Stadtteil"
+    unterscheiden kann.
+    """
     if not quelle_text:
         return None
     im_gebiet = [s for s in strassen_in(quelle_text, nmap) if norm_strasse(s) in gebiet]
     linien = linien_in(quelle_text, refs)
-    if not im_gebiet and not linien:
+    marke, marke_treffer = marke_in(quelle_text)
+    # Ortsname nur, wenn er das Thema trägt: Aufzählungen fliegen raus, und je
+    # Quelle gilt eine eigene Schwelle.
+    ort_treffer = ort_fundstellen(quelle_text)
+    ort = len(ort_treffer) >= ORT_SCHWELLE.get(herkunft, 1)
+    if not im_gebiet and not linien and not marke and not ort:
         return None
-    eintrag = {"quelle": herkunft, "strassen": im_gebiet,
-               "beleg": schnipsel(quelle_text, im_gebiet[0]) if im_gebiet
-               else linien_schnipsel(quelle_text, linien[0])}
+    if im_gebiet:
+        beleg = schnipsel(quelle_text, im_gebiet[0])
+    elif linien:
+        beleg = linien_schnipsel(quelle_text, linien[0])
+    elif marke:
+        beleg = ausschnitt(quelle_text, marke_treffer)
+    else:
+        beleg = ausschnitt(quelle_text, ort_treffer[0])
+    eintrag = {"quelle": herkunft, "strassen": im_gebiet, "beleg": beleg}
     if linien:
         eintrag["linien"] = linien
+    if marke:
+        eintrag["marke"] = marke
+    if ort:
+        eintrag["ort"] = True
     return eintrag
 
 
@@ -578,7 +682,7 @@ def tiefenpruefung(alle: list[dict], nmap: dict[str, str], gebiet: set[str], ref
                 offene_sitzungen.setdefault(t["ksinr"], []).append(t)
         if offene_sitzungen:
             print(f"Tiefenprüfung: {len(offene_sitzungen)} Sitzungen auf Niederschriften prüfen …", flush=True)
-            lies_niederschriften(offene_sitzungen, nmap, gebiet, workers, sitzungen_geprueft)
+            lies_niederschriften(offene_sitzungen, nmap, gebiet, refs, workers, sitzungen_geprueft)
 
     # 3) Belege je TOP zusammensetzen: Vorlage aus der Buchführung, Niederschrift
     #    aus diesem Lauf (`_neu`) oder aus dem Bestand, wenn sie früher gelesen
@@ -660,7 +764,7 @@ def lies_anlagen(kvonrs: list[str], vorlagen: dict[str, dict], nmap: dict[str, s
 
 
 def lies_niederschriften(offene: dict[str, list[dict]], nmap: dict[str, str], gebiet: set[str],
-                         workers: int, vermerk: dict) -> None:
+                         refs: set[str], workers: int, vermerk: dict) -> None:
     def niederschrift(ksinr: str) -> tuple[str, str]:
         """(Dokument-ID, Text) — leer, wenn (noch) keine veröffentlicht ist."""
         try:
@@ -685,7 +789,7 @@ def lies_niederschriften(offene: dict[str, list[dict]], nmap: dict[str, str], ge
             if not abschnitte:
                 ohne_abschnitt += 1
             for t in offene[ksinr]:
-                t["_neu"] = fundstelle(abschnitte.get(top_nummer(t), ""), "niederschrift", nmap, gebiet) or {}
+                t["_neu"] = fundstelle(abschnitte.get(top_nummer(t), ""), "niederschrift", nmap, gebiet, refs) or {}
             vermerk[ksinr] = docid
     if ohne_abschnitt:
         print(f"  {ohne_abschnitt} Niederschriften ohne TOP-Gliederung — Format prüfen.")
@@ -739,6 +843,7 @@ def main() -> None:
     # „Büchenbach" aus „Stadtteilbeirat Büchenbach" — der Ortsname im Titel ist
     # neben dem Straßenbezug das zweite belastbare Relevanzsignal.
     ort = norm_strasse(beiratsname.split()[-1]) if beiratsname else ""
+    setze_ort(beiratsname)
     for t in alle:
         # Link ebenfalls für alle neu bestimmen, damit eine korrigierte
         # Link-Regel auch die schon erfassten Einträge repariert.
@@ -746,7 +851,9 @@ def main() -> None:
         t["strassen"] = strassen_in(t["titel"], nmap) if nmap else []
         t["strassen_im_titel"] = [s for s in t["strassen"] if norm_strasse(s) in gebiet]
         t["linien_im_titel"] = linien_in(t["titel"], refs)
-        t["nennt_ort"] = bool(ort) and ort in norm_strasse(t["titel"])
+        # Im Titel ist der Ortsname ein starkes Signal; ob er auch in den
+        # Unterlagen steht, ergibt erst die Tiefenprüfung weiter unten.
+        t["nennt_ort_titel"] = bool(ort) and ort in norm_strasse(t["titel"])
 
     if nmap and not args.ohne_tiefenpruefung:
         tiefenpruefung(alle, nmap, gebiet, refs, args.workers, geprueft,
@@ -761,11 +868,14 @@ def main() -> None:
         t["linien"] = sorted(set(t["linien_im_titel"]) |
                              {l for f in belege for l in f.get("linien", [])},
                              key=lambda r: (len(r), r))
-        im_titel = t["strassen_im_titel"] or t["linien_im_titel"] or t["nennt_ort"]
+        t["nennt_ort"] = t["nennt_ort_titel"] or any(f.get("ort") for f in belege)
+        t["marken"] = sorted({f["marke"] for f in belege if f.get("marke")})
+        im_titel = t["strassen_im_titel"] or t["linien_im_titel"] or t["nennt_ort_titel"]
         t["quellen"] = (["titel"] if im_titel else []) + [f["quelle"] for f in belege]
         # Relevanz bleibt eng definiert: örtlicher Bezug, nicht thematische
         # Ähnlichkeit. Was das verfehlt, findet die Volltextsuche.
-        t["relevant"] = bool(t["strassen_im_gebiet"] or t["linien"] or t["nennt_ort"]) and not t["routine"]
+        t["relevant"] = bool(t["strassen_im_gebiet"] or t["linien"] or t["nennt_ort"]
+                             or t["marken"]) and not t["routine"]
 
     alle.sort(key=lambda t: (t["datum"], t["gremium"], t["top"]), reverse=True)
     OUT_JSON.write_text(json.dumps({
@@ -791,13 +901,19 @@ def main() -> None:
     ueber_strasse = sum(1 for t in relevant if t["strassen_im_gebiet"])
     ueber_linie = sum(1 for t in relevant if t["linien"])
     ueber_ort = sum(1 for t in relevant if t["nennt_ort"])
+    nur_ort_im_text = sum(1 for t in relevant
+                          if t["nennt_ort"] and not t["nennt_ort_titel"]
+                          and not t["strassen_im_gebiet"] and not t["linien"])
+    ueber_marke = sum(1 for t in relevant if t.get("marken"))
     nur_dokument = sum(1 for t in relevant if "titel" not in t["quellen"])
     je_quelle = {q: sum(1 for t in relevant if q in t["quellen"])
                  for q in ("vorlage", "anlage", "niederschrift")}
     print(f"\n{OUT_JSON.name}: {len(alle)} Tagesordnungspunkte "
           f"({routine} Routine, {len(alle) - routine} inhaltlich).")
     print(f"  mit Bezug zum Beiratsgebiet: {len(relevant)} ({ueber_strasse} über eine Straße, "
-          f"{ueber_linie} über eine Linie, {ueber_ort} über den Ortsnamen)")
+          f"{ueber_linie} über eine Linie, {ueber_ort} über den Ortsnamen "
+          f"— davon {nur_ort_im_text} allein über den Ortsnamen in den Unterlagen; "
+          f"{ueber_marke} über eine Einrichtung oder ein Baugebiet)")
     print(f"  Tiefenprüfung: {je_quelle['vorlage']} Treffer in Vorlagentexten, "
           f"{je_quelle['anlage']} in Anlagen, {je_quelle['niederschrift']} in Niederschriften "
           f"— davon {nur_dokument} allein daraus (im Titel nicht erkennbar).")

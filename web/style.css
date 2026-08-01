@@ -159,6 +159,13 @@ a.card:hover { border-color: var(--accent-2); }
 }
 .tg-titel:hover { color: var(--accent-2); text-decoration: underline; }
 .tg-titel .ext { font-size: .7rem; color: var(--muted); font-weight: 400; }
+/* Kuratierte Chronik: gleiche Karten wie die automatische Liste, dazu ein
+   erklärender Kerntext je Eintrag. */
+.chronik { margin-bottom: 1.6rem; }
+.chronik-kern {
+  margin-top: .35rem; font-size: .84rem; line-height: 1.5; color: var(--ink-2);
+  border-left: 3px solid var(--hairline); padding-left: .6rem;
+}
 .tg-beschluss { margin-top: .25rem; font-size: .8rem; color: var(--ink-2); }
 .tg-marker { margin-top: .35rem; display: flex; gap: .3rem; flex-wrap: wrap; }
 .tg-strasse, .tg-ort {
@@ -166,6 +173,11 @@ a.card:hover { border-color: var(--accent-2); }
   border: 1px solid var(--hairline); background: var(--page); color: var(--ink-2);
 }
 .tg-ort { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+/* Einrichtung oder Baugebiet im Stadtteil — eindeutig örtlich, wie eine Straße */
+.tg-marke {
+  font-size: .7rem; padding: .1rem .45rem; border-radius: 999px; font-weight: 600;
+  border: 1px solid var(--plan); color: var(--plan); background: var(--page);
+}
 .tg-linie {
   font-size: .7rem; padding: .1rem .45rem; border-radius: 999px; font-weight: 600;
   border: 1px solid var(--accent-2); color: var(--accent-2); background: var(--page);
