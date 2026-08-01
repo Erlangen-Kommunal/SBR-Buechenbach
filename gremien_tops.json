@@ -100018,6 +100018,14 @@
      "beleg": "… ße, FR Norden, Bereich Hs.-Nr. 59 ggü. Altenheim 3. Nürnberg Straße, FR Norden, vor Einmündung Memelstraße 4. Mönaustraße, FR Norden, Bereich HS.-Nr. 30 5. Spardorfer Straße, FR. Osten, Bereich Hs.-Nr. 25 Mobile Geräte, die überall …"
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Mönaustraße"
+     ],
+     "beleg": "… , FR Norden, Bereich Hs.-Nr. 59 ggü. Altenheim 3. Nürnberg Straße, FR Norden, vor Einmündung Memelstraße 4. Mönaustraße, FR Norden, Bereich HS.-Nr. 30 5. Spardorfer Straße, FR. Osten, Bereich Hs.-Nr. 25 Mobile Geräte, die übe …",
+     "dokument": "Beratungsergebnisse Stand: 19.01.2021"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Mönaustraße"
@@ -100027,6 +100035,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -100047,15 +100056,41 @@
    "routine": true,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5049534",
    "strassen": [],
-   "strassen_im_gebiet": [],
-   "nennt_ort": false,
+   "strassen_im_gebiet": [
+    "Adenauer-Ring",
+    "Am Europakanal",
+    "Büchenbacher Anlage",
+    "Holzweg",
+    "Lindnerstraße"
+   ],
+   "nennt_ort": true,
    "relevant": false,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [
+    "Mönauschule"
+   ],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Am Europakanal",
+      "Büchenbacher Anlage",
+      "Holzweg",
+      "Lindnerstraße"
+     ],
+     "beleg": "",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Übersicht offene Fraktionsanträge UVPA  Januar 2021"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -100277,6 +100312,16 @@
      "beleg": "… SessionNet | Barrierefreie Querungshilfe Am Europakanal Startseite Kalender Organisation Stadtrat Ausschüsse Parteien + Gruppen Beiräte Dokumente Aktuelle Dokumente …"
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal",
+      "Kulmbacher Straße",
+      "Stiftungsstraße"
+     ],
+     "beleg": "… Vorlagennummer: VI/61 Amt f. Stadtentwicklung und Stadtplanung 613/050/2020 Barrierefreie Querungshilfe Am Europakanal Beratungsfolge Termin Ö/N Vorlagenart Abstimmung Umwelt-, Verkehrs- und Planungsbei- rat 19.01.2021 …",
+     "dokument": "Beschluss Stand: 19.01.2021"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Am Europakanal",
@@ -100289,6 +100334,7 @@
    "quellen": [
     "titel",
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -100327,6 +100373,14 @@
      "ort": true
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Steg"
+     ],
+     "beleg": "… lich dem Schülerverkehr dient und die südlich gelegene für die Radverkehrsverbindung zwischen Siedlerweg und Büchenbacher Steg von wesentlicher Bedeutung ist. 2. Programme / Produkte / Leistungen / Auflagen (Was soll getan werden, u …",
+     "dokument": "Beschluss Stand:19.01.2021"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Büchenbacher Steg"
@@ -100337,6 +100391,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -100806,15 +100861,29 @@
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5049493",
    "strassen": [],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Rudeltplatz"
+   ],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Rudeltplatz"
+     ],
+     "beleg": "… nftskonzept EB77 14 : 0 551.510 332 -50.000 -50.000 -50.000 -50.000 200.000 97 Grünanlagen BP 409 E-West (Rudeltplatz) EB 77 14 : 0 551.611 332 -50.000 100 Erwerb v. Ufergrundstücken, Seen und Weiher 23 14 : 0 552.503 333 -30. …",
+     "dokument": "Ubersicht HFPApositiver Beschluesse Auswirkungen"
+    }
+   ]
   },
   {
    "gremium": "Stadtrat",
@@ -100853,14 +100922,25 @@
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5049502",
    "strassen": [],
    "strassen_im_gebiet": [],
-   "nennt_ort": false,
-   "relevant": false,
+   "nennt_ort": true,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… erk in Höhe von 0,5-Volumen; SB Bildungsbüro Amt 51/Neuschaffung in Höhe von 1,0-Volumen; Leitung Kinderhaus Büchenbach-Nord Amt 51/Neuschaffung in Höhe von 1,0-Volumen; Stv. Leitung Kinderhaus Büchenbach-Nord Amt 51/Neuschaffu …",
+     "ort": true,
+     "dokument": "Liste A gesamt final für Stadtrat"
+    }
+   ]
   },
   {
    "gremium": "Stadtrat",
@@ -101176,13 +101256,30 @@
    "strassen": [],
    "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
-   "linien": [],
+   "linien": [
+    "286",
+    "296"
+   ],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… ien im Stadtgebiet Erlangen auf vier Buslinien Verstärkerbusse eingesetzt: Linien 283 und 296 vormittags und Linie 286 (2 mal) nachmittags. Die ESTW beobachten und bewerten die Situation seit Beginn des Schuljahres und werden …",
+     "linien": [
+      "286",
+      "296"
+     ],
+     "dokument": "Antwort OBM auf Schreiben GEW aktuelle Situation in Schulen und Kitas"
+    }
+   ]
   },
   {
    "gremium": "Stadtrat",
@@ -101394,10 +101491,15 @@
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5049412",
    "strassen": [],
    "strassen_im_gebiet": [
+    "Am Kornfeld",
+    "Einkornweg",
+    "Häuslinger Straße",
     "In der Reuth",
+    "Kapellenstraße",
     "Lindnerstraße",
     "Mönaustraße",
-    "Rudeltplatz"
+    "Rudeltplatz",
+    "Steudacher Straße"
    ],
    "nennt_ort": true,
    "relevant": true,
@@ -101416,6 +101518,19 @@
      "ort": true
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Kornfeld",
+      "Einkornweg",
+      "Häuslinger Straße",
+      "Kapellenstraße",
+      "Mönaustraße",
+      "Steudacher Straße"
+     ],
+     "beleg": "… 374 2791 6 374 2791 8 540 2809 823 2765 67 2765 1 572 2809 812 2765 797 2765 653 2809 Häuslinger Straße 3105 Am Kornfeld 0353 Einkornweg 1850 Herbstäckerweg Haundorfer Straße Bundesautobahn Kieselbergstraße 5.6 SL5 40/38 LT5 45/ …",
+     "dokument": "Anlage 5: 01AA5E4F A4"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "In der Reuth",
@@ -101430,6 +101545,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -101455,6 +101571,7 @@
     "Schallershofer Straße"
    ],
    "strassen_im_gebiet": [
+    "Am Europakanal",
     "Kosbacher Damm"
    ],
    "nennt_ort": false,
@@ -101469,6 +101586,15 @@
      "beleg": "… erden, wie der Bereich unter ökologischen Gesichtspunkten verändert werden kann. Der „Weiher“ an der Kreuzung Kosbacher Damm und Schallershofer Straße ist in seinem heutigen Zustand eigentlich ein Wasserbecken dessen Grund asphaltiert …"
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal",
+      "Kosbacher Damm"
+     ],
+     "beleg": "… N Hermann-Hedenus-Schule Albert-Schweitzer-Gymnasium Schallershofer Straße Realschule am Europakanal Kosbacher Damm bauliche Entwicklung Steinforstgraben ökologische Aufwertung Neubau Sparkasse: · viergeschossi …",
+     "dokument": "Anlage 1: Planung Stadtteilzentrum für den Stadtteil Alterlangen an der Sch"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Kosbacher Damm"
@@ -101478,6 +101604,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -101528,6 +101655,7 @@
    "quellen": [
     "titel",
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -101539,6 +101667,13 @@
      "strassen": [],
      "beleg": "… SessionNet | Änderung im Stadtteilbeirat Büchenbach – Benennung eines Ersatzmitgliedes der ÖDP-Fraktion für die Amtszeit vom 1. Mai 2020 bis 30. April 2026 Start …",
      "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… liche/r: Vorlagennummer: OBM/13-2 Bürgermeister- und Presseamt 13/051/2020 Änderung im Stadtteilbeirat Büchenbach – Benennung eines Ersatzmitgliedes der ÖDP-Fraktion für die Amtszeit vom 1. Mai 2020 bis 30. April 2026 Ber …",
+     "ort": true,
+     "dokument": "Beschluss Stand: 16.12.2020"
     },
     {
      "quelle": "niederschrift",
@@ -101635,15 +101770,31 @@
    "strassen": [
     "Noetherstraße"
    ],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Kirchenweg",
+    "Niederndorfer Straße"
+   ],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Kirchenweg",
+      "Niederndorfer Straße"
+     ],
+     "beleg": "… uth Birkenallee 51 91088 Bubenreuth 10.09.2020 Keine Einwände Entfällt. 11. Gemeinde Möhrendorf Kirchenweg 1 91096 Möhrendorf Keine Rückmeldung. Entfällt. ANLAGE 1 3 Nr. Name Eingang Nr. Stel …",
+     "dokument": "Anlage 1 B-Plan E 466 Prüfung der Stellungnahmen mit Ergebnis"
+    }
+   ]
   },
   {
    "gremium": "Stadtrat",
@@ -101664,6 +101815,7 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -101675,6 +101827,13 @@
      "strassen": [],
      "beleg": "… erden, aber mindestens sollen die Anforderungen erfüllt werden, die der Stadtrat bereits im Jahr 2014 für den Bebauungsplan 411 (Plusenergiesiedlung) aufgestellt hat. Die Verwaltung wird weiter beauftragt zu prüfen, wie auch bei Um- und …",
      "marke": "Baugebiet 411"
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… den, aber mindestens sollen die Anforde- rungen erfüllt werden, die der Stadtrat bereits im Jahr 2014 für den Bebauungsplan 411 (Plusener- giesiedlung) aufgestellt hat. Die Verwaltung wird weiter beauftragt zu prüfen, wie auch bei Um- …",
+     "marke": "Baugebiet 411",
+     "dokument": "Beschluss Stand: 16.12.2020"
     },
     {
      "quelle": "niederschrift",
@@ -101830,6 +101989,14 @@
      "beleg": "… treffen vor allem die Neubauten in der Junkersstraße sowie in der Housing Area und die Sanierungsmaßnahmen im Würzburger Ring sowie ebenfalls in der Housing Area. (...) Die Finanzlage der GEWOBAU Erlangen und des Konzerns ist geordnet. …"
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Würzburger Ring"
+     ],
+     "beleg": "… reffen vor allem die Neubauten in der Junkersstraße sowie in der Housing Area und die Sanierungsmaßnahmen im Würzburger Ring sowie ebenfalls in der Housing Area. (...) Die Finanzlage der GEWOBAU Erlangen und des Konzerns ist geordnet …",
+     "dokument": "Beschluss Stand: 16.12.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Würzburger Ring"
@@ -101839,6 +102006,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -102028,6 +102196,16 @@
      "marke": "In der Reuth"
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Bachgraben",
+      "In der Reuth"
+     ],
+     "beleg": "… ffen. Hier hat sich mittlerweile ein Weichholz-Bruchwald sowie der Biber etabliert. 90er Renaturierung des Bachgrabens westlich der Gartenstraße durch Entfernung der Steinrin- ne und Gehölzanpflanzung durch das Umweltamt. Auch …",
+     "marke": "In der Reuth",
+     "dokument": "Beschluss Stand: 08.12.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Bachgraben",
@@ -102039,6 +102217,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -102087,6 +102266,7 @@
     "Schallershofer Straße"
    ],
    "strassen_im_gebiet": [
+    "Am Europakanal",
     "Kosbacher Damm"
    ],
    "nennt_ort": false,
@@ -102101,6 +102281,15 @@
      "beleg": "… erden, wie der Bereich unter ökologischen Gesichtspunkten verändert werden kann. Der „Weiher“ an der Kreuzung Kosbacher Damm und Schallershofer Straße ist in seinem heutigen Zustand eigentlich ein Wasserbecken dessen Grund asphaltiert …"
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal",
+      "Kosbacher Damm"
+     ],
+     "beleg": "… N Hermann-Hedenus-Schule Albert-Schweitzer-Gymnasium Schallershofer Straße Realschule am Europakanal Kosbacher Damm bauliche Entwicklung Steinforstgraben ökologische Aufwertung Neubau Sparkasse: · viergeschossi …",
+     "dokument": "Anlage 1: Planung Stadtteilzentrum für den Stadtteil Alterlangen an der Sch"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Kosbacher Damm"
@@ -102110,6 +102299,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -102145,6 +102335,14 @@
      "beleg": "… tzlich. Mittlerweile wurden 4 von 5 bereits angeschafften festangebrachten Geschwindigkeitsdisplays montiert (Mönaustraße, Nürnberger Straße, Gebbertstraße und Schallershofer Straße). Ein weiteres Gerät wird demnächst in der Spardo …"
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Mönaustraße"
+     ],
+     "beleg": "… . Mittlerweile wurden 4 von 5 bereits angeschafften festangebrachten Geschwindigkeitsdisplays montiert (Mönaustraße, Nürnberger Straße, Gebbertstraße und Schallershofer Straße). Ein weiteres Gerät wird demnächst in der Spard …",
+     "dokument": "Beschlussvorlage"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Mönaustraße"
@@ -102154,6 +102352,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -102286,6 +102485,14 @@
      "ort": true
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Damm"
+     ],
+     "beleg": "… senbacher Straße - Äußere Brucker Straße / Am Ehrenfriedhof - Dechsendorfer Straße / Thalermühlstraße - Büchenbacher Damm / Leipziger Straße Von der Verwaltung wird die Signalisierung der ersten 5 genannten Anlagen geändert. Bei …",
+     "dokument": "Beschlussvorlage"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Büchenbacher Damm"
@@ -102296,6 +102503,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -102380,6 +102588,14 @@
      "beleg": "… en Fußgänger im Bereich der Haltestelle Neuses durch eine Querungshilfe verbessert werden. Da es sich bei der Niederndorfer Straße um eine Staatsstraße (St2263) handelt, musste die Planung von 2016 überarbeitet und an die Anforderungen des …"
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Niederndorfer Straße"
+     ],
+     "beleg": "… ßgänger im Bereich der Haltestelle Neuses durch eine Querungshilfe verbessert werden. Da es sich bei der Niederndorfer Straße um eine Staatsstraße (St2263) handelt, musste die Planung von 2016 überarbeitet und an die Anforderungen des …",
+     "dokument": "Beschlussvorlage"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Niederndorfer Straße"
@@ -102389,6 +102605,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -102409,13 +102626,16 @@
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5049333",
    "strassen": [],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Adenauer-Ring"
+   ],
    "nennt_ort": true,
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
     "titel",
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -102428,6 +102648,14 @@
      "beleg": "… ndschaftsplanerischen Ideen- und Realisierungswettbewerbs „Klimaneutrales Wohnen in Büchenbach Breite Äcker“ (Baugebiet 413) werden zur Kenntnis genommen und dem weiteren Vorgehen zugestimmt. 1. Ergebnis/Wirkungen (Welche Ergebnisse …",
      "marke": "Baugebiet 413",
      "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Adenauer-Ring"
+     ],
+     "beleg": "… proportioniert und verortet ist. Die verkehrliche Haupterschliessung für ÖPNV und MIV erfolgt kurzwegig vom Adenauerring aus und wird in Nord-Süd-Richtung schlüssig zum Quartiersplatz geführt. Lediglich die StUB- Trasse führt übe …",
+     "dokument": "Anlage 5 Auszug aus dem Protokoll der Preisgerichtssitzung NEU"
     },
     {
      "quelle": "niederschrift",
@@ -102456,15 +102684,31 @@
    "strassen": [
     "Noetherstraße"
    ],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Kirchenweg",
+    "Niederndorfer Straße"
+   ],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Kirchenweg",
+      "Niederndorfer Straße"
+     ],
+     "beleg": "… uth Birkenallee 51 91088 Bubenreuth 10.09.2020 Keine Einwände Entfällt. 11. Gemeinde Möhrendorf Kirchenweg 1 91096 Möhrendorf Keine Rückmeldung. Entfällt. ANLAGE 1 3 Nr. Name Eingang Nr. Stel …",
+     "dokument": "Anlage 1 B-Plan E 466 Prüfung der Stellungnahmen mit Ergebnis"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -102481,13 +102725,30 @@
    "strassen": [],
    "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
-   "linien": [],
+   "linien": [
+    "293",
+    "296"
+   ],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… en: Mo 08.00-12.00 Uhr, 14.00-18.00 Uhr; Di, Fr 08.00-12.00 Uhr; Do 08.00-14.00 Uhr Haltestelle: Zollhaus Buslinien: 208, 209, 210, 252, 254, 284, 285, 293, 296 Konten der Stadtkasse: Sparkasse Erlangen BIC/SWIFT-Code: BYLADEM1ERH IBAN DE79 7635 0000 0000 0000 31 …",
+     "linien": [
+      "293",
+      "296"
+     ],
+     "dokument": "Anlage 2 Anschreiben Eigentümer"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -102531,6 +102792,7 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -102542,6 +102804,13 @@
      "strassen": [],
      "beleg": "… erden, aber mindestens sollen die Anforderungen erfüllt werden, die der Stadtrat bereits im Jahr 2014 für den Bebauungsplan 411 (Plusenergiesiedlung) aufgestellt hat. Die Verwaltung wird weiter beauftragt zu prüfen, wie auch bei Um- und …",
      "marke": "Baugebiet 411"
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… den, aber mindestens sollen die Anforde- rungen erfüllt werden, die der Stadtrat bereits im Jahr 2014 für den Bebauungsplan 411 (Plusener- giesiedlung) aufgestellt hat. Die Verwaltung wird weiter beauftragt zu prüfen, wie auch bei Um- …",
+     "marke": "Baugebiet 411",
+     "dokument": "Beschluss Stand: 16.12.2020"
     },
     {
      "quelle": "niederschrift",
@@ -102568,10 +102837,15 @@
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5049339",
    "strassen": [],
    "strassen_im_gebiet": [
+    "Am Kornfeld",
+    "Einkornweg",
+    "Häuslinger Straße",
     "In der Reuth",
+    "Kapellenstraße",
     "Lindnerstraße",
     "Mönaustraße",
-    "Rudeltplatz"
+    "Rudeltplatz",
+    "Steudacher Straße"
    ],
    "nennt_ort": true,
    "relevant": true,
@@ -102590,6 +102864,19 @@
      "ort": true
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Kornfeld",
+      "Einkornweg",
+      "Häuslinger Straße",
+      "Kapellenstraße",
+      "Mönaustraße",
+      "Steudacher Straße"
+     ],
+     "beleg": "… 374 2791 6 374 2791 8 540 2809 823 2765 67 2765 1 572 2809 812 2765 797 2765 653 2809 Häuslinger Straße 3105 Am Kornfeld 0353 Einkornweg 1850 Herbstäckerweg Haundorfer Straße Bundesautobahn Kieselbergstraße 5.6 SL5 40/38 LT5 45/ …",
+     "dokument": "Anlage 5: 01AA5E4F A4"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "In der Reuth",
@@ -102604,6 +102891,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -102633,6 +102921,7 @@
    "quellen": [
     "titel",
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -102644,6 +102933,13 @@
      "strassen": [],
      "beleg": "… SessionNet | Untersuchungsgebiet Soziale Stadt Büchenbach Nord - Zwischenbericht zum ISEK - Präsentation durch das Gutachterbüro Startseite Kalender Organisation Stadt …",
      "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… ummer: VI/61 Amt f. Stadtentwicklung und Stadtplanung 610.3/017/2020 Untersuchungsgebiet Soziale Stadt Büchenbach Nord - Zwischenbericht zum ISEK - Präsentation durch das Gutachterbüro Beratungsfolge Termin Ö/N Vorlage …",
+     "ort": true,
+     "dokument": "Beschlussvorlage"
     },
     {
      "quelle": "niederschrift",
@@ -102785,15 +103081,38 @@
    "routine": true,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5049336",
    "strassen": [],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Adenauer-Ring",
+    "Am Europakanal",
+    "Holzweg",
+    "Lindnerstraße"
+   ],
    "nennt_ort": false,
    "relevant": false,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [
+    "Mönauschule"
+   ],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Am Europakanal",
+      "Holzweg",
+      "Lindnerstraße"
+     ],
+     "beleg": "",
+     "marke": "Mönauschule",
+     "dokument": "Übersicht offene Fraktionsanträge UVPA  Dezember 2020"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -102833,15 +103152,34 @@
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5049254",
    "strassen": [],
-   "strassen_im_gebiet": [],
-   "nennt_ort": false,
-   "relevant": false,
+   "strassen_im_gebiet": [
+    "Büchenbacher Damm",
+    "Frauenauracher Straße",
+    "Gundstraße"
+   ],
+   "nennt_ort": true,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Damm",
+      "Frauenauracher Straße",
+      "Gundstraße"
+     ],
+     "beleg": "… n die Ampel an der Kreuzung Gundstraße/Frauenauracher Straße - ähnlich wie die Ampel an der Auffahrt auf den Büchenbacher Damm – nachts auf Blinken schalten kann. Die Verwaltung sagt eine Prüfung zu. Umwelt-, Verkehrs- und Planun …",
+     "ort": true,
+     "dokument": "Anlage Protokollvermerk"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -103065,15 +103403,31 @@
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5049075",
    "strassen": [],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Odenwaldallee",
+    "Rudeltplatz"
+   ],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Odenwaldallee",
+      "Rudeltplatz"
+     ],
+     "beleg": "… gegenwärtigen planerischen Aktivitäten zum - Zollhausplatz, - Egidienplatz, - Rudeltplatz oder zur - Odenwaldallee zu nennen. Im Rahmen der jeweiligen Planung wird auch untersucht werden, ob auf den entsiegelten Flächen z. …",
+     "dokument": "Anlage 2 Klima-Aufbruch in Erlangen - Sofortmaßnahmen für die Gesamtst"
+    }
+   ]
   },
   {
    "gremium": "Stadtrat",
@@ -103510,15 +103864,33 @@
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5049073",
    "strassen": [],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Adenauer-Ring",
+    "Am Europakanal",
+    "Büchenbacher Damm"
+   ],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Am Europakanal",
+      "Büchenbacher Damm"
+     ],
+     "beleg": "… € Zuwendungen für die Baumaß- nahme Hallenbad E-West sowie rd. 2,45 Mio. € für die Baumaßnahme Ringschluss Adenauer-Ring Süd. Anfangsbestand 01.01.2018 91.260.656 € Zugänge Passivierung und Umbuchung 13.598.765 € Auflösunge …",
+     "dokument": "Prüfungsbericht JA 2018"
+    }
+   ]
   },
   {
    "gremium": "Stadtrat",
@@ -103937,7 +104309,8 @@
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "vorlage"
+    "vorlage",
+    "anlage"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -103949,6 +104322,14 @@
      "beleg": "… ängt eng mit der zukünftigen Ausrichtung des Schulsprengels Büchenbach-Nord (Hermann-Hedenus Mittelschule und Mönauschule) zusammen. Die Ergebnisse und Entscheidungen daraus haben aufgrund der Zweihäusigkeit der Mittelschule unmitt …",
      "marke": "Mönauschule",
      "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… t eng mit der zu- künftigen Ausrichtung des Schulsprengels Büchenbach-Nord (Hermann-Hedenus Mittelschule und Mönauschule) zusammen. Die Ergebnisse und Entscheidungen daraus haben aufgrund der Zweihäusigkeit der Mittelschule unmit …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Beschluss Stand: JHA 19.11.2020"
     }
    ],
    "marken": [
@@ -104167,6 +104548,14 @@
      "beleg": "… könige Verein für gemeinschaftlich getragene Landwirtschaft e. V. 2880 Euro 2. Projekt Schulgarten Realschule am Europakanal 620 Euro 3. Projekt Felderpfade HeimatERhalten e.V. 4000 Euro 4. Projekt Dachbegrünung eines Bienenhauses MS …"
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… Verein für gemeinschaftlich getrage- ne Landwirtschaft e. V. 2880 Euro 2. Projekt Schulgarten Realschule am Europakanal 620 Euro 3. Projekt Felderpfade HeimatERhalten e.V. 4000 Euro 4. Projekt Dachbegrünung eines Bienenhaus …",
+     "dokument": "Mitteilung zur Kenntnis"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Am Europakanal"
@@ -104176,6 +104565,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -104219,15 +104609,31 @@
    "routine": true,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5048686",
    "strassen": [],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Am Europakanal",
+    "Holzweg"
+   ],
    "nennt_ort": false,
    "relevant": false,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal",
+      "Holzweg"
+     ],
+     "beleg": "",
+     "dokument": "Übersicht offene Fraktionsanträge UVPA  November 2020"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -104544,15 +104950,29 @@
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5048743",
    "strassen": [],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Rudeltplatz"
+   ],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Rudeltplatz"
+     ],
+     "beleg": "… VE: später Auszahlung: 0 0 Begründung: CSU: Zeitnahe Verbesserungen auf dem westlichen Teil des Rudeltplatzes - Der Stadtteilbeirat Büchenbach will mit 50.000 € zeitnahe Verbesserungen auf dem westlichen Teil des Ru …",
+     "dokument": "Final 0035 UVPA invest Abstimmungsskript 2021"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -104638,13 +105058,26 @@
    "strassen": [],
    "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [
+    "Baugebiet 412"
+   ],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… ndstücksverwaltung & Wohnungsbauförderung: Prüfung der Förderberechtigung von Bewerberhaushalten für die im Baugebiet 412 entstehenden 43 Reihenhäuser. Es hat sich herausgestellt, dass vergleichsweise viele Bewerber- haushalte nic …",
+     "marke": "Baugebiet 412",
+     "dokument": "Arbeitsprogramm 2021"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -104929,6 +105362,15 @@
      "beleg": "… usätzliche personelle und ggf. finanzielle Ressourcen, nachdem die Planungen zum Zollhausplatz, Egidienplatz, Odenwaldallee und Rudeltplatz gegenwärtig einen weitergehenden Sachstand als die im Antrag aufgeführten Plätze erreicht hab …"
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Odenwaldallee",
+      "Rudeltplatz"
+     ],
+     "beleg": "… sätzliche personelle und ggf. finanzielle Ressourcen, nachdem die Planungen zum Zollhausplatz, Egidienplatz, Odenwaldallee und Rudeltplatz gegenwärtig einen weitergehenden Sachstand als die im Antrag aufgeführten Plät- ze erreicht …",
+     "dokument": "Beschluss Stand: 17.11.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Odenwaldallee",
@@ -104939,6 +105381,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -105089,6 +105532,14 @@
      "beleg": "… Der Erlanger Hafen ist räumlicher Bestandteil des bestehenden Gewerbe- und Industriegebietes beiderseits der Frauenauracher Straße. Zwischen der Frauenauracher Straße und dem RMD-Kanal befinden sich eine Reihe von BImSchG-genehmigungspflich …"
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Frauenauracher Straße"
+     ],
+     "beleg": "… er Erlanger Hafen ist räumlicher Bestandteil des bestehenden Gewerbe- und Industriegebie- tes beiderseits der Frauenauracher Straße. Zwischen der Frauenauracher Straße und dem RMD-Kanal befinden sich eine Reihe von BImSchG-genehmigungspflic …",
+     "dokument": "Beschluss Stand: 17.11.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Frauenauracher Straße"
@@ -105098,6 +105549,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -105486,13 +105938,17 @@
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5048706",
    "strassen": [],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Büchenbacher Anlage",
+    "Odenwaldallee"
+   ],
    "nennt_ort": true,
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
     "titel",
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -105504,6 +105960,16 @@
      "strassen": [],
      "beleg": "… SessionNet | Bund-Länder-Städtebauförderungsprogramm \"Sozialer Zusammenhalt\", Büchenbach Nord Startseite Kalender Organisation Stadtrat Ausschüsse Parteien + Gruppen Beiräte Dokumente Aktuelle Dokum …",
      "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Anlage",
+      "Odenwaldallee"
+     ],
+     "beleg": "… Untersuchungen, Gutachten, Konzpete 140 50 50 20 20 Planer-Bürger-Workshopverfahren Umfeld Odenwaldallee / Büchenbacher Anlage 200 200 Öffentlichkeitsarbeit, Bürgerbeteiligungen, Aktionen 40 10 10 10 10 Quartiersmanagement, Quartiersb …",
+     "ort": true,
+     "dokument": "Anlage 1 Bedarfsmitteilung 2021 Büchenbach Nord"
     },
     {
      "quelle": "niederschrift",
@@ -106137,13 +106603,26 @@
    "strassen": [],
    "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [
+    "Baugebiet 412"
+   ],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… twicklungsgebiet Erlangen-West I Begründung wie für Projektkostenstelle 7101 Die Entwässerung der Baugebiete BP 412 und BP 413 erfolgt im Trennsystem Nachdem im Entwicklungsgebiet West kein Erschließungsbeitrag nach dem Bauge …",
+     "marke": "Baugebiet 412",
+     "dokument": "WPlan 2021"
+    }
+   ]
   },
   {
    "gremium": "Stadtrat",
@@ -106882,13 +107361,26 @@
    "strassen": [],
    "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [
+    "Dummetsweiher"
+   ],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… Anfragen/Sonstiges Herr Welsch berichtet von seinen Beobachtungen auf der Hangwiese am südlichen Ufer des Dummetsweihers und im Bereich des Magerrasens am nördlichen Holzwegs. Seiner Ansicht nach müsste hier dringend gemäht werd …",
+     "marke": "Dummetsweiher",
+     "dokument": "Naturschutzbeirat - 32.34.700002 - 02.10.2020 - ProtokollNatbeirat version 2 -"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -107325,6 +107817,7 @@
    "quellen": [
     "titel",
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [
@@ -107342,6 +107835,15 @@
      "linien": [
       "293"
      ]
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… 61 Amt f. Stadtentwicklung und Stadtplanung 613/037/2020 Anbindung des Bereichs Röthelheimparks durch die Linie 293 hier: Anpassung des Linienverlaufs aufgrund von Gefahrensituationen und Einrichtung eines Linienbedarfstaxi …",
+     "linien": [
+      "293"
+     ],
+     "dokument": "Beratungsergebnisse Stand: 20.10.2020"
     },
     {
      "quelle": "niederschrift",
@@ -107531,14 +108033,25 @@
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5047893",
    "strassen": [],
    "strassen_im_gebiet": [],
-   "nennt_ort": false,
-   "relevant": false,
+   "nennt_ort": true,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… nrichtung -25.484,42 -158.319,63 -76,88 -76,88 0 0 0 0 0 -158.396,51 365E.359 Einrichtung, Spiel-u.Lernstube, Büchenbach Nord -100.000 -100.000,00 -140.000 0 0 0 0 -240.000,00 365E.360 Einrichtung, Fam.päd.Einrichtung, Odenwaldall …",
+     "ort": true,
+     "dokument": "03 Investitionen 2021 Amt 51"
+    }
+   ]
   },
   {
    "gremium": "Jugendhilfeausschuss",
@@ -107813,13 +108326,26 @@
    "strassen": [],
    "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [
+    "Mönauschule"
+   ],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… 0 124,5% 0,0% 0,0% 124,5% 124,5% 124,5% Friedrich-Rückert 300 96 60 42 42 32,0% 20,0% 14,0% 52,0% 46,0% 66,0% Mönauschule 164 104 0 74 74 63,4% 0,0% 45,1% 63,4% 108,5% 108,5% Erlangen insgesamt 3467 1299 899 649 856 37,5% 25,9% 24, …",
+     "marke": "Mönauschule",
+     "dokument": "Übersicht Schulkindbetreuung 2019-2020"
+    }
+   ]
   },
   {
    "gremium": "Jugendhilfeausschuss",
@@ -107834,15 +108360,43 @@
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5047872",
    "strassen": [],
-   "strassen_im_gebiet": [],
-   "nennt_ort": false,
-   "relevant": false,
+   "strassen_im_gebiet": [
+    "Am Europakanal",
+    "Dompropststraße",
+    "Dorfstraße",
+    "Heckenweg",
+    "Odenwaldallee",
+    "Steigerwaldallee"
+   ],
+   "nennt_ort": true,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [
+    "Mönauschule"
+   ],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal",
+      "Dompropststraße",
+      "Dorfstraße",
+      "Heckenweg",
+      "Odenwaldallee",
+      "Steigerwaldallee"
+     ],
+     "beleg": "… -Mittelschule 108 Hermann-Hedenus-Mittelschule 112 4. Einzeldarstellung der Realschulen 117 Realschule am Europakanal 118 Werner-von-Siemens-Realschule 122 5. Einzeldarstellung der Gymnasien 127 Albert-Schweitzer-Gymnasi …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Schulentwicklungsplan klein"
+    }
+   ]
   },
   {
    "gremium": "Jugendhilfeausschuss",
@@ -108810,13 +109364,30 @@
    "strassen": [],
    "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
-   "linien": [],
+   "linien": [
+    "201",
+    "289"
+   ],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… 08.00-12.00 Uhr, 14.00-18.00 Uhr; Di, Mi, Fr 08.00-12.00 Uhr; Do 08.00-12.00 Uhr Haltestelle: Neuer Markt Buslinien: 30, 30E, 201, 205, 253, 288, 289, 295 Konten der Stadtkasse: Sparkasse Erlangen BIC/SWIFT-Code: BYLADEM1ERH IBAN DE79 7635 0000 0000 0000 31 …",
+     "linien": [
+      "201",
+      "289"
+     ],
+     "dokument": "Jugendparlament Baumpflanzungen für neugeborene Kinder"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -109166,6 +109737,18 @@
      "ort": true
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "An den Häuslinger Wegäckern",
+      "Bamberger Straße",
+      "Dorfstraße"
+     ],
+     "beleg": "… mber 2019) - Großparkplatz (Parkplatzsstraße 2t), 1 Ladesäule (Dezember 2019) - Baugebiet 411 Büchenbach (An den Häuslinger Wegäckern 1), 1 Ladesäule (August 2020) - Theaterparkplatz (Theaterplatz 2), 1 Ladesäule (August 2020) - Parkplatz …",
+     "marke": "Baugebiet 411",
+     "ort": true,
+     "dokument": "Beschluss Stand: 22.09.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "An den Häuslinger Wegäckern",
@@ -109179,6 +109762,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -109224,6 +109808,18 @@
      "ort": true
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Am Europakanal",
+      "Büchenbacher Damm",
+      "In der Reuth"
+     ],
+     "beleg": "… men anstan- den: - Busspur Drausnickstraße (von Buckenhof bis zur Markuskirche), ca. 500 m – 2012 - Busspur Adenauer-Ring* (von Am Europakanal bis In der Reuth) ca. 350 m – 2012 - Busspur Büchenbacher Damm (von Schallershofer Str. …",
+     "marke": "In der Reuth",
+     "dokument": "Beschluss Stand: 22.09.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Adenauer-Ring",
@@ -109238,6 +109834,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -109278,6 +109875,15 @@
      "ort": true
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Kosbacher Damm",
+      "Odenwaldallee"
+     ],
+     "beleg": "… projekts „Straße der Zukunft) 2022: - Odenwaldallee (Büchenbach Nord) - Lachnerstraße (Tennenlohe) - Kosbacher Damm (Alterlangen) - Naturbadstraße/Campingstraße (Dechsendorf) - Rennesstraße (Sieglitzhof) - Eltersdorf Ba …",
+     "dokument": "Beschluss Stand: 22.09.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Kosbacher Damm",
@@ -109289,6 +109895,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -109402,6 +110009,16 @@
      "ort": true
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Anlage",
+      "Odenwaldallee"
+     ],
+     "beleg": "… die Durchführung einer Planungswerkstatt für die Ermittlung ei- nes gestalterischen Konzeptes für das Umfeld Büchenbacher Anlage und Odenwaldallee vorzube- reiten. Die Vorbereitung und Durchführung der Planungswerkstatt sind im Jahr 2021 …",
+     "ort": true,
+     "dokument": "Beschluss Stand: 22.09.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Büchenbacher Anlage",
@@ -109414,6 +110031,7 @@
    "quellen": [
     "titel",
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -109449,6 +110067,14 @@
      "beleg": "… Energiebericht ein Sanierungsprojekt (Kinderhaus Sandbergstraße) und ein Neubauprojekt (Spiel- und Lernstube Donato-Polli-Straße) vorgestellt. D) Arbeitsschwerpunkte des Energiemanagements Zu den Aufgaben des Energiemanagements gehören da …"
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Donato-Polli-Straße"
+     ],
+     "beleg": "… nergiebericht ein Sanierungsprojekt (Kinderhaus Sandbergstraße) und ein Neubauprojekt (Spiel- und Lernstube Donato-Polli-Straße) vorgestellt. D) Arbeitsschwerpunkte des Energiemanagements Zu den Aufgaben des Energiemanagements gehöre …",
+     "dokument": "Beschluss Stand: 13.10.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Donato-Polli-Straße"
@@ -109458,6 +110084,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -109639,6 +110266,7 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -109650,6 +110278,13 @@
      "strassen": [],
      "beleg": "… Teile des Quartiers Lorlebergplatz\", dem Soziale Stadt Gebiet „Erlangen Südost“ und dem Untersuchungsgebiet „Büchenbach Nord“ innerhalb der Städtebauförderung ein Programmwechsel vorgenommen. Die benannten Gebiete, die sich bishe …",
      "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… eile des Quartiers Lorleberg- platz\", dem Soziale Stadt Gebiet „Erlangen Südost“ und dem Untersuchungsgebiet „Büchenbach Nord“ innerhalb der Städtebauförderung ein Programmwechsel vorgenommen. Die benannten Gebiete, die sich bi …",
+     "ort": true,
+     "dokument": "Beratungsergebnisse Stand: 22.09.2020"
     },
     {
      "quelle": "niederschrift",
@@ -109767,6 +110402,18 @@
      "ort": true
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "In der Reuth",
+      "Kosbacher Damm",
+      "Odenwaldallee"
+     ],
+     "beleg": "… zwischen Bü- chenbach und der Innenstadt wieder nutzbar. Die Wegeverbindung entlang dem Steinforstgraben ab In der Reuth war aufgrund der Arbeiten zur Fahrbahndeckenerneuerung noch gesperrt. Ergebnis dieser Zählung waren in Richt …",
+     "marke": "In der Reuth",
+     "ort": true,
+     "dokument": "Beratungsergebnisse Stand: 22.09.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "In der Reuth",
@@ -109781,6 +110428,7 @@
    "quellen": [
     "titel",
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -109849,15 +110497,29 @@
    "routine": true,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5047659",
    "strassen": [],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Odenwaldallee"
+   ],
    "nennt_ort": false,
    "relevant": false,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Odenwaldallee"
+     ],
+     "beleg": "… rsicht offene Fraktionsanträge zum UVPA Stand: 04.09.2020 151/2020 21.07.2020 SPD Fraktion Grüne Liste Odenwaldallee öffentliche Flächen VI / 61 gemeldet für Tagesordnung 152/2020 21.07.2020 CSU Fraktion Masterplan für E …",
+     "dokument": "Übersicht offene Fraktionsanträge UVPA  September 2020"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -110081,15 +110743,29 @@
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5047257",
    "strassen": [],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Niederndorfer Straße"
+   ],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Niederndorfer Straße"
+     ],
+     "beleg": "… nen Maßnahmen – s. auch Begründung). 2 Bereich Forsten: kein Einwand Entfällt 5. Bayer. Bauernverband Niederndorfer Straße 63 91074 Herzogenaurach 26.05.20 1 2 3 Eine bestehende Erschließung über …",
+     "dokument": "Anlage 1 Prüfung der Stellungnahmen mit Ergebnis"
+    }
+   ]
   },
   {
    "gremium": "Stadtrat",
@@ -110294,13 +110970,30 @@
    "strassen": [],
    "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
-   "linien": [],
+   "linien": [
+    "201",
+    "289"
+   ],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… 08.00-12.00 Uhr, 14.00-18.00 Uhr; Di, Mi, Fr 08.00-12.00 Uhr; Do 08.00-12.00 Uhr Haltestelle: Neuer Markt Buslinien: 30, 30E, 201, 205, 253, 288, 289, 295 Konten der Stadtkasse: Sparkasse Erlangen BIC/SWIFT-Code: BYLADEM1ERH IBAN DE79 7635 0000 0000 0000 31 …",
+     "linien": [
+      "201",
+      "289"
+     ],
+     "dokument": "Antrag 2852019 - 19.11.2019"
+    }
+   ]
   },
   {
    "gremium": "Stadtrat",
@@ -110754,15 +111447,33 @@
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5047121",
    "strassen": [],
-   "strassen_im_gebiet": [],
-   "nennt_ort": false,
-   "relevant": false,
+   "strassen_im_gebiet": [
+    "Odenwaldallee"
+   ],
+   "nennt_ort": true,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [
+    "Baugebiet 412"
+   ],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Odenwaldallee"
+     ],
+     "beleg": "… 09 Schenkstr. 174 ‐ 178 GEWOBAU 72 72 100% Junkerstr. GEWOBAU 30 30 100% Johann‐Jürgen‐Str. GEWOBAU 91 79 87% Odenwaldallee GEWOBAU 78 60 77% Büchenbach, Baugebiet 412 GEWOBAU 131 49 37% Büchenbach, Baugebiet 412 Projekt Bauart 33 22 …",
+     "marke": "Baugebiet 412",
+     "ort": true,
+     "dokument": "Anlage: Bericht des Sozialamtes zum sozialen Wohnungsmarkt in Erlangen, SGA am 0"
+    }
+   ]
   },
   {
    "gremium": "Stadtrat",
@@ -110783,6 +111494,7 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -110795,6 +111507,14 @@
      "beleg": "… terer Ausrichtung. Das Ergebnis der Machbarkeitsstudie im Frühjahr 2021 ist daher sinnvollerweise abzuwarten. Mönauschule Im Gebäude der Mönauschule sind neben der zweizügigen Grundschule die Ganztagsklassen der Hermann-Hedenus-Mit …",
      "marke": "Mönauschule",
      "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… Ausrichtung. Das Ergebnis der Machbarkeitsstudie im Frühjahr 2021 ist daher sinnvollerweise abzuwarten. Mönauschule Im Gebäude der Mönauschule sind neben der zweizügigen Grundschule die Ganztagsklassen der Hermann-Hedenus …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Beratungsergebnisse Stand: 23.07.2020"
     },
     {
      "quelle": "niederschrift",
@@ -111052,6 +111772,17 @@
      "beleg": "… uss Stand: 21.07.2020 VO Beschlussvorlage Anlage 1 - Antrag Nr. 110/2020 Anlage 2 - Kosbacher Damm Anlage 3 - Am Europakanal Anlage 4 - Lageplan Pop-Up-Radwege Die Verwaltung wird beauftragt kurzfristig einen sogenannten Pop-up-Radweg …"
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal",
+      "Frauenauracher Straße",
+      "Kosbacher Damm",
+      "Odenwaldallee"
+     ],
+     "beleg": "… wöchige Dauer auf der Basis der Konditionen der bestehenden Rahmenvereinbarung geschätzt ca. 45.000,- €. Am Europakanal: Die Straße am Europakanal bietet sich aufgrund ihrer vier Fahrspuren ebenfalls für einen Pop- up-Radweg an. …",
+     "dokument": "Beschluss Stand: 21.07.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Am Europakanal",
@@ -111064,6 +111795,7 @@
    ],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -111157,15 +111889,29 @@
    "routine": false,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5047171",
    "strassen": [],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Niederndorfer Straße"
+   ],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Niederndorfer Straße"
+     ],
+     "beleg": "… nen Maßnahmen – s. auch Begründung). 2 Bereich Forsten: kein Einwand Entfällt 5. Bayer. Bauernverband Niederndorfer Straße 63 91074 Herzogenaurach 26.05.20 1 2 3 Eine bestehende Erschließung über …",
+     "dokument": "Anlage 1 Prüfung der Stellungnahmen mit Ergebnis"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -111228,15 +111974,30 @@
    "strassen": [
     "Nürnberger Straße"
    ],
-   "strassen_im_gebiet": [],
-   "nennt_ort": false,
-   "relevant": false,
+   "strassen_im_gebiet": [
+    "Hofer Straße"
+   ],
+   "nennt_ort": true,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Hofer Straße"
+     ],
+     "beleg": "… r inneren Fahr- streifen mit dem nördlichen Fahrstreifen zusammengeführt. Bis zur Ausfahrt auf die Schallers- hofer Straße gibt es nur noch einen Fahrstreifen in Fahrtrichtung Büchenbach aber drei Fahrstrei- fen in Fahrtrichtung Erl …",
+     "ort": true,
+     "dokument": "Anlage 1: Auszug Landesplanerische Beurteilung StUB"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -111790,13 +112551,30 @@
    "strassen": [],
    "strassen_im_gebiet": [],
    "nennt_ort": false,
-   "relevant": false,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
-   "linien": [],
+   "linien": [
+    "201",
+    "289"
+   ],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… 08.00-12.00 Uhr, 14.00-18.00 Uhr; Di, Mi, Fr 08.00-12.00 Uhr; Do 08.00-12.00 Uhr Haltestelle: Neuer Markt Buslinien: 30, 30E, 201, 205, 253, 288, 289, 295 Konten der Stadtkasse: Sparkasse Erlangen BIC/SWIFT-Code: BYLADEM1ERH IBAN DE79 7635 0000 0000 0000 31 …",
+     "linien": [
+      "201",
+      "289"
+     ],
+     "dokument": "Antrag 2852019 - 19.11.2019"
+    }
+   ]
   },
   {
    "gremium": "Jugendhilfeausschuss",
@@ -111910,7 +112688,8 @@
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "vorlage"
+    "vorlage",
+    "anlage"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -111922,6 +112701,14 @@
      "beleg": "… terer Ausrichtung. Das Ergebnis der Machbarkeitsstudie im Frühjahr 2021 ist daher sinnvollerweise abzuwarten. Mönauschule Im Gebäude der Mönauschule sind neben der zweizügigen Grundschule die Ganztagsklassen der Hermann-Hedenus-Mit …",
      "marke": "Mönauschule",
      "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… Ausrichtung. Das Ergebnis der Machbarkeitsstudie im Frühjahr 2021 ist daher sinnvollerweise abzuwarten. Mönauschule Im Gebäude der Mönauschule sind neben der zweizügigen Grundschule die Ganztagsklassen der Hermann-Hedenus …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Beratungsergebnisse Stand: 23.07.2020"
     }
    ],
    "marken": [
@@ -112241,14 +113028,25 @@
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5046432",
    "strassen": [],
    "strassen_im_gebiet": [],
-   "nennt_ort": false,
-   "relevant": false,
+   "nennt_ort": true,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… 1 18 BogenSport-Verein Erlangen e.V. 172 24 171 24 183 38 14 BSGW Erlangen Schachsport e.V. 32 0 40 4 42 9 19 Büchenbacher Sportclub Erlangen e.V. 523 195 491 169 488 164 20 Christlicher Verein Junger Menschen Erlangen e.V. 237 80 2 …",
+     "ort": true,
+     "dokument": "Mitgliederzahlen 2018 bis 2020"
+    }
+   ]
   },
   {
    "gremium": "Sportausschuss",
@@ -112287,14 +113085,25 @@
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5046970",
    "strassen": [],
    "strassen_im_gebiet": [],
-   "nennt_ort": false,
+   "nennt_ort": true,
    "relevant": false,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… innen CSU Bessere Flächenabdeckung mit Defibrillatoren im Stadtgebiet I/52 offen 27.08.2018 Stadtteilbeirat Büchenbach Planung und Schaffung neuer Sportstätten und Stärkung der Vereinskultur in Erlangen Büchenbach I/52 offen 1 …",
+     "ort": true,
+     "dokument": "Aktueller Stand Fraktionsanträge"
+    }
+   ]
   },
   {
    "gremium": "Sportausschuss",
@@ -112677,6 +113486,17 @@
      "ort": true
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Anlage",
+      "Odenwaldallee"
+     ],
+     "beleg": "… st für das Gebiet zwischen der Odenwaldallee im Norden, der Evang.-Luth. Martin-Luther-Kirche im Osten, der Büchenbacher Anlage im Süden und der Katholischen Pfarrgemeinde Zu den hei- ligen Aposteln im Westen durch das 5. Deckblatt zum B …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Beschluss Stand: 25.06.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Büchenbacher Anlage",
@@ -112690,6 +113510,7 @@
    "quellen": [
     "titel",
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -112718,6 +113539,7 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -112735,6 +113557,16 @@
       "289",
       "293"
      ]
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… „Stufe II“ im südlichen Linienverlauf bereits eine dich- tere ÖPNV-Erschließung vorliegt (Universitätsstraße: Linien 289, 293 sowie dichte Anbindung der Arcaden, des Bahnhofes und des Hugenottenplatzes durch Stadt- und Regionalbuslini …",
+     "linien": [
+      "289",
+      "293"
+     ],
+     "dokument": "Beschluss Stand: 25.06.2020"
     },
     {
      "quelle": "niederschrift",
@@ -113183,6 +114015,7 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -113200,6 +114033,16 @@
       "289",
       "293"
      ]
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… „Stufe II“ im südlichen Linienverlauf bereits eine dich- tere ÖPNV-Erschließung vorliegt (Universitätsstraße: Linien 289, 293 sowie dichte Anbindung der Arcaden, des Bahnhofes und des Hugenottenplatzes durch Stadt- und Regionalbuslini …",
+     "linien": [
+      "289",
+      "293"
+     ],
+     "dokument": "Beschluss Stand: 25.06.2020"
     },
     {
      "quelle": "niederschrift",
@@ -113249,6 +114092,17 @@
      "ort": true
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Anlage",
+      "Odenwaldallee"
+     ],
+     "beleg": "… st für das Gebiet zwischen der Odenwaldallee im Norden, der Evang.-Luth. Martin-Luther-Kirche im Osten, der Büchenbacher Anlage im Süden und der Katholischen Pfarrgemeinde Zu den hei- ligen Aposteln im Westen durch das 5. Deckblatt zum B …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Beschluss Stand: 25.06.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Büchenbacher Anlage",
@@ -113262,6 +114116,7 @@
    "quellen": [
     "titel",
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -113472,15 +114327,29 @@
    "routine": true,
    "url": "https://ratsinfo.erlangen.de/to0050.asp?__ktonr=5046725",
    "strassen": [],
-   "strassen_im_gebiet": [],
+   "strassen_im_gebiet": [
+    "Odenwaldallee"
+   ],
    "nennt_ort": false,
    "relevant": false,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "anlage"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Odenwaldallee"
+     ],
+     "beleg": "… ständig Status 067/2020 19.05.2020 Klimaliste Antrag zu „Bebauungsplan Nr. 402 – Nahver- sorgungszentrum Odenwaldallee – mit integriertem Grünordnungsplan – Aufstel- lungsbeschluss VI/61 gemeldet für Tagessordnung 074/2020 …",
+     "dokument": "Übersicht offene Fraktionsanträge UVPA 06 Juni 2020"
+    }
+   ]
   },
   {
    "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
@@ -113776,7 +114645,8 @@
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "vorlage"
+    "vorlage",
+    "anlage"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -113788,6 +114658,13 @@
      "beleg": "… derung der bereits genehmigten Stellen wird fortgeführt. Erlangen ist von dieser Situation mit der JaS an der Grundschule Büchenbach-Dorf betroffen. Für die anfallenden Personalkosten, der im HH 2020 beschlossenen Stelle, werden wir keine sta …",
      "marke": "Grundschule Büchenbach",
      "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… ung der bereits genehmigten Stellen wird fortge- führt. Erlangen ist von dieser Situation mit der JaS an der Grundschule Büchenbach-Dorf betroffen. Für die anfallenden Personalkosten, der im HH 2020 beschlossenen Stelle, werden wir keine st …",
+     "marke": "Grundschule Büchenbach",
+     "dokument": "Beratungsergebnisse Stand: JHA 18.06.20"
     }
    ],
    "marken": [
@@ -114590,6 +115467,7 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -114602,6 +115480,14 @@
      "beleg": "… estiv 20.000 20.000 Bebauungsplanung 468 – anteilige städtische Kosten für externe Vergaben 20.000 Wettbewerb Baugebiet 413 – Vergabe von externen Leistungen (Wettbewerbsbetreuung, Preisgeld etc.) – investiv 100.000 6.347,46 Wettbewe …",
      "marke": "Baugebiet 413",
      "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… 0.000 Bebauungsplanung 468 – anteilige städtische Kosten für externe Vergaben 20.000 Wettbewerb Baugebiet 413 – Vergabe von externen Leistungen (Wettbewerbsbetreuung, Preisgeld etc.) – investiv 100.000 6.347,46 …",
+     "marke": "Baugebiet 413",
+     "ort": true,
+     "dokument": "Beschluss Stand: 19.05.2020"
     },
     {
      "quelle": "niederschrift",
@@ -114634,6 +115520,7 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -114645,6 +115532,13 @@
      "strassen": [],
      "beleg": "… ndung der Ausgabemittel. 2.2 Das Arbeitsprogramm 2019 konnte mit folgenden Änderungen erfüllt werden: Für das Baugebiet 412 wurde das Ausschreibungs- und Auswahlverfahren erfolgreich durchgeführt. Wegen der sehr aufwändigen Abstimmun …",
      "marke": "Baugebiet 412"
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… sgabemittel. 2. 2 Das Arbeitsprogramm 2019 konnte mit folgenden Änderungen erfüllt werden: Für das Baugebiet 412 wurde das Ausschreibungs- und Auswahlverfahren erfolgreich durch- geführt. Wegen der sehr aufwändigen Abstimm …",
+     "marke": "Baugebiet 412",
+     "dokument": "Beschluss Stand: 19.05.2020"
     },
     {
      "quelle": "niederschrift",
@@ -114885,6 +115779,22 @@
      "ort": true
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Anlage",
+      "Dorfstraße",
+      "Goldwitzerstraße",
+      "Holzweg",
+      "Marienstraße",
+      "Mönaustraße",
+      "Odenwaldallee"
+     ],
+     "beleg": "… reiche entsprechend ihrer Bauzeiten relativ iso- liert. Zentrale Versorgungsachsen wie die Dorfstraße und die Büchenbacher Anlage bilden mehr oder weniger leistungsfähige Nahtstellen in diesem Siedlungsgefüge. Holzweg und Mönaustraße mar …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Beratungsergebnisse Stand: 19.05.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Büchenbacher Anlage",
@@ -114903,6 +115813,7 @@
    "quellen": [
     "titel",
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -115042,6 +115953,17 @@
      "ort": true
     },
     {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Anlage",
+      "Odenwaldallee"
+     ],
+     "beleg": "… st für das Gebiet zwischen der Odenwaldallee im Norden, der Evang.-Luth. Martin-Luther-Kirche im Osten, der Büchenbacher Anlage im Süden und der Katholischen Pfarrgemeinde Zu den hei- ligen Aposteln im Westen durch das 5. Deckblatt zum B …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Beschluss Stand: 19.05.2020"
+    },
+    {
      "quelle": "niederschrift",
      "strassen": [
       "Büchenbacher Anlage",
@@ -115055,6 +115977,7 @@
    "quellen": [
     "titel",
     "vorlage",
+    "anlage",
     "niederschrift"
    ],
    "linien_im_titel": [],
@@ -115620,63 +116543,88 @@
    },
    "2133742": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2133897": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2133907": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2133910": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2133918": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2133919": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2133922": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2133930": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2133932": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal",
+      "Dompropststraße",
+      "Dorfstraße",
+      "Heckenweg",
+      "Odenwaldallee",
+      "Steigerwaldallee"
+     ],
+     "beleg": "… -Mittelschule 108 Hermann-Hedenus-Mittelschule 112 4. Einzeldarstellung der Realschulen 117 Realschule am Europakanal 118 Werner-von-Siemens-Realschule 122 5. Einzeldarstellung der Gymnasien 127 Albert-Schweitzer-Gymnasi …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Schulentwicklungsplan klein"
+    }
    },
    "2133939": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2133968": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2133985": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2133992": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2133996": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… 08.00-12.00 Uhr, 14.00-18.00 Uhr; Di, Mi, Fr 08.00-12.00 Uhr; Do 08.00-12.00 Uhr Haltestelle: Neuer Markt Buslinien: 30, 30E, 201, 205, 253, 288, 289, 295 Konten der Stadtkasse: Sparkasse Erlangen BIC/SWIFT-Code: BYLADEM1ERH IBAN DE79 7635 0000 0000 0000 31 …",
+     "linien": [
+      "201",
+      "289"
+     ],
+     "dokument": "Antrag 2852019 - 19.11.2019"
+    }
    },
    "2133999": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134020": {
     "fund": {
@@ -115686,47 +116634,54 @@
      "marke": "Grundschule Büchenbach",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… ung der bereits genehmigten Stellen wird fortge- führt. Erlangen ist von dieser Situation mit der JaS an der Grundschule Büchenbach-Dorf betroffen. Für die anfallenden Personalkosten, der im HH 2020 beschlossenen Stelle, werden wir keine st …",
+     "marke": "Grundschule Büchenbach",
+     "dokument": "Beratungsergebnisse Stand: JHA 18.06.20"
+    }
    },
    "2134021": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134027": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134036": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134041": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134043": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134060": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134061": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134062": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134063": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134064": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134066": {
     "fund": {
@@ -115739,23 +116694,34 @@
      "marke": "Mönauschule",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Anlage",
+      "Odenwaldallee"
+     ],
+     "beleg": "… st für das Gebiet zwischen der Odenwaldallee im Norden, der Evang.-Luth. Martin-Luther-Kirche im Osten, der Büchenbacher Anlage im Süden und der Katholischen Pfarrgemeinde Zu den hei- ligen Aposteln im Westen durch das 5. Deckblatt zum B …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Beschluss Stand: 19.05.2020"
+    }
    },
    "2134067": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134068": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134069": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134071": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134081": {
     "fund": {
@@ -115765,19 +116731,27 @@
      ],
      "beleg": "… tzlich. Mittlerweile wurden 4 von 5 bereits angeschafften festangebrachten Geschwindigkeitsdisplays montiert (Mönaustraße, Nürnberger Straße, Gebbertstraße und Schallershofer Straße). Ein weiteres Gerät wird demnächst in der Spardo …"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Mönaustraße"
+     ],
+     "beleg": "… . Mittlerweile wurden 4 von 5 bereits angeschafften festangebrachten Geschwindigkeitsdisplays montiert (Mönaustraße, Nürnberger Straße, Gebbertstraße und Schallershofer Straße). Ein weiteres Gerät wird demnächst in der Spard …",
+     "dokument": "Beschlussvorlage"
+    }
    },
    "2134084": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134088": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134090": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134093": {
     "fund": {
@@ -115795,15 +116769,31 @@
      "marke": "Mönauschule",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Anlage",
+      "Dorfstraße",
+      "Goldwitzerstraße",
+      "Holzweg",
+      "Marienstraße",
+      "Mönaustraße",
+      "Odenwaldallee"
+     ],
+     "beleg": "… reiche entsprechend ihrer Bauzeiten relativ iso- liert. Zentrale Versorgungsachsen wie die Dorfstraße und die Büchenbacher Anlage bilden mehr oder weniger leistungsfähige Nahtstellen in diesem Siedlungsgefüge. Holzweg und Mönaustraße mar …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Beratungsergebnisse Stand: 19.05.2020"
+    }
    },
    "2134094": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134095": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134101": {
     "fund": {
@@ -115812,23 +116802,30 @@
      "beleg": "… ndung der Ausgabemittel. 2.2 Das Arbeitsprogramm 2019 konnte mit folgenden Änderungen erfüllt werden: Für das Baugebiet 412 wurde das Ausschreibungs- und Auswahlverfahren erfolgreich durchgeführt. Wegen der sehr aufwändigen Abstimmun …",
      "marke": "Baugebiet 412"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… sgabemittel. 2. 2 Das Arbeitsprogramm 2019 konnte mit folgenden Änderungen erfüllt werden: Für das Baugebiet 412 wurde das Ausschreibungs- und Auswahlverfahren erfolgreich durch- geführt. Wegen der sehr aufwändigen Abstimm …",
+     "marke": "Baugebiet 412",
+     "dokument": "Beschluss Stand: 19.05.2020"
+    }
    },
    "2134102": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134114": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134116": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134127": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134129": {
     "fund": {
@@ -115838,11 +116835,19 @@
      "marke": "Baugebiet 413",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… 0.000 Bebauungsplanung 468 – anteilige städtische Kosten für externe Vergaben 20.000 Wettbewerb Baugebiet 413 – Vergabe von externen Leistungen (Wettbewerbsbetreuung, Preisgeld etc.) – investiv 100.000 6.347,46 …",
+     "marke": "Baugebiet 413",
+     "ort": true,
+     "dokument": "Beschluss Stand: 19.05.2020"
+    }
    },
    "2134131": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134133": {
     "fund": {
@@ -115851,87 +116856,87 @@
      "beleg": "… grid Schoyerer Julian Meissner AfD: Moritz Kaufmann ödp: Konstantin Walter Dorothee Friedrich Stadtteilbeirat Büchenbach Vorschlag: Mitglieder: Stellvertreter: CSU: Florian Hacker Jörg Buff Birgit Rudelt Rüdiger Endlich Antonius K …",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true
    },
    "2134134": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134135": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134141": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134142": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134145": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134147": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134148": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134152": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134154": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134156": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134159": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134160": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134161": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134163": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134167": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134169": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134170": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134171": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134172": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134174": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134175": {
     "fund": {
@@ -115941,31 +116946,39 @@
      "marke": "Mönauschule",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… Ausrichtung. Das Ergebnis der Machbarkeitsstudie im Frühjahr 2021 ist daher sinnvollerweise abzuwarten. Mönauschule Im Gebäude der Mönauschule sind neben der zweizügigen Grundschule die Ganztagsklassen der Hermann-Hedenus …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Beratungsergebnisse Stand: 23.07.2020"
+    }
    },
    "2134180": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134186": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134189": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134190": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134192": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134193": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134194": {
     "fund": {
@@ -115977,7 +116990,17 @@
       "293"
      ]
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… „Stufe II“ im südlichen Linienverlauf bereits eine dich- tere ÖPNV-Erschließung vorliegt (Universitätsstraße: Linien 289, 293 sowie dichte Anbindung der Arcaden, des Bahnhofes und des Hugenottenplatzes durch Stadt- und Regionalbuslini …",
+     "linien": [
+      "289",
+      "293"
+     ],
+     "dokument": "Beschluss Stand: 25.06.2020"
+    }
    },
    "2134195": {
     "fund": {
@@ -115990,303 +117013,363 @@
      "marke": "Mönauschule",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Anlage",
+      "Odenwaldallee"
+     ],
+     "beleg": "… st für das Gebiet zwischen der Odenwaldallee im Norden, der Evang.-Luth. Martin-Luther-Kirche im Osten, der Büchenbacher Anlage im Süden und der Katholischen Pfarrgemeinde Zu den hei- ligen Aposteln im Westen durch das 5. Deckblatt zum B …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Beschluss Stand: 25.06.2020"
+    }
    },
    "2134199": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134204": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134206": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134208": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134209": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… 1 18 BogenSport-Verein Erlangen e.V. 172 24 171 24 183 38 14 BSGW Erlangen Schachsport e.V. 32 0 40 4 42 9 19 Büchenbacher Sportclub Erlangen e.V. 523 195 491 169 488 164 20 Christlicher Verein Junger Menschen Erlangen e.V. 237 80 2 …",
+     "ort": true,
+     "dokument": "Mitgliederzahlen 2018 bis 2020"
+    }
    },
    "2134210": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134218": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134223": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134228": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134230": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134239": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134246": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134249": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134251": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134253": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134254": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Odenwaldallee"
+     ],
+     "beleg": "… ständig Status 067/2020 19.05.2020 Klimaliste Antrag zu „Bebauungsplan Nr. 402 – Nahver- sorgungszentrum Odenwaldallee – mit integriertem Grünordnungsplan – Aufstel- lungsbeschluss VI/61 gemeldet für Tagessordnung 074/2020 …",
+     "dokument": "Übersicht offene Fraktionsanträge UVPA 06 Juni 2020"
+    }
    },
    "2134255": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134256": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134258": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134259": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134261": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134264": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134275": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134281": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134291": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134293": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134296": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Odenwaldallee"
+     ],
+     "beleg": "… 09 Schenkstr. 174 ‐ 178 GEWOBAU 72 72 100% Junkerstr. GEWOBAU 30 30 100% Johann‐Jürgen‐Str. GEWOBAU 91 79 87% Odenwaldallee GEWOBAU 78 60 77% Büchenbach, Baugebiet 412 GEWOBAU 131 49 37% Büchenbach, Baugebiet 412 Projekt Bauart 33 22 …",
+     "marke": "Baugebiet 412",
+     "ort": true,
+     "dokument": "Anlage: Bericht des Sozialamtes zum sozialen Wohnungsmarkt in Erlangen, SGA am 0"
+    }
    },
    "2134298": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134300": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134301": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Niederndorfer Straße"
+     ],
+     "beleg": "… nen Maßnahmen – s. auch Begründung). 2 Bereich Forsten: kein Einwand Entfällt 5. Bayer. Bauernverband Niederndorfer Straße 63 91074 Herzogenaurach 26.05.20 1 2 3 Eine bestehende Erschließung über …",
+     "dokument": "Anlage 1 Prüfung der Stellungnahmen mit Ergebnis"
+    }
    },
    "2134303": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134304": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134306": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134308": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134311": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134313": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Hofer Straße"
+     ],
+     "beleg": "… r inneren Fahr- streifen mit dem nördlichen Fahrstreifen zusammengeführt. Bis zur Ausfahrt auf die Schallers- hofer Straße gibt es nur noch einen Fahrstreifen in Fahrtrichtung Büchenbach aber drei Fahrstrei- fen in Fahrtrichtung Erl …",
+     "ort": true,
+     "dokument": "Anlage 1: Auszug Landesplanerische Beurteilung StUB"
+    }
    },
    "2134315": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134317": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134319": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134320": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134323": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134325": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134326": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134337": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134338": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134340": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134344": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134348": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134349": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134350": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… innen CSU Bessere Flächenabdeckung mit Defibrillatoren im Stadtgebiet I/52 offen 27.08.2018 Stadtteilbeirat Büchenbach Planung und Schaffung neuer Sportstätten und Stärkung der Vereinskultur in Erlangen Büchenbach I/52 offen 1 …",
+     "ort": true,
+     "dokument": "Aktueller Stand Fraktionsanträge"
+    }
    },
    "2134351": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134352": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134355": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134356": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134357": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134359": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134361": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134363": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134364": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134367": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134369": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134371": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134372": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134377": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134378": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134381": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134382": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134383": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134385": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134386": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134388": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134389": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134391": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134393": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134396": {
     "fund": {
@@ -116299,31 +117382,42 @@
      ],
      "beleg": "… uss Stand: 21.07.2020 VO Beschlussvorlage Anlage 1 - Antrag Nr. 110/2020 Anlage 2 - Kosbacher Damm Anlage 3 - Am Europakanal Anlage 4 - Lageplan Pop-Up-Radwege Die Verwaltung wird beauftragt kurzfristig einen sogenannten Pop-up-Radweg …"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal",
+      "Frauenauracher Straße",
+      "Kosbacher Damm",
+      "Odenwaldallee"
+     ],
+     "beleg": "… wöchige Dauer auf der Basis der Konditionen der bestehenden Rahmenvereinbarung geschätzt ca. 45.000,- €. Am Europakanal: Die Straße am Europakanal bietet sich aufgrund ihrer vier Fahrspuren ebenfalls für einen Pop- up-Radweg an. …",
+     "dokument": "Beschluss Stand: 21.07.2020"
+    }
    },
    "2134398": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134401": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134403": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134409": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134413": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134414": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134416": {
     "fund": {
@@ -116332,11 +117426,18 @@
      "beleg": "… Teile des Quartiers Lorlebergplatz\", dem Soziale Stadt Gebiet „Erlangen Südost“ und dem Untersuchungsgebiet „Büchenbach Nord“ innerhalb der Städtebauförderung ein Programmwechsel vorgenommen. Die benannten Gebiete, die sich bishe …",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… eile des Quartiers Lorleberg- platz\", dem Soziale Stadt Gebiet „Erlangen Südost“ und dem Untersuchungsgebiet „Büchenbach Nord“ innerhalb der Städtebauförderung ein Programmwechsel vorgenommen. Die benannten Gebiete, die sich bi …",
+     "ort": true,
+     "dokument": "Beratungsergebnisse Stand: 22.09.2020"
+    }
    },
    "2134418": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134421": {
     "fund": {
@@ -116346,19 +117447,27 @@
      ],
      "beleg": "… Energiebericht ein Sanierungsprojekt (Kinderhaus Sandbergstraße) und ein Neubauprojekt (Spiel- und Lernstube Donato-Polli-Straße) vorgestellt. D) Arbeitsschwerpunkte des Energiemanagements Zu den Aufgaben des Energiemanagements gehören da …"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Donato-Polli-Straße"
+     ],
+     "beleg": "… nergiebericht ein Sanierungsprojekt (Kinderhaus Sandbergstraße) und ein Neubauprojekt (Spiel- und Lernstube Donato-Polli-Straße) vorgestellt. D) Arbeitsschwerpunkte des Energiemanagements Zu den Aufgaben des Energiemanagements gehöre …",
+     "dokument": "Beschluss Stand: 13.10.2020"
+    }
    },
    "2134422": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134424": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134428": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134431": {
     "fund": {
@@ -116370,11 +117479,20 @@
      "beleg": "… orschungsprojekts „Straße der Zukunft) 2022: - Odenwaldallee (Büchenbach Nord) - Lachnerstraße (Tennenlohe) - Kosbacher Damm (Alterlangen) - Naturbadstraße/Campingstraße (Dechsendorf) - Rennesstraße (Sieglitzhof) - Eltersdorf Bahnhof …",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Kosbacher Damm",
+      "Odenwaldallee"
+     ],
+     "beleg": "… projekts „Straße der Zukunft) 2022: - Odenwaldallee (Büchenbach Nord) - Lachnerstraße (Tennenlohe) - Kosbacher Damm (Alterlangen) - Naturbadstraße/Campingstraße (Dechsendorf) - Rennesstraße (Sieglitzhof) - Eltersdorf Ba …",
+     "dokument": "Beschluss Stand: 22.09.2020"
+    }
    },
    "2134432": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134434": {
     "fund": {
@@ -116383,11 +117501,11 @@
      "beleg": "… Gebiet in das Bund-Länder-Städtebauförderungsprogramm „Soziale Stadt“ aufgenommen. Außerdem gilt das Quartier Büchenbach-Nord seit 2018 als Untersuchungsgebiet. Aktuell wird hier ebenfalls ein ISEK mit dem Ziel der Aufnahme in ein …",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true
    },
    "2134438": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134440": {
     "fund": {
@@ -116402,15 +117520,27 @@
      "marke": "In der Reuth",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Am Europakanal",
+      "Büchenbacher Damm",
+      "In der Reuth"
+     ],
+     "beleg": "… men anstan- den: - Busspur Drausnickstraße (von Buckenhof bis zur Markuskirche), ca. 500 m – 2012 - Busspur Adenauer-Ring* (von Am Europakanal bis In der Reuth) ca. 350 m – 2012 - Busspur Büchenbacher Damm (von Schallershofer Str. …",
+     "marke": "In der Reuth",
+     "dokument": "Beschluss Stand: 22.09.2020"
+    }
    },
    "2134441": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134444": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134445": {
     "fund": {
@@ -116424,35 +117554,47 @@
      "marke": "Baugebiet 411",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "An den Häuslinger Wegäckern",
+      "Bamberger Straße",
+      "Dorfstraße"
+     ],
+     "beleg": "… mber 2019) - Großparkplatz (Parkplatzsstraße 2t), 1 Ladesäule (Dezember 2019) - Baugebiet 411 Büchenbach (An den Häuslinger Wegäckern 1), 1 Ladesäule (August 2020) - Theaterparkplatz (Theaterplatz 2), 1 Ladesäule (August 2020) - Parkplatz …",
+     "marke": "Baugebiet 411",
+     "ort": true,
+     "dokument": "Beschluss Stand: 22.09.2020"
+    }
    },
    "2134452": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134455": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134458": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134459": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134460": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134461": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134467": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134474": {
     "fund": {
@@ -116461,27 +117603,34 @@
      "beleg": "… erden, aber mindestens sollen die Anforderungen erfüllt werden, die der Stadtrat bereits im Jahr 2014 für den Bebauungsplan 411 (Plusenergiesiedlung) aufgestellt hat. Die Verwaltung wird weiter beauftragt zu prüfen, wie auch bei Um- und …",
      "marke": "Baugebiet 411"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… den, aber mindestens sollen die Anforde- rungen erfüllt werden, die der Stadtrat bereits im Jahr 2014 für den Bebauungsplan 411 (Plusener- giesiedlung) aufgestellt hat. Die Verwaltung wird weiter beauftragt zu prüfen, wie auch bei Um- …",
+     "marke": "Baugebiet 411",
+     "dokument": "Beschluss Stand: 16.12.2020"
+    }
    },
    "2134475": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134478": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134482": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134484": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134500": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134503": {
     "fund": null,
@@ -116497,115 +117646,150 @@
      "beleg": "… n, die Durchführung einer Planungswerkstatt für die Ermittlung eines gestalterischen Konzeptes für das Umfeld Büchenbacher Anlage und Odenwaldallee vorzubereiten. Die Vorbereitung und Durchführung der Planungswerkstatt sind im Jahr 2021 ge …",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Anlage",
+      "Odenwaldallee"
+     ],
+     "beleg": "… die Durchführung einer Planungswerkstatt für die Ermittlung ei- nes gestalterischen Konzeptes für das Umfeld Büchenbacher Anlage und Odenwaldallee vorzube- reiten. Die Vorbereitung und Durchführung der Planungswerkstatt sind im Jahr 2021 …",
+     "ort": true,
+     "dokument": "Beschluss Stand: 22.09.2020"
+    }
    },
    "2134505": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134508": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134512": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134515": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Odenwaldallee"
+     ],
+     "beleg": "… rsicht offene Fraktionsanträge zum UVPA Stand: 04.09.2020 151/2020 21.07.2020 SPD Fraktion Grüne Liste Odenwaldallee öffentliche Flächen VI / 61 gemeldet für Tagesordnung 152/2020 21.07.2020 CSU Fraktion Masterplan für E …",
+     "dokument": "Übersicht offene Fraktionsanträge UVPA  September 2020"
+    }
    },
    "2134516": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134519": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134523": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134525": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134527": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134528": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134533": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134536": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134537": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134538": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134547": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134548": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134549": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134552": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134553": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… nrichtung -25.484,42 -158.319,63 -76,88 -76,88 0 0 0 0 0 -158.396,51 365E.359 Einrichtung, Spiel-u.Lernstube, Büchenbach Nord -100.000 -100.000,00 -140.000 0 0 0 0 -240.000,00 365E.360 Einrichtung, Fam.päd.Einrichtung, Odenwaldall …",
+     "ort": true,
+     "dokument": "03 Investitionen 2021 Amt 51"
+    }
    },
    "2134556": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… 08.00-12.00 Uhr, 14.00-18.00 Uhr; Di, Mi, Fr 08.00-12.00 Uhr; Do 08.00-12.00 Uhr Haltestelle: Neuer Markt Buslinien: 30, 30E, 201, 205, 253, 288, 289, 295 Konten der Stadtkasse: Sparkasse Erlangen BIC/SWIFT-Code: BYLADEM1ERH IBAN DE79 7635 0000 0000 0000 31 …",
+     "linien": [
+      "201",
+      "289"
+     ],
+     "dokument": "Jugendparlament Baumpflanzungen für neugeborene Kinder"
+    }
    },
    "2134558": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134559": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134561": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134564": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134565": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134566": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134568": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134569": {
     "fund": {
@@ -116615,27 +117799,35 @@
      ],
      "beleg": "… en Fußgänger im Bereich der Haltestelle Neuses durch eine Querungshilfe verbessert werden. Da es sich bei der Niederndorfer Straße um eine Staatsstraße (St2263) handelt, musste die Planung von 2016 überarbeitet und an die Anforderungen des …"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Niederndorfer Straße"
+     ],
+     "beleg": "… ßgänger im Bereich der Haltestelle Neuses durch eine Querungshilfe verbessert werden. Da es sich bei der Niederndorfer Straße um eine Staatsstraße (St2263) handelt, musste die Planung von 2016 überarbeitet und an die Anforderungen des …",
+     "dokument": "Beschlussvorlage"
+    }
    },
    "2134574": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134582": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134587": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134592": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134593": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134595": {
     "fund": {
@@ -116649,35 +117841,54 @@
      "marke": "In der Reuth",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "In der Reuth",
+      "Kosbacher Damm",
+      "Odenwaldallee"
+     ],
+     "beleg": "… zwischen Bü- chenbach und der Innenstadt wieder nutzbar. Die Wegeverbindung entlang dem Steinforstgraben ab In der Reuth war aufgrund der Arbeiten zur Fahrbahndeckenerneuerung noch gesperrt. Ergebnis dieser Zählung waren in Richt …",
+     "marke": "In der Reuth",
+     "ort": true,
+     "dokument": "Beratungsergebnisse Stand: 22.09.2020"
+    }
    },
    "2134598": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134599": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134600": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134601": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134602": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134605": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… ndstücksverwaltung & Wohnungsbauförderung: Prüfung der Förderberechtigung von Bewerberhaushalten für die im Baugebiet 412 entstehenden 43 Reihenhäuser. Es hat sich herausgestellt, dass vergleichsweise viele Bewerber- haushalte nic …",
+     "marke": "Baugebiet 412",
+     "dokument": "Arbeitsprogramm 2021"
+    }
    },
    "2134609": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134611": {
     "fund": null,
@@ -116685,87 +117896,101 @@
    },
    "2134613": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134615": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134616": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134617": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134618": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134619": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134623": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134625": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134630": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… twicklungsgebiet Erlangen-West I Begründung wie für Projektkostenstelle 7101 Die Entwässerung der Baugebiete BP 412 und BP 413 erfolgt im Trennsystem Nachdem im Entwicklungsgebiet West kein Erschließungsbeitrag nach dem Bauge …",
+     "marke": "Baugebiet 412",
+     "dokument": "WPlan 2021"
+    }
    },
    "2134633": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134635": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134636": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134637": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134639": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134641": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134642": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134643": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134647": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… 0 124,5% 0,0% 0,0% 124,5% 124,5% 124,5% Friedrich-Rückert 300 96 60 42 42 32,0% 20,0% 14,0% 52,0% 46,0% 66,0% Mönauschule 164 104 0 74 74 63,4% 0,0% 45,1% 63,4% 108,5% 108,5% Erlangen insgesamt 3467 1299 899 649 856 37,5% 25,9% 24, …",
+     "marke": "Mönauschule",
+     "dokument": "Übersicht Schulkindbetreuung 2019-2020"
+    }
    },
    "2134648": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134650": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134651": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134660": {
     "fund": {
@@ -116776,51 +118001,66 @@
      "beleg": "… e / Essenbacher Straße - Äußere Brucker Straße / Am Ehrenfriedhof - Dechsendorfer Straße / Thalermühlstraße - Büchenbacher Damm / Leipziger Straße Von der Verwaltung wird die Signalisierung der ersten 5 genannten Anlagen geändert. Bei de …",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Damm"
+     ],
+     "beleg": "… senbacher Straße - Äußere Brucker Straße / Am Ehrenfriedhof - Dechsendorfer Straße / Thalermühlstraße - Büchenbacher Damm / Leipziger Straße Von der Verwaltung wird die Signalisierung der ersten 5 genannten Anlagen geändert. Bei …",
+     "dokument": "Beschlussvorlage"
+    }
    },
    "2134661": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134664": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134667": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134669": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134672": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134674": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134676": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134677": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134679": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… Anfragen/Sonstiges Herr Welsch berichtet von seinen Beobachtungen auf der Hangwiese am südlichen Ufer des Dummetsweihers und im Bereich des Magerrasens am nördlichen Holzwegs. Seiner Ansicht nach müsste hier dringend gemäht werd …",
+     "marke": "Dummetsweiher",
+     "dokument": "Naturschutzbeirat - 32.34.700002 - 02.10.2020 - ProtokollNatbeirat version 2 -"
+    }
    },
    "2134680": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134681": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134682": {
     "fund": {
@@ -116829,19 +118069,29 @@
      "beleg": "… SessionNet | Bund-Länder-Städtebauförderungsprogramm \"Sozialer Zusammenhalt\", Büchenbach Nord Startseite Kalender Organisation Stadtrat Ausschüsse Parteien + Gruppen Beiräte Dokumente Aktuelle Dokum …",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Anlage",
+      "Odenwaldallee"
+     ],
+     "beleg": "… Untersuchungen, Gutachten, Konzpete 140 50 50 20 20 Planer-Bürger-Workshopverfahren Umfeld Odenwaldallee / Büchenbacher Anlage 200 200 Öffentlichkeitsarbeit, Bürgerbeteiligungen, Aktionen 40 10 10 10 10 Quartiersmanagement, Quartiersb …",
+     "ort": true,
+     "dokument": "Anlage 1 Bedarfsmitteilung 2021 Büchenbach Nord"
+    }
    },
    "2134687": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134694": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134701": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134702": {
     "fund": {
@@ -116852,75 +118102,94 @@
       "293"
      ]
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… 61 Amt f. Stadtentwicklung und Stadtplanung 613/037/2020 Anbindung des Bereichs Röthelheimparks durch die Linie 293 hier: Anpassung des Linienverlaufs aufgrund von Gefahrensituationen und Einrichtung eines Linienbedarfstaxi …",
+     "linien": [
+      "293"
+     ],
+     "dokument": "Beratungsergebnisse Stand: 20.10.2020"
+    }
    },
    "2134703": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134704": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134713": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134714": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134716": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134719": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134721": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134723": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134725": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… en: Mo 08.00-12.00 Uhr, 14.00-18.00 Uhr; Di, Fr 08.00-12.00 Uhr; Do 08.00-14.00 Uhr Haltestelle: Zollhaus Buslinien: 208, 209, 210, 252, 254, 284, 285, 293, 296 Konten der Stadtkasse: Sparkasse Erlangen BIC/SWIFT-Code: BYLADEM1ERH IBAN DE79 7635 0000 0000 0000 31 …",
+     "linien": [
+      "293",
+      "296"
+     ],
+     "dokument": "Anlage 2 Anschreiben Eigentümer"
+    }
    },
    "2134726": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134731": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134732": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134734": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134741": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134742": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134748": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134757": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134760": {
     "fund": {
@@ -116931,7 +118200,16 @@
      ],
      "beleg": "… usätzliche personelle und ggf. finanzielle Ressourcen, nachdem die Planungen zum Zollhausplatz, Egidienplatz, Odenwaldallee und Rudeltplatz gegenwärtig einen weitergehenden Sachstand als die im Antrag aufgeführten Plätze erreicht hab …"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Odenwaldallee",
+      "Rudeltplatz"
+     ],
+     "beleg": "… sätzliche personelle und ggf. finanzielle Ressourcen, nachdem die Planungen zum Zollhausplatz, Egidienplatz, Odenwaldallee und Rudeltplatz gegenwärtig einen weitergehenden Sachstand als die im Antrag aufgeführten Plät- ze erreicht …",
+     "dokument": "Beschluss Stand: 17.11.2020"
+    }
    },
    "2134764": {
     "fund": {
@@ -116941,167 +118219,184 @@
      ],
      "beleg": "… Der Erlanger Hafen ist räumlicher Bestandteil des bestehenden Gewerbe- und Industriegebietes beiderseits der Frauenauracher Straße. Zwischen der Frauenauracher Straße und dem RMD-Kanal befinden sich eine Reihe von BImSchG-genehmigungspflich …"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Frauenauracher Straße"
+     ],
+     "beleg": "… er Erlanger Hafen ist räumlicher Bestandteil des bestehenden Gewerbe- und Industriegebie- tes beiderseits der Frauenauracher Straße. Zwischen der Frauenauracher Straße und dem RMD-Kanal befinden sich eine Reihe von BImSchG-genehmigungspflic …",
+     "dokument": "Beschluss Stand: 17.11.2020"
+    }
    },
    "2134765": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134767": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134768": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134769": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134771": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134772": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134774": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134776": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134779": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134784": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134792": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134796": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134799": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134800": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134802": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134803": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134815": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134816": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134818": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134820": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134821": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134827": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134830": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134832": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134833": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134834": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134839": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134844": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134847": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134848": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134852": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134854": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134857": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134858": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Kirchenweg",
+      "Niederndorfer Straße"
+     ],
+     "beleg": "… uth Birkenallee 51 91088 Bubenreuth 10.09.2020 Keine Einwände Entfällt. 11. Gemeinde Möhrendorf Kirchenweg 1 91096 Möhrendorf Keine Rückmeldung. Entfällt. ANLAGE 1 3 Nr. Name Eingang Nr. Stel …",
+     "dokument": "Anlage 1 B-Plan E 466 Prüfung der Stellungnahmen mit Ergebnis"
+    }
    },
    "2134859": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134864": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134866": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134867": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134868": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134869": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134870": {
     "fund": {
@@ -117111,43 +118406,59 @@
      "marke": "Baugebiet 413",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Adenauer-Ring"
+     ],
+     "beleg": "… proportioniert und verortet ist. Die verkehrliche Haupterschliessung für ÖPNV und MIV erfolgt kurzwegig vom Adenauerring aus und wird in Nord-Süd-Richtung schlüssig zum Quartiersplatz geführt. Lediglich die StUB- Trasse führt übe …",
+     "dokument": "Anlage 5 Auszug aus dem Protokoll der Preisgerichtssitzung NEU"
+    }
    },
    "2134871": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134872": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Rudeltplatz"
+     ],
+     "beleg": "… VE: später Auszahlung: 0 0 Begründung: CSU: Zeitnahe Verbesserungen auf dem westlichen Teil des Rudeltplatzes - Der Stadtteilbeirat Büchenbach will mit 50.000 € zeitnahe Verbesserungen auf dem westlichen Teil des Ru …",
+     "dokument": "Final 0035 UVPA invest Abstimmungsskript 2021"
+    }
    },
    "2134873": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134874": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134876": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134877": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134878": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134879": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134882": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134885": {
     "fund": {
@@ -117158,7 +118469,15 @@
      "beleg": "… hlich dem Schülerverkehr dient und die südlich gelegene für die Radverkehrsverbindung zwischen Siedlerweg und Büchenbacher Steg von wesentlicher Bedeutung ist. 2. Programme / Produkte / Leistungen / Auflagen (Was soll getan werden, um di …",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Steg"
+     ],
+     "beleg": "… lich dem Schülerverkehr dient und die südlich gelegene für die Radverkehrsverbindung zwischen Siedlerweg und Büchenbacher Steg von wesentlicher Bedeutung ist. 2. Programme / Produkte / Leistungen / Auflagen (Was soll getan werden, u …",
+     "dokument": "Beschluss Stand:19.01.2021"
+    }
    },
    "2134886": {
     "fund": {
@@ -117170,19 +118489,29 @@
      ],
      "beleg": "… SessionNet | Barrierefreie Querungshilfe Am Europakanal Startseite Kalender Organisation Stadtrat Ausschüsse Parteien + Gruppen Beiräte Dokumente Aktuelle Dokumente …"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal",
+      "Kulmbacher Straße",
+      "Stiftungsstraße"
+     ],
+     "beleg": "… Vorlagennummer: VI/61 Amt f. Stadtentwicklung und Stadtplanung 613/050/2020 Barrierefreie Querungshilfe Am Europakanal Beratungsfolge Termin Ö/N Vorlagenart Abstimmung Umwelt-, Verkehrs- und Planungsbei- rat 19.01.2021 …",
+     "dokument": "Beschluss Stand: 19.01.2021"
+    }
    },
    "2134891": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134894": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134895": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134896": {
     "fund": null,
@@ -117190,19 +118519,19 @@
    },
    "2134897": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134898": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134899": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134901": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134902": {
     "fund": {
@@ -117212,19 +118541,36 @@
      "marke": "Mönauschule",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… t eng mit der zu- künftigen Ausrichtung des Schulsprengels Büchenbach-Nord (Hermann-Hedenus Mittelschule und Mönauschule) zusammen. Die Ergebnisse und Entscheidungen daraus haben aufgrund der Zweihäusigkeit der Mittelschule unmit …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Beschluss Stand: JHA 19.11.2020"
+    }
    },
    "2134904": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134905": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134906": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal",
+      "Holzweg"
+     ],
+     "beleg": "",
+     "dokument": "Übersicht offene Fraktionsanträge UVPA  November 2020"
+    }
    },
    "2134907": {
     "fund": {
@@ -117234,47 +118580,74 @@
      ],
      "beleg": "… könige Verein für gemeinschaftlich getragene Landwirtschaft e. V. 2880 Euro 2. Projekt Schulgarten Realschule am Europakanal 620 Euro 3. Projekt Felderpfade HeimatERhalten e.V. 4000 Euro 4. Projekt Dachbegrünung eines Bienenhauses MS …"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… Verein für gemeinschaftlich getrage- ne Landwirtschaft e. V. 2880 Euro 2. Projekt Schulgarten Realschule am Europakanal 620 Euro 3. Projekt Felderpfade HeimatERhalten e.V. 4000 Euro 4. Projekt Dachbegrünung eines Bienenhaus …",
+     "dokument": "Mitteilung zur Kenntnis"
+    }
    },
    "2134910": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Am Europakanal",
+      "Büchenbacher Damm"
+     ],
+     "beleg": "… € Zuwendungen für die Baumaß- nahme Hallenbad E-West sowie rd. 2,45 Mio. € für die Baumaßnahme Ringschluss Adenauer-Ring Süd. Anfangsbestand 01.01.2018 91.260.656 € Zugänge Passivierung und Umbuchung 13.598.765 € Auflösunge …",
+     "dokument": "Prüfungsbericht JA 2018"
+    }
    },
    "2134914": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134920": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134921": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134922": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134923": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134926": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Odenwaldallee",
+      "Rudeltplatz"
+     ],
+     "beleg": "… gegenwärtigen planerischen Aktivitäten zum - Zollhausplatz, - Egidienplatz, - Rudeltplatz oder zur - Odenwaldallee zu nennen. Im Rahmen der jeweiligen Planung wird auch untersucht werden, ob auf den entsiegelten Flächen z. …",
+     "dokument": "Anlage 2 Klima-Aufbruch in Erlangen - Sofortmaßnahmen für die Gesamtst"
+    }
    },
    "2134940": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134941": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134942": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134943": {
     "fund": {
@@ -117286,15 +118659,36 @@
      "beleg": "… chaffen. Hier hat sich mittlerweile ein Weichholz-Bruchwald sowie der Biber etabliert. 90er Renaturierung des Bachgrabens westlich der Gartenstraße durch Entfernung der Steinrinne und Gehölzanpflanzung durch das Umweltamt. Auch hi …",
      "marke": "In der Reuth"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Bachgraben",
+      "In der Reuth"
+     ],
+     "beleg": "… ffen. Hier hat sich mittlerweile ein Weichholz-Bruchwald sowie der Biber etabliert. 90er Renaturierung des Bachgrabens westlich der Gartenstraße durch Entfernung der Steinrin- ne und Gehölzanpflanzung durch das Umweltamt. Auch …",
+     "marke": "In der Reuth",
+     "dokument": "Beschluss Stand: 08.12.2020"
+    }
    },
    "2134944": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Büchenbacher Damm",
+      "Frauenauracher Straße",
+      "Gundstraße"
+     ],
+     "beleg": "… n die Ampel an der Kreuzung Gundstraße/Frauenauracher Straße - ähnlich wie die Ampel an der Auffahrt auf den Büchenbacher Damm – nachts auf Blinken schalten kann. Die Verwaltung sagt eine Prüfung zu. Umwelt-, Verkehrs- und Planun …",
+     "ort": true,
+     "dokument": "Anlage Protokollvermerk"
+    }
    },
    "2134948": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134950": {
     "fund": {
@@ -117320,11 +118714,11 @@
    },
    "2134953": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134954": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134956": {
     "fund": {
@@ -117333,19 +118727,26 @@
      "beleg": "… SessionNet | Untersuchungsgebiet Soziale Stadt Büchenbach Nord - Zwischenbericht zum ISEK - Präsentation durch das Gutachterbüro Startseite Kalender Organisation Stadt …",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… ummer: VI/61 Amt f. Stadtentwicklung und Stadtplanung 610.3/017/2020 Untersuchungsgebiet Soziale Stadt Büchenbach Nord - Zwischenbericht zum ISEK - Präsentation durch das Gutachterbüro Beratungsfolge Termin Ö/N Vorlage …",
+     "ort": true,
+     "dokument": "Beschlussvorlage"
+    }
    },
    "2134958": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134963": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134964": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134967": {
     "fund": null,
@@ -117353,31 +118754,31 @@
    },
    "2134970": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134971": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134972": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134973": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134976": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134978": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134979": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134980": {
     "fund": {
@@ -117387,15 +118788,24 @@
      ],
      "beleg": "… erden, wie der Bereich unter ökologischen Gesichtspunkten verändert werden kann. Der „Weiher“ an der Kreuzung Kosbacher Damm und Schallershofer Straße ist in seinem heutigen Zustand eigentlich ein Wasserbecken dessen Grund asphaltiert …"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal",
+      "Kosbacher Damm"
+     ],
+     "beleg": "… N Hermann-Hedenus-Schule Albert-Schweitzer-Gymnasium Schallershofer Straße Realschule am Europakanal Kosbacher Damm bauliche Entwicklung Steinforstgraben ökologische Aufwertung Neubau Sparkasse: · viergeschossi …",
+     "dokument": "Anlage 1: Planung Stadtteilzentrum für den Stadtteil Alterlangen an der Sch"
+    }
    },
    "2134983": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134984": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134985": {
     "fund": null,
@@ -117403,19 +118813,19 @@
    },
    "2134988": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134990": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134993": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134995": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2134996": {
     "fund": {
@@ -117425,7 +118835,15 @@
      ],
      "beleg": "… treffen vor allem die Neubauten in der Junkersstraße sowie in der Housing Area und die Sanierungsmaßnahmen im Würzburger Ring sowie ebenfalls in der Housing Area. (...) Die Finanzlage der GEWOBAU Erlangen und des Konzerns ist geordnet. …"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Würzburger Ring"
+     ],
+     "beleg": "… reffen vor allem die Neubauten in der Junkersstraße sowie in der Housing Area und die Sanierungsmaßnahmen im Würzburger Ring sowie ebenfalls in der Housing Area. (...) Die Finanzlage der GEWOBAU Erlangen und des Konzerns ist geordnet …",
+     "dokument": "Beschluss Stand: 16.12.2020"
+    }
    },
    "2135004": {
     "fund": null,
@@ -117433,15 +118851,22 @@
    },
    "2135006": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… erk in Höhe von 0,5-Volumen; SB Bildungsbüro Amt 51/Neuschaffung in Höhe von 1,0-Volumen; Leitung Kinderhaus Büchenbach-Nord Amt 51/Neuschaffung in Höhe von 1,0-Volumen; Stv. Leitung Kinderhaus Büchenbach-Nord Amt 51/Neuschaffu …",
+     "ort": true,
+     "dokument": "Liste A gesamt final für Stadtrat"
+    }
    },
    "2135010": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135011": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135012": {
     "fund": {
@@ -117456,27 +118881,52 @@
      "marke": "In der Reuth",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Kornfeld",
+      "Einkornweg",
+      "Häuslinger Straße",
+      "Kapellenstraße",
+      "Mönaustraße",
+      "Steudacher Straße"
+     ],
+     "beleg": "… 374 2791 6 374 2791 8 540 2809 823 2765 67 2765 1 572 2809 812 2765 797 2765 653 2809 Häuslinger Straße 3105 Am Kornfeld 0353 Einkornweg 1850 Herbstäckerweg Haundorfer Straße Bundesautobahn Kieselbergstraße 5.6 SL5 40/38 LT5 45/ …",
+     "dokument": "Anlage 5: 01AA5E4F A4"
+    }
    },
    "2135014": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135016": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135017": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135026": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Am Europakanal",
+      "Holzweg",
+      "Lindnerstraße"
+     ],
+     "beleg": "",
+     "marke": "Mönauschule",
+     "dokument": "Übersicht offene Fraktionsanträge UVPA  Dezember 2020"
+    }
    },
    "2135027": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135028": {
     "fund": null,
@@ -117484,43 +118934,51 @@
    },
    "2135029": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135030": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135031": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Rudeltplatz"
+     ],
+     "beleg": "… nftskonzept EB77 14 : 0 551.510 332 -50.000 -50.000 -50.000 -50.000 200.000 97 Grünanlagen BP 409 E-West (Rudeltplatz) EB 77 14 : 0 551.611 332 -50.000 100 Erwerb v. Ufergrundstücken, Seen und Weiher 23 14 : 0 552.503 333 -30. …",
+     "dokument": "Ubersicht HFPApositiver Beschluesse Auswirkungen"
+    }
    },
    "2135032": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135033": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135034": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135035": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135036": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135037": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135041": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135042": {
     "fund": null,
@@ -117532,11 +118990,11 @@
    },
    "2135046": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135047": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135048": {
     "fund": null,
@@ -117548,15 +119006,15 @@
    },
    "2135050": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135052": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135053": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135057": {
     "fund": null,
@@ -117591,7 +119049,7 @@
    },
    "2135070": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135071": {
     "fund": {
@@ -117601,11 +119059,29 @@
      ],
      "beleg": "… ße, FR Norden, Bereich Hs.-Nr. 59 ggü. Altenheim 3. Nürnberg Straße, FR Norden, vor Einmündung Memelstraße 4. Mönaustraße, FR Norden, Bereich HS.-Nr. 30 5. Spardorfer Straße, FR. Osten, Bereich Hs.-Nr. 25 Mobile Geräte, die überall …"
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Mönaustraße"
+     ],
+     "beleg": "… , FR Norden, Bereich Hs.-Nr. 59 ggü. Altenheim 3. Nürnberg Straße, FR Norden, vor Einmündung Memelstraße 4. Mönaustraße, FR Norden, Bereich HS.-Nr. 30 5. Spardorfer Straße, FR. Osten, Bereich Hs.-Nr. 25 Mobile Geräte, die übe …",
+     "dokument": "Beratungsergebnisse Stand: 19.01.2021"
+    }
    },
    "2135073": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… ien im Stadtgebiet Erlangen auf vier Buslinien Verstärkerbusse eingesetzt: Linien 283 und 296 vormittags und Linie 286 (2 mal) nachmittags. Die ESTW beobachten und bewerten die Situation seit Beginn des Schuljahres und werden …",
+     "linien": [
+      "286",
+      "296"
+     ],
+     "dokument": "Antwort OBM auf Schreiben GEW aktuelle Situation in Schulen und Kitas"
+    }
    },
    "2135075": {
     "fund": null,
@@ -117650,7 +119126,14 @@
      "beleg": "… SessionNet | Änderung im Stadtteilbeirat Büchenbach – Benennung eines Ersatzmitgliedes der ÖDP-Fraktion für die Amtszeit vom 1. Mai 2020 bis 30. April 2026 Start …",
      "ort": true
     },
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… liche/r: Vorlagennummer: OBM/13-2 Bürgermeister- und Presseamt 13/051/2020 Änderung im Stadtteilbeirat Büchenbach – Benennung eines Ersatzmitgliedes der ÖDP-Fraktion für die Amtszeit vom 1. Mai 2020 bis 30. April 2026 Ber …",
+     "ort": true,
+     "dokument": "Beschluss Stand: 16.12.2020"
+    }
    },
    "2135085": {
     "fund": {
@@ -117681,11 +119164,11 @@
    },
    "2135089": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135091": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135098": {
     "fund": null,
@@ -117697,7 +119180,21 @@
    },
    "2135105": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Am Europakanal",
+      "Büchenbacher Anlage",
+      "Holzweg",
+      "Lindnerstraße"
+     ],
+     "beleg": "",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Übersicht offene Fraktionsanträge UVPA  Januar 2021"
+    }
    },
    "2135112": {
     "fund": null,
@@ -117722,7 +119219,7 @@
    },
    "2135123": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135124": {
     "fund": null,
@@ -117730,7 +119227,7 @@
    },
    "2135125": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135126": {
     "fund": null,
@@ -117752,7 +119249,7 @@
    },
    "2135127": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135130": {
     "fund": {
@@ -117779,7 +119276,7 @@
    },
    "2135131": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135132": {
     "fund": null,
@@ -117854,7 +119351,7 @@
    },
    "2135150": {
     "fund": null,
-    "anlagen": false
+    "anlagen": true
    },
    "2135151": {
     "fund": null,
