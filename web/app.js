@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v36 · 2026-08-01";
-const CONTENT_VERSION = "36";
+const APP_VERSION = "v39 · 2026-08-01";
+const CONTENT_VERSION = "39";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -210,7 +210,7 @@ async function renderStart() {
     ["#/protokolle", "📄", "Protokolle & Anträge", "Alle öffentlichen Sitzungen seit 2020 und die Anträge des Beirats — durchsuchbar mit Volltext und Zusammenfassungen."],
     ["#/gremien", "🏛️", "Büchenbach anderswo", "Was Stadtrat, Sport- und Jugendhilfeausschuss über den Stadtteil beraten haben."],
     ["#/aemter", "🏢", "Ämter & Zuständigkeiten", "Schnell klären: Welches Amt ist für ein Anliegen zuständig?"],
-    ["#/fachbeiraete", "👥", "Fachbeiräte", "Schnell finden: andere Beiräte und Ausschüsse der Stadt — inkl. UVPA-Infoseite."],
+    ["#/fachbeiraete", "👥", "Fachbeiräte", "Schnell finden: andere Beiräte und Ausschüsse der Stadt."],
     ["#/karte", "🗺️", "Straße & Karte", "Büchenbach mit Beiratsgrenze, Straßensuche mit Protokollbezug und einblendbaren OSM-Themen: Spielplätze, Haltestellen, Nahversorgung, Denkmäler, Tempo-Beschränkungen …"],
     ["#/statistik", "📊", "Statistik", "Bevölkerung, Sozialstruktur und Prognosen für Erlangen und Büchenbach."],
     ["#/recht", "⚖️", "Satzung & Recht", "Die Satzung der Stadtteilbeiräte und das Erlanger Stadtrecht."],
@@ -658,7 +658,7 @@ async function renderStatistik() {
 
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">📊 Statistik &amp; Sozialstruktur Büchenbach</h2>
-    <p class="section-intro">Kleinräumiges Sozialmonitoring (Stand 2026.05) und Bevölkerungsprognose (2026–2041) der Stadt Erlangen mit gezielter Auswertung für die vier statistischen Bezirke des Beiratsgebiets: Büchenbach Dorf (76), Nord (77), West (78) und In der Reuth (71) — letzterer statistisch eigenständig, aber laut amtlichem Straßenverzeichnis Teil des Beiratsgebiets (Straßen In der Reuth, Am Neuweiher, Dreibergstraße, Kraepelinstraße, Reinschartenweg, Reuthlehenstraße).</p>
+    <p class="section-intro">Kleinräumiges Sozialmonitoring (Stand 2026.05) und Bevölkerungsprognose (2026–2041) der Stadt Erlangen, ausgewertet für die vier statistischen Bezirke des Beiratsgebiets: Büchenbach Dorf (76), Nord (77), West (78) und In der Reuth (71).</p>
 
     <!-- Auswertung der Sozialstatistiken für Büchenbach -->
     <section class="stat-eval-section">
@@ -1217,6 +1217,7 @@ async function renderStreets(text) {
 // so auf der Seite, und die vollständige Liste ist einen Klick entfernt.
 
 let fremdeTops = null;
+let tgQuery = "";       // aktive Suche in "Büchenbach anderswo"
 async function ladeFremdeTops() {
   if (fremdeTops !== null) return fremdeTops;
   for (const url of ["gremien_tops.json", "../gremien_tops.json"]) {
@@ -1250,10 +1251,11 @@ const TG_THEMEN = [
   ["Infrastruktur & Versorgung", ["stromnetz", "estw", "eb77", "abfall", "straßenreinig", "breitband", "versorgung", "glasfaser"]],
   ["Bürgerbeteiligung & Gremien", ["beteiligung", "bürgerversamml", "buergerversamml", "antrag", "beirat", "satzung", "wahl"]],
   ["Vereine & Ehrenamt", ["verein", "ehrenamt", "kirchengemeinde", "initiative", "bürgertreff", "buergertreff"]],
+  ["Fluglärm", ["fluglärm", "flughafen", "nachtflug", "flugroute"]],
 ];
 function themenEinesTops(t) {
   const belege = (t.fundstellen || []).map((f) => f.beleg || "").join(" ");
-  const txt = `${t.titel || ""} ${t.beschluss || ""} ${belege}`.toLowerCase();
+  const txt = `${t.titel || ""} ${t.beschluss || ""} ${t.kern || ""} ${belege}`.toLowerCase();
   return TG_THEMEN.filter(([, kw]) => kw.some((k) => txt.includes(k))).map(([name]) => name);
 }
 
@@ -1307,59 +1309,77 @@ async function renderFremdeGremien() {
     return;
   }
 
-  // Kuratierte Chronik: Themen, die Büchenbach betreffen, deren Vorlagen den
-  // Stadtteil aber nur im Text nennen. Die automatische Erkennung stützt sich
-  // auf Straßennamen und Buslinien und findet sie deshalb nicht.
-  // Fehlt die Datei, bleibt die Seite trotzdem nutzbar — die Chronik ist
-  // Beiwerk zur automatischen Liste.
+  // content/fluglaerm.json ergänzt handverlesene Beratungen zum Thema Fluglärm,
+  // die die automatische Erkennung verpasst (kein Straßen- oder Linienbezug,
+  // Büchenbach steht nur als Fließtext in der Vorlage). Beide Bestände laufen
+  // in derselben Liste zusammen und sind über das Thema „Fluglärm" filterbar,
+  // statt eine eigene Extra-Sektion zu brauchen. Fehlt die Datei, bleibt die
+  // Seite trotzdem nutzbar.
   const fluglaerm = await loadContent("fluglaerm").catch(() => null);
+  const relevanteAuto = daten.tops.filter((t) => !t.routine && t.relevant);
+  // Manche kuratierten Einträge betreffen denselben TOP, den die Erkennung
+  // ohnehin schon fand (Datum + TOP-Nummer sind eindeutig) — dann ergänzt die
+  // Zusammenfassung nur den erklärenden Kerntext, statt den Punkt zu verdoppeln.
+  const autoIndex = new Map(relevanteAuto.map((t) => [`${t.datum}|${t.top}`, t]));
+  const kuratiert = [];
+  for (const e of (fluglaerm?.eintraege || [])) {
+    const treffer = autoIndex.get(`${e.datum}|${e.top}`);
+    if (treffer) treffer.kern = e.kern;
+    else kuratiert.push({ ...e, kuratiert: true });
+  }
 
-  const relevante = daten.tops.filter((t) => !t.routine && t.relevant);
+  const relevante = [...relevanteAuto, ...kuratiert];
+  relevante.sort((a, b) => (b.datum || "").localeCompare(a.datum || ""));
   // Themen einmal pro Eintrag bestimmen und anhängen; nur Themen mit
   // mindestens einem Treffer landen im Filter, in Taxonomie-Reihenfolge.
-  relevante.forEach((t) => { t._themen = themenEinesTops(t); });
+  // Kuratierte Einträge tragen „Fluglärm" unabhängig vom Wortlaut, damit sie
+  // über das Thema sicher auffindbar bleiben.
+  relevante.forEach((t) => {
+    t._themen = themenEinesTops(t);
+    if (t.kuratiert && !t._themen.includes("Fluglärm")) t._themen.push("Fluglärm");
+  });
   const themenAnzahl = new Map();
   for (const t of relevante) for (const th of t._themen) themenAnzahl.set(th, (themenAnzahl.get(th) || 0) + 1);
   const themenOptionen = TG_THEMEN.map(([name]) => name).filter((name) => themenAnzahl.has(name));
+  const gremienOptionen = Object.values(daten.gremien);
+  const jahre = [...new Set(relevante.map((t) => (t.datum || "").slice(0, 4)))].sort().reverse();
 
   view().innerHTML = `<div class="wrap">${crumb()}
     <h2 class="section-title">🏛️ Büchenbach anderswo</h2>
-    <p class="section-intro">Über vieles, was Büchenbach betrifft, wird nicht im
-      Stadtteilbeirat entschieden. Diese Liste zeigt Tagesordnungspunkte
-      ${escHtml(wahlperiodenText(daten))}, die eine Straße im
-      Beiratsgebiet oder den Ortsnamen nennen — aus diesen Gremien:
-      ${escHtml(Object.values(daten.gremien).join(" · "))}.</p>
-    <p class="hinweis-eng">Gesucht wird im Titel, im Sachverhalt der Vorlage, in ihren
-      Anlagen und in der Niederschrift der Sitzung — ein Punkt wie „Einrichtung neuer
-      Tempo-30-Anordnungen" nennt die betroffenen Straßen erst im Text, und
-      „Maßnahmen zur Kosteneinsparung im ÖPNV" erst in der Anlage. Steht der Bezug
-      nicht schon im Titel, zeigt „Fundstelle" die Belegstelle. Als Bezug gilt eine
-      Straße des Beiratsgebiets, eine Buslinie, die hier hält, eine Einrichtung
-      im Stadtteil (Mönauschule, Heinrich-Kirchner-Schule, Grundschule Büchenbach,
-      Doktors-, Neu- und Dummetsweiher, Stadtteilhaus West, Baugebiete 411 bis 413,
-      In der Reuth, Klinikum am Europakanal) oder der Ortsname — auch wenn er
-      erst in der Vorlage steht; solche Punkte
-      tragen die Marke „Büchenbach (im Text)". In gesamtstädtischen Aufzählungen
-      zählt der Ortsname nicht, in Anlagen erst ab der zweiten Nennung;
-      Niederschriften erscheinen erst Wochen nach der Sitzung, Anlagen älterer
-      Vorlagen werden nach und nach nachgelesen. Wiederkehrende Formalpunkte
-      (Anfragen, Mitteilungen, Beirats-Personalien) sind ausgeblendet.</p>
-    ${themenOptionen.length ? `<div class="map-actions">
-      <label>Themengebiet <select id="tg-thema"><option value="">alle Themen</option>
-        ${themenOptionen.map((th) => `<option value="${escHtml(th)}">${escHtml(th)} (${themenAnzahl.get(th)})</option>`).join("")}</select></label>
-    </div>` : ""}
-    ${chronikHtml(fluglaerm)}
+    <p class="section-intro">Tagesordnungspunkte ${escHtml(wahlperiodenText(daten))} aus
+      ${escHtml(gremienOptionen.join(" · "))}, die Büchenbach betreffen — über eine Straße,
+      eine Buslinie, den Ortsnamen oder eine Einrichtung im Stadtteil.</p>
+    ${sucheForm(tgQuery)}
+    <div class="map-actions">
+      <label>Gremium <select id="tg-gremium"><option value="">alle</option>
+        ${gremienOptionen.map((g) => `<option value="${escHtml(g)}">${escHtml(g)}</option>`).join("")}</select></label>
+      <label>Jahr <select id="tg-year"><option value="">alle</option>
+        ${jahre.map((j) => `<option value="${escHtml(j)}">${escHtml(j)}</option>`).join("")}</select></label>
+      ${themenOptionen.length ? `<label>Thema <select id="tg-thema"><option value="">alle</option>
+        ${themenOptionen.map((th) => `<option value="${escHtml(th)}">${escHtml(th)} (${themenAnzahl.get(th)})</option>`).join("")}</select></label>` : ""}
+    </div>
     <div id="tg-liste"></div>
     <p class="quelle">Quelle: ${escHtml(daten.quelle || "Ratsinformationssystem der Stadt Erlangen")}
-      · Stand ${escHtml(fmtDate(daten.stand))}</p></div>`;
+      · Stand ${escHtml(fmtDate(daten.stand))}${kuratiert.length ? " · Thema Fluglärm zusätzlich eigene Zusammenstellung" : ""}</p></div>`;
 
   const liste = $("tg-liste");
   // Sitzungen, die noch bevorstehen: Das Ratsinformationssystem veröffentlicht
   // Tagesordnung und Vorlagen vor der Sitzung — solche Punkte sind noch zu
   // beeinflussen und dürfen nicht wie Beschlossenes aussehen.
   const heute = new Date().toISOString().slice(0, 10);
-  const zeichne = (thema) => {
-    const zeigen = thema ? relevante.filter((t) => t._themen.includes(thema)) : relevante;
+  setTerms(tgQuery);           // Hervorhebung passt zur aktiven Suche
+  const zeichne = () => {
+    const fg = $("tg-gremium").value, fy = $("tg-year").value, ft = $("tg-thema") ? $("tg-thema").value : "";
+    const terms = lastTerms.map((w) => w.toLowerCase());
+    const trifft = (t) => {
+      if (!terms.length) return true;
+      const hay = `${t.titel} ${t.beschluss || ""} ${t.kern || ""} ${t.gremium || ""} ${
+        (t.fundstellen || []).map((f) => f.beleg || "").join(" ")}`.toLowerCase();
+      return terms.every((w) => hay.includes(w));
+    };
+    const zeigen = relevante.filter((t) =>
+      (!fg || t.gremium === fg) && (!fy || (t.datum || "").startsWith(fy)) &&
+      (!ft || t._themen.includes(ft)) && trifft(t));
     if (!zeigen.length) { liste.innerHTML = `<p class="hint">Keine Einträge.</p>`; return; }
     let html = "", jahr = "";
     for (const t of zeigen) {
@@ -1383,52 +1403,24 @@ async function renderFremdeGremien() {
           <span class="tg-datum">${escHtml(fmtDate(t.datum))}</span>
           <span class="tg-gremium">${escHtml(t.gremium)}</span>
           ${t.top ? `<span class="tg-nr">TOP ${escHtml(t.top)}</span>` : ""}
+          ${t.vorlage ? `<span class="tg-nr">Vorlage ${escHtml(t.vorlage)}</span>` : ""}
           ${t.datum > heute ? `<span class="tg-geplant">geplant</span>` : ""}
         </div>
-        <a class="tg-titel" href="${escHtml(safeUrl(t.url))}" target="_blank" rel="noopener">${escHtml(t.titel)} <span class="ext">↗</span></a>
+        <a class="tg-titel" href="${escHtml(safeUrl(t.url))}" target="_blank" rel="noopener">${highlight(escHtml(t.titel))} <span class="ext">↗</span></a>
         ${t.beschluss ? `<div class="tg-beschluss">${escHtml(t.beschluss)}</div>` : ""}
+        ${t.kern ? `<div class="chronik-kern">${escHtml(t.kern)}</div>` : ""}
         ${marker ? `<div class="tg-marker">${marker}</div>` : ""}
         ${fundstellen(t)}
       </div>`;
     }
     liste.innerHTML = html;
-    status(`${zeigen.length} Tagesordnungspunkte mit Büchenbach-Bezug${thema ? ` · Thema „${thema}"` : ""} aus ${Object.keys(daten.gremien).length} Gremien.`);
+    status(`${zeigen.length} Tagesordnungspunkte mit Büchenbach-Bezug${ft ? ` · Thema „${ft}"` : ""}.`);
   };
-
-  const sel = $("tg-thema");
-  if (sel) sel.addEventListener("change", () => zeichne(sel.value));
-  zeichne("");
-}
-
-/**
- * Kuratierte Themen-Chronik über der automatischen Liste.
- *
- * Die Liste darunter entsteht aus Straßen- und Linientreffern. Ein Thema wie
- * Fluglärm hat keinen Straßenbezug — es trifft den halben Stadtteil auf einmal
- * und steht in den Vorlagen nur als Ortsname im Fließtext. Solche Stränge
- * werden hier von Hand gepflegt (content/fluglaerm.json) und ausdrücklich als
- * Zusammenstellung gekennzeichnet.
- */
-function chronikHtml(daten) {
-  if (!daten?.eintraege?.length) return "";
-  return `<section class="chronik">
-    <h3 class="sub-head">${escHtml(daten.titel || "Chronik")}</h3>
-    ${daten.intro ? `<p class="section-intro">${escHtml(daten.intro)}</p>` : ""}
-    ${daten.eintraege.map((e) => `<div class="tg-eintrag">
-      <div class="tg-kopf">
-        <span class="tg-datum">${escHtml(fmtDate(e.datum))}</span>
-        <span class="tg-gremium">${escHtml(e.gremium)}</span>
-        ${e.top ? `<span class="tg-nr">TOP ${escHtml(e.top)}</span>` : ""}
-        ${e.vorlage ? `<span class="tg-nr">Vorlage ${escHtml(e.vorlage)}</span>` : ""}
-      </div>
-      <a class="tg-titel" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener">${escHtml(e.titel)} <span class="ext">↗</span></a>
-      ${e.beschluss ? `<div class="tg-beschluss">${escHtml(e.beschluss)}</div>` : ""}
-      ${e.kern ? `<div class="chronik-kern">${escHtml(e.kern)}</div>` : ""}
-    </div>`).join("")}
-    ${daten.hinweis ? `<p class="hinweis-eng">${escHtml(daten.hinweis)}</p>` : ""}
-    ${daten.quelle ? `<p class="quelle">Zusammenstellung aus: ${escHtml(daten.quelle)}${
-      daten.stand ? ` · Stand ${escHtml(fmtDate(daten.stand))}` : ""}</p>` : ""}
-  </section>`;
+  bindSuche((query) => { tgQuery = query; setTerms(tgQuery); zeichne(); });
+  $("tg-gremium").addEventListener("change", zeichne);
+  $("tg-year").addEventListener("change", zeichne);
+  $("tg-thema")?.addEventListener("change", zeichne);
+  zeichne();
 }
 
 // ── Karten-Sektionen: Fachbeiräte / Ämter / Links ────────────────────────────

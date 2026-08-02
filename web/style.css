@@ -141,10 +141,6 @@ a.card:hover { border-color: var(--accent-2); }
 }
 .card .c-sitzung-leer { color: #b00020; font-weight: 600; }
 /* Büchenbach anderswo: Tagesordnungspunkte fremder Gremien */
-.hinweis-eng {
-  font-size: .78rem; color: var(--muted); line-height: 1.5;
-  margin: -.6rem 0 1rem; max-width: 46rem;
-}
 .tg-eintrag {
   background: var(--surface-1); border: 1px solid var(--hairline);
   border-radius: 8px; padding: .6rem .85rem; margin-bottom: .5rem;
@@ -159,9 +155,8 @@ a.card:hover { border-color: var(--accent-2); }
 }
 .tg-titel:hover { color: var(--accent-2); text-decoration: underline; }
 .tg-titel .ext { font-size: .7rem; color: var(--muted); font-weight: 400; }
-/* Kuratierte Chronik: gleiche Karten wie die automatische Liste, dazu ein
-   erklärender Kerntext je Eintrag. */
-.chronik { margin-bottom: 1.6rem; }
+/* Erklärender Kerntext für kuratierte Einträge (z. B. Thema Fluglärm) —
+   dieselbe Karte wie bei automatisch erkannten Punkten. */
 .chronik-kern {
   margin-top: .35rem; font-size: .84rem; line-height: 1.5; color: var(--ink-2);
   border-left: 3px solid var(--hairline); padding-left: .6rem;
@@ -657,7 +652,6 @@ footer {
   .card .c-desc { font-size: 1.08rem; line-height: 1.58; color: var(--ink); font-weight: 450; }
   .card .c-sitzung, .card .c-zust { font-size: 1.0rem; font-weight: 600; }
 
-  .hinweis-eng { font-size: .95rem; }
   .tg-kopf { font-size: .92rem; }
   .tg-titel { font-size: 1.12rem; font-weight: 750; }
   .tg-beschluss { font-size: .98rem; }
