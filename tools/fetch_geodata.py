@@ -139,6 +139,17 @@ POI_KATEGORIEN = [
      lambda t: t.get("amenity") == "bench"),
 ]
 
+def _maxspeed_kmh(t: dict) -> int | None:
+    """Numerischen km/h-Wert aus dem `maxspeed`-Tag lesen, sofern vorhanden.
+
+    OSM erlaubt dort auch Freitext („DE:zone30", „walk", Meilen …) — für die
+    Kategorisierung reicht die einfache, in Deutschland weit überwiegende
+    Zahlenform; alles andere wird nicht als Tempolimit gezählt.
+    """
+    m = re.match(r"^(\d+)$", (t.get("maxspeed") or "").strip())
+    return int(m.group(1)) if m else None
+
+
 LINIEN_KATEGORIEN = [
     ("radweg", "Radweg-Infrastruktur", "🚲", "#087f5b",
      lambda t: t.get("highway") == "cycleway"
@@ -146,8 +157,15 @@ LINIEN_KATEGORIEN = [
                               "opposite_track"}
      or any(k.startswith("cycleway:") and v in {"lane", "track"}
             for k, v in t.items())),
-    ("tempo", "Tempo-Beschränkung", "🚦", "#e03131",
-     lambda t: "maxspeed" in t and t.get("highway") is not None),
+    # Nur Beschränkungen unter der innerorts üblichen Tempo 50 — die zeigen
+    # verkehrsberuhigte Straßen, nicht den Regelfall. Spielstraßen
+    # (highway=living_street) tragen in OSM meist gar kein maxspeed-Tag
+    # (Schrittgeschwindigkeit ist durch die StVO vorgegeben), zählen aber
+    # naturgemäß dazu.
+    ("tempo", "Tempo-Beschränkung (unter 50 km/h)", "🚦", "#e8590c",
+     lambda t: t.get("highway") == "living_street"
+     or (t.get("highway") is not None
+         and (v := _maxspeed_kmh(t)) is not None and v < 50)),
 ]
 
 # Punkt-Objekte aller Kategorien in einem Rutsch (mit Zentroid für Flächen).
@@ -174,6 +192,8 @@ out center tags;
 """
 
 # Linien-Objekte (Radinfrastruktur, tempolimitierte Straßen) mit Geometrie.
+# way[highway=living_street] steht extra da: Spielstraßen tragen meist kein
+# maxspeed-Tag und würden sonst durch way[highway][maxspeed] nicht erfasst.
 LINIEN_QUERY = """
 [out:json][timeout:180][bbox:{bbox}];
 (
@@ -183,6 +203,7 @@ LINIEN_QUERY = """
   way[highway]["cycleway:left"];
   way[highway]["cycleway:right"];
   way[highway][maxspeed];
+  way[highway=living_street];
 );
 out geom tags;
 """
@@ -408,7 +429,8 @@ def extract_osm_kategorien(out: Path, finde, beirat: str,
             continue                             # mindestens ein Stützpunkt im Gebiet
         props = {"kat": kat, "name": norm(tags.get("name", ""))}
         if kat == "tempo":
-            props["tempo"] = tags.get("maxspeed", "")
+            props["tempo"] = tags.get("maxspeed") or (
+                "Spielstraße" if tags.get("highway") == "living_street" else "")
         linien.append({"type": "Feature", "properties": props,
                        "geometry": {"type": "LineString",
                                     "coordinates": [[round(p["lon"], PRECISION),

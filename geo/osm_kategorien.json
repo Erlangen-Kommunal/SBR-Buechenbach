@@ -1,5 +1,5 @@
 {
-  "stand": "2026-07-23",
+  "stand": "2026-08-02",
   "quelle": "© OpenStreetMap-Mitwirkende (ODbL)",
   "punkt": [
     {
@@ -97,10 +97,10 @@
     },
     {
       "key": "tempo",
-      "label": "Tempo-Beschränkung",
+      "label": "Tempo-Beschränkung (unter 50 km/h)",
       "icon": "🚦",
-      "farbe": "#e03131",
-      "count": 353
+      "farbe": "#e8590c",
+      "count": 309
     }
   ]
 }

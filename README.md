@@ -207,7 +207,7 @@ dreifach existiert.
 ## Daten und Lizenzen
 
 Protokolle: Stadt Erlangen, Ratsinformationssystem (amtlich öffentlich).
-Karten: [basemap.de](https://basemap.de) (BKG) und OpenStreetMap-Mitwirkende
-(ODbL); aus OSM stammen auch die Themenobjekte und die Buslinien im Gebiet.
+Karten: OpenStreetMap-Mitwirkende (ODbL); aus OSM stammen auch die
+Themenobjekte und die Buslinien im Gebiet.
 Beiratsgebiete: Stadt Erlangen, Statistik und Stadtforschung (dl-de/by-2.0),
 Geometrie im Stand von 2015 — Näheres in [geo/README.md](geo/README.md).

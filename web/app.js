@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v39 · 2026-08-01";
-const CONTENT_VERSION = "39";
+const APP_VERSION = "v40 · 2026-08-02";
+const CONTENT_VERSION = "40";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -1576,7 +1576,7 @@ async function renderAemter() {
   status(`${data.referate.length} Referate mit ${n} Ämtern und Einrichtungen.`);
 }
 
-// ── Straße & Karte (Leaflet, OSM/basemap.de + OSM-Themen aus Overpass) ───────
+// ── Straße & Karte (Leaflet, OSM + OSM-Themen aus Overpass) ──────────────────
 
 let leafletLoading = null;
 function loadLeaflet() {
@@ -1620,6 +1620,12 @@ async function loadGeo(name) {
 
 const BEIRAT_EIGEN = "#2a78d6";     // eigenes Gebiet
 const BEIRAT_NACHBAR = "#898781";   // Nachbarn: nur Orientierung, zurückhaltend
+
+// Tempo-Beschränkungen: Tempo 30 und alles, was noch langsamer ist (Tempo 20/10/5,
+// Spielstraßen), bekommen bewusst unterschiedliche Farben — je langsamer, desto
+// dunkler/kräftiger, damit verkehrsberuhigte Bereiche auf einen Blick auffallen.
+const TEMPO_30_FARBE = "#e8590c";
+const TEMPO_LANGSAM_FARBE = "#862e9c";
 
 /**
  * Beiratsgrenzen auf eine Leaflet-Karte legen; liefert die Grenze des eigenen
@@ -1666,11 +1672,11 @@ async function addBeiratsgrenzen(L, map, { nachbarnBenennen = true, fuellen = tr
 /**
  * Baut einen Kartenlayer aus der Konfiguration (`content/karte.json`).
  *
- * Nur Rasterkacheln: OpenStreetMap und das amtliche basemap.de. Die bayerischen
- * WMS-Dienste (Luftbild DOP20, Uraufnahme, Denkmal-Atlas) waren einmal
- * eingebaut und sind auf Wunsch wieder entfernt worden — `typ: "wms"` in der
- * Konfiguration bewirkt hier deshalb nichts mehr. Der BayernAtlas selbst lässt
- * sich ohnehin nicht einbetten, er sperrt das per `X-Frame-Options: DENY`.
+ * Nur Rasterkacheln: OpenStreetMap. basemap.de und die bayerischen WMS-Dienste
+ * (Luftbild DOP20, Uraufnahme, Denkmal-Atlas) waren einmal eingebaut und sind
+ * auf Wunsch wieder entfernt worden — `typ: "wms"` in der Konfiguration bewirkt
+ * hier deshalb nichts mehr. Der BayernAtlas selbst lässt sich ohnehin nicht
+ * einbetten, er sperrt das per `X-Frame-Options: DENY`.
  */
 function buildLayer(L, cfg) {
   return L.tileLayer(cfg.url, { attribution: cfg.attribution, maxZoom: cfg.maxZoom || 19 });
@@ -1762,7 +1768,8 @@ async function renderKarte() {
   const L = window.L;
   const map = L.map("map").setView(cfg.center, cfg.zoom);
 
-  // Grundkarten: nur OSM (Vorgabe) und basemap.de, kleine Umschaltung oben rechts.
+  // Grundkarte: nur OSM (Vorgabe). Umschaltung nur, falls mehr als ein Layer
+  // konfiguriert ist — aktuell also keine.
   const layers = {};
   let base = null;
   for (const l of cfg.layers) {
@@ -1815,10 +1822,20 @@ async function renderKarte() {
         if (f.properties.kat !== key) continue;
         const p = f.properties;
         const latlngs = f.geometry.coordinates.map(([lon, lat]) => [lat, lon]);
-        const txt = key === "tempo"
-          ? `Tempo ${escHtml(p.tempo || "?")}${p.name ? " · " + escHtml(p.name) : ""}`
-          : (p.name ? escHtml(p.name) : label);
-        L.polyline(latlngs, { color: safeColor(farbe), weight: 5, opacity: 0.8 })
+        let linienFarbe = farbe, txt;
+        if (key === "tempo") {
+          const istSpielstrasse = p.tempo === "Spielstraße";
+          const tempoWert = parseInt(p.tempo, 10);
+          // Tempo 30 und alles, was noch langsamer ist (inkl. Spielstraßen),
+          // farblich unterscheiden — siehe TEMPO_30_FARBE/TEMPO_LANGSAM_FARBE.
+          linienFarbe = (istSpielstrasse || (!Number.isNaN(tempoWert) && tempoWert < 30))
+            ? TEMPO_LANGSAM_FARBE : TEMPO_30_FARBE;
+          txt = (istSpielstrasse ? "Spielstraße" : `Tempo ${escHtml(p.tempo || "?")}`)
+            + (p.name ? " · " + escHtml(p.name) : "");
+        } else {
+          txt = p.name ? escHtml(p.name) : label;
+        }
+        L.polyline(latlngs, { color: safeColor(linienFarbe), weight: 5, opacity: 0.8 })
           .bindPopup(`<strong>${escHtml(label)}</strong><br>${txt}`).addTo(grp);
       }
     }

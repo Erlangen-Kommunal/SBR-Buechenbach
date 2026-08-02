@@ -1,5 +1,5 @@
 {
-  "intro": "Interaktive Karte von Büchenbach mit der Grenze des Beiratsgebiets. Grundlage sind OpenStreetMap und die amtliche basemap.de des Bundes. Über die Schalter oberhalb der Karte lassen sich Themen aus OpenStreetMap einblenden — Spielplätze, Bushaltestellen, Nahversorgung, Denkmäler, Tempo-Beschränkungen und mehr. Eine Straße suchen zeigt sie auf der Karte samt Protokollbezug.",
+  "intro": "Interaktive Karte von Büchenbach mit der Grenze des Beiratsgebiets. Grundlage ist OpenStreetMap. Über die Schalter oberhalb der Karte lassen sich Themen aus OpenStreetMap einblenden — Spielplätze, Bushaltestellen, Nahversorgung, Denkmäler, Tempo-Beschränkungen und mehr. Eine Straße suchen zeigt sie auf der Karte samt Protokollbezug.",
   "center": [49.5922, 10.9597],
   "zoom": 14,
   "marker": [
@@ -23,12 +23,6 @@
       "attribution": "© OpenStreetMap-Mitwirkende",
       "maxZoom": 19,
       "default": true
-    },
-    {
-      "name": "basemap.de (amtlich)",
-      "url": "https://sgx.geodatenzentrum.de/wmts_basemapde/tile/1.0.0/de_basemapde_web_raster_farbe/default/GLOBAL_WEBMERCATOR/{z}/{y}/{x}.png",
-      "attribution": "© GeoBasis-DE / BKG · basemap.de",
-      "maxZoom": 19
     }
   ]
 }
