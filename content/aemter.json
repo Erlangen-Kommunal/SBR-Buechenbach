@@ -1,6 +1,6 @@
 {
   "intro": "So ist die Stadtverwaltung Erlangen gegliedert: An der Spitze steht der Oberbürgermeister, darunter bündeln acht Referate (I–VIII) die Fachämter. Jedes Amt trägt eine Nummer (z. B. Tiefbauamt = 66); genannt ist jeweils die Amtsleitung. Diese Übersicht folgt dem offiziellen Geschäftsverteilungsplan der Stadt Erlangen.",
-  "stand": "Stand: 21. Mai 2026",
+  "stand": "Stand: 08. Juli 2026",
   "aemter_uebersicht_url": "https://erlangen.de/themenseite/service/aemter",
   "relevant": [
     { "thema": "Stadtteilarbeit, Bürgertreff, Stadtteilhaus West", "amt": "Amt für Stadtteilarbeit (41)" },
@@ -96,10 +96,22 @@
       "bereich": "Planen und Bauen",
       "leitung": "Harald Lang (Berufsmäßiger Stadtrat)",
       "aemter": [
-        { "name": "Amt für Gebäudemanagement", "nr": "24", "leitung": "Florian Engel" },
-        { "name": "Amt für Stadtplanung und Mobilität", "nr": "61", "leitung": "Tilmann Lohse" },
-        { "name": "Bauaufsichtsamt", "nr": "63", "leitung": "Mathias Schenkl" },
-        { "name": "Tiefbauamt", "nr": "66", "leitung": "Andreas Pfeil" }
+        { 
+          "name": "Amt für Gebäudemanagement", "nr": "24", "leitung": "Florian Engel",
+          "abteilungen": ["241 Kaufmännisches GME", "242 Technisches GME", "243 Infrastrukturelles GME", "Stabsstelle 24 EU", "Stabsstelle 24 FM"]
+        },
+        { 
+          "name": "Amt für Stadtplanung und Mobilität", "nr": "61", "leitung": "Tilmann Lohse",
+          "abteilungen": ["611 Stadtplanung", "612 Geodaten und Bodenordnung", "613 Mobilitätsplanung", "614 Straßenverkehr und Baustellen"]
+        },
+        { 
+          "name": "Bauaufsichtsamt", "nr": "63", "leitung": "Mathias Schenkl",
+          "abteilungen": ["63-1 Verwaltung", "63-2 Bauaufsicht Technik"]
+        },
+        { 
+          "name": "Tiefbauamt", "nr": "66", "leitung": "Andreas Pfeil",
+          "abteilungen": ["660 Verwaltung und Bauhof", "661 Neubau und Erneuerung von Verkehrsflächen", "662 Betrieb und Unterhalt von Verkehrsflächen", "663 Konstruktiver Ingenieurbau und Elektrische Anlagen", "Projektgruppe StUB"]
+        }
       ]
     },
     {
@@ -107,7 +119,10 @@
       "bereich": "Umwelt und Klimaschutz",
       "leitung": "Sabine Bock (Berufsmäßige Stadträtin)",
       "aemter": [
-        { "name": "Amt für Umweltschutz und Energiefragen", "nr": "31", "leitung": "Reiner Lennemann" },
+        { 
+          "name": "Amt für Umweltschutz und Energiefragen", "nr": "31", "leitung": "Reiner Lennemann",
+          "abteilungen": ["SG 1 Gewässer & Boden", "SG 2 Natur- & Artenschutz", "SG 3 Immissionsschutz & Kreislaufwirtschaft", "SG 4 Beratung & Bildung", "SG 5 Umwelt- & Klimaplanung"]
+        },
         { "name": "Amt für Veterinärwesen und Lebensmittelüberwachung", "nr": "39", "leitung": "Dr. Nikola-Simone Franz-Haas" },
         { "name": "Entwässerungsbetrieb (EBE)", "leitung": "Wolfgang Fuchs (Werkleitung)" }
       ]
