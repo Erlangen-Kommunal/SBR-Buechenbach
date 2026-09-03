@@ -1,5 +1,5 @@
 {
-  "stand": "2026-08-02",
+  "stand": "2026-09-03",
   "quelle": "© OpenStreetMap-Mitwirkende (ODbL)",
   "punkt": [
     {
@@ -70,7 +70,7 @@
       "label": "Querungen",
       "icon": "🚸",
       "farbe": "#f08c00",
-      "count": 174
+      "count": 175
     },
     {
       "key": "abfall",

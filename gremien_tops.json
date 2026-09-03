@@ -1,5 +1,5 @@
 {
- "stand": "2026-08-01",
+ "stand": "2026-09-03",
  "wahlperioden": [
   {
    "label": "2020 – 2026",
@@ -1682,12 +1682,21 @@
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "titel"
+    "titel",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": true,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… TOP 33.2 Anfrage der Fraktion Erlanger Linke zur Vermüllung in Büchenbach Protokollvermerk: Herr Bürgermeister Lehrmann beantwortet die Anfrage der Fraktion Erlanger Linke zur Ver …",
+     "ort": true
+    }
+   ]
   },
   {
    "gremium": "Stadtrat",
@@ -1871,7 +1880,8 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -1890,6 +1900,13 @@
      "beleg": "… uenaurach Instandsetzung RLT 15.000 € Heinrich-Kirchner-Schule Erneuerung Trinkwasserverteiler 20.000 € Mönauschule Erneuerung Trinkwasserverteiler 20.000 € 280.000 € Gesamtsumme 1.000.000 € Die Mitte …",
      "marke": "Mönauschule",
      "dokument": "Beschluss Stand: 25.06.2026"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… uenaurach Instandsetzung RLT 15.000 € Heinrich-Kirchner-Schule Erneuerung Trinkwasserverteiler 20.000 € Mönauschule Erneuerung Trinkwasserverteiler 20.000 € 280.000 € Gesamtsumme 1.000.000 € Niederschrif …",
+     "marke": "Mönauschule",
+     "ort": true
     }
    ],
    "marken": [
@@ -2240,7 +2257,8 @@
    "quellen": [
     "titel",
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -2258,6 +2276,12 @@
      "beleg": "… tschaft und Finanzen II/050/2026 Umwidmung von Mitteln der Investitionspauschale für die Stadtteilschule Büchenbach-Nord; Antrag Nr. 023/2026 der SPD-Fraktion zum Stadtrat am 20.05.2026 Beratungsfolge Termin Ö/N Vorlagena …",
      "ort": true,
      "dokument": "Beschluss Stand: 25.06.2026"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… TOP 18 II/050/2026 Umwidmung von Mitteln der Investitionspauschale für die Stadtteilschule Büchenbach-Nord; Antrag Nr. 023/2026 der SPD-Fraktion zum Stadtrat am 20.05.2026 Sachbericht: 1. Ausgangslage Mit …",
+     "ort": true
     }
    ],
    "marken": []
@@ -2387,7 +2411,8 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -2405,6 +2430,12 @@
      "beleg": "… er Linke: Kubilay Basarici Max Schleifer Seite 3 von 9 Stadtteilbeirat Büchenbach Vorschlag: Mitglieder: Stellvertreter: CSU: Felix Winter Andre Wichmann …",
      "ort": true,
      "dokument": "Beschluss Stand: 25.06.2026"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… StR/007/2026 der Sitzung des Stadtrates der Stadt Erlangen vom 25.06.2026 Seite 7 / 66 Stadtteilbeirat Büchenbach Vorschlag: Mitglieder: Stellvertreter: CSU: Felix Winter Andre Wichmann …",
+     "ort": true
     }
    ],
    "marken": []
@@ -77041,7 +77072,8 @@
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "vorlage"
+    "vorlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -77051,6 +77083,12 @@
      "quelle": "vorlage",
      "strassen": [],
      "beleg": "… huss wurde 2021 nicht abgerufen) 2.000 0,-- 2.000 CVJM für offene Jugendarbeit 5.000 5.000 5.000 Arbeitskreis Büchenbach (Zuschuss wurde 2021 nicht abgerufen) 1.000 0,-- 1.000 HIPPY incl. Budgetaufstockung arabisch sprechende Haus …",
+     "ort": true
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… de 2021 nicht abgerufen) 2.000 0,-- 2.000 CVJM für offene Jugendarbeit 5.000 5.000 5.000 Arbeitskreis Büchenbach (Zuschuss wurde 2021 nicht abgerufen) 1.000 0,-- 1.000 HIPPY incl. Budgetaufstockung arabisch sprechen …",
      "ort": true
     }
    ],
@@ -77168,7 +77206,8 @@
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "vorlage"
+    "vorlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -77178,6 +77217,12 @@
      "quelle": "vorlage",
      "strassen": [],
      "beleg": "… iplikator*innen in ihren Familien. Am Zukunftsacker, dem neuen außerschulischen Lernort für Nachhaltigkeit in Büchenbach, verbringen Schulklassen einen Schulvormittag zu den Themen ökologischer Gemüsebau, gesunde Ernährung, Klimas …",
+     "ort": true
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… plikator*innen in ihren Familien. Am Zukunftsacker, dem neuen außerschulischen Lernort für Nachhaltigkeit in Büchenbach, verbringen Schulklassen einen Schulvormittag zu den Themen ökologischer Gemüsebau, gesunde Ernährung, Klim …",
      "ort": true
     }
    ],
@@ -80833,11 +80878,12 @@
    "strassen_im_gebiet": [
     "Goldwitzerstraße"
    ],
-   "nennt_ort": false,
+   "nennt_ort": true,
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -80851,6 +80897,12 @@
      ],
      "beleg": "… ein Erhöhungsbetrag von 1.000 € errechnen würde. -1000 -100 51.4. CSU 318/2021 Familienstützpunkt Büchenbach, Goldwitzerstraße 27 (einmalig) -5500 -550 …",
      "dokument": "JHA Ergebnishaushalt 2022 Fachamtsbudgets"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… 0 Stimmen angenommen. Die Begründung der CSU- Fraktion für diesen Antrag zu Gunsten des Familienstützpunktes Büchenbach, Goldwitzerstr. 27, (einmalig) soll per E-Mail an den JHA nachgereicht werden. b. Investitionsprogramm …",
+     "ort": true
     }
    ]
   },
@@ -90138,7 +90190,8 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -90156,6 +90209,12 @@
      "beleg": "… h die Volkshochschule Ferienbildungsangebote für den ge- bundenen Ganztag der Hermann-Hedenus-Grundschule und Mönauschule in Präsenz und un- ter Einhaltung der vorgeschriebenen Hygiene-Maßnahmen durchgeführt. Die geplanten Ange- bo …",
      "marke": "Mönauschule",
      "dokument": "Beschluss Stand: 13.07.2021"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… ch die Volkshochschule Ferienbildungsangebote für den gebundenen Ganztag der Hermann-Hedenus-Grundschule und Mönauschule in Präsenz und unter Einhaltung der vorgeschriebenen Hygiene-Maßnahmen durchgeführt. Die geplanten Angebote …",
+     "marke": "Mönauschule"
     }
    ],
    "marken": [
@@ -99392,7 +99451,8 @@
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "vorlage"
+    "vorlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -99402,6 +99462,12 @@
      "quelle": "vorlage",
      "strassen": [],
      "beleg": "… kreis Gemeinwesenarbeit (Anger) 2.000 2.000 2.000 CVJM für offene Jugendarbeit 5.000 5.000 5.000 Arbeitskreis Büchenbach 1.000 1.000 1.000 HIPPY incl. Budgetaufstockung arabisch sprechende Hausbesucherinnen 70.120 70.120 70.120 Ve …",
+     "ort": true
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… meinwesenarbeit (Anger) 2.000 2.000 2.000 CVJM für offene Jugendarbeit 5.000 5.000 5.000 Arbeitskreis Büchenbach 1.000 1.000 1.000 HIPPY incl. Budgetaufstockung arabisch sprechende Hausbesucherinnen 70.120 70.120 7 …",
      "ort": true
     }
    ],
@@ -99445,11 +99511,21 @@
      "marke": "Mönauschule",
      "ort": true,
      "dokument": "Beschluss Stand: JHA 04.02.2021 BA 11.03.2021"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… : seit 2019 mit 1 VZÄ Schulsozialpädagogik besetzt GS Büchenbach-Dorf: seit 2019 mit JaS besetzt Realschule am Europakanal Otfried-Preußler-Schule-Liegnitzerstraße: bereits im Stellenplan 2021 genehmigt Marie-Therese-Gymnasium Oh …",
+     "marke": "Mönauschule",
+     "ort": true
     }
    ],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -104310,7 +104386,8 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -104330,6 +104407,13 @@
      "marke": "Mönauschule",
      "ort": true,
      "dokument": "Beschluss Stand: JHA 19.11.2020"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… gt eng mit der zukünftigen Ausrichtung des Schulsprengels Büchenbach-Nord (Hermann-Hedenus Mittelschule und Mönauschule) zusammen. Die Ergebnisse und Entscheidungen daraus haben aufgrund der Zweihäusigkeit der Mittelschule unmit …",
+     "marke": "Mönauschule",
+     "ort": true
     }
    ],
    "marken": [
@@ -112689,7 +112773,8 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -112709,6 +112794,13 @@
      "marke": "Mönauschule",
      "ort": true,
      "dokument": "Beratungsergebnisse Stand: 23.07.2020"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… Ausrichtung. Das Ergebnis der Machbarkeitsstudie im Frühjahr 2021 ist daher sinnvollerweise abzuwarten. Mönauschule Im Gebäude der Mönauschule sind neben der zweizügigen Grundschule die Ganztagsklassen der Hermann-Hedenus …",
+     "marke": "Mönauschule",
+     "ort": true
     }
    ],
    "marken": [
@@ -114646,7 +114738,8 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -114665,6 +114758,13 @@
      "beleg": "… ung der bereits genehmigten Stellen wird fortge- führt. Erlangen ist von dieser Situation mit der JaS an der Grundschule Büchenbach-Dorf betroffen. Für die anfallenden Personalkosten, der im HH 2020 beschlossenen Stelle, werden wir keine st …",
      "marke": "Grundschule Büchenbach",
      "dokument": "Beratungsergebnisse Stand: JHA 18.06.20"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… rung der bereits genehmigten Stellen wird fortgeführt. Erlangen ist von dieser Situation mit der JaS an der Grundschule Büchenbach-Dorf betroffen. Für die anfallenden Personalkosten, der im HH 2020 beschlossenen Stelle, werden wir keine st …",
+     "marke": "Grundschule Büchenbach",
+     "ort": true
     }
    ],
    "marken": [
@@ -134140,52 +134240,63 @@
   },
   "sitzungen": {
    "2114391": "18186885",
+   "2114392": "18202982",
    "2114399": "18186376",
    "2114402": "18188802",
    "2114407": "18188102",
    "2114408": "18189471",
    "2114410": "18189073",
+   "2114413": "18203125",
    "2114420": "18190142",
    "2114422": "18190210",
    "2114430": "18192840",
    "2114432": "18194791",
    "2114434": "18192875",
+   "2114439": "18203147",
    "2114440": "18194487",
    "2114443": "18197648",
    "2114445": "18196399",
    "2114451": "18199343",
+   "2114454": "18203173",
    "2114458": "18198744",
    "2114461": "18199699",
    "2114463": "18199491",
    "2114504": "18200715",
    "2114509": "18200281",
+   "2114516": "18203915",
    "2114521": "18203362",
    "2114522": "18202260",
    "2114531": "18202914",
    "2114532": "18203600",
    "2114539": "18205354",
+   "2114541": "18232217",
    "2114542": "18207152",
    "2114543": "18207755",
    "2114551": "18207707",
    "2114552": "18210644",
    "2114557": "18210613",
+   "2114559": "18231623",
    "2114562": "18210898",
    "2114566": "18210486",
+   "2114568": "18211161",
    "2114573": "18211017",
    "2114575": "18210921",
    "2114579": "18214944",
    "2114580": "18216841",
    "2114586": "18214062",
+   "2114591": "18231617",
    "2114592": "18216904",
    "2114596": "18220125",
    "2114599": "18217146",
    "2114601": "18218678",
    "2114602": "18219721",
+   "2114603": "18231472",
    "2114612": "18219186",
    "2114614": "18221456",
    "2114738": "18221591",
    "2114750": "18220524",
    "2114757": "18221249",
+   "2114759": "18232387",
    "2114762": "18223221",
    "2114763": "18222668",
    "2114771": "18224790",
@@ -134319,6 +134430,7 @@
    "2115580": "18288536",
    "2115590": "18290067",
    "2115592": "18290086",
+   "2115602": "18290533",
    "2115703": "18288286"
   }
  }
