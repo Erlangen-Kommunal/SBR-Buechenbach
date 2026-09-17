@@ -1,5 +1,5 @@
 {
- "stand": "2026-08-01",
+ "stand": "2026-09-17",
  "wahlperioden": [
   {
    "label": "2020 – 2026",
@@ -20,6 +20,1362 @@
   "19": "Jugendhilfeausschuss"
  },
  "tops": [
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_9",
+   "top": "Ö 9",
+   "titel": "Jahresbericht der Stadt- und Kreissparkasse durch Herrn von Hebel",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115625",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_8",
+   "top": "Ö 8",
+   "titel": "Bericht aus nichtöffentlicher Sitzung",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115625",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_7.3",
+   "top": "Ö 7.3",
+   "titel": "Controlling-Zwischenbericht zum 31.07.2026 (Budgets und Arbeitsprogramme)",
+   "kvonr": "2141840",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141840",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_7.2",
+   "top": "Ö 7.2",
+   "titel": "Informationen für Stadtratsmitglieder zum Thema Korruptionsprävention",
+   "kvonr": "2141887",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141887",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_7.1",
+   "top": "Ö 7.1",
+   "titel": "Tätigkeitsbericht 2025 des Jugendparlaments",
+   "kvonr": "2141870",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141870",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… e Avaneesh Emmy-Noether-Gymnasium 298 17 Schmitt Franka Emmy-Noether-Gymnasium 280 18 Hui Zhicheng Realschule am Europakanal 271 19 Onufryk Marko Eichendorffschule 270 20 Funke Florentine Christian-Ernst-Gymnasium 266 21 Brau Paul Ant …",
+     "dokument": "Tätigkeitsbericht Jugendparlament 2025"
+    }
+   ],
+   "strassen_im_gebiet": [
+    "Am Europakanal"
+   ],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [
+    "anlage"
+   ],
+   "relevant": true
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_7",
+   "top": "Ö 7",
+   "titel": "Mitteilungen zur Kenntnis",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115625",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_24.1",
+   "top": "Ö 24.1",
+   "titel": "Anfrage der Erlanger Linke Fraktion zum Beschluss des Stadtrates vom 11.12.2025 zur Gewerbesteuer",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115625",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_24",
+   "top": "Ö 24",
+   "titel": "Anfragen",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115625",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_23",
+   "top": "Ö 23",
+   "titel": "Konzeptionelle Weiterentwicklung des Lenkungskreis Klima-Aufbruch",
+   "kvonr": "2141822",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141822",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_22",
+   "top": "Ö 22",
+   "titel": "Fleischhygienegebühren im Stadtgebiet Erlangen Nachträgliche Erhebung der monatlich anfallenden Gebühren für amtliche Kontrollen am Schlachthof Erlangen",
+   "kvonr": "2141925",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141925",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_21",
+   "top": "Ö 21",
+   "titel": "Zweckverband Kommunale Verkehrsüberwachung im Großraum Nürnberg, Erhöhung der Überwachungstunden bei der Geschwindigkeitsüberwachung",
+   "kvonr": "2141717",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141717",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_20",
+   "top": "Ö 20",
+   "titel": "RSV Erlangen-Herzogenaurch, hier: Fortschreibung der Kooperationsvereinbarung",
+   "kvonr": "2141915",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141915",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_19",
+   "top": "Ö 19",
+   "titel": "VGN-Tarifreform 2027 und Verlängerung der Vereinbarung zum VGN-Mobilitätsindex bis zum 31.12.2033",
+   "kvonr": "2141866",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141866",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_18",
+   "top": "Ö 18",
+   "titel": "Weiterentwicklung der AG Rad in eine AG Nahmobilität",
+   "kvonr": "2141595",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141595",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_17",
+   "top": "Ö 17",
+   "titel": "Änderung der Gebührensatzung zur Satzung für städtische dezentrale Unterkünfte zur Unterbringung von Flüchtlingen",
+   "kvonr": "2141882",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141882",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_16",
+   "top": "Ö 16",
+   "titel": "Änderung der Verordnung der Stadt Erlangen über die Festsetzung eines verkaufsoffenen Sonntages",
+   "kvonr": "2141936",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141936",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_15",
+   "top": "Ö 15",
+   "titel": "Übergabe der Hannah-Stockbauer-Halle und des Freibads Röthelheim an die ESTW AG",
+   "kvonr": "2141938",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141938",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_14",
+   "top": "Ö 14",
+   "titel": "GEWOBAU Erlangen GmbH und GEWOBAU Beteiligungsgesellschaft mbH: Jahresabschluss 2025",
+   "kvonr": "2141872",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141872",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "fundstellen": [
+    {
+     "quelle": "vorlage",
+     "strassen": [],
+     "beleg": "… itere 174 Wohnungen sowie eine Einrichtung der Lebenshilfe errichtet. Es stehen nur noch Restarbeiten aus. In Büchenbach wurde ein Personalwohnheim geplant, das an die Universität vermietet werden soll. Baubeginn war im Frühjahr 2 …",
+     "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… ie eine Einrichtung der Lebenshilfe errichtet. Es stehen nur noch Seite 4 von 6 Restarbeiten aus. • In Büchenbach wurde ein Personalwohnheim geplant, das an die Universität vermietet werden soll. Baubeginn war im Frühjahr …",
+     "ort": true,
+     "dokument": "Beschluss Stand: 16.09.2026"
+    }
+   ],
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": true,
+   "marken": [],
+   "quellen": [
+    "vorlage",
+    "anlage"
+   ],
+   "relevant": true
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_13",
+   "top": "Ö 13",
+   "titel": "Einbringung möglicher Konsolidierungsmaßnahmen zum Haushaltsentwurf 2027",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115625",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_12",
+   "top": "Ö 12",
+   "titel": "Einbringung des Haushaltsentwurfs 2027",
+   "kvonr": "2141910",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141910",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_11",
+   "top": "Ö 11",
+   "titel": "Ausländer- und Integrationsbeirat: Ergebnis der Wahl 2026 und Berufung weiterer Mitglieder",
+   "kvonr": "2141867",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141867",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-09-24",
+   "ksinr": "2115625",
+   "ktonr": "2115625_Ö_10",
+   "top": "Ö 10",
+   "titel": "Geschäftsordnung 2026 für den Stadtrat Erlangen",
+   "kvonr": "2141886",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141886",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_9",
+   "top": "Ö 9",
+   "titel": "Anfragen Werkausschuss EB77",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115623",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_8",
+   "top": "Ö 8",
+   "titel": "Mitteilungen zur Kenntnis Werkausschuss EB77",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115623",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_20",
+   "top": "Ö 20",
+   "titel": "Anfragen",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115623",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_19",
+   "top": "Ö 19",
+   "titel": "Antrag: Eltersdorf Regnitzweg: Schlechte Sicht verbessern, Antrag Nr. 50/2026 der SPD Fraktion",
+   "kvonr": "2141844",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141844",
+   "strassen": [
+    "Regnitzweg"
+   ],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_18",
+   "top": "Ö 18",
+   "titel": "Zweckverband Kommunale Verkehrsüberwachung im Großraum Nürnberg, Erhöhung der Überwachungstunden bei der Geschwindigkeitsüberwachung",
+   "kvonr": "2141717",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141717",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_17",
+   "top": "Ö 17",
+   "titel": "RSV Erlangen-Herzogenaurch, hier: Fortschreibung der Kooperationsvereinbarung",
+   "kvonr": "2141915",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141915",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_16",
+   "top": "Ö 16",
+   "titel": "RSV Erlangen-Herzogenaurach, hier: Vorplanung",
+   "kvonr": "2141895",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141895",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_15",
+   "top": "Ö 15",
+   "titel": "VGN-Tarifreform 2027 und Verlängerung der Vereinbarung zum VGN-Mobilitätsindex bis zum 31.12.2033",
+   "kvonr": "2141866",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141866",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_14",
+   "top": "Ö 14",
+   "titel": "Weiterentwicklung der AG Rad in eine AG Nahmobilität",
+   "kvonr": "2141855",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141855",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_13",
+   "top": "Ö 13",
+   "titel": "Stadtentwicklungsprojekt \"Vom Großparkplatz zur Regnitzstadt\" Hier: Planung \"Autobahnbündel\" Regnitzstadt - Umverlegung Autobahnauffahrt, Neuplanung Nord-Süd-Verbindung und südlicher Knotenpunkt",
+   "kvonr": "2141732",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141732",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_12",
+   "top": "Ö 12",
+   "titel": "Zukunftsplan Fahrradstadt; hier: Radvorrangroute Büchenbach Süd-Burgberg - Fahrradstraße Häuslinger Straße",
+   "kvonr": "2141372",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141372",
+   "strassen": [
+    "Häuslinger Straße"
+   ],
+   "strassen_im_titel": [
+    "Häuslinger Straße"
+   ],
+   "linien_im_titel": [],
+   "nennt_ort_titel": true,
+   "fundstellen": [
+    {
+     "quelle": "vorlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Dresselweg",
+      "Flachsweg",
+      "Heidackerstraße",
+      "Häuslinger Straße",
+      "Kernbergstraße",
+      "Mönaustraße",
+      "Straßberg"
+     ],
+     "beleg": "… ehrszählung vom 27.05.2025). Zusätzlich ist die Netzbedeutung für den MIV als nachrangig einzustufen. Mit dem Adenauerring existiert eine vielfach leistungsfähigere und schnellere Anbindung für den Durchgangsverkehr. Auch für die Na …",
+     "marke": "Baugebiet 413"
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Dresselweg",
+      "Flachsweg",
+      "Heidackerstraße",
+      "Häuslinger Straße",
+      "Kernbergstraße",
+      "Mönaustraße",
+      "Straßberg"
+     ],
+     "beleg": "… rszählung vom 27.05.2025). Zusätzlich ist die Netzbedeutung für den MIV als nachrangig einzustu- fen. Mit dem Adenauerring existiert eine vielfach leistungsfähigere und schnellere Anbindung für den Durchgangsverkehr. Auch für die N …",
+     "marke": "Baugebiet 413",
+     "dokument": "Beschlussvorlage"
+    }
+   ],
+   "strassen_im_gebiet": [
+    "Adenauer-Ring",
+    "Dresselweg",
+    "Flachsweg",
+    "Heidackerstraße",
+    "Häuslinger Straße",
+    "Kernbergstraße",
+    "Mönaustraße",
+    "Straßberg"
+   ],
+   "linien": [],
+   "nennt_ort": true,
+   "marken": [
+    "Baugebiet 413"
+   ],
+   "quellen": [
+    "titel",
+    "vorlage",
+    "anlage"
+   ],
+   "relevant": true
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_11",
+   "top": "Ö 11",
+   "titel": "Zwischenbericht des Amtes für Stadtplanung und Mobilität (mit Ref. VI - PET und Stabstellen) Budget zum Arbeitsprogramm 2026 - Stand 31.07.2026",
+   "kvonr": "2141861",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141861",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_10.4",
+   "top": "Ö 10.4",
+   "titel": "Budgetergebnis 2025 - Amt 31",
+   "kvonr": "2141857",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141857",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_10.3",
+   "top": "Ö 10.3",
+   "titel": "Bearbeitungsstand Fraktionsanträge",
+   "kvonr": "2141940",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141940",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_10.2",
+   "top": "Ö 10.2",
+   "titel": "Durchfahrtsverbot für Kfz über 7,5t zGM in der Möhrendorfer Straße",
+   "kvonr": "2141902",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141902",
+   "strassen": [
+    "Möhrendorfer Straße"
+   ],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_10.1",
+   "top": "Ö 10.1",
+   "titel": "Sachstandsbericht zum Zukunftsplan Fahrradstadt",
+   "kvonr": "2141904",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141904",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö_10",
+   "top": "Ö 10",
+   "titel": "Mitteilungen zur Kenntnis",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115623",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-09-22",
+   "ksinr": "2115623",
+   "ktonr": "2115623_Ö",
+   "top": "Ö",
+   "titel": "Umwelt-, Verkehrs- und Planungsausschuss / Umwelt-, Verkehrs- und Planungsbeirat:",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115623",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-09-17",
+   "ksinr": "2115719",
+   "ktonr": "2115719_Ö_8",
+   "top": "Ö 8",
+   "titel": "Anfragen",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115719",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-09-17",
+   "ksinr": "2115719",
+   "ktonr": "2115719_Ö_7",
+   "top": "Ö 7",
+   "titel": "Haushaltskonsolidierung 2026 - 2029",
+   "kvonr": "2141858",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141858",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-09-17",
+   "ksinr": "2115719",
+   "ktonr": "2115719_Ö_6",
+   "top": "Ö 6",
+   "titel": "Zwischenbericht des Amt 51 Budget und Arbeitsprogramm 2026 - Stand: 31.07.2026",
+   "kvonr": "2141863",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141863",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-09-17",
+   "ksinr": "2115719",
+   "ktonr": "2115719_Ö_5",
+   "top": "Ö 5",
+   "titel": "Gründung der Arbeitsgemeinschaft offene Jugend(sozial)arbeit nach § 78 Sozialgesetzbuch - Achtes Buch - Kinder- und Jugendhilfe (SGB VIII)",
+   "kvonr": "2141885",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141885",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-09-17",
+   "ksinr": "2115719",
+   "ktonr": "2115719_Ö_4",
+   "top": "Ö 4",
+   "titel": "JuStBEst Tätigkeitsbericht 2025",
+   "kvonr": "2141879",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141879",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-09-17",
+   "ksinr": "2115719",
+   "ktonr": "2115719_Ö_3",
+   "top": "Ö 3",
+   "titel": "Bericht aus der Arbeitsgemeinschaft Kindertagesbetreuung nach § 78 SGB VIII",
+   "kvonr": "2141851",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141851",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-09-17",
+   "ksinr": "2115719",
+   "ktonr": "2115719_Ö_2",
+   "top": "Ö 2",
+   "titel": "Bestands- und Planungsbericht Kindertagesbetreuung 2026",
+   "kvonr": "2141797",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141797",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "fundstellen": [
+    {
+     "quelle": "vorlage",
+     "strassen": [],
+     "beleg": "… Kindergarten-Bezirke Büchenbach-Dorf und Büchenbach- Nordwest sind nun ca. die drei Schulsprengel Büchenbach, Heinrich-Kirchner und Mönau (Büchenbach-Nord). Zusätzlich ist Bezirk 0 -Planungsbezirk unabhängig, welcher Einrichtungen mit st …",
+     "marke": "Heinrich-Kirchner-Schule",
+     "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal",
+      "Büchenbacher Anlage",
+      "Dompropststraße",
+      "Donato-Polli-Straße",
+      "Dorfstraße",
+      "Frauenauracher Straße",
+      "Goeschelstraße",
+      "Goldwitzerstraße",
+      "Kolpingweg",
+      "Odenwaldallee",
+      "Schweinfurter Straße",
+      "Steigerwaldallee"
+     ],
+     "beleg": "… 2 — — I-Platz-Quote 0% — — AWO Krippe Erlangen Büchenbacher Anlage 29 13 Kinderkrippe \"Kindernest Anny Frank\" Am Europakanal 69 50 Städt. Kinderhaus Rasselbande Schweinfurter Straße 11 16 Kindertagespflege (statistisch) bezirksweit im …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Bestands- und Planungsbericht Kindertagesbetreuung 2026 mit Überarbeitung,"
+    }
+   ],
+   "strassen_im_gebiet": [
+    "Am Europakanal",
+    "Büchenbacher Anlage",
+    "Dompropststraße",
+    "Donato-Polli-Straße",
+    "Dorfstraße",
+    "Frauenauracher Straße",
+    "Goeschelstraße",
+    "Goldwitzerstraße",
+    "Kolpingweg",
+    "Odenwaldallee",
+    "Schweinfurter Straße",
+    "Steigerwaldallee"
+   ],
+   "linien": [],
+   "nennt_ort": true,
+   "marken": [
+    "Heinrich-Kirchner-Schule",
+    "Mönauschule"
+   ],
+   "quellen": [
+    "vorlage",
+    "anlage"
+   ],
+   "relevant": true
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-09-17",
+   "ksinr": "2115719",
+   "ktonr": "2115719_Ö_1.5",
+   "top": "Ö 1.5",
+   "titel": "Tag der Kindergesundheit - 24. Oktober 2026",
+   "kvonr": "2141927",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141927",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-09-17",
+   "ksinr": "2115719",
+   "ktonr": "2115719_Ö_1.4",
+   "top": "Ö 1.4",
+   "titel": "Bearbeitungsstand der Fraktionsanträge",
+   "kvonr": "2141900",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141900",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-09-17",
+   "ksinr": "2115719",
+   "ktonr": "2115719_Ö_1.3",
+   "top": "Ö 1.3",
+   "titel": "Information über bestelltes beratendes Mitglied für den Jugendhilfeausschuss aus dem Kreis der selbstorganisierten Zusammenschlüsse und Selbsthilfevertreter*innen gem. § 4a SGB VIII",
+   "kvonr": "2141890",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141890",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-09-17",
+   "ksinr": "2115719",
+   "ktonr": "2115719_Ö_1.2",
+   "top": "Ö 1.2",
+   "titel": "Neubestellung eines stellvertretenden stimmberechtigten Mitgliedes des Jugendhilfeausschusses",
+   "kvonr": "2141846",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141846",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-09-17",
+   "ksinr": "2115719",
+   "ktonr": "2115719_Ö_1.1",
+   "top": "Ö 1.1",
+   "titel": "Neubestellung eines beratenden sowie eines stellvertretenden beratenden Mitgliedes für den Jugendhilfeausschuss",
+   "kvonr": "2141845",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141845",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-09-17",
+   "ksinr": "2115719",
+   "ktonr": "2115719_Ö_1",
+   "top": "Ö 1",
+   "titel": "Mitteilungen zur Kenntnis",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115719",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
   {
    "gremium": "Stadtrat",
    "kgrnr": 1,
@@ -1682,12 +3038,21 @@
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "titel"
+    "titel",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": true,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… TOP 33.2 Anfrage der Fraktion Erlanger Linke zur Vermüllung in Büchenbach Protokollvermerk: Herr Bürgermeister Lehrmann beantwortet die Anfrage der Fraktion Erlanger Linke zur Ver …",
+     "ort": true
+    }
+   ]
   },
   {
    "gremium": "Stadtrat",
@@ -1871,7 +3236,8 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -1890,6 +3256,13 @@
      "beleg": "… uenaurach Instandsetzung RLT 15.000 € Heinrich-Kirchner-Schule Erneuerung Trinkwasserverteiler 20.000 € Mönauschule Erneuerung Trinkwasserverteiler 20.000 € 280.000 € Gesamtsumme 1.000.000 € Die Mitte …",
      "marke": "Mönauschule",
      "dokument": "Beschluss Stand: 25.06.2026"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… uenaurach Instandsetzung RLT 15.000 € Heinrich-Kirchner-Schule Erneuerung Trinkwasserverteiler 20.000 € Mönauschule Erneuerung Trinkwasserverteiler 20.000 € 280.000 € Gesamtsumme 1.000.000 € Niederschrif …",
+     "marke": "Mönauschule",
+     "ort": true
     }
    ],
    "marken": [
@@ -2240,7 +3613,8 @@
    "quellen": [
     "titel",
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -2258,6 +3632,12 @@
      "beleg": "… tschaft und Finanzen II/050/2026 Umwidmung von Mitteln der Investitionspauschale für die Stadtteilschule Büchenbach-Nord; Antrag Nr. 023/2026 der SPD-Fraktion zum Stadtrat am 20.05.2026 Beratungsfolge Termin Ö/N Vorlagena …",
      "ort": true,
      "dokument": "Beschluss Stand: 25.06.2026"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… TOP 18 II/050/2026 Umwidmung von Mitteln der Investitionspauschale für die Stadtteilschule Büchenbach-Nord; Antrag Nr. 023/2026 der SPD-Fraktion zum Stadtrat am 20.05.2026 Sachbericht: 1. Ausgangslage Mit …",
+     "ort": true
     }
    ],
    "marken": []
@@ -2387,7 +3767,8 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -2405,6 +3786,12 @@
      "beleg": "… er Linke: Kubilay Basarici Max Schleifer Seite 3 von 9 Stadtteilbeirat Büchenbach Vorschlag: Mitglieder: Stellvertreter: CSU: Felix Winter Andre Wichmann …",
      "ort": true,
      "dokument": "Beschluss Stand: 25.06.2026"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… StR/007/2026 der Sitzung des Stadtrates der Stadt Erlangen vom 25.06.2026 Seite 7 / 66 Stadtteilbeirat Büchenbach Vorschlag: Mitglieder: Stellvertreter: CSU: Felix Winter Andre Wichmann …",
+     "ort": true
     }
    ],
    "marken": []
@@ -77041,7 +78428,8 @@
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "vorlage"
+    "vorlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -77051,6 +78439,12 @@
      "quelle": "vorlage",
      "strassen": [],
      "beleg": "… huss wurde 2021 nicht abgerufen) 2.000 0,-- 2.000 CVJM für offene Jugendarbeit 5.000 5.000 5.000 Arbeitskreis Büchenbach (Zuschuss wurde 2021 nicht abgerufen) 1.000 0,-- 1.000 HIPPY incl. Budgetaufstockung arabisch sprechende Haus …",
+     "ort": true
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… de 2021 nicht abgerufen) 2.000 0,-- 2.000 CVJM für offene Jugendarbeit 5.000 5.000 5.000 Arbeitskreis Büchenbach (Zuschuss wurde 2021 nicht abgerufen) 1.000 0,-- 1.000 HIPPY incl. Budgetaufstockung arabisch sprechen …",
      "ort": true
     }
    ],
@@ -77168,7 +78562,8 @@
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "vorlage"
+    "vorlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -77178,6 +78573,12 @@
      "quelle": "vorlage",
      "strassen": [],
      "beleg": "… iplikator*innen in ihren Familien. Am Zukunftsacker, dem neuen außerschulischen Lernort für Nachhaltigkeit in Büchenbach, verbringen Schulklassen einen Schulvormittag zu den Themen ökologischer Gemüsebau, gesunde Ernährung, Klimas …",
+     "ort": true
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… plikator*innen in ihren Familien. Am Zukunftsacker, dem neuen außerschulischen Lernort für Nachhaltigkeit in Büchenbach, verbringen Schulklassen einen Schulvormittag zu den Themen ökologischer Gemüsebau, gesunde Ernährung, Klim …",
      "ort": true
     }
    ],
@@ -80833,11 +82234,12 @@
    "strassen_im_gebiet": [
     "Goldwitzerstraße"
    ],
-   "nennt_ort": false,
+   "nennt_ort": true,
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -80851,6 +82253,12 @@
      ],
      "beleg": "… ein Erhöhungsbetrag von 1.000 € errechnen würde. -1000 -100 51.4. CSU 318/2021 Familienstützpunkt Büchenbach, Goldwitzerstraße 27 (einmalig) -5500 -550 …",
      "dokument": "JHA Ergebnishaushalt 2022 Fachamtsbudgets"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… 0 Stimmen angenommen. Die Begründung der CSU- Fraktion für diesen Antrag zu Gunsten des Familienstützpunktes Büchenbach, Goldwitzerstr. 27, (einmalig) soll per E-Mail an den JHA nachgereicht werden. b. Investitionsprogramm …",
+     "ort": true
     }
    ]
   },
@@ -90138,7 +91546,8 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -90156,6 +91565,12 @@
      "beleg": "… h die Volkshochschule Ferienbildungsangebote für den ge- bundenen Ganztag der Hermann-Hedenus-Grundschule und Mönauschule in Präsenz und un- ter Einhaltung der vorgeschriebenen Hygiene-Maßnahmen durchgeführt. Die geplanten Ange- bo …",
      "marke": "Mönauschule",
      "dokument": "Beschluss Stand: 13.07.2021"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… ch die Volkshochschule Ferienbildungsangebote für den gebundenen Ganztag der Hermann-Hedenus-Grundschule und Mönauschule in Präsenz und unter Einhaltung der vorgeschriebenen Hygiene-Maßnahmen durchgeführt. Die geplanten Angebote …",
+     "marke": "Mönauschule"
     }
    ],
    "marken": [
@@ -99392,7 +100807,8 @@
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "vorlage"
+    "vorlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -99402,6 +100818,12 @@
      "quelle": "vorlage",
      "strassen": [],
      "beleg": "… kreis Gemeinwesenarbeit (Anger) 2.000 2.000 2.000 CVJM für offene Jugendarbeit 5.000 5.000 5.000 Arbeitskreis Büchenbach 1.000 1.000 1.000 HIPPY incl. Budgetaufstockung arabisch sprechende Hausbesucherinnen 70.120 70.120 70.120 Ve …",
+     "ort": true
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… meinwesenarbeit (Anger) 2.000 2.000 2.000 CVJM für offene Jugendarbeit 5.000 5.000 5.000 Arbeitskreis Büchenbach 1.000 1.000 1.000 HIPPY incl. Budgetaufstockung arabisch sprechende Hausbesucherinnen 70.120 70.120 7 …",
      "ort": true
     }
    ],
@@ -99445,11 +100867,21 @@
      "marke": "Mönauschule",
      "ort": true,
      "dokument": "Beschluss Stand: JHA 04.02.2021 BA 11.03.2021"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… : seit 2019 mit 1 VZÄ Schulsozialpädagogik besetzt GS Büchenbach-Dorf: seit 2019 mit JaS besetzt Realschule am Europakanal Otfried-Preußler-Schule-Liegnitzerstraße: bereits im Stellenplan 2021 genehmigt Marie-Therese-Gymnasium Oh …",
+     "marke": "Mönauschule",
+     "ort": true
     }
    ],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -104310,7 +105742,8 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -104330,6 +105763,13 @@
      "marke": "Mönauschule",
      "ort": true,
      "dokument": "Beschluss Stand: JHA 19.11.2020"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… gt eng mit der zukünftigen Ausrichtung des Schulsprengels Büchenbach-Nord (Hermann-Hedenus Mittelschule und Mönauschule) zusammen. Die Ergebnisse und Entscheidungen daraus haben aufgrund der Zweihäusigkeit der Mittelschule unmit …",
+     "marke": "Mönauschule",
+     "ort": true
     }
    ],
    "marken": [
@@ -112689,7 +114129,8 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -112709,6 +114150,13 @@
      "marke": "Mönauschule",
      "ort": true,
      "dokument": "Beratungsergebnisse Stand: 23.07.2020"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… Ausrichtung. Das Ergebnis der Machbarkeitsstudie im Frühjahr 2021 ist daher sinnvollerweise abzuwarten. Mönauschule Im Gebäude der Mönauschule sind neben der zweizügigen Grundschule die Ganztagsklassen der Hermann-Hedenus …",
+     "marke": "Mönauschule",
+     "ort": true
     }
    ],
    "marken": [
@@ -114646,7 +116094,8 @@
    "strassen_im_titel": [],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "linien": [],
@@ -114665,6 +116114,13 @@
      "beleg": "… ung der bereits genehmigten Stellen wird fortge- führt. Erlangen ist von dieser Situation mit der JaS an der Grundschule Büchenbach-Dorf betroffen. Für die anfallenden Personalkosten, der im HH 2020 beschlossenen Stelle, werden wir keine st …",
      "marke": "Grundschule Büchenbach",
      "dokument": "Beratungsergebnisse Stand: JHA 18.06.20"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… rung der bereits genehmigten Stellen wird fortgeführt. Erlangen ist von dieser Situation mit der JaS an der Grundschule Büchenbach-Dorf betroffen. Für die anfallenden Personalkosten, der im HH 2020 beschlossenen Stelle, werden wir keine st …",
+     "marke": "Grundschule Büchenbach",
+     "ort": true
     }
    ],
    "marken": [
@@ -133151,6 +134607,40 @@
     "fund": null,
     "anlagen": true
    },
+   "2141372": {
+    "fund": {
+     "quelle": "vorlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Dresselweg",
+      "Flachsweg",
+      "Heidackerstraße",
+      "Häuslinger Straße",
+      "Kernbergstraße",
+      "Mönaustraße",
+      "Straßberg"
+     ],
+     "beleg": "… ehrszählung vom 27.05.2025). Zusätzlich ist die Netzbedeutung für den MIV als nachrangig einzustufen. Mit dem Adenauerring existiert eine vielfach leistungsfähigere und schnellere Anbindung für den Durchgangsverkehr. Auch für die Na …",
+     "marke": "Baugebiet 413"
+    },
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Dresselweg",
+      "Flachsweg",
+      "Heidackerstraße",
+      "Häuslinger Straße",
+      "Kernbergstraße",
+      "Mönaustraße",
+      "Straßberg"
+     ],
+     "beleg": "… rszählung vom 27.05.2025). Zusätzlich ist die Netzbedeutung für den MIV als nachrangig einzustu- fen. Mit dem Adenauerring existiert eine vielfach leistungsfähigere und schnellere Anbindung für den Durchgangsverkehr. Auch für die N …",
+     "marke": "Baugebiet 413",
+     "dokument": "Beschlussvorlage"
+    }
+   },
    "2141373": {
     "fund": null,
     "anlagen": true
@@ -133893,6 +135383,10 @@
     "fund": null,
     "anlagen": true
    },
+   "2141717": {
+    "fund": null,
+    "anlagen": true
+   },
    "2141718": {
     "fund": null,
     "anlagen": true
@@ -133902,6 +135396,10 @@
     "anlagen": true
    },
    "2141729": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141732": {
     "fund": null,
     "anlagen": true
    },
@@ -134018,6 +135516,37 @@
     "fund": null,
     "anlagen": true
    },
+   "2141797": {
+    "fund": {
+     "quelle": "vorlage",
+     "strassen": [],
+     "beleg": "… Kindergarten-Bezirke Büchenbach-Dorf und Büchenbach- Nordwest sind nun ca. die drei Schulsprengel Büchenbach, Heinrich-Kirchner und Mönau (Büchenbach-Nord). Zusätzlich ist Bezirk 0 -Planungsbezirk unabhängig, welcher Einrichtungen mit st …",
+     "marke": "Heinrich-Kirchner-Schule",
+     "ort": true
+    },
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal",
+      "Büchenbacher Anlage",
+      "Dompropststraße",
+      "Donato-Polli-Straße",
+      "Dorfstraße",
+      "Frauenauracher Straße",
+      "Goeschelstraße",
+      "Goldwitzerstraße",
+      "Kolpingweg",
+      "Odenwaldallee",
+      "Schweinfurter Straße",
+      "Steigerwaldallee"
+     ],
+     "beleg": "… 2 — — I-Platz-Quote 0% — — AWO Krippe Erlangen Büchenbacher Anlage 29 13 Kinderkrippe \"Kindernest Anny Frank\" Am Europakanal 69 50 Städt. Kinderhaus Rasselbande Schweinfurter Straße 11 16 Kindertagespflege (statistisch) bezirksweit im …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Bestands- und Planungsbericht Kindertagesbetreuung 2026 mit Überarbeitung,"
+    }
+   },
    "2141798": {
     "fund": null,
     "anlagen": true
@@ -134095,6 +135624,10 @@
     "fund": null,
     "anlagen": true
    },
+   "2141822": {
+    "fund": null,
+    "anlagen": true
+   },
    "2141827": {
     "fund": null,
     "anlagen": true
@@ -134104,6 +135637,14 @@
     "anlagen": true
    },
    "2141835": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141840": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141844": {
     "fund": null,
     "anlagen": true
    },
@@ -134136,56 +135677,195 @@
      ],
      "dokument": "Anlage 1 - Einsparmaßnahmen ÖPNV - Vorschläge ESTW"
     }
+   },
+   "2141851": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141855": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141857": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141858": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141861": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141863": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141866": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141867": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141870": {
+    "fund": null,
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… e Avaneesh Emmy-Noether-Gymnasium 298 17 Schmitt Franka Emmy-Noether-Gymnasium 280 18 Hui Zhicheng Realschule am Europakanal 271 19 Onufryk Marko Eichendorffschule 270 20 Funke Florentine Christian-Ernst-Gymnasium 266 21 Brau Paul Ant …",
+     "dokument": "Tätigkeitsbericht Jugendparlament 2025"
+    }
+   },
+   "2141872": {
+    "fund": {
+     "quelle": "vorlage",
+     "strassen": [],
+     "beleg": "… itere 174 Wohnungen sowie eine Einrichtung der Lebenshilfe errichtet. Es stehen nur noch Restarbeiten aus. In Büchenbach wurde ein Personalwohnheim geplant, das an die Universität vermietet werden soll. Baubeginn war im Frühjahr 2 …",
+     "ort": true
+    },
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… ie eine Einrichtung der Lebenshilfe errichtet. Es stehen nur noch Seite 4 von 6 Restarbeiten aus. • In Büchenbach wurde ein Personalwohnheim geplant, das an die Universität vermietet werden soll. Baubeginn war im Frühjahr …",
+     "ort": true,
+     "dokument": "Beschluss Stand: 16.09.2026"
+    }
+   },
+   "2141879": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141882": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141885": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141886": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141887": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141890": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141895": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141900": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141902": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141904": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141910": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141915": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141925": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141927": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141936": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141938": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141940": {
+    "fund": null,
+    "anlagen": true
    }
   },
   "sitzungen": {
    "2114391": "18186885",
+   "2114392": "18202982",
    "2114399": "18186376",
    "2114402": "18188802",
    "2114407": "18188102",
    "2114408": "18189471",
    "2114410": "18189073",
+   "2114413": "18203125",
    "2114420": "18190142",
    "2114422": "18190210",
    "2114430": "18192840",
    "2114432": "18194791",
    "2114434": "18192875",
+   "2114439": "18203147",
    "2114440": "18194487",
    "2114443": "18197648",
    "2114445": "18196399",
    "2114451": "18199343",
+   "2114454": "18203173",
    "2114458": "18198744",
    "2114461": "18199699",
    "2114463": "18199491",
    "2114504": "18200715",
    "2114509": "18200281",
+   "2114516": "18203915",
    "2114521": "18203362",
    "2114522": "18202260",
    "2114531": "18202914",
    "2114532": "18203600",
    "2114539": "18205354",
+   "2114541": "18232217",
    "2114542": "18207152",
    "2114543": "18207755",
    "2114551": "18207707",
    "2114552": "18210644",
    "2114557": "18210613",
+   "2114559": "18231623",
    "2114562": "18210898",
    "2114566": "18210486",
+   "2114568": "18211161",
    "2114573": "18211017",
    "2114575": "18210921",
    "2114579": "18214944",
    "2114580": "18216841",
    "2114586": "18214062",
+   "2114591": "18231617",
    "2114592": "18216904",
    "2114596": "18220125",
    "2114599": "18217146",
    "2114601": "18218678",
    "2114602": "18219721",
+   "2114603": "18231472",
    "2114612": "18219186",
    "2114614": "18221456",
    "2114738": "18221591",
    "2114750": "18220524",
    "2114757": "18221249",
+   "2114759": "18232387",
    "2114762": "18223221",
    "2114763": "18222668",
    "2114771": "18224790",
@@ -134319,6 +135999,7 @@
    "2115580": "18288536",
    "2115590": "18290067",
    "2115592": "18290086",
+   "2115602": "18290533",
    "2115703": "18288286"
   }
  }
