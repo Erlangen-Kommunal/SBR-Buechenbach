@@ -1,5 +1,5 @@
 {
-  "stand": "2026-08-02",
+  "stand": "2026-09-24",
   "quelle": "© OpenStreetMap-Mitwirkende (ODbL)",
   "punkt": [
     {
@@ -14,7 +14,7 @@
       "label": "Schulen & Kitas",
       "icon": "🏫",
       "farbe": "#e8590c",
-      "count": 11
+      "count": 14
     },
     {
       "key": "gesundheit",
@@ -70,7 +70,7 @@
       "label": "Querungen",
       "icon": "🚸",
       "farbe": "#f08c00",
-      "count": 174
+      "count": 173
     },
     {
       "key": "abfall",
