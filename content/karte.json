@@ -59,24 +59,24 @@
     "weitere": [
       {
         "titel": "Rechtsverbindliche Bebauungspläne",
-        "untertitel": "BayernAtlas Planen & Bauen",
-        "domain": "atlas.bayern.de",
-        "url": "https://atlas.bayern.de/?redirect=true&c=641626,5495136&t=pl_bau&z=15.5&l=atkis,43df73e1-e2be-4034-83da-791f716fc394",
-        "beschreibung": "Amtliche Karte aller rechtskräftigen Bebauungspläne im BayernAtlas, direkt zentriert auf Büchenbach mit aktivem Bauleitplanungs-Layer."
+        "untertitel": "BayernAtlas Planen & Bauen (B-Pläne)",
+        "domain": "geoportal.bayern.de",
+        "url": "https://geoportal.bayern.de/bayernatlas/?lang=de&topic=pl_bau&bgLayer=atkis&X=5495136&Y=4425600&zoom=10&catalogNodes=132&layers=26d2b2b8-3944-4a49-aec2-59f827d9aa9e",
+        "beschreibung": "Amtliche Karte im BayernAtlas mit aktiver Bebauungsplan-Ebene der Stadt Erlangen, direkt zentriert auf Büchenbach mit allen rechtskräftigen Planumringen."
       },
       {
         "titel": "Umgebungslärmkartierung & Lärmplan",
-        "untertitel": "UmweltAtlas Bayern (LfU)",
-        "domain": "umweltatlas.bayern.de",
-        "url": "https://www.umweltatlas.bayern.de/mapapps/resources/apps/umweltatlas/index.html?lang=de&dn=lfu_domain-laerm&coordinate=641626,5495136&address=Erlangen-B%C3%BCchenbach",
-        "beschreibung": "Offizielle Lärmkartierung des Bayerischen Landesamts für Umwelt (LfU) für Straßen- und Schienenverkehr, direkt zentriert auf Erlangen-Büchenbach mit aktiviertem Lärm-Kartenbestand."
+        "untertitel": "Umgebungslärm Bayern (Regierung & LfU)",
+        "domain": "umgebungslaerm.bayern.de",
+        "url": "https://www.umgebungslaerm.bayern.de/laermkartierung/index.htm",
+        "beschreibung": "Offizielles Landesportal zur Lärmkartierung und Lärmaktionsplanung mit den Ergebnissen der aktuellen 4. Runde (Straßen- und Schienenlärm) für den Ballungsraum Erlangen."
       },
       {
-        "titel": "Fahrradstadtplan Erlangen",
-        "untertitel": "Routennetz & Radinfrastruktur",
-        "domain": "erlangen.de",
-        "url": "https://erlangen.de/aktuelles/fahrradstadtplan",
-        "beschreibung": "Routennetz, Radwege, Fahrradstraßen und Radinfrastruktur im gesamten Stadtgebiet."
+        "titel": "Radroutenplaner Bayern (Radkarte)",
+        "untertitel": "Radverkehrsnetz, BfR & Routenplaner",
+        "domain": "radlland-bayern.de",
+        "url": "https://radlland-bayern.de/radkarte/?sView=49.5922,10.9597,13",
+        "beschreibung": "Offizielle interaktive Radkarte des Freistaats Bayern mit Radverkehrsnetz, Bayernnetz für Radler (BfR), Oberflächenbeschaffenheit und Radroutenplaner für Erlangen und Büchenbach."
       }
     ]
   }

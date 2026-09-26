@@ -18,8 +18,8 @@ if (window.top !== window.self) {
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v45 · 2026-09-26";
-const CONTENT_VERSION = "45";
+const APP_VERSION = "v46 · 2026-09-26";
+const CONTENT_VERSION = "46";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -1755,8 +1755,11 @@ async function renderKartenUebersicht() {
 
   const domainColors = {
     "geodaten.erlangen.de": { bg: "#e8f4fd", fg: "#1864ab" },
+    "geoportal.bayern.de": { bg: "#e6fcf5", fg: "#087f5b" },
     "atlas.bayern.de": { bg: "#e6fcf5", fg: "#087f5b" },
+    "umgebungslaerm.bayern.de": { bg: "#fff4e6", fg: "#d9480f" },
     "umweltatlas.bayern.de": { bg: "#fff4e6", fg: "#d9480f" },
+    "radlland-bayern.de": { bg: "#e7f5ff", fg: "#1971c2" },
     "erlangen.de": { bg: "#f3f0ff", fg: "#5f3dc4" },
   };
 
