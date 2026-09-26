@@ -66,10 +66,10 @@
       },
       {
         "titel": "Umgebungslärmkartierung & Lärmplan",
-        "untertitel": "Umgebungslärm Bayern (Regierung & LfU)",
-        "domain": "umgebungslaerm.bayern.de",
-        "url": "https://www.umgebungslaerm.bayern.de/laermkartierung/index.htm",
-        "beschreibung": "Offizielles Landesportal zur Lärmkartierung und Lärmaktionsplanung mit den Ergebnissen der aktuellen 4. Runde (Straßen- und Schienenlärm) für den Ballungsraum Erlangen."
+        "untertitel": "Interaktiver Lärmkarten-Viewer (LfU)",
+        "domain": "umweltatlas.bayern.de",
+        "url": "https://www.umweltatlas.bayern.de/mapapps/resources/apps/umweltatlas/index.html?lang=de&dn=lfu_domain-laerm",
+        "beschreibung": "Offizieller interaktiver UmweltAtlas-Viewer des LfU mit den Lärmkarten der 4. Runde (Hauptverkehrsstraßen & Schienenwege). Zudem direkt als Ebene in unserer Büchenbach-Karte zuschaltbar."
       },
       {
         "titel": "Radroutenplaner Bayern (Radkarte)",

@@ -18,8 +18,8 @@ if (window.top !== window.self) {
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v46 · 2026-09-26";
-const CONTENT_VERSION = "46";
+const APP_VERSION = "v47 · 2026-09-27";
+const CONTENT_VERSION = "47";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -1856,8 +1856,12 @@ async function renderKarteBuechenbach() {
       <span id="strassen-count"></span>
     </div>
     <div id="strassen-treffer"></div>
-    ${alleKats.length ? `<div class="kat-leiste" role="group" aria-label="Themen aus OpenStreetMap">
+    ${alleKats.length ? `<div class="kat-leiste" role="group" aria-label="Themen und Fachkarten">
       <span class="kat-hint">Themen aus OpenStreetMap einblenden:</span>${chips}
+      <button type="button" class="kat-chip" id="laerm-toggle" style="--kc:#d9480f"
+        aria-pressed="false" title="Amtliche Umgebungslärmkartierung (LfU Bayern) über Büchenbach einblenden">
+        <span class="kc-icon">🔊</span>Lärmkartierung (LfU)
+        <span class="kc-n">WMS</span></button>
       <button type="button" class="kat-clear" id="kat-clear" hidden>× alle aus</button>
     </div>` : ""}
     <div id="map"></div>
@@ -2010,14 +2014,17 @@ async function renderKarteBuechenbach() {
   };
 
   const aktiv = new Set();
+  let laermLayer = null;
+  let laermAktiv = false;
+  const laermBtn = $("laerm-toggle");
   const clearBtn = $("kat-clear");
-  const syncClear = () => { if (clearBtn) clearBtn.hidden = aktiv.size === 0; };
+  const syncClear = () => { if (clearBtn) clearBtn.hidden = (aktiv.size === 0 && !laermAktiv); };
   const setChip = (key, on) => {
     const c = view().querySelector(`.kat-chip[data-kat="${key}"]`);
     c?.classList.toggle("active", on);
     c?.setAttribute("aria-pressed", on ? "true" : "false");
   };
-  for (const chip of view().querySelectorAll(".kat-chip")) {
+  for (const chip of view().querySelectorAll(".kat-chip[data-kat]")) {
     chip.addEventListener("click", () => {
       const key = chip.dataset.kat;
       if (aktiv.has(key)) {
@@ -2029,8 +2036,37 @@ async function renderKarteBuechenbach() {
       syncClear();
     });
   }
+  laermBtn?.addEventListener("click", () => {
+    laermAktiv = !laermAktiv;
+    if (laermAktiv) {
+      if (!laermLayer) {
+        laermLayer = L.tileLayer.wms("https://www.lfu.bayern.de/gdi/wms/laerm/ballungsraeume", {
+          layers: "aggmroadlden2022,aggroadlden2022",
+          format: "image/png",
+          transparent: true,
+          opacity: 0.65,
+          maxZoom: 19,
+          attribution: "© LfU Bayern (Lärmkartierung 2022)"
+        });
+      }
+      laermLayer.addTo(map);
+      laermBtn.classList.add("active");
+      laermBtn.setAttribute("aria-pressed", "true");
+    } else {
+      if (laermLayer && map.hasLayer(laermLayer)) map.removeLayer(laermLayer);
+      laermBtn.classList.remove("active");
+      laermBtn.setAttribute("aria-pressed", "false");
+    }
+    syncClear();
+  });
   clearBtn?.addEventListener("click", () => {
     for (const key of [...aktiv]) { map.removeLayer(katLayers[key]); aktiv.delete(key); setChip(key, false); }
+    if (laermAktiv) {
+      if (laermLayer && map.hasLayer(laermLayer)) map.removeLayer(laermLayer);
+      laermAktiv = false;
+      laermBtn?.classList.remove("active");
+      laermBtn?.setAttribute("aria-pressed", "false");
+    }
     syncClear();
   });
 
