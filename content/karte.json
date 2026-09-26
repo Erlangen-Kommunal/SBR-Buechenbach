@@ -65,13 +65,6 @@
         "beschreibung": "Amtliche Karte im BayernAtlas mit aktiver Bebauungsplan-Ebene der Stadt Erlangen, direkt zentriert auf Büchenbach mit allen rechtskräftigen Planumringen."
       },
       {
-        "titel": "Umgebungslärmkartierung & Lärmplan",
-        "untertitel": "Interaktiver Lärmkarten-Viewer (LfU)",
-        "domain": "umweltatlas.bayern.de",
-        "url": "https://www.umweltatlas.bayern.de/mapapps/resources/apps/umweltatlas/index.html?lang=de&dn=lfu_domain-laerm",
-        "beschreibung": "Offizieller interaktiver UmweltAtlas-Viewer des LfU mit den Lärmkarten der 4. Runde (Hauptverkehrsstraßen & Schienenwege). Zudem direkt als Ebene in unserer Büchenbach-Karte zuschaltbar."
-      },
-      {
         "titel": "Radroutenplaner Bayern (Radkarte)",
         "untertitel": "Radverkehrsnetz, BfR & Routenplaner",
         "domain": "radlland-bayern.de",

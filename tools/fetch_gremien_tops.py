@@ -83,6 +83,7 @@ UA = "SBR-Infoportal/1.0 (ehrenamtlich; Kontakt ueber github.com/Erlangen-Kommun
 # Jugendtreffs) im Stadtteil liegen.
 GREMIEN = {
     1: "Stadtrat",
+    8: "Bauausschuss / Werkausschuss für den Entwässerungsbetrieb",
     15: "Umwelt-, Verkehrs- und Planungsausschuss",
     11: "Sportausschuss",
     19: "Jugendhilfeausschuss",

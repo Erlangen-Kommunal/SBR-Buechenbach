@@ -18,8 +18,8 @@ if (window.top !== window.self) {
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v47 · 2026-09-27";
-const CONTENT_VERSION = "47";
+const APP_VERSION = "v48 · 2026-09-27";
+const CONTENT_VERSION = "48";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
