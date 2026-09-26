@@ -16,7 +16,7 @@ if (!outFile || !password) {
   process.exit(1);
 }
 
-const iterations = 310_000;
+const iterations = 600_000;
 const salt = randomBytes(16);
 const hash = pbkdf2Sync(password, salt, iterations, 32, "sha256");
 writeFileSync(outFile, JSON.stringify({

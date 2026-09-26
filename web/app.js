@@ -1,3 +1,14 @@
+// Clickjacking-Schutz: Wenn in fremden iFrames eingebettet, Anzeige unterbinden
+if (window.top !== window.self) {
+  try {
+    window.top.location = window.self.location;
+  } catch {
+    document.documentElement.style.display = "none";
+  }
+} else {
+  document.getElementById("antiClickjack")?.remove();
+}
+
 // Stadtteilbeirat Büchenbach — Infoportal (Frontend)
 // Portal-Startseite mit Themen-Kacheln + Volltextsuche über die Protokolle.
 // Daten: graph.db (DuckDB-Wasm, FTS/BM25), Inhalts-Sektionen aus content/*.json,
@@ -7,8 +18,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v42 · 2026-09-26";
-const CONTENT_VERSION = "42";
+const APP_VERSION = "v43 · 2026-09-26";
+const CONTENT_VERSION = "43";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -19,13 +30,14 @@ const esc = (s) => String(s ?? "").replace(/[\0\x08\x09\x1a\n\r]/g, "").replace(
 const safeUrl = (url) => {
   if (!url) return "#";
   const trimmed = String(url).trim();
-  if (/^(https?:\/\/|mailto:|\/|#)/i.test(trimmed)) return trimmed;
+  if (trimmed.startsWith("//")) return "#";
+  if (/^(https?:\/\/|mailto:|#|\/(?!\/))/i.test(trimmed)) return trimmed;
   return "#";
 };
 // Farben aus den Build-JSONs landen in style-Attributen — nur Hex durchlassen.
 const safeColor = (c) => /^#[0-9a-fA-F]{3,8}$/.test(String(c ?? "")) ? c : "#888";
-const escHtml = (s) => String(s ?? "").replace(/[&<>"]/g,
-  (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const escHtml = (s) => String(s ?? "").replace(/[&<>'"]/g,
+  (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const escRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const themenText = (s) => String(s ?? "").split("|").map((t) => t.trim()).filter(Boolean);
 const shortLabel = (s, max = 80) => (s && s.length > max ? s.slice(0, max - 1).trimEnd() + "…" : s ?? "");
@@ -62,14 +74,20 @@ async function checkAuth() {
   await new Promise((resolve) => {
     $("gate-form").addEventListener("submit", async (ev) => {
       ev.preventDefault();
-      const hash = await pbkdf2Hex($("gate-pw").value, auth.salt, auth.iterations);
-      if (hash === auth.hash) {
-        sessionStorage.setItem("sbr_auth", hash);
-        $("gate").hidden = true;
-        resolve();
-      } else {
-        $("gate-error").hidden = false;
-        $("gate-pw").select();
+      const btn = $("gate-form").querySelector("button[type=submit]");
+      if (btn) { btn.disabled = true; btn.textContent = "Prüfe …"; }
+      try {
+        const hash = await pbkdf2Hex($("gate-pw").value, auth.salt, auth.iterations);
+        if (hash === auth.hash) {
+          sessionStorage.setItem("sbr_auth", hash);
+          $("gate").hidden = true;
+          resolve();
+        } else {
+          $("gate-error").hidden = false;
+          $("gate-pw").select();
+        }
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = "Anmelden"; }
       }
     });
   });
@@ -82,7 +100,7 @@ let conn;
 
 async function initDb() {
   bootMsg("Lade Datenbank …");
-  const r = await fetch("graph.db");
+  const r = await fetch(`graph.db?v=${CONTENT_VERSION}`);
   if (!r.ok) throw new Error("graph.db nicht gefunden.");
   const bytes = new Uint8Array(await r.arrayBuffer());
 
@@ -594,7 +612,7 @@ async function renderSuche(query) {
   for (const li of box.querySelectorAll("li[data-go]"))
     li.addEventListener("click", () => go(li.dataset.go));
   for (const li of box.querySelectorAll("li[data-href]"))
-    li.addEventListener("click", () => window.open(safeUrl(li.dataset.href), "_blank", "noopener"));
+    li.addEventListener("click", () => window.open(safeUrl(li.dataset.href), "_blank", "noopener,noreferrer"));
   status(`${total} Treffer für „${query}“ in ${groups.length} Kategorie${groups.length === 1 ? "" : "n"}.`);
 }
 
@@ -617,7 +635,7 @@ async function renderDoc(id) {
         <button id="btn-text" class="active" type="button">Text</button>
         <button id="btn-pdf" type="button">PDF</button>
         ${d.url
-          ? `<a href="${escHtml(safeUrl(d.url))}" target="_blank" rel="noopener">⬇ Original im Ratsinfosystem</a>`
+          ? `<a href="${escHtml(safeUrl(d.url))}" target="_blank" rel="noopener noreferrer">⬇ Original im Ratsinfosystem</a>`
           : `<span class="meta">Schreiben des Beirats — nicht im Ratsinformationssystem</span>`}
       </div>
     </div>
@@ -859,13 +877,13 @@ async function renderPlan(planId) {
       <h2><span class="badge badge-plan">${p.kind === "recht" ? "RECHT" : "STATISTIK"}</span>${escHtml(p.title)}</h2>
       ${p.beschreibung ? `<p class="meta">${escHtml(p.beschreibung)}</p>` : ""}
       ${p.themen ? `<p class="meta">Themen: ${themenText(p.themen).map(escHtml).join(", ")}</p>` : ""}
-      ${p.quelle_url ? `<div class="doc-actions"><a href="${escHtml(safeUrl(p.quelle_url))}" target="_blank" rel="noopener">🔗 Quelle bei der Stadt Erlangen</a></div>` : ""}
+      ${p.quelle_url ? `<div class="doc-actions"><a href="${escHtml(safeUrl(p.quelle_url))}" target="_blank" rel="noopener noreferrer">🔗 Quelle bei der Stadt Erlangen</a></div>` : ""}
     </div>
     ${files.length ? `<ul class="plan-files">${files.map((f) => `<li>
       ${f.has_text || f.path ? `<a href="#/planfile/${encodeURIComponent(f.id)}">${escHtml(f.titel)}</a>`
         : `<span>${escHtml(f.titel)}</span>`}
       ${f.pages ? `<span class="d-pages"> · ${f.pages} S.</span>` : ""}
-      ${f.quelle_url ? ` · <a href="${escHtml(safeUrl(f.quelle_url))}" target="_blank" rel="noopener">Original öffnen</a>` : ""}
+      ${f.quelle_url ? ` · <a href="${escHtml(safeUrl(f.quelle_url))}" target="_blank" rel="noopener noreferrer">Original öffnen</a>` : ""}
     </li>`).join("")}</ul>` : `<p class="hint">Keine hinterlegten Dateien — siehe Quelle oben.</p>`}
   </div>`;
   status(escHtml(p.title));
@@ -885,7 +903,7 @@ async function renderPlanFile(rowid) {
       <div class="doc-actions">
         <button id="btn-text" class="active" type="button">Text</button>
         ${f.path ? `<button id="btn-pdf" type="button">PDF</button>` : ""}
-        ${f.quelle_url ? `<a href="${escHtml(safeUrl(f.quelle_url))}" target="_blank" rel="noopener">⬇ Original öffnen</a>` : ""}
+        ${f.quelle_url ? `<a href="${escHtml(safeUrl(f.quelle_url))}" target="_blank" rel="noopener noreferrer">⬇ Original öffnen</a>` : ""}
       </div>
     </div>
     <div id="doc-notice" class="notice" hidden></div>
@@ -937,7 +955,7 @@ async function showPdf(d, sourceUrl) {
   const size = await headSize(d.path);
   if (size != null && size > PDF_SIZE_WARN) {
     notice(`Dieses PDF ist mit ${(size / 1048576).toFixed(1)} MB sehr groß und wird hier nicht automatisch geladen. `
-      + (sourceUrl ? `Bitte das <a href="${escHtml(safeUrl(sourceUrl))}" target="_blank" rel="noopener">Original öffnen</a>.` : ""));
+      + (sourceUrl ? `Bitte das <a href="${escHtml(safeUrl(sourceUrl))}" target="_blank" rel="noopener noreferrer">Original öffnen</a>.` : ""));
     status("PDF zu groß für die Inline-Anzeige.");
     return;
   }
@@ -952,27 +970,25 @@ async function showPdf(d, sourceUrl) {
 
   if (isMobile) {
     // Mobilgeräte können PDFs nicht einbetten (iOS Safari zeigt sie in iframes
-    // nicht an). Statt eines zweiten Buttons weiter unten wird der PDF-Knopf der
-    // Aktionszeile selbst zum Öffnen-Link — an derselben Stelle, an der gerade
-    // getippt wurde. Der window.open-Versuch spart den zweiten Tipp, wo der
-    // Browser ihn zulässt; blockiert er ihn, steht der Link bereit.
+    // nicht an). Der PDF-Knopf oben wird zum Link, und im Dokument-Körper erscheint
+    // ein großer Touch-Button. Falls window.open blockiert wird, bleibt alles erreichbar.
     const sizeMb = (bytes.length / 1048576).toFixed(1);
     const link = document.createElement("a");
     link.id = "btn-pdf";
     link.className = "pdf-open-link active";
     link.href = pdfBlobUrl;
     link.target = "_blank";
-    link.rel = "noopener";
+    link.rel = "noopener noreferrer";
     link.textContent = `PDF öffnen (${sizeMb} MB)`;
-    $("btn-pdf").replaceWith(link);
+    $("btn-pdf")?.replaceWith(link);
     $("doc-body").innerHTML = `<div class="pdf-mobile">
       <div class="pdf-mobile-icon">📄</div>
-      <p class="pdf-mobile-hint">PDF-Dateien lassen sich auf Mobilgeräten nicht einbetten —
-        „PDF öffnen“ zeigt die Datei in einem neuen Tab.</p>
+      <p class="pdf-mobile-hint">PDF-Dateien lassen sich auf Mobilgeräten am besten in einem separaten Tab ansehen.</p>
+      <p><a class="pdf-mobile-btn" href="${pdfBlobUrl}" target="_blank" rel="noopener noreferrer">📄 PDF jetzt öffnen (${sizeMb} MB) ↗</a></p>
     </div>`;
-    window.open(pdfBlobUrl, "_blank", "noopener");
+    try { window.open(pdfBlobUrl, "_blank", "noopener,noreferrer"); } catch {}
   } else {
-    $("doc-body").innerHTML = `<p class="pdf-fallback"><a href="${pdfBlobUrl}" target="_blank" rel="noopener">PDF in neuem Tab öffnen</a></p>
+    $("doc-body").innerHTML = `<p class="pdf-fallback"><a href="${pdfBlobUrl}" target="_blank" rel="noopener noreferrer">PDF in neuem Tab öffnen</a></p>
       <iframe class="pdf-frame" src="${pdfBlobUrl}" title="PDF-Ansicht"></iframe>`;
   }
   $("btn-pdf")?.classList.add("active"); $("btn-text").classList.remove("active");
@@ -1406,7 +1422,7 @@ async function renderFremdeGremien() {
           ${t.vorlage ? `<span class="tg-nr">Vorlage ${escHtml(t.vorlage)}</span>` : ""}
           ${t.datum > heute ? `<span class="tg-geplant">geplant</span>` : ""}
         </div>
-        <a class="tg-titel" href="${escHtml(safeUrl(t.url))}" target="_blank" rel="noopener">${highlight(escHtml(t.titel))} <span class="ext">↗</span></a>
+        <a class="tg-titel" href="${escHtml(safeUrl(t.url))}" target="_blank" rel="noopener noreferrer">${highlight(escHtml(t.titel))} <span class="ext">↗</span></a>
         ${t.beschluss ? `<div class="tg-beschluss">${escHtml(t.beschluss)}</div>` : ""}
         ${t.kern ? `<div class="chronik-kern">${escHtml(t.kern)}</div>` : ""}
         ${marker ? `<div class="tg-marker">${marker}</div>` : ""}
@@ -1446,7 +1462,7 @@ function sitzungsZeile(e, zeitraum) {
 
 async function renderCards(key, title, icon) {
   const data = await loadContent(key);
-  const card = (e, withTag) => `<a class="card" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener">
+  const card = (e, withTag) => `<a class="card" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener noreferrer">
     ${withTag && e.kategorie ? `<span class="c-tag">${escHtml(e.kategorie)}</span>` : ""}
     <div class="c-title">${escHtml(e.name)} <span class="ext">↗</span></div>
     <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
@@ -1470,9 +1486,9 @@ async function renderCards(key, title, icon) {
     <h2 class="section-title">${icon} ${escHtml(title)}</h2>
     ${data.intro ? `<p class="section-intro">${escHtml(data.intro)}</p>` : ""}
     ${data.start_url || data.uebersicht_url || data.ausschuesse_url ? `<div class="map-actions">
-      ${data.start_url ? `<a class="btn-primary" href="${escHtml(safeUrl(data.start_url))}" target="_blank" rel="noopener">Ratsinfo-Startseite ↗</a>` : ""}
-      ${data.uebersicht_url ? `<a class="btn-primary" href="${escHtml(safeUrl(data.uebersicht_url))}" target="_blank" rel="noopener">Beiräte im Ratsinformationssystem ↗</a>` : ""}
-      ${data.ausschuesse_url ? `<a class="btn-primary" href="${escHtml(safeUrl(data.ausschuesse_url))}" target="_blank" rel="noopener">Ausschüsse im Ratsinformationssystem ↗</a>` : ""}
+      ${data.start_url ? `<a class="btn-primary" href="${escHtml(safeUrl(data.start_url))}" target="_blank" rel="noopener noreferrer">Ratsinfo-Startseite ↗</a>` : ""}
+      ${data.uebersicht_url ? `<a class="btn-primary" href="${escHtml(safeUrl(data.uebersicht_url))}" target="_blank" rel="noopener noreferrer">Beiräte im Ratsinformationssystem ↗</a>` : ""}
+      ${data.ausschuesse_url ? `<a class="btn-primary" href="${escHtml(safeUrl(data.ausschuesse_url))}" target="_blank" rel="noopener noreferrer">Ausschüsse im Ratsinformationssystem ↗</a>` : ""}
     </div>` : ""}
     ${entries}
     ${data.quelle ? `<p class="quelle">Quelle: ${escHtml(data.quelle)}${data.stand ? ` · Stand ${escHtml(fmtDate(data.stand))}` : ""}</p>` : ""}</div>`;
@@ -1510,8 +1526,8 @@ async function renderAemter() {
     <h2 class="section-title">🏢 Ämter & Zuständigkeiten</h2>
     ${data.intro ? `<p class="section-intro">${escHtml(data.intro)}</p>` : ""}
     <div class="map-actions">
-      <a class="btn-primary" href="${escHtml(data.aemter_uebersicht_url)}"
-         target="_blank" rel="noopener">Ämter-Suche, Kontakt &amp; Öffnungszeiten ↗</a>
+      <a class="btn-primary" href="${escHtml(safeUrl(data.aemter_uebersicht_url))}"
+         target="_blank" rel="noopener noreferrer">Ämter-Suche, Kontakt &amp; Öffnungszeiten ↗</a>
     </div>
 
     <!-- Organigramm-Übersicht oben -->
@@ -1653,7 +1669,7 @@ async function addBeiratsgrenzen(L, map, { nachbarnBenennen = true, fuellen = tr
     style: { color: BEIRAT_NACHBAR, weight: 2, opacity: 0.85, dashArray: "6 5",
              fill: true, fillOpacity: 0 },
     onEachFeature: (f, l) => {
-      if (nachbarnBenennen) l.bindTooltip(f.properties.name, { sticky: true });
+      if (nachbarnBenennen) l.bindTooltip(escHtml(f.properties?.name || ""), { sticky: true });
     },
   }).addTo(map);
 
@@ -1766,7 +1782,7 @@ async function renderKarte() {
         <h4 class="sub-head" style="font-size:1.05rem;margin-top:0.6rem">Direkte Web-Apps auf geodaten.erlangen.de</h4>
         <div class="cards">
           ${cfg.kartenangebote.webapps.map((e) => `
-            <a class="card" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener">
+            <a class="card" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener noreferrer">
               <span class="c-tag" style="background:#e8f4fd;color:#1864ab">geodaten.erlangen.de</span>
               <div class="c-title">${escHtml(e.titel)} ${e.untertitel ? `<span class="c-sub" style="font-weight:normal;font-size:0.85em;color:var(--text-muted, #666)">(${escHtml(e.untertitel)})</span>` : ""} <span class="ext">↗</span></div>
               <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
@@ -1778,7 +1794,7 @@ async function renderKarte() {
         <h4 class="sub-head" style="font-size:1.05rem;margin-top:0.6rem">Weitere bürgerorientierte Kartenangebote auf erlangen.de</h4>
         <div class="cards">
           ${cfg.kartenangebote.weitere.map((e) => `
-            <a class="card" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener">
+            <a class="card" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener noreferrer">
               <span class="c-tag" style="background:#f3f0ff;color:#5f3dc4">erlangen.de</span>
               <div class="c-title">${escHtml(e.titel)} ${e.untertitel ? `<span class="c-sub" style="font-weight:normal;font-size:0.85em;color:var(--text-muted, #666)">(${escHtml(e.untertitel)})</span>` : ""} <span class="ext">↗</span></div>
               <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
@@ -1795,7 +1811,41 @@ async function renderKarte() {
     return;
   }
   const L = window.L;
-  const map = L.map("map").setView(cfg.center, cfg.zoom);
+  const isTouch = ("ontouchstart" in window) || navigator.maxTouchPoints > 0;
+  const map = L.map("map", {
+    scrollWheelZoom: false,
+    dragging: !isTouch,
+    tap: false,
+  }).setView(cfg.center, cfg.zoom);
+
+  if (isTouch) {
+    // Gesten-Schutz auf Touch-Geräten: Verhindert, dass der Nutzer in der Karte
+    // steckenbleibt. Per Button umschaltbar zwischen Scrollen und Kartenbewegung.
+    const dragToggle = L.control({ position: "topright" });
+    dragToggle.onAdd = function() {
+      const btn = L.DomUtil.create("button", "map-drag-toggle");
+      btn.type = "button";
+      btn.innerHTML = "🖐️ Karte bedienen";
+      btn.title = "Tippen zum Bewegen der Karte";
+      let active = false;
+      btn.onclick = (ev) => {
+        ev.stopPropagation();
+        ev.preventDefault();
+        active = !active;
+        if (active) {
+          map.dragging.enable();
+          btn.innerHTML = "🔒 Karte sperren";
+          btn.classList.add("active");
+        } else {
+          map.dragging.disable();
+          btn.innerHTML = "🖐️ Karte bedienen";
+          btn.classList.remove("active");
+        }
+      };
+      return btn;
+    };
+    dragToggle.addTo(map);
+  }
 
   // Grundkarte: nur OSM (Vorgabe). Umschaltung nur, falls mehr als ein Layer
   // konfiguriert ist — aktuell also keine.
@@ -1862,7 +1912,7 @@ async function renderKarte() {
           txt = (istSpielstrasse ? "Spielstraße" : `Tempo ${escHtml(p.tempo || "?")}`)
             + (p.name ? " · " + escHtml(p.name) : "");
         } else {
-          txt = p.name ? escHtml(p.name) : label;
+          txt = p.name ? escHtml(p.name) : escHtml(label);
         }
         L.polyline(latlngs, { color: safeColor(linienFarbe), weight: 5, opacity: 0.8 })
           .bindPopup(`<strong>${escHtml(label)}</strong><br>${txt}`).addTo(grp);

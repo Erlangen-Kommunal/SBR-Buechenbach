@@ -25,6 +25,8 @@ body {
   color: var(--ink);
   display: flex;
   flex-direction: column;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 a { color: var(--accent-2); }
 
@@ -33,25 +35,31 @@ a { color: var(--accent-2); }
   position: fixed; inset: 0; z-index: 50;
   background: var(--page);
   display: flex; align-items: center; justify-content: center;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
 }
 .gate-card {
   background: var(--surface-1);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 2rem 2.5rem;
+  padding: 1.8rem 2rem;
+  width: 100%;
   max-width: 24rem;
+  margin: auto;
   text-align: center;
   box-shadow: 0 4px 24px rgba(11, 11, 11, 0.06);
 }
 .gate-card h1 { margin: 0 0 .5rem; font-size: 1.3rem; }
 .gate-card p { color: var(--ink-2); font-size: .9rem; line-height: 1.45; }
 .gate-card input {
-  width: 100%; padding: .55rem .7rem; margin: .8rem 0;
+  width: 100%; padding: .65rem .7rem; margin: .8rem 0;
   border: 1px solid var(--hairline); border-radius: 6px; font-size: 1rem;
+  min-height: 44px;
 }
 .gate-card button {
-  width: 100%; padding: .55rem; border: 0; border-radius: 6px;
-  background: var(--accent); color: #fff; font-size: 1rem; cursor: pointer;
+  width: 100%; min-height: 44px; padding: .65rem; border: 0; border-radius: 6px;
+  background: var(--accent); color: #fff; font-size: 1rem; font-weight: 600; cursor: pointer;
 }
 .error { color: #d03b3b; font-weight: 600; }
 .disclaimer {
@@ -78,12 +86,12 @@ header {
    auf der Trefferseite — nicht mehr in der Kopfzeile. */
 #search-form { display: flex; gap: .4rem; max-width: 40rem; margin: 0 0 .8rem; }
 #search-input {
-  flex: 1; padding: .45rem .7rem;
-  border: 1px solid var(--hairline); border-radius: 6px; font-size: .95rem;
+  flex: 1; padding: .55rem .7rem; min-height: 44px;
+  border: 1px solid var(--hairline); border-radius: 6px; font-size: 1rem;
 }
 #search-form button {
-  padding: .45rem 1.1rem; border: 1px solid var(--accent); border-radius: 6px;
-  background: var(--accent); color: #fff; cursor: pointer;
+  padding: .55rem 1.2rem; min-height: 44px; border: 1px solid var(--accent); border-radius: 6px;
+  background: var(--accent); color: #fff; cursor: pointer; font-size: 1rem; font-weight: 600;
 }
 
 /* ── Hauptbereich ────────────────────────────────────────────────── */
@@ -578,7 +586,7 @@ ul.plan-files li:last-child { border-bottom: none; }
 
 /* ── Fußzeile ────────────────────────────────────────────────────── */
 footer {
-  padding: .35rem 1.1rem; font-size: .75rem; color: var(--muted);
+  padding: .45rem 1.1rem max(.45rem, env(safe-area-inset-bottom)); font-size: .75rem; color: var(--muted);
   background: var(--surface-1); border-top: 1px solid var(--hairline);
   display: flex; align-items: baseline; gap: 1rem;
 }
@@ -616,13 +624,33 @@ footer {
   #search-form { max-width: none; }
   main#view { padding: 1rem .8rem 3rem; }
   .hero h1 { font-size: 1.55rem; font-weight: 800; }
-  .tiles { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .tiles { grid-template-columns: 1fr; gap: 1rem; }
   .cards { grid-template-columns: 1fr; gap: 1rem; }
   .pdf-frame { height: 60vh; }
-  /* doc-actions: Buttons stapeln und langen Link kürzen */
-  .doc-actions { flex-direction: column; align-items: stretch; }
-  .doc-actions a, .doc-actions button { text-align: center; }
+  /* doc-actions: Buttons stapeln, min. 44px Touch-Target */
+  .doc-actions { flex-direction: column; align-items: stretch; gap: .6rem; }
+  .doc-actions a, .doc-actions button {
+    min-height: 44px; display: flex; align-items: center; justify-content: center;
+    padding: .6rem 1rem; font-size: .95rem; text-align: center;
+  }
   .doc-actions a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* Touch-Targets: min. 44px nach WCAG 2.1 für Barrierefreiheit & Klicksicherheit */
+  .crumb {
+    display: inline-flex; align-items: center; min-height: 44px;
+    padding: .5rem .8rem .5rem 0; font-size: 1rem;
+  }
+  .chip-street {
+    min-height: 38px; padding: .45rem .85rem; font-size: .9rem;
+    display: inline-flex; align-items: center;
+  }
+  .street-chips { gap: .5rem; }
+  .kat-chip {
+    min-height: 38px; padding: .4rem .75rem; font-size: .88rem;
+    display: inline-flex; align-items: center;
+  }
+  .s-docs li { padding: .55rem 0; }
+  .s-docs a.doc-open { padding: .3rem 0; display: inline-block; min-height: 36px; }
 
   /* Filter-Auswahlfelder (Dokumenttyp/Jahr/Thema): grösser & leichter zu treffen.
      16px Schrift vermeidet zugleich den iOS-Safari-Autozoom bei Fokus < 16px. */
@@ -717,12 +745,23 @@ footer {
 .lg-eigen   { border-top: 3px solid var(--accent-2); }
 .lg-nachbar { border-top: 2px dashed var(--muted); }
 
+/* ── Leaflet Drag-Toggle für Touch-Geräte ──────────────────────────── */
+.map-drag-toggle {
+  background: #fff; border: 2px solid rgba(0,0,0,0.2); border-radius: 6px;
+  padding: 6px 12px; font-size: 13px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.2); color: var(--ink);
+  min-height: 36px; display: flex; align-items: center;
+}
+.map-drag-toggle.active {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+
 /* ── Sektion „Straßen im Beiratsgebiet" ───────────────────────────── */
 .street-search {
-  display: flex; align-items: center; gap: .7rem; margin: 0 0 1rem;
+  display: flex; align-items: center; gap: .7rem; margin: 0 0 1rem; flex-wrap: wrap;
 }
 .street-search input {
-  flex: 1; max-width: 22rem; padding: .45rem .7rem; font-size: .9rem;
+  flex: 1; min-width: 14rem; max-width: 22rem; padding: .55rem .7rem; font-size: 1rem; min-height: 44px;
   border: 1px solid var(--hairline); border-radius: 6px; background: var(--surface-1);
 }
 #strassen-count { font-size: .8rem; color: var(--muted); white-space: nowrap; }
