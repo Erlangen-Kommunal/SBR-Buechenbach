@@ -121,16 +121,30 @@ jobs:
         run: |
           TITLE="$(cat "$RUNNER_TEMP/sync-report/title.txt")"
           BODY="$RUNNER_TEMP/sync-report/report.md"
+          COMPARE_URL="https://github.com/${{ github.repository }}/compare/main...sync/ratsinfo?expand=1"
+          PR_SUCCESS=false
+
           EXISTING=$(gh pr list --head sync/ratsinfo --state open \
-                       --json number --jq '.[0].number // empty')
+                       --json number --jq '.[0].number // empty' 2>/dev/null || true)
           if [ -n "$EXISTING" ]; then
-            gh pr edit "$EXISTING" --title "$TITLE" --body-file "$BODY"
-            echo "PR #$EXISTING aktualisiert."
+            if gh pr edit "$EXISTING" --title "$TITLE" --body-file "$BODY" 2>&1; then
+              echo "PR #$EXISTING aktualisiert."
+              PR_SUCCESS=true
+            fi
           else
-            gh pr create --base main --head sync/ratsinfo \
-              --title "$TITLE" --body-file "$BODY"
+            PR_OUT=$(gh pr create --base main --head sync/ratsinfo \
+              --title "$TITLE" --body-file "$BODY" 2>&1) && PR_SUCCESS=true || {
+              echo "::warning::Automatische PR-Erstellung fehlgeschlagen: $PR_OUT"
+              echo "::notice::Hinweis zur Behebung: Im GitHub-Repository unter Settings -> Actions -> General -> Workflow permissions die Option 'Allow GitHub Actions to create and approve pull requests' AKTIVIEREN."
+            }
           fi
-          echo "url=$(gh pr view sync/ratsinfo --json url --jq .url)" >> "$GITHUB_OUTPUT"
+
+          if [ "$PR_SUCCESS" = "true" ]; then
+            PR_URL=$(gh pr view sync/ratsinfo --json url --jq .url 2>/dev/null || echo "$COMPARE_URL")
+          else
+            PR_URL="$COMPARE_URL"
+          fi
+          echo "url=$PR_URL" >> "$GITHUB_OUTPUT"
 
       # E-Mail an den Admin — Versandfehler sollen PR/Sync nicht kippen,
       # deshalb continue-on-error; fehlende Secrets überspringt das Skript
@@ -149,3 +163,22 @@ jobs:
             --subject "$(cat "$RUNNER_TEMP/sync-report/title.txt")" \
             --body "$RUNNER_TEMP/sync-report/report.md" \
             --url "${{ steps.pr.outputs.url }}"
+
+      # Bei Fehlschlag eines beliebigen Schritts: Detaillierte Fehler-E-Mail an den Admin senden
+      - name: Send failure notification to admin
+        if: failure()
+        continue-on-error: true
+        env:
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python tools/send_report_mail.py \
+            --failure \
+            --run-url "$RUN_URL" \
+            --branch "${{ github.ref_name }}" \
+            --commit "${{ github.sha }}" \
+            --error-msg "Weekly Sync Schritt fehlgeschlagen"

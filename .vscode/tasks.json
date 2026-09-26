@@ -2,6 +2,120 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Daten-Sync: Komplett (Lokal)",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "${workspaceFolder}/tools/manual_sync.py",
+                "--all"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Daten-Sync: Ratsinfo Beiratsdokumente",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "${workspaceFolder}/tools/manual_sync.py",
+                "--ratsinfo"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Daten-Sync: Geodaten & Straßen",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "${workspaceFolder}/tools/manual_sync.py",
+                "--geo"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Daten-Sync: Nachbargremien (TOPs)",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "${workspaceFolder}/tools/manual_sync.py",
+                "--gremien"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Daten-Sync: Graph.db neu bauen (Volltext)",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "run",
+                "--project",
+                "${workspaceFolder}/GraphBuilder",
+                "--",
+                "${workspaceFolder}",
+                "--db",
+                "${workspaceFolder}/graph.db"
+            ],
+            "problemMatcher": "$msCompile",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Daten-Sync: Graph.db schnell bauen (ohne Volltext)",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "run",
+                "--project",
+                "${workspaceFolder}/GraphBuilder",
+                "--",
+                "${workspaceFolder}",
+                "--db",
+                "${workspaceFolder}/graph.db",
+                "--no-text"
+            ],
+            "problemMatcher": "$msCompile",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Daten-Sync: GitHub Actions Workflow anstoßen",
+            "type": "shell",
+            "command": "gh",
+            "args": [
+                "workflow",
+                "run",
+                "sync.yml"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
             "label": "build",
             "command": "dotnet",
             "type": "process",

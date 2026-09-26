@@ -13,6 +13,17 @@
     ]
   },
   {
+    "id": "gemeindesatzung",
+    "title": "Gemeindesatzung der Stadt Erlangen",
+    "beschreibung": "Gemeindesatzung der Stadt Erlangen (Stadtrecht 070.00). Regelt u. a. in § 4 die Tätigkeit sonstiger ehrenamtlicher Mitglieder und die Aufwandsentschädigungen für ehrenamtliche Beiräte (12,50 € Sitzungsgeld pro Sitzung, 10 € Monatspauschale, 500 € jährliche Aufwandsentschädigung für den Vorsitz), Ausschüsse, Fraktionsarbeit und Reisekosten (§ 5).",
+    "erstellt": "2026-06-25",
+    "themen": ["Bürgerbeteiligung & Gremien", "Rechtsgrundlagen", "Entschädigung"],
+    "quelle_url": "https://erlangen.de/aktuelles/gemeindesatzung",
+    "dateien": [
+      { "titel": "Gemeindesatzung der Stadt Erlangen (Fassung vom 25.06.2026, in Kraft ab 01.07.2026)", "pfad": "recht/070_00_gemeindesatzung.pdf", "quelle_url": "https://erlangen.de/uwao-api/faila/files/bypath/Dokumente/Stadtrecht/070_00_gemeindesatzung.pdf?tn=1&q=normal&s=list" }
+    ]
+  },
+  {
     "id": "stadtrecht-uebersicht",
     "title": "Erlanger Stadtrecht (A–Z)",
     "beschreibung": "Alle Satzungen und Verordnungen der Stadt Erlangen — Einstieg für weitere Rechtsvorschriften.",

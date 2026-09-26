@@ -830,3 +830,27 @@ footer {
 .stat-table th, .stat-table td { padding: .55rem .75rem; border-bottom: 1px solid var(--hairline); }
 .stat-table th { background: var(--page); font-weight: 700; color: var(--ink-2); font-size: .78rem; text-transform: uppercase; letter-spacing: .03em; }
 .stat-table tr:last-child td { border-bottom: 0; }
+
+/* ── Kartenangebote der Stadt Erlangen ───────────────────────────────────── */
+.kartenangebote-block {
+  margin-top: 2.2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--hairline);
+}
+.kartenangebote-block .card-group {
+  margin-bottom: 1.2rem;
+}
+.kartenangebote-block .card {
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.kartenangebote-block .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-color: var(--accent);
+}
+.kartenangebote-block .c-sub {
+  font-weight: normal;
+  font-size: 0.88em;
+  opacity: 0.8;
+}
+

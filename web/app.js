@@ -7,8 +7,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v41 · 2026-08-08";
-const CONTENT_VERSION = "41";
+const APP_VERSION = "v42 · 2026-09-26";
+const CONTENT_VERSION = "42";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -1757,6 +1757,35 @@ async function renderKarte() {
         Geometrie &amp; Themenobjekte: © OpenStreetMap-Mitwirkende (ODbL)</p>
     </details>` : `<p class="hint">Die Straßendaten fehlen — sie entstehen mit
       <code>python tools/fetch_geodata.py</code>.</p>`}
+    ${cfg.kartenangebote ? `
+    <section class="kartenangebote-block">
+      <h3 class="sub-head">🌐 Kartenangebote der Stadt Erlangen</h3>
+      <p class="section-intro" style="margin-bottom:1rem">Direkter Zugriff auf spezialisierte Web-Apps und bürgerorientierte Kartenangebote auf geodaten.erlangen.de und erlangen.de:</p>
+      ${cfg.kartenangebote.webapps?.length ? `
+      <section class="card-group">
+        <h4 class="sub-head" style="font-size:1.05rem;margin-top:0.6rem">Direkte Web-Apps auf geodaten.erlangen.de</h4>
+        <div class="cards">
+          ${cfg.kartenangebote.webapps.map((e) => `
+            <a class="card" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener">
+              <span class="c-tag" style="background:#e8f4fd;color:#1864ab">geodaten.erlangen.de</span>
+              <div class="c-title">${escHtml(e.titel)} ${e.untertitel ? `<span class="c-sub" style="font-weight:normal;font-size:0.85em;color:var(--text-muted, #666)">(${escHtml(e.untertitel)})</span>` : ""} <span class="ext">↗</span></div>
+              <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
+            </a>`).join("")}
+        </div>
+      </section>` : ""}
+      ${cfg.kartenangebote.weitere?.length ? `
+      <section class="card-group" style="margin-top:1.5rem">
+        <h4 class="sub-head" style="font-size:1.05rem;margin-top:0.6rem">Weitere bürgerorientierte Kartenangebote auf erlangen.de</h4>
+        <div class="cards">
+          ${cfg.kartenangebote.weitere.map((e) => `
+            <a class="card" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener">
+              <span class="c-tag" style="background:#f3f0ff;color:#5f3dc4">erlangen.de</span>
+              <div class="c-title">${escHtml(e.titel)} ${e.untertitel ? `<span class="c-sub" style="font-weight:normal;font-size:0.85em;color:var(--text-muted, #666)">(${escHtml(e.untertitel)})</span>` : ""} <span class="ext">↗</span></div>
+              <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
+            </a>`).join("")}
+        </div>
+      </section>` : ""}
+    </section>` : ""}
   </div>`;
 
   try {

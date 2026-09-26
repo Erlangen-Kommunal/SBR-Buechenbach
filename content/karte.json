@@ -24,5 +24,55 @@
       "maxZoom": 19,
       "default": true
     }
-  ]
+  ],
+  "kartenangebote": {
+    "webapps": [
+      {
+        "titel": "Baustellenkarte",
+        "url": "https://geodaten.erlangen.de/baustellen/",
+        "beschreibung": "Aktuelle und geplante Baustellen sowie verkehrsrelevante Einschränkungen im Stadtgebiet."
+      },
+      {
+        "titel": "1.000-Bügel-Programm",
+        "untertitel": "Fahrradabstellanlagen & Beteiligung",
+        "url": "https://geodaten.erlangen.de/fahrradbuegel/",
+        "beschreibung": "Übersicht bestehender und geplanter Fahrradbügel sowie Bürgerbeteiligung für neue Standorte."
+      },
+      {
+        "titel": "Kommunale Wärmeplanung",
+        "untertitel": "Eignungsgebiete ESTW / Stadt",
+        "url": "https://geodaten.erlangen.de/kwp/",
+        "beschreibung": "Voraussichtliche Wärmeversorgungsgebiete und Netzeignung in Erlangen."
+      },
+      {
+        "titel": "Luftbilder / Orthofotos",
+        "untertitel": "Kartenviewer",
+        "url": "https://geodaten.erlangen.de/luftbilder/",
+        "beschreibung": "Historische und aktuelle hochauflösende Luftbilder der Stadt Erlangen im Kartenviewer."
+      }
+    ],
+    "weitere": [
+      {
+        "titel": "Interaktive Bebauungsplan-Auskunft",
+        "untertitel": "B-Pläne im Verfahren",
+        "url": "https://erlangen.de/aktuelles/bebauungsplaene_im_verfahren",
+        "beschreibung": "Laufende Bebauungsplanverfahren mit Planunterlagen und Beteiligungsfristen."
+      },
+      {
+        "titel": "Rechtskräftige Bebauungspläne",
+        "url": "https://erlangen.de/aktuelles/bplaene_rechtsgueltig",
+        "beschreibung": "Auskunft über alle verbindlichen und rechtskräftigen Bebauungspläne im Stadtgebiet."
+      },
+      {
+        "titel": "Fahrradstadtplan",
+        "url": "https://erlangen.de/aktuelles/fahrradstadtplan",
+        "beschreibung": "Routennetz, Radwege, Fahrradstraßen und Radinfrastruktur in ganz Erlangen."
+      },
+      {
+        "titel": "Lärmaktionsplanung / Umgebungslärmkartierung",
+        "url": "https://erlangen.de/aktuelles/immissionsschutz-laermaktionsplan-2024",
+        "beschreibung": "Kartierung des Hauptverkehrslärms (Straße & Schiene) und Maßnahmen des Lärmaktionsplans 2024."
+      }
+    ]
+  }
 }
