@@ -1,5 +1,6 @@
 {
-  "intro": "Interaktive Karte von Büchenbach mit der Grenze des Beiratsgebiets. Grundlage ist OpenStreetMap. Über die Schalter oberhalb der Karte lassen sich Themen aus OpenStreetMap einblenden — Spielplätze, Bushaltestellen, Nahversorgung, Denkmäler, Tempo-Beschränkungen und mehr. Eine Straße suchen zeigt sie auf der Karte samt Protokollbezug.",
+  "intro": "Kartenangebote und Geodaten für den Stadtteil Büchenbach und die Stadt Erlangen. Wählen Sie eine Karte aus, um die interaktive Beiratskarte zu öffnen oder direkt zu den spezialisierten Fachkarten und Web-Apps zu gelangen.",
+  "buechenbach_intro": "Interaktive Karte von Büchenbach mit der Grenze des Beiratsgebiets. Grundlage ist OpenStreetMap. Über die Schalter oberhalb der Karte lassen sich Themen aus OpenStreetMap einblenden — Spielplätze, Bushaltestellen, Nahversorgung, Denkmäler, Tempo-Beschränkungen und mehr. Eine Straße suchen zeigt sie auf der Karte samt Protokollbezug.",
   "center": [49.5922, 10.9597],
   "zoom": 14,
   "marker": [
@@ -29,49 +30,53 @@
     "webapps": [
       {
         "titel": "Baustellenkarte",
+        "domain": "geodaten.erlangen.de",
         "url": "https://geodaten.erlangen.de/baustellen/",
         "beschreibung": "Aktuelle und geplante Baustellen sowie verkehrsrelevante Einschränkungen im Stadtgebiet."
       },
       {
         "titel": "1.000-Bügel-Programm",
-        "untertitel": "Fahrradabstellanlagen & Beteiligung",
+        "untertitel": "Fahrradabstellanlagen & Bürgerbeteiligung",
+        "domain": "geodaten.erlangen.de",
         "url": "https://geodaten.erlangen.de/fahrradbuegel/",
         "beschreibung": "Übersicht bestehender und geplanter Fahrradbügel sowie Bürgerbeteiligung für neue Standorte."
       },
       {
         "titel": "Kommunale Wärmeplanung",
-        "untertitel": "Eignungsgebiete ESTW / Stadt",
-        "url": "https://geodaten.erlangen.de/kwp/",
-        "beschreibung": "Voraussichtliche Wärmeversorgungsgebiete und Netzeignung in Erlangen."
+        "untertitel": "Eignungsgebiete für Wärmenetze",
+        "domain": "geodaten.erlangen.de",
+        "url": "https://geodaten.erlangen.de/31_kwp_eignungsgebiete/#14/49.5922/10.9597",
+        "beschreibung": "Voraussichtliche Eignungs- und Bestandsgebiete für Nah- und Fernwärmenetze in Erlangen laut Kommunalem Wärmeplan."
       },
       {
-        "titel": "Luftbilder / Orthofotos",
-        "untertitel": "Kartenviewer",
-        "url": "https://geodaten.erlangen.de/luftbilder/",
-        "beschreibung": "Historische und aktuelle hochauflösende Luftbilder der Stadt Erlangen im Kartenviewer."
+        "titel": "Bebauungspläne im Verfahren",
+        "untertitel": "Laufende Planverfahren (B-Pläne)",
+        "domain": "geodaten.erlangen.de",
+        "url": "https://geodaten.erlangen.de/bplan_verfahren/",
+        "beschreibung": "Direkte Web-App aller laufenden Bebauungsplanverfahren mit Planunterlagen, Geltungsbereichen und Beteiligungsfristen der Stadt Erlangen."
       }
     ],
     "weitere": [
       {
-        "titel": "Interaktive Bebauungsplan-Auskunft",
-        "untertitel": "B-Pläne im Verfahren",
-        "url": "https://erlangen.de/aktuelles/bebauungsplaene_im_verfahren",
-        "beschreibung": "Laufende Bebauungsplanverfahren mit Planunterlagen und Beteiligungsfristen."
+        "titel": "Rechtsverbindliche Bebauungspläne",
+        "untertitel": "BayernAtlas Planen & Bauen",
+        "domain": "atlas.bayern.de",
+        "url": "https://atlas.bayern.de/?redirect=true&c=641626,5495136&t=pl_bau&z=15.5&l=atkis,43df73e1-e2be-4034-83da-791f716fc394",
+        "beschreibung": "Amtliche Karte aller rechtskräftigen Bebauungspläne im BayernAtlas, direkt zentriert auf Büchenbach mit aktivem Bauleitplanungs-Layer."
       },
       {
-        "titel": "Rechtskräftige Bebauungspläne",
-        "url": "https://erlangen.de/aktuelles/bplaene_rechtsgueltig",
-        "beschreibung": "Auskunft über alle verbindlichen und rechtskräftigen Bebauungspläne im Stadtgebiet."
+        "titel": "Umgebungslärmkartierung & Lärmplan",
+        "untertitel": "UmweltAtlas Bayern (LfU)",
+        "domain": "umweltatlas.bayern.de",
+        "url": "https://www.umweltatlas.bayern.de/mapapps/resources/apps/umweltatlas/index.html?lang=de&dn=lfu_domain-laerm&coordinate=641626,5495136&address=Erlangen-B%C3%BCchenbach",
+        "beschreibung": "Offizielle Lärmkartierung des Bayerischen Landesamts für Umwelt (LfU) für Straßen- und Schienenverkehr, direkt zentriert auf Erlangen-Büchenbach mit aktiviertem Lärm-Kartenbestand."
       },
       {
-        "titel": "Fahrradstadtplan",
+        "titel": "Fahrradstadtplan Erlangen",
+        "untertitel": "Routennetz & Radinfrastruktur",
+        "domain": "erlangen.de",
         "url": "https://erlangen.de/aktuelles/fahrradstadtplan",
-        "beschreibung": "Routennetz, Radwege, Fahrradstraßen und Radinfrastruktur in ganz Erlangen."
-      },
-      {
-        "titel": "Lärmaktionsplanung / Umgebungslärmkartierung",
-        "url": "https://erlangen.de/aktuelles/immissionsschutz-laermaktionsplan-2024",
-        "beschreibung": "Kartierung des Hauptverkehrslärms (Straße & Schiene) und Maßnahmen des Lärmaktionsplans 2024."
+        "beschreibung": "Routennetz, Radwege, Fahrradstraßen und Radinfrastruktur im gesamten Stadtgebiet."
       }
     ]
   }

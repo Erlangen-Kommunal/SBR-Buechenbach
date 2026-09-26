@@ -135,6 +135,14 @@ p.section-intro { color: var(--ink-2); font-size: .9rem; line-height: 1.55; marg
   background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 9px;
 }
 a.card:hover { border-color: var(--accent-2); }
+.card.card-featured {
+  border: 1.5px solid var(--accent);
+  background: linear-gradient(180deg, #f4f8fe 0%, var(--surface-1) 100%);
+}
+.card.card-featured:hover {
+  border-color: var(--accent-2);
+  box-shadow: 0 4px 14px rgba(42, 120, 214, 0.15);
+}
 .card .c-title { font-weight: 700; font-size: 1.08rem; margin-bottom: .25rem; }
 .card .c-title .ext { font-size: .75rem; color: var(--muted); font-weight: 400; }
 .card .c-desc { color: var(--ink-2); font-size: .9rem; line-height: 1.5; }

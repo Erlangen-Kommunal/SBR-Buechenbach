@@ -18,8 +18,8 @@ if (window.top !== window.self) {
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v44 · 2026-09-26";
-const CONTENT_VERSION = "44";
+const APP_VERSION = "v45 · 2026-09-26";
+const CONTENT_VERSION = "45";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -176,8 +176,8 @@ const ROUTES = {
   "fachbeiraete": () => renderCards("fachbeiraete", "Andere Fachbeiräte & Ausschüsse", "👥"),
   "aemter": () => renderAemter(),
   "links": () => renderCards("links", "Ratsinfosystem & Links", "🔗"),
-  "karte": renderKarte,
-  "strassen": renderKarte,   // alter Link → zusammengeführter Tab „Straße & Karte“
+  "karte": (sub) => renderKarte(sub),
+  "strassen": () => renderKarte("buechenbach"),   // alter Link → Direkt zur interaktiven Büchenbach-Karte
   "gremien": renderFremdeGremien,
 };
 
@@ -193,7 +193,7 @@ async function route() {
     if (head === "plan") return await renderPlan(decodeURIComponent(parts[1] || ""));
     if (head === "planfile") return await renderPlanFile(decodeURIComponent(parts[1] || ""));
     const handler = ROUTES[head];
-    if (handler) return await handler();
+    if (handler) return await handler(parts[1] || "");
     return await renderStart();
   } catch (err) {
     console.error(err);
@@ -247,7 +247,7 @@ async function renderStart() {
     ["#/gremien", "🏛️", "Büchenbach anderswo", "Was Stadtrat, Sport- und Jugendhilfeausschuss über den Stadtteil beraten haben."],
     ["#/aemter", "🏢", "Ämter & Zuständigkeiten", "Schnell klären: Welches Amt ist für ein Anliegen zuständig?"],
     ["#/fachbeiraete", "👥", "Fachbeiräte", "Schnell finden: andere Beiräte und Ausschüsse der Stadt."],
-    ["#/karte", "🗺️", "Straße & Karte", "Büchenbach mit Beiratsgrenze, Straßensuche mit Protokollbezug und einblendbaren OSM-Themen: Spielplätze, Haltestellen, Nahversorgung, Denkmäler, Tempo-Beschränkungen …"],
+    ["#/karte", "🗺️", "Straße & Karte", "Kartenbereiche im Überblick: Büchenbach-Beiratskarte mit Straßensuche & OSM-Themen sowie direkte Fachkarten (Baustellen, Fahrradbügel, Wärmeplanung, B-Pläne, BayernAtlas, UmweltAtlas)."],
     ["#/statistik", "📊", "Statistik", "Bevölkerung, Sozialstruktur und Prognosen für Erlangen und Büchenbach."],
     ["#/recht", "⚖️", "Satzung & Recht", "Die Satzung der Stadtteilbeiräte und das Erlanger Stadtrecht."],
     ["#/links", "🔗", "Ratsinfosystem & Links", "Direkt ins Ratsinformationssystem und weitere ausgewählte Seiten rund um Büchenbach."],
@@ -857,16 +857,23 @@ async function renderStatistik() {
 }
 
 async function renderRegistry(kind, title, icon) {
-  // Zuerst die Einträge mit eigenen Dokumenten (bei „Recht“ also die Satzung
-  // selbst), danach die weiterführenden Sammeleinträge ohne eigene Dateien —
-  // sonst stünde das Stadtrecht-Verzeichnis alphabetisch vor der Satzung.
+  // Zuerst die Einträge mit eigenen Dokumenten (bei „Recht“ an 1 die Satzung der
+  // Orts- und Stadtteilbeiräte, an 2 die Gemeindesatzung mit den Aufwandsentschädigungen),
+  // danach die weiterführenden Sammeleinträge ohne eigene Dateien (Stadtrecht A–Z).
   // Der Unterselect ist nötig: DuckDB sortiert nicht über einen Alias, dessen
   // Ausdruck eine Unterabfrage enthält.
   const rows = await q(
     `SELECT * FROM (
        SELECT id, title, beschreibung, themen, erstellt, quelle_url,
               (SELECT count(*) FROM plan_files pf WHERE pf.plan_id = plans.id)::INT AS n
-       FROM plans WHERE kind = '${esc(kind)}') ORDER BY n = 0, title`);
+       FROM plans WHERE kind = '${esc(kind)}')
+     ORDER BY
+       CASE
+         WHEN id LIKE '%ortsbeiraete' THEN 1
+         WHEN id LIKE '%gemeindesatzung' THEN 2
+         ELSE 3
+       END,
+       n = 0, title`);
   const intro = kind === "recht"
     ? "Die maßgebliche Satzung für die Arbeit der Stadtteilbeiräte sowie weiteres Erlanger Stadtrecht."
     : "Ausgewählte statistische Berichte der Stadt Erlangen mit Bezug zu Büchenbach und zur kleinräumigen Entwicklung.";
@@ -1733,8 +1740,77 @@ function buildLayer(L, cfg) {
   return L.tileLayer(cfg.url, { attribution: cfg.attribution, maxZoom: cfg.maxZoom || 19 });
 }
 
-async function renderKarte() {
-  status("Lade Straße & Karte …");
+async function renderKarte(sub = "") {
+  if (sub === "buechenbach" || sub === "osm") {
+    return await renderKarteBuechenbach();
+  }
+  return await renderKartenUebersicht();
+}
+
+async function renderKartenUebersicht() {
+  status("Lade Kartenübersicht …");
+  const cfg = await loadContent("karte");
+  const data = await loadGeo("strassen.json");
+  const strassenCount = data?.anzahl ? `${data.anzahl} Straßen` : "126 Straßen";
+
+  const domainColors = {
+    "geodaten.erlangen.de": { bg: "#e8f4fd", fg: "#1864ab" },
+    "atlas.bayern.de": { bg: "#e6fcf5", fg: "#087f5b" },
+    "umweltatlas.bayern.de": { bg: "#fff4e6", fg: "#d9480f" },
+    "erlangen.de": { bg: "#f3f0ff", fg: "#5f3dc4" },
+  };
+
+  const cardHtml = (e) => {
+    const col = domainColors[e.domain] || { bg: "#f1f3f5", fg: "#495057" };
+    return `
+      <a class="card" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener noreferrer">
+        <span class="c-tag" style="background:${col.bg};color:${col.fg}">${escHtml(e.domain || "Fachkarte")}</span>
+        <div class="c-title">${escHtml(e.titel)} ${e.untertitel ? `<span class="c-sub" style="font-weight:normal;font-size:0.85em;color:var(--text-muted, #666)">(${escHtml(e.untertitel)})</span>` : ""} <span class="ext">↗</span></div>
+        <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
+      </a>`;
+  };
+
+  view().innerHTML = `<div class="wrap">${crumb()}
+    <h2 class="section-title">🗺️ Straße &amp; Karte</h2>
+    ${cfg.intro ? `<p class="section-intro">${escHtml(cfg.intro)}</p>` : ""}
+
+    <!-- Lokale Büchenbach-Karte als hervorgehobene Kachel -->
+    <section class="card-group">
+      <h3 class="sub-head">📍 Stadtteilkarte Büchenbach</h3>
+      <div class="cards">
+        <a class="card card-featured" href="#/karte/buechenbach">
+          <span class="c-tag" style="background:#e8f4fd;color:#1864ab">Interaktiv im Portal</span>
+          <div class="c-title">🗺️ Büchenbach: Beiratskarte &amp; Straßenverzeichnis <span class="ext">›</span></div>
+          <div class="c-desc">Interaktive OpenStreetMap-Karte von Büchenbach mit Beiratsgrenze, Straßensuche (${strassenCount}) mit Verknüpfung zu allen Sitzungsprotokollen seit 2020 und zuschaltbaren Themen (Spielplätze, Haltestellen, Nahversorgung, Denkmäler, Tempo 30 &amp; Spielstraßen).</div>
+          <div class="c-zust" style="color:var(--accent);font-weight:700;margin-top:0.6rem">Karte &amp; Straßenverzeichnis öffnen →</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Direkte Web-Apps auf geodaten.erlangen.de -->
+    ${cfg.kartenangebote?.webapps?.length ? `
+    <section class="card-group" style="margin-top:1.8rem">
+      <h3 class="sub-head">🌐 Direkte Web-Apps auf geodaten.erlangen.de</h3>
+      <div class="cards">
+        ${cfg.kartenangebote.webapps.map(cardHtml).join("")}
+      </div>
+    </section>` : ""}
+
+    <!-- Weitere amtliche Fachkarten (BayernAtlas & UmweltAtlas) -->
+    ${cfg.kartenangebote?.weitere?.length ? `
+    <section class="card-group" style="margin-top:1.8rem">
+      <h3 class="sub-head">🏛️ Amtliche Fachkarten (BayernAtlas &amp; UmweltAtlas)</h3>
+      <div class="cards">
+        ${cfg.kartenangebote.weitere.map(cardHtml).join("")}
+      </div>
+    </section>` : ""}
+  </div>`;
+
+  status("Kartenangebote und Geodaten geladen.");
+}
+
+async function renderKarteBuechenbach() {
+  status("Lade Beiratskarte Büchenbach …");
   const cfg = await loadContent("karte");
   const data = await loadGeo("strassen.json");
   const katCfg = await loadGeo("osm_kategorien.json");
@@ -1766,9 +1842,9 @@ async function renderKarte() {
       <span class="kc-icon">${escHtml(k.icon)}</span>${escHtml(k.label)}
       <span class="kc-n">${escHtml(k.count)}</span></button>`).join("");
 
-  view().innerHTML = `<div class="wrap">${crumb()}
-    <h2 class="section-title">🗺️ Straße &amp; Karte</h2>
-    ${cfg.intro ? `<p class="section-intro">${escHtml(cfg.intro)}</p>` : ""}
+  view().innerHTML = `<div class="wrap"><a class="crumb" href="#/karte">‹ Alle Kartenangebote</a>
+    <h2 class="section-title">🗺️ Büchenbach: Beiratskarte &amp; Straßen</h2>
+    <p class="section-intro">${escHtml(cfg.buechenbach_intro || cfg.intro)}</p>
     <div class="street-search">
       <input id="strassen-filter" type="search" placeholder="Straße suchen …"
              aria-label="Straße suchen">
@@ -1808,35 +1884,9 @@ async function renderKarte() {
         Geometrie &amp; Themenobjekte: © OpenStreetMap-Mitwirkende (ODbL)</p>
     </details>` : `<p class="hint">Die Straßendaten fehlen — sie entstehen mit
       <code>python tools/fetch_geodata.py</code>.</p>`}
-    ${cfg.kartenangebote ? `
-    <section class="kartenangebote-block">
-      <h3 class="sub-head">🌐 Kartenangebote der Stadt Erlangen</h3>
-      <p class="section-intro" style="margin-bottom:1rem">Direkter Zugriff auf spezialisierte Web-Apps und bürgerorientierte Kartenangebote auf geodaten.erlangen.de und erlangen.de:</p>
-      ${cfg.kartenangebote.webapps?.length ? `
-      <section class="card-group">
-        <h4 class="sub-head" style="font-size:1.05rem;margin-top:0.6rem">Direkte Web-Apps auf geodaten.erlangen.de</h4>
-        <div class="cards">
-          ${cfg.kartenangebote.webapps.map((e) => `
-            <a class="card" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener noreferrer">
-              <span class="c-tag" style="background:#e8f4fd;color:#1864ab">geodaten.erlangen.de</span>
-              <div class="c-title">${escHtml(e.titel)} ${e.untertitel ? `<span class="c-sub" style="font-weight:normal;font-size:0.85em;color:var(--text-muted, #666)">(${escHtml(e.untertitel)})</span>` : ""} <span class="ext">↗</span></div>
-              <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
-            </a>`).join("")}
-        </div>
-      </section>` : ""}
-      ${cfg.kartenangebote.weitere?.length ? `
-      <section class="card-group" style="margin-top:1.5rem">
-        <h4 class="sub-head" style="font-size:1.05rem;margin-top:0.6rem">Weitere bürgerorientierte Kartenangebote auf erlangen.de</h4>
-        <div class="cards">
-          ${cfg.kartenangebote.weitere.map((e) => `
-            <a class="card" href="${escHtml(safeUrl(e.url))}" target="_blank" rel="noopener noreferrer">
-              <span class="c-tag" style="background:#f3f0ff;color:#5f3dc4">erlangen.de</span>
-              <div class="c-title">${escHtml(e.titel)} ${e.untertitel ? `<span class="c-sub" style="font-weight:normal;font-size:0.85em;color:var(--text-muted, #666)">(${escHtml(e.untertitel)})</span>` : ""} <span class="ext">↗</span></div>
-              <div class="c-desc">${escHtml(e.beschreibung || "")}</div>
-            </a>`).join("")}
-        </div>
-      </section>` : ""}
-    </section>` : ""}
+    <div class="map-actions" style="margin-top:2rem">
+      <a class="btn-primary" href="#/karte">‹ Zurück zu allen Kartenangeboten</a>
+    </div>
   </div>`;
 
   try {
