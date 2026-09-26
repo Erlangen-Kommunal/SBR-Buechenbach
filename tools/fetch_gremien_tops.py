@@ -83,6 +83,7 @@ UA = "SBR-Infoportal/1.0 (ehrenamtlich; Kontakt ueber github.com/Erlangen-Kommun
 # Jugendtreffs) im Stadtteil liegen.
 GREMIEN = {
     1: "Stadtrat",
+    5: "Haupt-, Finanz- und Personalausschuss",
     8: "Bauausschuss / Werkausschuss für den Entwässerungsbetrieb",
     15: "Umwelt-, Verkehrs- und Planungsausschuss",
     11: "Sportausschuss",
@@ -245,6 +246,7 @@ ORTSMARKEN = {
     # etc.), daher die volle Wendung.
     "In der Reuth": r"\bin\s+der\s+Reuth\b",
     "Klinikum am Europakanal": r"Klinik(?:um)?\s+am\s+Europakanal",
+    "Sporthalle am Europakanal": r"Sporthalle\s+am\s+Europakanal",
 }
 ORTSMARKEN_RE = {name: re.compile(p, re.I) for name, p in ORTSMARKEN.items()}
 

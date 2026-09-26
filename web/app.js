@@ -18,8 +18,8 @@ if (window.top !== window.self) {
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v48 · 2026-09-27";
-const CONTENT_VERSION = "48";
+const APP_VERSION = "v49 · 2026-09-27";
+const CONTENT_VERSION = "49";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -1299,6 +1299,7 @@ const TG_THEMEN = [
   ["Parken", ["parkplatz", "stellplatz", "bewohnerpark", "parkraum", "parken"]],
   ["Verkehrssicherheit", ["schulweg", "tempo 30", "unfall", "verkehrssicher"]],
   ["Wohnen & Stadtentwicklung", ["wohnbau", "bebauungsplan", "quartier", "baugebiet", "stadtentwicklung", "nachverdicht", "wohngebiet", "bauleitplan"]],
+  ["Haushalt, Finanzen & Einsparungen", ["haushalt", "finanz", "einspar", "konsolidier", "kredit", "sparmaßnahme", "kürzung", "kuerzung", "etat", "sperre", "zuwendung", "zuschuss", "haushaltsansatz"]],
   ["Soziales & Nachbarschaft", ["soziale", "diakonie", "nachbarschaft", "sozialstruktur", "integration"]],
   ["Kinder, Jugend & Familie", ["kinder", "jugend", "familie", "spielplatz", "jugendtreff"]],
   ["Senioren & Inklusion", ["senior", "barrierefrei", "inklusion", "pflege", "rikscha"]],
