@@ -896,6 +896,20 @@ def main() -> None:
         },
     }, ensure_ascii=False, indent=1), encoding="utf-8")
 
+    # Schlanke Frontend-Version für Mobilgeräte & Web-App (nur relevante TOPs ohne Prüfprotokoll)
+    out_frontend = REPO / "content" / "gremien_tops_buechenbach.json"
+    out_frontend.parent.mkdir(parents=True, exist_ok=True)
+    out_frontend.write_text(json.dumps({
+        "stand": date.today().isoformat(),
+        "wahlperioden": [
+            {"label": "2020 – 2026", "von": "2020-05-01", "bis": "2026-04-30"},
+            {"label": "2026 – 2032", "von": "2026-05-01", "bis": "2032-04-30"},
+        ],
+        "quelle": "Ratsinformationssystem der Stadt Erlangen (SessionNet)",
+        "gremien": {str(k): v for k, v in GREMIEN.items()},
+        "tops": [t for t in alle if not t.get("routine") and t.get("relevant")],
+    }, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
     routine = sum(1 for t in alle if t["routine"])
     relevant = [t for t in alle if t.get("relevant")]
     ueber_strasse = sum(1 for t in relevant if t["strassen_im_gebiet"])

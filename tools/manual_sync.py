@@ -87,7 +87,12 @@ def rebuild_db(no_text: bool = False) -> bool:
     cmd = ["dotnet", "run", "--project", "GraphBuilder", "--", str(REPO_ROOT), "--db", "graph.db"]
     if no_text:
         cmd.append("--no-text")
-    return run_step("Datenbank graph.db neu erstellen", cmd)
+    ok = run_step("Datenbank graph.db neu erstellen", cmd)
+    if ok:
+        street_idx = REPO_ROOT / "tools" / "build_street_index.py"
+        if street_idx.is_file():
+            run_step("Straßen-Dokumenten-Index aktualisieren", [sys.executable, str(street_idx)])
+    return ok
 
 
 def trigger_github() -> bool:

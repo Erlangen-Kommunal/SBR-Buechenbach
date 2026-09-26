@@ -18,8 +18,8 @@ if (window.top !== window.self) {
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v43 · 2026-09-26";
-const CONTENT_VERSION = "43";
+const APP_VERSION = "v44 · 2026-09-26";
+const CONTENT_VERSION = "44";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -94,32 +94,50 @@ async function checkAuth() {
   $("boot").hidden = false;
 }
 
-// ── DuckDB-Wasm ──────────────────────────────────────────────────────────────
+// ── DuckDB-Wasm (Lazy Loading mit Singleton-Promise & Timeout) ───────────────
 
-let conn;
+let conn = null;
+let dbPromise = null;
 
-async function initDb() {
-  bootMsg("Lade Datenbank …");
-  const r = await fetch(`graph.db?v=${CONTENT_VERSION}`);
-  if (!r.ok) throw new Error("graph.db nicht gefunden.");
-  const bytes = new Uint8Array(await r.arrayBuffer());
+async function ensureDb() {
+  if (conn) return conn;
+  if (!dbPromise) {
+    dbPromise = (async () => {
+      bootMsg("Lade Datenbank …");
+      status("Lade Datenbank (DuckDB-Wasm) …");
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 25000);
+      try {
+        const r = await fetch(`graph.db?v=${CONTENT_VERSION}`, { signal: controller.signal });
+        clearTimeout(timer);
+        if (!r.ok) throw new Error("graph.db nicht gefunden oder nicht erreichbar.");
+        const bytes = new Uint8Array(await r.arrayBuffer());
 
-  bootMsg("Starte DuckDB-Wasm …");
-  const bundle = await duckdb.selectBundle(duckdb.getJsDelivrBundles());
-  const workerUrl = URL.createObjectURL(new Blob(
-    [`importScripts("${bundle.mainWorker}");`], { type: "text/javascript" }));
-  const db = new duckdb.AsyncDuckDB(
-    new duckdb.ConsoleLogger(duckdb.LogLevel.WARNING), new Worker(workerUrl));
-  await db.instantiate(bundle.mainModule, bundle.pthreadWorker);
-  URL.revokeObjectURL(workerUrl);
-  await db.registerFileBuffer("graph.db", bytes);
-  await db.open({ path: "graph.db", query: { castBigIntToDouble: true } });
-  conn = await db.connect();
-  await conn.query("LOAD fts");
+        bootMsg("Starte DuckDB-Wasm …");
+        const bundle = await duckdb.selectBundle(duckdb.getJsDelivrBundles());
+        const workerUrl = URL.createObjectURL(new Blob(
+          [`importScripts("${bundle.mainWorker}");`], { type: "text/javascript" }));
+        const db = new duckdb.AsyncDuckDB(
+          new duckdb.ConsoleLogger(duckdb.LogLevel.WARNING), new Worker(workerUrl));
+        await db.instantiate(bundle.mainModule, bundle.pthreadWorker);
+        URL.revokeObjectURL(workerUrl);
+        await db.registerFileBuffer("graph.db", bytes);
+        await db.open({ path: "graph.db", query: { castBigIntToDouble: true } });
+        conn = await db.connect();
+        await conn.query("LOAD fts");
+        return conn;
+      } catch (err) {
+        dbPromise = null; // Ermöglicht Wiederholungsversuch bei Fehlern
+        throw err;
+      }
+    })();
+  }
+  return dbPromise;
 }
 
 async function q(sql) {
-  const t = await conn.query(sql);
+  const c = await ensureDb();
+  const t = await c.query(sql);
   return t.toArray().map((r) => r.toJSON());
 }
 
@@ -248,12 +266,16 @@ async function renderStart() {
           <span><span class="t-title">${t}</span><span class="t-desc">${escHtml(d)}</span></span>
         </a>`).join("")}
     </nav>`;
-  const [m] = await q(`SELECT (SELECT count(*) FROM documents)::INT AS d,
-                              (SELECT count(DISTINCT date) FROM documents
-                               WHERE category NOT IN ('Antrag', 'Anlage'))::INT AS s,
-                              (SELECT count(*) FROM documents WHERE category = 'Antrag')::INT AS a`);
-  status(`Bereit — ${m.s} Sitzungen, ${m.a} Anträge, ${m.d} Dokumente. `
-    + `Wählen Sie einen Bereich oder suchen Sie oben.`);
+  status("Bereit — Wählen Sie einen Bereich oder suchen Sie oben.");
+  if (conn) {
+    try {
+      const [m] = await q(`SELECT (SELECT count(*) FROM documents)::INT AS d,
+                                  (SELECT count(DISTINCT date) FROM documents
+                                   WHERE category NOT IN ('Antrag', 'Anlage'))::INT AS s,
+                                  (SELECT count(*) FROM documents WHERE category = 'Antrag')::INT AS a`);
+      status(`Bereit — ${m.s} Sitzungen, ${m.a} Anträge, ${m.d} Dokumente. Wählen Sie einen Bereich oder suchen Sie oben.`);
+    } catch {}
+  }
 }
 
 // ── Protokolle (Sitzungen + Anträge, je nach Jahr gruppiert) ─────────────────
@@ -1094,10 +1116,18 @@ async function detectStreets(text, max = 12) {
 let strassenIndex = null;
 async function loadStrassenIndex() {
   if (strassenIndex) return strassenIndex;
+
+  // 1. Vorberechneter Index aus dem Build (24 KB statische JSON — verhindert 2-5s UI-Freeze)
+  try {
+    const r = await fetch(`content/strassen_docs.json?v=${CONTENT_VERSION}`);
+    if (r.ok) {
+      const data = await r.json();
+      return (strassenIndex = new Map(Object.entries(data)));
+    }
+  } catch {}
+
+  // 2. Fallback: Dynamische Erkennung im Browser, falls Datei fehlt
   const namen = await loadStrassenNamen();
-  // Schlüssel ist die Vergleichsform, nicht der Name: Die Straßenliste trägt
-  // die OSM-Schreibweise („Adenauerring"), der Protokolltext die amtliche
-  // („Adenauer-Ring"). Über den Namen verglichen ginge der Treffer verloren.
   const idx = new Map();
   if (namen.size) {
     // date::VARCHAR — fmtDate erwartet die ISO-Zeichenkette, nicht den DATE-Typ
@@ -1236,7 +1266,12 @@ let fremdeTops = null;
 let tgQuery = "";       // aktive Suche in "Büchenbach anderswo"
 async function ladeFremdeTops() {
   if (fremdeTops !== null) return fremdeTops;
-  for (const url of ["gremien_tops.json", "../gremien_tops.json"]) {
+  for (const url of [
+    "content/gremien_tops_buechenbach.json",
+    "gremien_tops_buechenbach.json",
+    "gremien_tops.json",
+    "../gremien_tops.json",
+  ]) {
     try {
       const r = await fetch(`${url}?v=${CONTENT_VERSION}`);
       if (r.ok) return (fremdeTops = await r.json());
@@ -2031,9 +2066,24 @@ window.addEventListener("hashchange", route);
 
 try {
   await checkAuth();
-  await initDb();
   $("boot").hidden = true;
   await route();
+
+  // DuckDB im Hintergrund vorwärmen (Lazy Loading — Benutzeroberfläche startet sofort)
+  ensureDb().then(() => {
+    // Nach erfolgreichem Laden Statusbar aktualisieren, falls noch auf der Startseite
+    if (!location.hash || location.hash === "#" || location.hash === "#/") {
+      q(`SELECT (SELECT count(*) FROM documents)::INT AS d,
+                (SELECT count(DISTINCT date) FROM documents
+                 WHERE category NOT IN ('Antrag', 'Anlage'))::INT AS s,
+                (SELECT count(*) FROM documents WHERE category = 'Antrag')::INT AS a`)
+        .then(([m]) => {
+          status(`Bereit — ${m.s} Sitzungen, ${m.a} Anträge, ${m.d} Dokumente. Wählen Sie einen Bereich oder suchen Sie oben.`);
+        }).catch(() => {});
+    }
+  }).catch((err) => {
+    console.warn("DuckDB Preload:", err);
+  });
 } catch (err) {
   bootMsg(`Fehler: ${err.message}`);
   console.error(err);

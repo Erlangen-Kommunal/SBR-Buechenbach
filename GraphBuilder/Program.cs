@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using GraphBuilder;
 
 // GraphBuilder — liest SBR/index.json (vom Sync-Skript uvp_agent.py erzeugt)
@@ -282,5 +283,108 @@ using (var db = new GraphDb(dbPath))
         $"({db.Count("plan_files pf JOIN plans p ON p.id = pf.plan_id WHERE p.kind = 'statistik'")} Dateien)");
 }
 
+BuildStreetDocsIndex(repoRoot, finalDocs);
+
 Console.WriteLine($"Fertig in {sw.Elapsed:mm\\:ss}. " +
     $"DB-Größe: {new FileInfo(dbPath).Length / (1024.0 * 1024.0):F1} MB");
+
+void BuildStreetDocsIndex(string root, List<DocumentRow> docs)
+{
+    var strassenPath = Path.Combine(root, "geo", "strassen.json");
+    if (!File.Exists(strassenPath)) return;
+
+    try
+    {
+        using var jsonDoc = JsonDocument.Parse(File.ReadAllText(strassenPath));
+        var rootElem = jsonDoc.RootElement;
+        var namen = new Dictionary<string, string>();
+
+        string NormStreet(string s) =>
+            Regex.Replace(s.ToLowerInvariant().Replace("strasse", "straße"), @"[\s\-]+", "");
+
+        if (rootElem.TryGetProperty("alle_namen", out var alleElem) && alleElem.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var item in alleElem.EnumerateArray())
+            {
+                var n = item.GetString();
+                if (!string.IsNullOrWhiteSpace(n))
+                    namen[NormStreet(n)] = n;
+            }
+        }
+        else if (rootElem.TryGetProperty("strassen", out var strassenElem) && strassenElem.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var item in strassenElem.EnumerateArray())
+            {
+                if (item.TryGetProperty("name", out var nElem))
+                {
+                    var n = nElem.GetString();
+                    if (!string.IsNullOrWhiteSpace(n))
+                        namen[NormStreet(n)] = n;
+                }
+            }
+        }
+
+        if (namen.Count == 0) return;
+
+        var tokenRe = new Regex(@"[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß0-9.\-]*", RegexOptions.Compiled);
+        var addrTailRe = new Regex(@"^[\s,]*\d{1,3}\s*[a-zA-Z]?[\s,]*9\d{4}\b", RegexOptions.Compiled);
+
+        var index = new Dictionary<string, List<object>>();
+        int totalRefs = 0;
+
+        foreach (var doc in docs)
+        {
+            if (string.IsNullOrWhiteSpace(doc.Text)) continue;
+            var text = doc.Text;
+            var matches = tokenRe.Matches(text);
+            var foundInDoc = new Dictionary<string, string>();
+
+            for (int i = 0; i < matches.Count; i++)
+            {
+                var parts = new List<string>(4);
+                for (int n = 0; n < 4 && i + n < matches.Count; n++)
+                {
+                    parts.Add(matches[i + n].Value);
+                    var phrase = string.Join(" ", parts);
+                    var key = NormStreet(phrase);
+                    if (!namen.TryGetValue(key, out var amtlich) || foundInDoc.ContainsKey(key))
+                        continue;
+
+                    var endIdx = matches[i + n].Index + matches[i + n].Length;
+                    var tail = text.Length > endIdx ? text.Substring(endIdx, Math.Min(16, text.Length - endIdx)) : "";
+                    if (addrTailRe.IsMatch(tail))
+                        continue;
+
+                    foundInDoc[key] = amtlich;
+                }
+            }
+
+            foreach (var kvp in foundInDoc)
+            {
+                if (!index.TryGetValue(kvp.Key, out var list))
+                {
+                    list = new List<object>();
+                    index[kvp.Key] = list;
+                }
+                list.Add(new
+                {
+                    id = doc.Id,
+                    date = doc.Date,
+                    category = doc.Category,
+                    title = doc.Title
+                });
+                totalRefs++;
+            }
+        }
+
+        var outDir = Path.Combine(root, "content");
+        Directory.CreateDirectory(outDir);
+        var outPath = Path.Combine(outDir, "strassen_docs.json");
+        File.WriteAllText(outPath, JsonSerializer.Serialize(index));
+        Console.WriteLine($"  Straßen-Index: {index.Count} Straßen mit {totalRefs} Erwähnungen ({new FileInfo(outPath).Length / 1024.0:F1} KB) -> content/strassen_docs.json");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"  Warnung: Straßen-Index konnte nicht erstellt werden: {ex.Message}");
+    }
+}
