@@ -1,4 +1,13 @@
 
+// Clickjacking-Schutz: Wenn in fremden iFrames eingebettet, Anzeige unterbinden
+if (window.top !== window.self) {
+  try {
+    window.top.location = window.self.location;
+  } catch {
+    document.documentElement.style.display = "none";
+  }
+}
+
 // Stadtteilbeirat Büchenbach — Infoportal (Frontend)
 // Portal-Startseite mit Themen-Kacheln + Volltextsuche über die Protokolle.
 // Daten: graph.db (DuckDB-Wasm, FTS/BM25), Inhalts-Sektionen aus content/*.json,
@@ -8,8 +17,8 @@
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v50 · 2026-09-27";
-const CONTENT_VERSION = "50";
+const APP_VERSION = "v51 · 2026-09-27";
+const CONTENT_VERSION = "51";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
