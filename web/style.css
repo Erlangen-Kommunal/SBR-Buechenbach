@@ -649,16 +649,19 @@ footer {
     padding: .5rem .8rem .5rem 0; font-size: 1rem;
   }
   .chip-street {
-    min-height: 38px; padding: .45rem .85rem; font-size: .9rem;
+    min-height: 44px; padding: .5rem .9rem; font-size: .92rem;
     display: inline-flex; align-items: center;
   }
-  .street-chips { gap: .5rem; }
+  .street-chips { gap: .6rem; }
   .kat-chip {
-    min-height: 38px; padding: .4rem .75rem; font-size: .88rem;
+    min-height: 44px; padding: .5rem .85rem; font-size: .9rem;
     display: inline-flex; align-items: center;
   }
   .s-docs li { padding: .55rem 0; }
-  .s-docs a.doc-open { padding: .3rem 0; display: inline-block; min-height: 36px; }
+  .s-docs a.doc-open { padding: .4rem 0; display: inline-flex; align-items: center; min-height: 44px; }
+  .nur-protokoll { min-height: 44px; display: inline-flex; align-items: center; }
+  .nur-protokoll input[type="checkbox"] { width: 22px; height: 22px; margin-right: .5rem; }
+  .tg-fund > summary { font-size: .95rem; padding: .5rem 0; min-height: 44px; display: flex; align-items: center; }
 
   /* Filter-Auswahlfelder (Dokumenttyp/Jahr/Thema): grösser & leichter zu treffen.
      16px Schrift vermeidet zugleich den iOS-Safari-Autozoom bei Fokus < 16px. */
@@ -666,7 +669,7 @@ footer {
   .map-actions label { font-size: .95rem; }
   .map-actions select {
     display: block; margin-top: .3rem;
-    font-size: 1rem; padding: .5rem .65rem; min-height: 2.5rem;
+    font-size: 1rem; padding: .55rem .75rem; min-height: 44px;
     border-radius: 7px; border: 1px solid var(--hairline);
     background: var(--surface-1); color: var(--ink);
   }
@@ -756,9 +759,9 @@ footer {
 /* ── Leaflet Drag-Toggle für Touch-Geräte ──────────────────────────── */
 .map-drag-toggle {
   background: #fff; border: 2px solid rgba(0,0,0,0.2); border-radius: 6px;
-  padding: 6px 12px; font-size: 13px; font-weight: 700; cursor: pointer;
+  padding: 8px 14px; font-size: 14px; font-weight: 700; cursor: pointer;
   box-shadow: 0 1px 5px rgba(0,0,0,0.2); color: var(--ink);
-  min-height: 36px; display: flex; align-items: center;
+  min-height: 44px; display: flex; align-items: center; justify-content: center;
 }
 .map-drag-toggle.active {
   background: var(--accent); color: #fff; border-color: var(--accent);

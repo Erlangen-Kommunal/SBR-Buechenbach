@@ -313,7 +313,7 @@ TITLE_RE = re.compile(r'(?is)href="to0050\.asp\?__ktonr=(\d+)"[^>]*class="[^"]*s
 # diese TOPs keine Detailseite, die ktonr wird deshalb synthetisiert (top_url).
 TITLE_NEW_RE = re.compile(r'(?is)class="[^"]*smc-card-header-title(?:-simple)?[^"]*"[^>]*>(.*?)</(?:div|a|span)>')
 VORLAGE_RE = re.compile(r'(?is)href="vo0050\.asp\?__kvonr=(\d+)"')
-BESCHLUSS_RE = re.compile(r'(?is)smc_field_smcdv0_box\d+_beschluss[^>]*>(.*?)</p>')
+BESCHLUSS_RE = re.compile(r'(?is)smc_field_smcdv0_box\d+_beschluss[^>]*>(.*?)(?:</td>|</div>|<tr\b)')
 
 
 def text(s: str) -> str:
@@ -341,7 +341,22 @@ def hole(url: str, versuche: int = 3) -> str:
         try:
             req = urllib.request.Request(url, headers={"User-Agent": UA})
             with urllib.request.urlopen(req, timeout=45) as r:
-                return r.read().decode("utf-8", errors="replace")
+                raw = r.read()
+                content_type = r.headers.get("content-type", "")
+                charset = None
+                if "charset=" in content_type:
+                    charset = content_type.split("charset=")[-1].split(";")[0].strip()
+                if charset:
+                    try:
+                        return raw.decode(charset)
+                    except (UnicodeDecodeError, LookupError):
+                        pass
+                for enc in ("utf-8", "cp1252", "iso-8859-1"):
+                    try:
+                        return raw.decode(enc)
+                    except UnicodeDecodeError:
+                        continue
+                return raw.decode("utf-8", errors="replace")
         except (urllib.error.URLError, OSError, TimeoutError) as e:
             letzter = e
             time.sleep(1.5 * (n + 1))
@@ -467,13 +482,26 @@ def pdf_text(daten: bytes) -> str:
     return ""
 
 
-def hole_roh(url: str, versuche: int = 3) -> bytes:
+def hole_roh(url: str, max_bytes: int = MAX_PDF_BYTES, versuche: int = 3) -> bytes:
     letzter = None
     for n in range(versuche):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": UA})
             with urllib.request.urlopen(req, timeout=90) as r:
-                return r.read(MAX_PDF_BYTES + 1)
+                cl = r.headers.get("content-length")
+                if cl and int(cl) > max_bytes:
+                    return b""
+                chunks = []
+                total = 0
+                while True:
+                    chunk = r.read(65536)
+                    if not chunk:
+                        break
+                    chunks.append(chunk)
+                    total += len(chunk)
+                    if total > max_bytes:
+                        return b""
+                return b"".join(chunks)
         except (urllib.error.URLError, OSError, TimeoutError) as e:
             letzter = e
             time.sleep(1.5 * (n + 1))
@@ -732,8 +760,8 @@ def lies_anlagen(kvonrs: list[str], vorlagen: dict[str, dict], nmap: dict[str, s
                 weg += 1
                 continue
             try:
-                daten = hole_roh(f"{BASE}/getfile.asp?id={did}&type=do")
-                if len(daten) > MAX_ANLAGE_BYTES:
+                daten = hole_roh(f"{BASE}/getfile.asp?id={did}&type=do", max_bytes=MAX_ANLAGE_BYTES)
+                if not daten or len(daten) > MAX_ANLAGE_BYTES:
                     weg += 1
                     continue
                 txt = pdf_text(daten)

@@ -70,8 +70,9 @@ public sealed class GraphDb : IDisposable
         foreach (var d in docs)
         {
             var row = appender.CreateRow();
+            DateTime? parsedDate = DateTime.TryParse(d.Date, System.Globalization.CultureInfo.InvariantCulture, out var dt) ? dt : null;
             row.AppendValue(d.Id)
-               .AppendValue(string.IsNullOrEmpty(d.Date) ? (DateTime?)null : DateTime.Parse(d.Date))
+               .AppendValue(parsedDate)
                .AppendValue(d.Category).AppendValue(d.Title).AppendValue(d.Path)
                .AppendValue(d.Url).AppendValue(d.Pages).AppendValue(d.Text)
                .AppendValue(d.Summary).AppendValue(d.Themen).EndRow();

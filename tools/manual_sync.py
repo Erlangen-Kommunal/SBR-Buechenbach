@@ -83,6 +83,14 @@ def sync_gremien() -> bool:
     return run_step("Tagesordnungen der Nachbargremien aktualisieren", [sys.executable, str(script)])
 
 
+def sync_fachbeiraete() -> bool:
+    script = REPO_ROOT / "tools" / "update_fachbeiraete.py"
+    if not script.is_file():
+        print(f"Fehler: {script} nicht gefunden.")
+        return False
+    return run_step("Fachbeiräte und Ausschüsse aktualisieren", [sys.executable, str(script)])
+
+
 def rebuild_db(no_text: bool = False) -> bool:
     cmd = ["dotnet", "run", "--project", "GraphBuilder", "--", str(REPO_ROOT), "--db", "graph.db"]
     if no_text:
@@ -110,12 +118,13 @@ def main() -> int:
     ap.add_argument("--ratsinfo", action="store_true", help="Nur Beiratsdokumente von ratsinfo.erlangen.de abrufen")
     ap.add_argument("--geo", action="store_true", help="Nur Geodaten & Strassen aktualisieren")
     ap.add_argument("--gremien", action="store_true", help="Nur Tagesordnungen der Nachbargremien abrufen")
+    ap.add_argument("--fachbeiraete", action="store_true", help="Nur Fachbeiräte & Ausschüsse aktualisieren")
     ap.add_argument("--rebuild-db", action="store_true", help="Nur graph.db neu erstellen")
     ap.add_argument("--no-text", action="store_true", help="Ohne Volltext-Extraktion beim DB-Bau")
     ap.add_argument("--trigger-github", action="store_true", help="GitHub Actions Sync-Workflow starten")
     args = ap.parse_args()
 
-    explicit = any([args.ratsinfo, args.geo, args.gremien, args.rebuild_db, args.trigger_github])
+    explicit = any([args.ratsinfo, args.geo, args.gremien, args.fachbeiraete, args.rebuild_db, args.trigger_github])
     do_all = args.all or not explicit
 
     success = True
@@ -137,6 +146,10 @@ def main() -> int:
     if do_all or args.gremien:
         if not sync_gremien():
             print("  (Hinweis: Gremien-Fehler sind meist unkritisch)")
+
+    if do_all or args.fachbeiraete:
+        if not sync_fachbeiraete():
+            print("  (Hinweis: Fachbeiräte-Fehler sind meist unkritisch)")
 
     if do_all or args.rebuild_db:
         if not rebuild_db(no_text=args.no_text):

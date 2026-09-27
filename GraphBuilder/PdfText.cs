@@ -28,7 +28,14 @@ public static class PdfText
                 {
                     if (pages > 1)
                         sb.Append('\f');
-                    sb.Append(ContentOrderTextExtractor.GetText(page));
+                    try
+                    {
+                        sb.Append(ContentOrderTextExtractor.GetText(page));
+                    }
+                    catch
+                    {
+                        // Defekte Schrift oder Layout auf Einzelseite überspringen
+                    }
                 }
             }
             var text = sb.Length > MaxChars ? sb.ToString(0, MaxChars) : sb.ToString();

@@ -266,8 +266,7 @@ using (var db = new GraphDb(dbPath))
     db.InsertDocuments(finalDocs);
     db.InsertPlans(planRows);
     db.InsertPlanFiles(planFileRows);
-    if (extractText)
-        db.CreateFtsIndex();
+    db.CreateFtsIndex();
 
     Console.WriteLine();
     Console.WriteLine($"graph.db geschrieben: {Path.GetFullPath(dbPath)}");
@@ -319,7 +318,15 @@ void BuildStreetDocsIndex(string root, List<DocumentRow> docs)
                 {
                     var n = nElem.GetString();
                     if (!string.IsNullOrWhiteSpace(n))
+                    {
                         namen[NormStreet(n)] = n;
+                        if (item.TryGetProperty("amtliche_schreibweise", out var aElem))
+                        {
+                            var a = aElem.GetString();
+                            if (!string.IsNullOrWhiteSpace(a))
+                                namen[NormStreet(a)] = n;
+                        }
+                    }
                 }
             }
         }

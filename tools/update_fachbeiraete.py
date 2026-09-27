@@ -26,8 +26,9 @@ PERIODEN = [
 TOP_ROW_RE = re.compile(r'(?is)<tr[^>]*class="smc-t-r-l"[^>]*>(.*?)</tr>')
 
 
-def hole_sitzungen(kgrnr: int) -> tuple[int, str | None]:
+def hole_sitzungen(kgrnr: int) -> tuple[int, str | None, bool]:
     out = []
+    hat_fehler = False
     for wp_jahr, wp_monat, wp_monate in PERIODEN:
         url = (f"{BASE}/si0046.asp?__cjahr={wp_jahr}&__cmonat={wp_monat}"
                f"&__canz={wp_monate}&smccont=85&__osidat=d&__kgsgrnr={kgrnr}&__cselect=65536")
@@ -41,6 +42,7 @@ def hole_sitzungen(kgrnr: int) -> tuple[int, str | None]:
                     if m and d:
                         out.append((m.group(1), f"{d.group(3)}-{d.group(2)}-{d.group(1)}"))
         except Exception as e:
+            hat_fehler = True
             print(f"  [Fehler bei kgrnr={kgrnr}]: {e}", flush=True)
     
     unique = list(dict.fromkeys(out))
@@ -51,7 +53,7 @@ def hole_sitzungen(kgrnr: int) -> tuple[int, str | None]:
     
     cnt = len(unique)
     last_d = past_dates[-1] if past_dates else (unique[-1][1] if unique else None)
-    return cnt, last_d
+    return cnt, last_d, hat_fehler
 
 
 def main():
@@ -70,11 +72,14 @@ def main():
             return e, None
         kgrnr = int(m.group(1))
         name = e.get("name", f"Gremium {kgrnr}")
-        cnt, last_d = hole_sitzungen(kgrnr)
+        cnt, last_d, hat_fehler = hole_sitzungen(kgrnr)
         
         alt_cnt = e.get("sitzungen")
         alt_d = e.get("letzte_sitzung")
         
+        if hat_fehler and alt_cnt is not None and cnt < alt_cnt:
+            return e, f"  ! {name}: Abruf unvollständig wegen Timeout; bisherige Werte ({alt_cnt}) beibehalten."
+
         diff = []
         if cnt == 0 and alt_cnt:
             # Nicht-öffentliche Gremien (z. B. Ältestenrat) ohne Treffer im öffentlichen Kalender

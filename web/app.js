@@ -1,13 +1,3 @@
-// Clickjacking-Schutz: Wenn in fremden iFrames eingebettet, Anzeige unterbinden
-if (window.top !== window.self) {
-  try {
-    window.top.location = window.self.location;
-  } catch {
-    document.documentElement.style.display = "none";
-  }
-} else {
-  document.getElementById("antiClickjack")?.remove();
-}
 
 // Stadtteilbeirat Büchenbach — Infoportal (Frontend)
 // Portal-Startseite mit Themen-Kacheln + Volltextsuche über die Protokolle.
@@ -18,8 +8,8 @@ if (window.top !== window.self) {
 
 import * as duckdb from "https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0/+esm";
 
-const APP_VERSION = "v49 · 2026-09-27";
-const CONTENT_VERSION = "49";
+const APP_VERSION = "v50 · 2026-09-27";
+const CONTENT_VERSION = "50";
 const REPO = "erlangen-kommunal/SBR-Buechenbach";
 
 const $ = (id) => document.getElementById(id);
@@ -197,8 +187,16 @@ async function route() {
     return await renderStart();
   } catch (err) {
     console.error(err);
+    status("Fehler beim Laden.");
     view().innerHTML = `<div class="wrap"><a class="crumb" href="#/">‹ Startseite</a>
-      <p class="hint">Fehler beim Laden: ${escHtml(err.message)}</p></div>`;
+      <div class="notice" style="margin-top:1rem;padding:1.2rem;border-left:4px solid var(--antrag)">
+        <p style="font-weight:700;margin:0 0 .5rem">Ladefehler aufgetreten</p>
+        <p class="hint" style="margin:0 0 1rem">${escHtml(err.message)}</p>
+        <button type="button" class="btn-primary" onclick="location.reload()" style="min-height:44px;cursor:pointer">
+          🔄 Seite neu laden
+        </button>
+      </div>
+    </div>`;
   }
 }
 
@@ -299,8 +297,14 @@ async function protoSuche(query) {
   protoQuery = query;
   setTerms(query);
   if (!query) { protoTreffer = null; protoSnippets = new Map(); return; }
-  const rows = await q(
-    `SELECT id, fts_main_documents.match_bm25(id, '${esc(query)}') AS score FROM documents`);
+  let rows = [];
+  try {
+    rows = await q(
+      `SELECT id, fts_main_documents.match_bm25(id, '${esc(query)}') AS score FROM documents`);
+  } catch (err) {
+    console.warn("FTS-Syntaxfehler abgefangen:", err);
+    rows = [];
+  }
   protoTreffer = new Map(rows.filter((r) => r.score != null).map((r) => [r.id, r.score]));
   protoSnippets = new Map();
   if (protoTreffer.size && lastTerms.length) {
@@ -1057,7 +1061,8 @@ let strassenNamen = null;
 async function loadStrassenNamen() {
   if (strassenNamen) return strassenNamen;
   const d = await loadGeo("strassen.json");
-  strassenNamen = new Map((d?.alle_namen ?? []).map((n) => [normStreet(n), n]));
+  const rawList = d?.alle_namen || (d?.strassen || []).flatMap((s) => typeof s === "string" ? [s] : [s.name, s.amtliche_schreibweise].filter(Boolean));
+  strassenNamen = new Map(rawList.filter(Boolean).map((n) => [normStreet(n), n]));
   return strassenNamen;
 }
 
@@ -1223,7 +1228,12 @@ async function showStreetMap(name, box) {
   // Deeplinks (BayernAtlas/OpenStreetMap) sind bewusst entfallen — alles, was
   // gebraucht wird, liefern die einbettbaren Dienste in der App selbst.
   box.innerHTML = `<div class="street-map"></div>`;
-  const map = L.map(box.querySelector(".street-map"), { scrollWheelZoom: false });
+  const isTouchMap = ("ontouchstart" in window) || navigator.maxTouchPoints > 0;
+  const map = L.map(box.querySelector(".street-map"), {
+    scrollWheelZoom: false,
+    dragging: !isTouchMap,
+    tap: false,
+  });
   const base = cfg.layers.find((l) => l.default) ?? cfg.layers[0];
   buildLayer(L, base).addTo(map);
   await addBeiratsgrenzen(L, map, { nachbarnBenennen: false, fuellen: false });
@@ -1272,7 +1282,7 @@ async function renderStreets(text) {
 let fremdeTops = null;
 let tgQuery = "";       // aktive Suche in "Büchenbach anderswo"
 async function ladeFremdeTops() {
-  if (fremdeTops !== null) return fremdeTops;
+  if (fremdeTops) return fremdeTops;
   for (const url of [
     "content/gremien_tops_buechenbach.json",
     "gremien_tops_buechenbach.json",
@@ -1284,7 +1294,7 @@ async function ladeFremdeTops() {
       if (r.ok) return (fremdeTops = await r.json());
     } catch { /* nächster Pfad */ }
   }
-  return (fremdeTops = false);
+  return null;
 }
 
 // Themengebiete für den Filter — dieselbe kuratierte Taxonomie wie die
@@ -1357,13 +1367,19 @@ function fundstellen(t) {
 }
 
 async function renderFremdeGremien() {
+  window.renderFremdeGremienRetry = renderFremdeGremien;
   status("Lade Tagesordnungen …");
   const daten = await ladeFremdeTops();
   if (!daten) {
     view().innerHTML = `<div class="wrap">${crumb()}
       <h2 class="section-title">🏛️ Büchenbach anderswo</h2>
-      <p class="hint">Die Tagesordnungen der anderen Gremien fehlen — sie entstehen
-      mit <code>tools/fetch_gremien_tops.py</code> und werden beim Deploy mitkopiert.</p></div>`;
+      <div class="notice" style="margin-top:1rem;padding:1.2rem;border-left:4px solid var(--antrag)">
+        <p style="font-weight:700;margin:0 0 .5rem">Tagesordnungen konnten nicht geladen werden</p>
+        <p class="hint" style="margin:0 0 1rem">Die Daten wurden möglicherweise noch nicht generiert oder das Netzwerk ist vorübergehend nicht erreichbar.</p>
+        <button type="button" class="btn-primary" onclick="window.renderFremdeGremienRetry ? window.renderFremdeGremienRetry() : location.reload()" style="min-height:44px;cursor:pointer">
+          🔄 Erneut versuchen
+        </button>
+      </div></div>`;
     status("Keine Daten.");
     return;
   }
@@ -1427,6 +1443,10 @@ async function renderFremdeGremien() {
   // beeinflussen und dürfen nicht wie Beschlossenes aussehen.
   const heute = new Date().toISOString().slice(0, 10);
   setTerms(tgQuery);           // Hervorhebung passt zur aktiven Suche
+
+  const BATCH_SIZE = 40;
+  let sichtbareAnzahl = BATCH_SIZE;
+
   const zeichne = () => {
     const fg = $("tg-gremium").value, fy = $("tg-year").value, ft = $("tg-thema") ? $("tg-thema").value : "";
     const terms = lastTerms.map((w) => w.toLowerCase());
@@ -1439,9 +1459,11 @@ async function renderFremdeGremien() {
     const zeigen = relevante.filter((t) =>
       (!fg || t.gremium === fg) && (!fy || (t.datum || "").startsWith(fy)) &&
       (!ft || t._themen.includes(ft)) && trifft(t));
-    if (!zeigen.length) { liste.innerHTML = `<p class="hint">Keine Einträge.</p>`; return; }
+    if (!zeigen.length) { liste.innerHTML = `<p class="hint">Keine Einträge.</p>`; status("Keine Treffer."); return; }
+
+    const zuZeigen = zeigen.slice(0, sichtbareAnzahl);
     let html = "", jahr = "";
-    for (const t of zeigen) {
+    for (const t of zuZeigen) {
       const y = (t.datum || "").slice(0, 4);
       if (y !== jahr) { jahr = y; html += `<h3 class="sub-head">${escHtml(jahr)}</h3>`; }
       const marker = [
@@ -1472,13 +1494,30 @@ async function renderFremdeGremien() {
         ${fundstellen(t)}
       </div>`;
     }
+    if (zeigen.length > sichtbareAnzahl) {
+      const noch = zeigen.length - sichtbareAnzahl;
+      const step = Math.min(BATCH_SIZE, noch);
+      html += `<div style="text-align:center;margin:1.8rem 0">
+        <button type="button" id="tg-more-btn" class="btn-primary" style="min-height:44px;padding:0.75rem 1.6rem;cursor:pointer;font-size:0.95rem">
+          Weitere ${step} von ${noch} laden …
+        </button>
+      </div>`;
+    }
     liste.innerHTML = html;
-    status(`${zeigen.length} Tagesordnungspunkte mit Büchenbach-Bezug${ft ? ` · Thema „${ft}"` : ""}.`);
+    const moreBtn = $("tg-more-btn");
+    if (moreBtn) {
+      moreBtn.addEventListener("click", () => {
+        sichtbareAnzahl += BATCH_SIZE;
+        zeichne();
+      });
+    }
+    status(`${zeigen.length} Tagesordnungspunkte mit Büchenbach-Bezug (zeige ${zuZeigen.length})${ft ? ` · Thema „${ft}"` : ""}.`);
   };
-  bindSuche((query) => { tgQuery = query; setTerms(tgQuery); zeichne(); });
-  $("tg-gremium").addEventListener("change", zeichne);
-  $("tg-year").addEventListener("change", zeichne);
-  $("tg-thema")?.addEventListener("change", zeichne);
+  const filterChange = () => { sichtbareAnzahl = BATCH_SIZE; zeichne(); };
+  bindSuche((query) => { tgQuery = query; setTerms(tgQuery); filterChange(); });
+  $("tg-gremium").addEventListener("change", filterChange);
+  $("tg-year").addEventListener("change", filterChange);
+  $("tg-thema")?.addEventListener("change", filterChange);
   zeichne();
 }
 
@@ -1920,6 +1959,8 @@ async function renderKarteBuechenbach() {
       btn.type = "button";
       btn.innerHTML = "🖐️ Karte bedienen";
       btn.title = "Tippen zum Bewegen der Karte";
+      L.DomEvent.disableClickPropagation(btn);
+      L.DomEvent.disableScrollPropagation(btn);
       let active = false;
       btn.onclick = (ev) => {
         ev.stopPropagation();
@@ -2159,21 +2200,25 @@ try {
   $("boot").hidden = true;
   await route();
 
-  // DuckDB im Hintergrund vorwärmen (Lazy Loading — Benutzeroberfläche startet sofort)
-  ensureDb().then(() => {
-    // Nach erfolgreichem Laden Statusbar aktualisieren, falls noch auf der Startseite
-    if (!location.hash || location.hash === "#" || location.hash === "#/") {
-      q(`SELECT (SELECT count(*) FROM documents)::INT AS d,
-                (SELECT count(DISTINCT date) FROM documents
-                 WHERE category NOT IN ('Antrag', 'Anlage'))::INT AS s,
-                (SELECT count(*) FROM documents WHERE category = 'Antrag')::INT AS a`)
-        .then(([m]) => {
-          status(`Bereit — ${m.s} Sitzungen, ${m.a} Anträge, ${m.d} Dokumente. Wählen Sie einen Bereich oder suchen Sie oben.`);
-        }).catch(() => {});
-    }
-  }).catch((err) => {
-    console.warn("DuckDB Preload:", err);
-  });
+  // DuckDB im Hintergrund vorwärmen (Lazy Loading — Benutzeroberfläche startet sofort).
+  // Auf mobilen Geräten / Touch / Datensparmodus nicht automatisch laden, um Bandbreite und RAM zu schonen:
+  const isTouchDevice = ("ontouchstart" in window) || navigator.maxTouchPoints > 0;
+  if (!isTouchDevice && !navigator.connection?.saveData && window.innerWidth > 768) {
+    ensureDb().then(() => {
+      // Nach erfolgreichem Laden Statusbar aktualisieren, falls noch auf der Startseite
+      if (!location.hash || location.hash === "#" || location.hash === "#/") {
+        q(`SELECT (SELECT count(*) FROM documents)::INT AS d,
+                  (SELECT count(DISTINCT date) FROM documents
+                   WHERE category NOT IN ('Antrag', 'Anlage'))::INT AS s,
+                  (SELECT count(*) FROM documents WHERE category = 'Antrag')::INT AS a`)
+          .then(([m]) => {
+            status(`Bereit — ${m.s} Sitzungen, ${m.a} Anträge, ${m.d} Dokumente. Wählen Sie einen Bereich oder suchen Sie oben.`);
+          }).catch(() => {});
+      }
+    }).catch((err) => {
+      console.warn("DuckDB Preload:", err);
+    });
+  }
 } catch (err) {
   bootMsg(`Fehler: ${err.message}`);
   console.error(err);

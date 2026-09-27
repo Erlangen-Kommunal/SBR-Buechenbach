@@ -28,6 +28,7 @@ import json
 import os
 import re
 import sys
+from datetime import date
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -40,7 +41,7 @@ COMMITTEE_NUM = 51  # Stadtteilbeirat Büchenbach
 COMMITTEE_NAME = "Stadtteilbeirat Büchenbach"
 DOWNLOAD_DIR = Path(__file__).parent
 INDEX_FILE = DOWNLOAD_DIR / "index.json"
-SCRAPE_YEARS = range(2020, 2027)
+SCRAPE_YEARS = range(2020, date.today().year + 2)
 MODEL = "claude-opus-4-8"
 MAX_TOKENS = 4096
 
@@ -245,8 +246,13 @@ def load_index(http: requests.Session, force: bool = False) -> list[dict]:
     else:
         print(f"Scraping document index for {COMMITTEE_NAME}...")
         docs = _build_index(http)
-        with open(INDEX_FILE, "w", encoding="utf-8") as f:
-            json.dump(docs, f, ensure_ascii=False, indent=2)
+        if not docs and INDEX_FILE.exists():
+            print("WARNUNG: Scrape lieferte 0 Dokumente. Behalte bestehenden Index bei.")
+            with open(INDEX_FILE, encoding="utf-8") as f:
+                docs = json.load(f)
+        else:
+            with open(INDEX_FILE, "w", encoding="utf-8") as f:
+                json.dump(docs, f, ensure_ascii=False, indent=2)
 
     for d in docs:
         d["downloaded"] = (DOWNLOAD_DIR / d["filename"]).exists()
@@ -329,9 +335,17 @@ def _download_one(doc: dict, http: requests.Session) -> str:
     try:
         r = http.get(url, headers=HTTP_HEADERS, stream=True, timeout=60)
         if r.status_code == 200:
-            with open(path, "wb") as f:
+            part_path = path.with_suffix(path.suffix + ".part")
+            with open(part_path, "wb") as f:
                 for chunk in r.iter_content(8192):
                     f.write(chunk)
+            if path.suffix.lower() == ".pdf":
+                with open(part_path, "rb") as f:
+                    header = f.read(5)
+                if not header.startswith(b"%PDF"):
+                    part_path.unlink(missing_ok=True)
+                    return f"Fehler: Download war kein gültiges PDF ({path.name})"
+            part_path.replace(path)
             doc["downloaded"] = True
             note = ""
             if path.suffix.lower() == ".pdf" and path.stat().st_size >= COMPRESS_MAX_BYTES:
