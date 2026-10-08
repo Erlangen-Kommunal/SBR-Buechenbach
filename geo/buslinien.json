@@ -1,5 +1,5 @@
 {
-  "stand": "2026-07-29",
+  "stand": "2026-10-08",
   "quelle": "OpenStreetMap (Linien mit Halt im Beiratsgebiet)",
   "beirat": "Stadtteilbeirat Büchenbach",
   "haltestellen": [
@@ -30,61 +30,5 @@
     "Zambellistraße",
     "Zum Hutacker"
   ],
-  "linien": [
-    {
-      "ref": "201",
-      "art": "bus",
-      "richtungen": 29
-    },
-    {
-      "ref": "280",
-      "art": "bus",
-      "richtungen": 2
-    },
-    {
-      "ref": "281",
-      "art": "bus",
-      "richtungen": 7
-    },
-    {
-      "ref": "286",
-      "art": "bus",
-      "richtungen": 3
-    },
-    {
-      "ref": "287",
-      "art": "bus",
-      "richtungen": 3
-    },
-    {
-      "ref": "289",
-      "art": "bus",
-      "richtungen": 3
-    },
-    {
-      "ref": "293",
-      "art": "bus",
-      "richtungen": 2
-    },
-    {
-      "ref": "296",
-      "art": "bus",
-      "richtungen": 2
-    },
-    {
-      "ref": "298",
-      "art": "bus",
-      "richtungen": 2
-    },
-    {
-      "ref": "N28",
-      "art": "bus",
-      "richtungen": 2
-    },
-    {
-      "ref": "287T",
-      "art": "bus",
-      "richtungen": 2
-    }
-  ]
+  "linien": []
 }
