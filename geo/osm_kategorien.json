@@ -1,5 +1,5 @@
 {
-  "stand": "2026-08-02",
+  "stand": "2026-10-15",
   "quelle": "© OpenStreetMap-Mitwirkende (ODbL)",
   "punkt": [
     {
@@ -93,14 +93,14 @@
       "label": "Radweg-Infrastruktur",
       "icon": "🚲",
       "farbe": "#087f5b",
-      "count": 65
+      "count": 0
     },
     {
       "key": "tempo",
       "label": "Tempo-Beschränkung (unter 50 km/h)",
       "icon": "🚦",
       "farbe": "#e8590c",
-      "count": 309
+      "count": 0
     }
   ]
 }
