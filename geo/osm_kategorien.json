@@ -1,5 +1,5 @@
 {
-  "stand": "2026-08-02",
+  "stand": "2026-10-29",
   "quelle": "© OpenStreetMap-Mitwirkende (ODbL)",
   "punkt": [
     {
@@ -70,14 +70,14 @@
       "label": "Querungen",
       "icon": "🚸",
       "farbe": "#f08c00",
-      "count": 174
+      "count": 175
     },
     {
       "key": "abfall",
       "label": "Abfall & Recycling",
       "icon": "🗑️",
       "farbe": "#5c940d",
-      "count": 53
+      "count": 59
     },
     {
       "key": "bank",
@@ -93,7 +93,7 @@
       "label": "Radweg-Infrastruktur",
       "icon": "🚲",
       "farbe": "#087f5b",
-      "count": 65
+      "count": 64
     },
     {
       "key": "tempo",

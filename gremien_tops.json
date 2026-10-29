@@ -1,5 +1,5 @@
 {
- "stand": "2026-09-27",
+ "stand": "2026-10-29",
  "wahlperioden": [
   {
    "label": "2020 – 2026",
@@ -22,6 +22,1774 @@
   "19": "Jugendhilfeausschuss"
  },
  "tops": [
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-10-29",
+   "ksinr": "2115636",
+   "ktonr": "2115636_Ö_9",
+   "top": "Ö 9",
+   "titel": "Bürgerantrag \"Mieten-Notstand in Erlangen stoppen\"; Zulässigkeit des Bürgerantrags",
+   "kvonr": "2142037",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2142037",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-10-29",
+   "ksinr": "2115636",
+   "ktonr": "2115636_Ö_8",
+   "top": "Ö 8",
+   "titel": "Bericht aus nichtöffentlicher Sitzung",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115636",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-10-29",
+   "ksinr": "2115636",
+   "ktonr": "2115636_Ö_7",
+   "top": "Ö 7",
+   "titel": "Mitteilungen zur Kenntnis",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115636",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-10-29",
+   "ksinr": "2115636",
+   "ktonr": "2115636_Ö_14.2",
+   "top": "Ö 14.2",
+   "titel": "Anfrage der SPD-Fraktion zum Stadtrat 29.10.2026: Konsolidierungsliste und Stellenplan",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115636",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-10-29",
+   "ksinr": "2115636",
+   "ktonr": "2115636_Ö_14.1",
+   "top": "Ö 14.1",
+   "titel": "Anfrage der Erlanger Linke-Fraktion: Sprachkurse für Geflüchtete",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115636",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-10-29",
+   "ksinr": "2115636",
+   "ktonr": "2115636_Ö_14",
+   "top": "Ö 14",
+   "titel": "Anfragen",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115636",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-10-29",
+   "ksinr": "2115636",
+   "ktonr": "2115636_Ö_13.1",
+   "top": "Ö 13.1",
+   "titel": "Dringlichkeitsantrag von Frau Stadträin Grille zur Stadtratssitzung am 29. Oktober 2026: Finanzierbarkeit der Stadt-Umland-Bahn",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115636",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-10-29",
+   "ksinr": "2115636",
+   "ktonr": "2115636_Ö_13",
+   "top": "Ö 13",
+   "titel": "Gesamtstädtisches Fußverkehrskonzept und Maßnahmenprogramm",
+   "kvonr": "2141920",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141920",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Donato-Polli-Straße",
+      "Steigerwaldallee"
+     ],
+     "beleg": "… malen Gehweg, Sicherheitsdefizit, Restgehwegbreite 1,30 - 1,50 m Hinweise Beteiligungen 1 Büchenbach Querung Donato-Polli- Straße/Domprobststraße gering Hauptnetz x x Schulweg, wichtige Fuß- und Radachse, Quartierserschließung (Tempo 30 Zo …",
+     "ort": true,
+     "dokument": "Anlage 2: Maßnahmenpriorisierung und Programme für die Gesamtstadt 202"
+    }
+   ],
+   "strassen_im_gebiet": [
+    "Donato-Polli-Straße",
+    "Steigerwaldallee"
+   ],
+   "linien": [],
+   "nennt_ort": true,
+   "marken": [],
+   "quellen": [
+    "anlage"
+   ],
+   "relevant": true
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-10-29",
+   "ksinr": "2115636",
+   "ktonr": "2115636_Ö_12",
+   "top": "Ö 12",
+   "titel": "Reform des BayKiBiG: Wegfall Elternbeitragszuschuss bei der Stadt Erlangen",
+   "kvonr": "2141945",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141945",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-10-29",
+   "ksinr": "2115636",
+   "ktonr": "2115636_Ö_11",
+   "top": "Ö 11",
+   "titel": "Fortschreibung des Haushaltskonsolidierungskonzeptes;Weiteres Einsparvolumen in der laufenden Verwaltungstätigkeit im Haushaltsjahr 2026, Sperre von Aufwendungs-/Auszahlungsansätzen",
+   "kvonr": "2142045",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2142045",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Stadtrat",
+   "kgrnr": 1,
+   "datum": "2026-10-29",
+   "ksinr": "2115636",
+   "ktonr": "2115636_Ö_10",
+   "top": "Ö 10",
+   "titel": "Haushaltssatzung der rechtlich selbständigen Wellhöfer-Feigel-Heindel-Stiftung für das Haushaltsjahr 2027",
+   "kvonr": "2142010",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2142010",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_9",
+   "top": "Ö 9",
+   "titel": "Auflistung Einsparmöglichkeiten; hier: Antrag SPD-Fraktion 100/2026 und Konsolidierungsliste in Fachausschüssen vorberaten; hier: Antrag SPD-Fraktion 104/2026",
+   "kvonr": "2142018",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2142018",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_8",
+   "top": "Ö 8",
+   "titel": "Interfraktioneller Antrag Nr. 099/2026 \"Zusätzliche öffentliche Stadtratssitzung zur Haushaltskonsolidierung vor dem 13. Oktober 2026\"",
+   "kvonr": "2142021",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2142021",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_7.3",
+   "top": "Ö 7.3",
+   "titel": "SPD-Antrag Nr. 104/2026: Konsolidierungsliste in Fachausschüssen vorberaten; Einsparmöglichkeiten Referat II",
+   "kvonr": "2142009",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2142009",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_7.2",
+   "top": "Ö 7.2",
+   "titel": "Haushaltskonsolidierung Referat OBM",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115635",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_7.1",
+   "top": "Ö 7.1",
+   "titel": "Bearbeitungsstand der Fraktionsanträge - Übersicht 10/2026",
+   "kvonr": "2142004",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2142004",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_7",
+   "top": "Ö 7",
+   "titel": "Mitteilungen zur Kenntnis",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115635",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_18.2",
+   "top": "Ö 18.2",
+   "titel": "Anfrage der SPD-Fraktion zum HFPA am 21.10.2026: Konsolidierungsliste Amt 11: Auswirkungen der Kürzungen bei Volontariaten und Werkstudierenden",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115635",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_18.1",
+   "top": "Ö 18.1",
+   "titel": "Anfragen der SPD-Fraktion zum HFPA am 21. Oktober 2026: Haushaltskonsolidierung",
+   "kvonr": "2142016",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2142016",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_18",
+   "top": "Ö 18",
+   "titel": "Anfragen",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115635",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_17.1",
+   "top": "Ö 17.1",
+   "titel": "Zwischenbericht des Amtes 33 Budget 2026 - Stand 31.07.2026",
+   "kvonr": "2142033",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2142033",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_17",
+   "top": "Ö 17",
+   "titel": "Zwischenbericht des Amtes 50: Budget und Arbeitsprogramm 2026 – Stand 31.07.2026",
+   "kvonr": "2141948",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141948",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_16",
+   "top": "Ö 16",
+   "titel": "Reform des BayKiBiG: Wegfall Elternbeitragszuschuss bei der Stadt Erlangen",
+   "kvonr": "2141945",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141945",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_15",
+   "top": "Ö 15",
+   "titel": "Organisatorische Änderungen im Stadtjugendamt (Amt 51) Vollzug eines KW-Vermerks im Bereich Abenteuerspielplatz (Planstelle Nr. 5131105)",
+   "kvonr": "2141680",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141680",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "fundstellen": [
+    {
+     "quelle": "vorlage",
+     "strassen": [],
+     "beleg": "… haft dringend benötigt. Die beiden Abenteuerspielplätze des Stadtjugendamtes befinden sich in den Stadtteilen Büchenbach und Bruck. Bei beiden Stadtteilen handelt es sich um Quartiere mit einem hohen Sozialindex (Ökonomische Situa …",
+     "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… aft dringend benötigt. Die beiden Abenteuerspielplätze des Stadtjugendamtes befinden sich in den Stadtteilen Büchenbach und Bruck. Bei beiden Stadtteilen handelt es sich um Quartiere mit einem hohen Sozialindex (Ökonomische Situ …",
+     "ort": true,
+     "dokument": "Beschluss Stand: 21.10.2026"
+    }
+   ],
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": true,
+   "marken": [],
+   "quellen": [
+    "vorlage",
+    "anlage"
+   ],
+   "relevant": true
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_14",
+   "top": "Ö 14",
+   "titel": "Bedarfsorientierte Personalplanung bei freiwilligen Aufgaben - Antrag Nr. 57/2026 FDP",
+   "kvonr": "2141893",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141893",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_13",
+   "top": "Ö 13",
+   "titel": "Antrag Nr. 091/2026 der ÖDP: Handel im Wandel - Runder Tisch für den Erlanger Einzelhandel",
+   "kvonr": "2142015",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2142015",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_12",
+   "top": "Ö 12",
+   "titel": "Antrag Nr. 101/2026 der SPD-Fraktion zum HFPA: Vorlage von Arbeitsprogrammen",
+   "kvonr": "2142011",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2142011",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_11",
+   "top": "Ö 11",
+   "titel": "Haushaltssatzung der rechtlich selbständigen Wellhöfer-Feigel-Heindel-Stiftung für das Haushaltsjahr 2027",
+   "kvonr": "2142010",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2142010",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Haupt-, Finanz- und Personalausschuss",
+   "kgrnr": 5,
+   "datum": "2026-10-21",
+   "ksinr": "2115635",
+   "ktonr": "2115635_Ö_10",
+   "top": "Ö 10",
+   "titel": "Lern- und Gedenkort Heil- und Pflegeanstalt Erlangen; Gründung eines eingetragenen Vereins; hier: Mitgliedschaft der Stadt Erlangen",
+   "kvonr": "2141926",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141926",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_9",
+   "top": "Ö 9",
+   "titel": "2. Deckblatt zum vorhabenbezogenen Bebauungsplan Nr. 383 der Stadt Erlangen - Erlangen Arcaden -; hier: Billigungsbeschluss",
+   "kvonr": "2141901",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141901",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… cher Personennahverkehr (ÖPNV) Das Plangebiet ist durch mehrere Haltepunkte der Haltestelle „Arcaden“ an die Buslinien 20, 30, 201, 205, 208, 209, 209E, 210, 252, 253, 254, 281, 284, 285, 286, 287, 289, 290, 294, 295, 299, N10, N28, N29 angebunden, welche eine sehr gute Erreichbarkeit des Einkaufszentrums aus dem gesamten Stadtgebiet ermöglich …",
+     "linien": [
+      "201",
+      "281",
+      "286",
+      "287",
+      "289",
+      "N28"
+     ],
+     "dokument": "Anlage 2: Begründung Entwurf zum 2.Deckblatt des Bebauungsplans Nr. 383"
+    }
+   ],
+   "strassen_im_gebiet": [],
+   "linien": [
+    "201",
+    "281",
+    "286",
+    "287",
+    "289",
+    "N28"
+   ],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [
+    "anlage"
+   ],
+   "relevant": true
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_8.5",
+   "top": "Ö 8.5",
+   "titel": "Grundwasserstichtagsmessung",
+   "kvonr": "2141994",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141994",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_8.4",
+   "top": "Ö 8.4",
+   "titel": "Kündigung unseres Vertrags mit CONNECT Mobility GmbH (uRyde-Mitfahrgelegenheits-App)",
+   "kvonr": "2141978",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141978",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_8.3",
+   "top": "Ö 8.3",
+   "titel": "Zuschussverteilung an die Naturschutzverbände",
+   "kvonr": "2141934",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141934",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_8.2",
+   "top": "Ö 8.2",
+   "titel": "Stadtentwicklungsprojekt \"Vom Großparkplatz zur Regnitzstadt\" Hier: Vorstellung des fortgeschriebenen Rahmenplans und der Konzeptgrafiken",
+   "kvonr": "2141919",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141919",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_8.1",
+   "top": "Ö 8.1",
+   "titel": "Bearbeitungsstand Fraktionsanträge",
+   "kvonr": "2141991",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141991",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_8",
+   "top": "Ö 8",
+   "titel": "Mitteilungen zur Kenntnis",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115633",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_7",
+   "top": "Ö 7",
+   "titel": "Anfragen Werkausschuss EB77",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115633",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_6",
+   "top": "Ö 6",
+   "titel": "Abhilfe gegen Vermüllung des Schlossgartens hier: Antrag Nr. 033/2026 der SPD-Fraktion",
+   "kvonr": "2141995",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141995",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_5",
+   "top": "Ö 5",
+   "titel": "Mitteilungen zur Kenntnis Werkausschuss EB77",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115633",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_16",
+   "top": "Ö 16",
+   "titel": "Anfragen",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115633",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_15.1",
+   "top": "Ö 15.1",
+   "titel": "Aktueller Sachstand Carsharing in Erlangen",
+   "kvonr": "2142006",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2142006",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_15",
+   "top": "Ö 15",
+   "titel": "Konzeptionelle Weiterentwicklung des Lenkungskreis Klima-Aufbruch",
+   "kvonr": "2141822",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141822",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_14",
+   "top": "Ö 14",
+   "titel": "RSV Erlangen-Herzogenaurach, hier: Vorplanung",
+   "kvonr": "2141895",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141895",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_13",
+   "top": "Ö 13",
+   "titel": "Gesamtstädtisches Fußverkehrskonzept und Maßnahmenprogramm",
+   "kvonr": "2141920",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141920",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "fundstellen": [
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Donato-Polli-Straße",
+      "Steigerwaldallee"
+     ],
+     "beleg": "… malen Gehweg, Sicherheitsdefizit, Restgehwegbreite 1,30 - 1,50 m Hinweise Beteiligungen 1 Büchenbach Querung Donato-Polli- Straße/Domprobststraße gering Hauptnetz x x Schulweg, wichtige Fuß- und Radachse, Quartierserschließung (Tempo 30 Zo …",
+     "ort": true,
+     "dokument": "Anlage 2: Maßnahmenpriorisierung und Programme für die Gesamtstadt 202"
+    }
+   ],
+   "strassen_im_gebiet": [
+    "Donato-Polli-Straße",
+    "Steigerwaldallee"
+   ],
+   "linien": [],
+   "nennt_ort": true,
+   "marken": [],
+   "quellen": [
+    "anlage"
+   ],
+   "relevant": true
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_12",
+   "top": "Ö 12",
+   "titel": "Anfrage: Parkraumbewirtschaftung - GRÜNE/GL-Fraktion",
+   "kvonr": "2141942",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141942",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_11",
+   "top": "Ö 11",
+   "titel": "Instandsetzung Entwässerung der südlichen Eltersdorfer Straße",
+   "kvonr": "2141644",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141644",
+   "strassen": [
+    "Eltersdorfer Straße"
+   ],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö_10",
+   "top": "Ö 10",
+   "titel": "Zukunftsplan Fahrradstadt; hier: Radvorrangroute Büchenbach Süd-Burgberg - Fahrradstraße Häuslinger Straße",
+   "kvonr": "2141372",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141372",
+   "strassen": [
+    "Häuslinger Straße"
+   ],
+   "strassen_im_titel": [
+    "Häuslinger Straße"
+   ],
+   "linien_im_titel": [],
+   "nennt_ort_titel": true,
+   "fundstellen": [
+    {
+     "quelle": "vorlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Dresselweg",
+      "Flachsweg",
+      "Heidackerstraße",
+      "Häuslinger Straße",
+      "Kernbergstraße",
+      "Mönaustraße",
+      "Straßberg"
+     ],
+     "beleg": "… ehrszählung vom 27.05.2025). Zusätzlich ist die Netzbedeutung für den MIV als nachrangig einzustufen. Mit dem Adenauerring existiert eine vielfach leistungsfähigere und schnellere Anbindung für den Durchgangsverkehr. Auch für die Na …",
+     "marke": "Baugebiet 413"
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Adenauer-Ring",
+      "Dresselweg",
+      "Flachsweg",
+      "Heidackerstraße",
+      "Häuslinger Straße",
+      "Kernbergstraße",
+      "Mönaustraße",
+      "Straßberg"
+     ],
+     "beleg": "… rszählung vom 27.05.2025). Zusätzlich ist die Netzbedeutung für den MIV als nachrangig einzustu- fen. Mit dem Adenauerring existiert eine vielfach leistungsfähigere und schnellere Anbindung für den Durchgangsverkehr. Auch für die N …",
+     "marke": "Baugebiet 413",
+     "dokument": "Beschlussvorlage"
+    }
+   ],
+   "strassen_im_gebiet": [
+    "Adenauer-Ring",
+    "Dresselweg",
+    "Flachsweg",
+    "Heidackerstraße",
+    "Häuslinger Straße",
+    "Kernbergstraße",
+    "Mönaustraße",
+    "Straßberg"
+   ],
+   "linien": [],
+   "nennt_ort": true,
+   "marken": [
+    "Baugebiet 413"
+   ],
+   "quellen": [
+    "titel",
+    "vorlage",
+    "anlage"
+   ],
+   "relevant": true
+  },
+  {
+   "gremium": "Umwelt-, Verkehrs- und Planungsausschuss",
+   "kgrnr": 15,
+   "datum": "2026-10-13",
+   "ksinr": "2115633",
+   "ktonr": "2115633_Ö",
+   "top": "Ö",
+   "titel": "Umwelt-, Verkehrs- und Planungsausschuss / Umwelt-, Verkehrs- und Planungsbeirat:",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115633",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-10-08",
+   "ksinr": "2115632",
+   "ktonr": "2115632_Ö_9",
+   "top": "Ö 9",
+   "titel": "Anfragen",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115632",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-10-08",
+   "ksinr": "2115632",
+   "ktonr": "2115632_Ö_8",
+   "top": "Ö 8",
+   "titel": "Haushaltskonsolidierung 2026 - 2029",
+   "kvonr": "2141986",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141986",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-10-08",
+   "ksinr": "2115632",
+   "ktonr": "2115632_Ö_7",
+   "top": "Ö 7",
+   "titel": "Antrag der CSU-Stadtratsfraktion Nr. 037/2026 vom 27.05.2026; Antrag zur Neuregelung der Kita-Förderung und deren Folgen für Eltern und Träger in Erlangen",
+   "kvonr": "2141771",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141771",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-10-08",
+   "ksinr": "2115632",
+   "ktonr": "2115632_Ö_6",
+   "top": "Ö 6",
+   "titel": "Reform des BayKiBiG: Wegfall Elternbeitragszuschuss bei der Stadt Erlangen",
+   "kvonr": "2141945",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141945",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-10-08",
+   "ksinr": "2115632",
+   "ktonr": "2115632_Ö_5",
+   "top": "Ö 5",
+   "titel": "Information zu Auswirkungen und Umsetzung der Reform des Bayerischen Kinderbildungs- und betreuungsgesetzes",
+   "kvonr": "2141933",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141933",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-10-08",
+   "ksinr": "2115632",
+   "ktonr": "2115632_Ö_4",
+   "top": "Ö 4",
+   "titel": "Organisatorische Änderungen im Stadtjugendamt (Amt 51) Vollzug eines KW-Vermerks im Bereich Abenteuerspielplatz (Planstelle Nr. 5131105)",
+   "kvonr": "2141680",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141680",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "fundstellen": [
+    {
+     "quelle": "vorlage",
+     "strassen": [],
+     "beleg": "… haft dringend benötigt. Die beiden Abenteuerspielplätze des Stadtjugendamtes befinden sich in den Stadtteilen Büchenbach und Bruck. Bei beiden Stadtteilen handelt es sich um Quartiere mit einem hohen Sozialindex (Ökonomische Situa …",
+     "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… aft dringend benötigt. Die beiden Abenteuerspielplätze des Stadtjugendamtes befinden sich in den Stadtteilen Büchenbach und Bruck. Bei beiden Stadtteilen handelt es sich um Quartiere mit einem hohen Sozialindex (Ökonomische Situ …",
+     "ort": true,
+     "dokument": "Beschluss Stand: 21.10.2026"
+    }
+   ],
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": true,
+   "marken": [],
+   "quellen": [
+    "vorlage",
+    "anlage"
+   ],
+   "relevant": true
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-10-08",
+   "ksinr": "2115632",
+   "ktonr": "2115632_Ö_3",
+   "top": "Ö 3",
+   "titel": "Sachstandsbericht Jugendsozialarbeit an Schulen (JaS)",
+   "kvonr": "2141950",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141950",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "fundstellen": [
+    {
+     "quelle": "vorlage",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… ymnasium Fridericianum · Heinrich-Kirchner-Grundschule · Loschge-Grundschule · Montessori Schule · Realschule am Europakanal · Staatliche Berufsoberschule/Fachoberschule · Städtisches Marie-Theres-Gymnasium Funktionale Bedeutung der J …",
+     "marke": "Mönauschule",
+     "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… ridericianum • Heinrich-Kirchner-Grundschule • Loschge-Grundschule • Montessori Schule • Realschule am Europakanal • Staatliche Berufsoberschule/Fachoberschule • Städtisches Marie-Theres-Gymnasium Funktionale Bedeut …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Mitteilung zur Kenntnis"
+    }
+   ],
+   "strassen_im_gebiet": [
+    "Am Europakanal"
+   ],
+   "linien": [],
+   "nennt_ort": true,
+   "marken": [
+    "Mönauschule"
+   ],
+   "quellen": [
+    "vorlage",
+    "anlage"
+   ],
+   "relevant": true
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-10-08",
+   "ksinr": "2115632",
+   "ktonr": "2115632_Ö_2",
+   "top": "Ö 2",
+   "titel": "Vorstellung vom FASD Netzwerk Nordbayern",
+   "kvonr": "2141954",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141954",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-10-08",
+   "ksinr": "2115632",
+   "ktonr": "2115632_Ö_1.1",
+   "top": "Ö 1.1",
+   "titel": "Bearbeitungsstand der Fraktionsanträge",
+   "kvonr": "2141956",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141956",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Jugendhilfeausschuss",
+   "kgrnr": 19,
+   "datum": "2026-10-08",
+   "ksinr": "2115632",
+   "ktonr": "2115632_Ö_1",
+   "top": "Ö 1",
+   "titel": "Mitteilungen zur Kenntnis",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115632",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Bauausschuss / Werkausschuss für den Entwässerungsbetrieb",
+   "kgrnr": 8,
+   "datum": "2026-10-06",
+   "ksinr": "2115629",
+   "ktonr": "2115629_Ö_9",
+   "top": "Ö 9",
+   "titel": "Teilerneuerung Verkehrsrechner Bedarfsanmeldung gem. § 5.3 DABau",
+   "kvonr": "2141971",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141971",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Bauausschuss / Werkausschuss für den Entwässerungsbetrieb",
+   "kgrnr": 8,
+   "datum": "2026-10-06",
+   "ksinr": "2115629",
+   "ktonr": "2115629_Ö_8",
+   "top": "Ö 8",
+   "titel": "Straßennutzung und -erhaltung - Bedarfsplan Risse – Sanierung; hier: Beschluss Risse-Sanierung im Asphaltstraßenbau – Stadtgebiet gemäß DA Bau",
+   "kvonr": "2141970",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141970",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "fundstellen": [
+    {
+     "quelle": "vorlage",
+     "strassen": [
+      "Steigerwaldallee"
+     ],
+     "beleg": "… s-Str. 6.000 Erwin-Rommel-Straße Kompletter Straßenabschnitt 5.000 Schenkstraße Kreuzung Zeppelinstraße 2.000 Steigerwaldallee Kompletter Straßenabschnitt 2.000 Kurt-Schumacher-Straße Kompletter Straßenabschnitt 5.000 Lachnerstraße Komp …"
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Steigerwaldallee"
+     ],
+     "beleg": "… .000 Erwin-Rommel-Straße Kompletter Straßenabschnitt 5.000 Schenkstraße Kreuzung Zeppelinstraße 2.000 Steigerwaldallee Kompletter Straßenabschnitt 2.000 Kurt-Schumacher-Straße Kompletter Straßenabschnitt 5.000 Lachnerstraß …",
+     "dokument": "Beschluss Entwurfsplanung Stand:06.10.2026"
+    }
+   ],
+   "strassen_im_gebiet": [
+    "Steigerwaldallee"
+   ],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [
+    "vorlage",
+    "anlage"
+   ],
+   "relevant": true
+  },
+  {
+   "gremium": "Bauausschuss / Werkausschuss für den Entwässerungsbetrieb",
+   "kgrnr": 8,
+   "datum": "2026-10-06",
+   "ksinr": "2115629",
+   "ktonr": "2115629_Ö_7",
+   "top": "Ö 7",
+   "titel": "Vollzug des Bayerischen Straßen- und Wegegesetzes (BayStrWG)",
+   "kvonr": "2141966",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141966",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Bauausschuss / Werkausschuss für den Entwässerungsbetrieb",
+   "kgrnr": 8,
+   "datum": "2026-10-06",
+   "ksinr": "2115629",
+   "ktonr": "2115629_Ö_6",
+   "top": "Ö 6",
+   "titel": "Antrag der SPD Fraktion 043/2026 Vogelschlag auch an städtischen Bestandsbauten vermeiden",
+   "kvonr": "2141935",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141935",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Bauausschuss / Werkausschuss für den Entwässerungsbetrieb",
+   "kgrnr": 8,
+   "datum": "2026-10-06",
+   "ksinr": "2115629",
+   "ktonr": "2115629_Ö_5",
+   "top": "Ö 5",
+   "titel": "Statusbericht zu Sanierungsfahrplan für \"Klimaneutrale städtische Liegenschaften (Klima-Aufbruch G1a)\"",
+   "kvonr": "2141974",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141974",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "fundstellen": [
+    {
+     "quelle": "vorlage",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… ilzentrum Büchenbach, Leistung 90 kWp / CO2-Reduktion 30,9 Tonnen Umstellung auf LED-Beleuchtung - Sporthalle am Europakanal, Halle / CO2-Reduktion 3,9 Tonnen - Ernst-Penzoldt-Schule, Klassenräume / CO2-Reduktion 4,8 Tonnen - Max-und- …",
+     "marke": "Sporthalle am Europakanal",
+     "ort": true
+    },
+    {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… tung 90 kWp / CO2-Reduktion 30,9 Tonnen Seite 3 von 11 Umstellung auf LED-Beleuchtung - Sporthalle am Europakanal, Halle / CO2-Reduktion 3,9 Tonnen - Ernst-Penzoldt-Schule, Klassenräume / CO2-Reduktion 4,8 Tonnen - Max- …",
+     "marke": "Sporthalle am Europakanal",
+     "ort": true,
+     "dokument": "Beschluss Stand:06.10.2026"
+    }
+   ],
+   "strassen_im_gebiet": [
+    "Am Europakanal"
+   ],
+   "linien": [],
+   "nennt_ort": true,
+   "marken": [
+    "Sporthalle am Europakanal"
+   ],
+   "quellen": [
+    "vorlage",
+    "anlage"
+   ],
+   "relevant": true
+  },
+  {
+   "gremium": "Bauausschuss / Werkausschuss für den Entwässerungsbetrieb",
+   "kgrnr": 8,
+   "datum": "2026-10-06",
+   "ksinr": "2115629",
+   "ktonr": "2115629_Ö_4.1",
+   "top": "Ö 4.1",
+   "titel": "Strategisches Management- Beschlusscontrolling Beschlussüberwachung III. Quartal 2026",
+   "kvonr": "2141977",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/vo0050.asp?__kvonr=2141977",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Bauausschuss / Werkausschuss für den Entwässerungsbetrieb",
+   "kgrnr": 8,
+   "datum": "2026-10-06",
+   "ksinr": "2115629",
+   "ktonr": "2115629_Ö_4",
+   "top": "Ö 4",
+   "titel": "Mitteilungen zur Kenntnis Bauausschuss",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115629",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Bauausschuss / Werkausschuss für den Entwässerungsbetrieb",
+   "kgrnr": 8,
+   "datum": "2026-10-06",
+   "ksinr": "2115629",
+   "ktonr": "2115629_Ö_10",
+   "top": "Ö 10",
+   "titel": "Anfragen Bauausschuss",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": true,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115629",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
+  {
+   "gremium": "Bauausschuss / Werkausschuss für den Entwässerungsbetrieb",
+   "kgrnr": 8,
+   "datum": "2026-10-06",
+   "ksinr": "2115629",
+   "ktonr": "2115629_Ö",
+   "top": "Ö",
+   "titel": "Bauausschuss",
+   "kvonr": "",
+   "beschluss": "",
+   "routine": false,
+   "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115629",
+   "strassen": [],
+   "strassen_im_titel": [],
+   "linien_im_titel": [],
+   "nennt_ort_titel": false,
+   "strassen_im_gebiet": [],
+   "linien": [],
+   "nennt_ort": false,
+   "marken": [],
+   "quellen": [],
+   "relevant": false
+  },
   {
    "gremium": "Sportausschuss",
    "kgrnr": 11,
@@ -2022,6 +3790,12 @@
      "strassen": [],
      "beleg": "… . Die im Rahmen dieses Projekts gewonnenen Erfahrungen sollen auch bei der Umsetzung des Kulturhauses West in Büchenbach genutzt werden. Darüber hinaus stellte die Unterstützung der IT-Infrastruktur bei Großveranstaltungen wie der …",
      "ort": true
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… Die im Rahmen dieses Projekts gewonnenen Erfahrungen sollen auch bei der Umsetzung des Kulturhauses West in Büchenbach genutzt werden. Darüber hinaus stellte die Unterstützung der IT-Infrastruktur bei Großveranstaltungen wie …",
+     "ort": true
     }
    ],
    "strassen_im_gebiet": [],
@@ -2029,7 +3803,8 @@
    "nennt_ort": true,
    "marken": [],
    "quellen": [
-    "vorlage"
+    "vorlage",
+    "niederschrift"
    ],
    "relevant": true
   },
@@ -2062,6 +3837,12 @@
      "beleg": "… ie eine Einrichtung der Lebenshilfe errichtet. Es stehen nur noch Seite 4 von 7 Restarbeiten aus. • In Büchenbach wurde ein Personalwohnheim geplant, das an die Universität vermietet werden soll. Baubeginn war im Frühjahr …",
      "ort": true,
      "dokument": "Beschluss Stand: 24.09.2026"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… 174 Wohnungen sowie eine Einrichtung der Lebenshilfe errichtet. Es stehen nur noch Restarbeiten aus. • In Büchenbach wurde ein Personalwohnheim geplant, das an die Universität vermietet werden soll. Baubeginn war im Frühjahr …",
+     "ort": true
     }
    ],
    "strassen_im_gebiet": [],
@@ -2070,7 +3851,8 @@
    "marken": [],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "relevant": true
   },
@@ -2270,6 +4052,15 @@
      "beleg": "… trum Büchenbach, Leistung 90 kWp / CO2-Reduktion 20,7 Tonnen Umstellung auf LED-Beleuchtung • Sporthalle am Europakanal, Halle / CO2-Reduktion 3,9 Tonnen • Ernst-Penzoldt-Schule, Klassenräume / CO2-Reduktion 4,8 Tonnen • Max- …",
      "ort": true,
      "dokument": "Beratungsergebnisse Stand:15.09.2026"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… trum Büchenbach, Leistung 90 kWp / CO2-Reduktion 20,7 Tonnen Umstellung auf LED-Beleuchtung • Sporthalle am Europakanal, Halle / CO2-Reduktion 3,9 Tonnen • Ernst-Penzoldt-Schule, Klassenräume / CO2-Reduktion 4,8 Tonnen • Max- …",
+     "marke": "Sporthalle am Europakanal",
+     "ort": true
     }
    ],
    "strassen_im_gebiet": [
@@ -2277,10 +4068,13 @@
    ],
    "linien": [],
    "nennt_ort": true,
-   "marken": [],
+   "marken": [
+    "Sporthalle am Europakanal"
+   ],
    "quellen": [
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "relevant": true
   },
@@ -2442,6 +4236,15 @@
      "beleg": "… ftszeichen: Verantwortliche/r: Vorlagennummer: VI/66 Tiefbauamt 66/333/2026 Fuß-Radwegbrücke über den Adenauerring zur Heinrich-Kirchner-Schule; Hier: Beschluss Vorplanungsentwurf, Vorzugsvariante Beratungsfolge Termin …",
      "marke": "Heinrich-Kirchner-Schule",
      "dokument": "Beschluss Entwurfsplanung Stand:15.09.2026"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [
+      "Adenauer-Ring",
+      "Mönaustraße"
+     ],
+     "beleg": "… TOP 12 66/333/2026 Fuß-Radwegbrücke über den Adenauerring zur Heinrich-Kirchner-Schule; Hier: Beschluss Vorplanungsentwurf, Vorzugsvariante Sachbericht: 1. Erg …",
+     "marke": "Heinrich-Kirchner-Schule"
     }
    ],
    "strassen_im_gebiet": [
@@ -2456,7 +4259,8 @@
    "quellen": [
     "titel",
     "vorlage",
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "relevant": true
   },
@@ -2591,14 +4395,24 @@
    "url": "https://ratsinfo.erlangen.de/si0057.asp?__ksinr=2115616",
    "strassen": [],
    "strassen_im_gebiet": [],
-   "nennt_ort": false,
-   "relevant": false,
+   "nennt_ort": true,
+   "relevant": true,
    "strassen_im_titel": [],
-   "quellen": [],
+   "quellen": [
+    "niederschrift"
+   ],
    "linien_im_titel": [],
    "linien": [],
    "nennt_ort_titel": false,
-   "marken": []
+   "marken": [],
+   "fundstellen": [
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… on Alt- und Gebrauchttextilien unwirtschaftlich. Die SPD verweist in ihrem Antrag auf die Kolping-Familie Büchenbach, die offensichtlich erwägt die Sammlung von Alt- und Gebrauchttextilien von der ARGE zu übernehmen. Ferne wi …",
+     "ort": true
+    }
+   ]
   },
   {
    "gremium": "Stadtrat",
@@ -2654,7 +4468,8 @@
    "relevant": true,
    "strassen_im_titel": [],
    "quellen": [
-    "anlage"
+    "anlage",
+    "niederschrift"
    ],
    "linien_im_titel": [],
    "fundstellen": [
@@ -2667,9 +4482,19 @@
       "298"
      ],
      "dokument": "Anlage 1 - Einsparmaßnahmen ÖPNV - Vorschläge ESTW"
+    },
+    {
+     "quelle": "niederschrift",
+     "strassen": [],
+     "beleg": "… nd konkrete Umsetzungsvorschläge zum Fahrplanwechsel 2027/2028 zum Beschluss vorzulegen: Nr. A Anpassung Linie 289 mit 45 gegen 2 Stimmen angenommen. Nr. B Einführung von Kurzläufern mit 42 gegen 5 Stimmen angenomm …",
+     "linien": [
+      "289",
+      "298"
+     ]
     }
    ],
    "linien": [
+    "289",
     "293",
     "298"
    ],
@@ -208061,6 +209886,10 @@
     "fund": null,
     "anlagen": true
    },
+   "2141644": {
+    "fund": null,
+    "anlagen": true
+   },
    "2141645": {
     "fund": null,
     "anlagen": true
@@ -208133,6 +209962,22 @@
    "2141679": {
     "fund": null,
     "anlagen": true
+   },
+   "2141680": {
+    "fund": {
+     "quelle": "vorlage",
+     "strassen": [],
+     "beleg": "… haft dringend benötigt. Die beiden Abenteuerspielplätze des Stadtjugendamtes befinden sich in den Stadtteilen Büchenbach und Bruck. Bei beiden Stadtteilen handelt es sich um Quartiere mit einem hohen Sozialindex (Ökonomische Situa …",
+     "ort": true
+    },
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… aft dringend benötigt. Die beiden Abenteuerspielplätze des Stadtjugendamtes befinden sich in den Stadtteilen Büchenbach und Bruck. Bei beiden Stadtteilen handelt es sich um Quartiere mit einem hohen Sozialindex (Ökonomische Situ …",
+     "ort": true,
+     "dokument": "Beschluss Stand: 21.10.2026"
+    }
    },
    "2141681": {
     "fund": null,
@@ -208387,6 +210232,10 @@
     "anlagen": true
    },
    "2141767": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141771": {
     "fund": null,
     "anlagen": true
    },
@@ -208768,6 +210617,24 @@
     "fund": null,
     "anlagen": true
    },
+   "2141901": {
+    "fund": null,
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [],
+     "beleg": "… cher Personennahverkehr (ÖPNV) Das Plangebiet ist durch mehrere Haltepunkte der Haltestelle „Arcaden“ an die Buslinien 20, 30, 201, 205, 208, 209, 209E, 210, 252, 253, 254, 281, 284, 285, 286, 287, 289, 290, 294, 295, 299, N10, N28, N29 angebunden, welche eine sehr gute Erreichbarkeit des Einkaufszentrums aus dem gesamten Stadtgebiet ermöglich …",
+     "linien": [
+      "201",
+      "281",
+      "286",
+      "287",
+      "289",
+      "N28"
+     ],
+     "dokument": "Anlage 2: Begründung Entwurf zum 2.Deckblatt des Bebauungsplans Nr. 383"
+    }
+   },
    "2141902": {
     "fund": null,
     "anlagen": true
@@ -208829,6 +210696,24 @@
     "fund": null,
     "anlagen": true
    },
+   "2141919": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141920": {
+    "fund": null,
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Donato-Polli-Straße",
+      "Steigerwaldallee"
+     ],
+     "beleg": "… malen Gehweg, Sicherheitsdefizit, Restgehwegbreite 1,30 - 1,50 m Hinweise Beteiligungen 1 Büchenbach Querung Donato-Polli- Straße/Domprobststraße gering Hauptnetz x x Schulweg, wichtige Fuß- und Radachse, Quartierserschließung (Tempo 30 Zo …",
+     "ort": true,
+     "dokument": "Anlage 2: Maßnahmenpriorisierung und Programme für die Gesamtstadt 202"
+    }
+   },
    "2141921": {
     "fund": null,
     "anlagen": true
@@ -208845,6 +210730,10 @@
     "fund": null,
     "anlagen": true
    },
+   "2141926": {
+    "fund": null,
+    "anlagen": true
+   },
    "2141927": {
     "fund": null,
     "anlagen": true
@@ -208854,6 +210743,18 @@
     "anlagen": true
    },
    "2141932": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141933": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141934": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141935": {
     "fund": null,
     "anlagen": true
    },
@@ -208873,7 +210774,75 @@
     "fund": null,
     "anlagen": true
    },
+   "2141942": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141945": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141948": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141950": {
+    "fund": {
+     "quelle": "vorlage",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… ymnasium Fridericianum · Heinrich-Kirchner-Grundschule · Loschge-Grundschule · Montessori Schule · Realschule am Europakanal · Staatliche Berufsoberschule/Fachoberschule · Städtisches Marie-Theres-Gymnasium Funktionale Bedeutung der J …",
+     "marke": "Mönauschule",
+     "ort": true
+    },
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… ridericianum • Heinrich-Kirchner-Grundschule • Loschge-Grundschule • Montessori Schule • Realschule am Europakanal • Staatliche Berufsoberschule/Fachoberschule • Städtisches Marie-Theres-Gymnasium Funktionale Bedeut …",
+     "marke": "Mönauschule",
+     "ort": true,
+     "dokument": "Mitteilung zur Kenntnis"
+    }
+   },
+   "2141954": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141956": {
+    "fund": null,
+    "anlagen": true
+   },
    "2141962": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141966": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141970": {
+    "fund": {
+     "quelle": "vorlage",
+     "strassen": [
+      "Steigerwaldallee"
+     ],
+     "beleg": "… s-Str. 6.000 Erwin-Rommel-Straße Kompletter Straßenabschnitt 5.000 Schenkstraße Kreuzung Zeppelinstraße 2.000 Steigerwaldallee Kompletter Straßenabschnitt 2.000 Kurt-Schumacher-Straße Kompletter Straßenabschnitt 5.000 Lachnerstraße Komp …"
+    },
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Steigerwaldallee"
+     ],
+     "beleg": "… .000 Erwin-Rommel-Straße Kompletter Straßenabschnitt 5.000 Schenkstraße Kreuzung Zeppelinstraße 2.000 Steigerwaldallee Kompletter Straßenabschnitt 2.000 Kurt-Schumacher-Straße Kompletter Straßenabschnitt 5.000 Lachnerstraß …",
+     "dokument": "Beschluss Entwurfsplanung Stand:06.10.2026"
+    }
+   },
+   "2141971": {
     "fund": null,
     "anlagen": true
    },
@@ -208881,7 +210850,41 @@
     "fund": null,
     "anlagen": true
    },
+   "2141974": {
+    "fund": {
+     "quelle": "vorlage",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… ilzentrum Büchenbach, Leistung 90 kWp / CO2-Reduktion 30,9 Tonnen Umstellung auf LED-Beleuchtung - Sporthalle am Europakanal, Halle / CO2-Reduktion 3,9 Tonnen - Ernst-Penzoldt-Schule, Klassenräume / CO2-Reduktion 4,8 Tonnen - Max-und- …",
+     "marke": "Sporthalle am Europakanal",
+     "ort": true
+    },
+    "anlagen": true,
+    "anlage": {
+     "quelle": "anlage",
+     "strassen": [
+      "Am Europakanal"
+     ],
+     "beleg": "… tung 90 kWp / CO2-Reduktion 30,9 Tonnen Seite 3 von 11 Umstellung auf LED-Beleuchtung - Sporthalle am Europakanal, Halle / CO2-Reduktion 3,9 Tonnen - Ernst-Penzoldt-Schule, Klassenräume / CO2-Reduktion 4,8 Tonnen - Max- …",
+     "marke": "Sporthalle am Europakanal",
+     "ort": true,
+     "dokument": "Beschluss Stand:06.10.2026"
+    }
+   },
+   "2141977": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141978": {
+    "fund": null,
+    "anlagen": true
+   },
    "2141982": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141986": {
     "fund": null,
     "anlagen": true
    },
@@ -208895,6 +210898,66 @@
      "ort": true,
      "dokument": "Übersicht Einsparmoeglichkeiten Ergebnishaushalt"
     }
+   },
+   "2141991": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141994": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2141995": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2142004": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2142006": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2142009": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2142010": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2142011": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2142015": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2142016": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2142018": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2142021": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2142033": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2142037": {
+    "fund": null,
+    "anlagen": true
+   },
+   "2142045": {
+    "fund": null,
+    "anlagen": true
    }
   },
   "sitzungen": {
@@ -209220,7 +211283,12 @@
    "2115599": "18290028",
    "2115600": "18290523",
    "2115602": "18290533",
+   "2115603": "18291012",
    "2115605": "18291055",
+   "2115613": "18291401",
+   "2115616": "18291658",
+   "2115617": "18293115",
+   "2115618": "18292631",
    "2115703": "18288286"
   }
  }
