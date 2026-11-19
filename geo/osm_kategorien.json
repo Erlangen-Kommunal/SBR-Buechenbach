@@ -1,5 +1,5 @@
 {
-  "stand": "2026-08-02",
+  "stand": "2026-11-19",
   "quelle": "© OpenStreetMap-Mitwirkende (ODbL)",
   "punkt": [
     {
@@ -7,7 +7,7 @@
       "label": "Spielplätze",
       "icon": "🛝",
       "farbe": "#2f9e44",
-      "count": 33
+      "count": 35
     },
     {
       "key": "schule_kita",
@@ -70,14 +70,14 @@
       "label": "Querungen",
       "icon": "🚸",
       "farbe": "#f08c00",
-      "count": 174
+      "count": 175
     },
     {
       "key": "abfall",
       "label": "Abfall & Recycling",
       "icon": "🗑️",
       "farbe": "#5c940d",
-      "count": 53
+      "count": 64
     },
     {
       "key": "bank",
